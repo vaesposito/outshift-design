@@ -187,11 +187,137 @@ h5 {
 		color:#9398A3
 }
 	
-	.initiatives {
+.initiatives-section {
     text-align: center;
+    padding: 80px 0 40px;
 }
-	.content.initiatives {
-    width:100%;
+.initiatives-section .content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.timeline {
+    position: relative;
+    padding: 40px 0;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(41,50,71,0.12), rgba(41,50,71,0.06));
+    transform: translateX(-50%);
+}
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+.timeline-marker.diamond {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid rgba(41,50,71,0.25);
+    background: #fff;
+    transform: translateX(-50%) rotate(45deg);
+}
+.timeline-marker.top { top: 0; }
+.timeline-marker.middle { top: 50%; }
+.timeline-marker.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #293247;
+}
+.timeline-marker.right-dot {
+    left: auto;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.initiative-card {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 60px 7%;
+    position: relative;
+}
+.initiative-card.reversed {
+    flex-direction: row-reverse;
+}
+.initiative-card .card-text {
+    flex: 1;
+    text-align: left;
+}
+.initiative-card .card-image {
+    flex: 1.2;
+    position: relative;
+}
+.initiative-card .card-image img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+}
+.initiative-card .card-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #e8edf5 0%, #d5dce8 50%, #c8d0de 100%);
+    position: relative;
+    overflow: hidden;
+}
+.card-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(41, 50, 71, 0.7);
+    color: #fff;
+    font-size: 0.7em;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+}
+.initiative-card .card-text h3 {
+    font-size: 2.2em;
+    font-weight: 500;
+    margin: 0 0 12px;
+    color: #293247;
+}
+.initiative-card .card-text p {
+    font-size: 1.05em;
+    font-weight: 400;
+    color: #67707F;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+.arrow-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(41, 50, 71, 0.15);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 1em;
+    color: #293247;
+    text-decoration: none;
+}
+.arrow-link:hover {
+    background: rgba(41, 50, 71, 0.04);
+}
+.arrow-link svg {
+    width: 16px;
+    height: 16px;
 }
 button {
     position: relative;
@@ -265,14 +391,54 @@ background-image: url("initiative-bg.svg");
     </div>
   </div>
 	  </div>
-  <div class="hero-section">
-      <div class="content initiatives">
-		  <h6>Initiatives</h6>
-        <h3>Features Initiatives</h3>
-        <h4>Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
-		  <div class="initiative">dfsdgsdgerg</div>
-
+  <div class="initiatives-section">
+    <div class="content">
+      <h6>Initiatives</h6>
+      <h3>Featured Initiatives</h3>
+      <h4>Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
     </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-marker diamond top"></div>
+
+    <div class="initiative-card">
+      <div class="card-text">
+        <h3>Designing for the Internet of Agents</h3>
+        <p>Hax: The Framework Guiding Human-Agent Collaboration</p>
+        <a href="#" class="arrow-link" aria-label="Learn more">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+      </div>
+      <div class="card-image">
+        <div class="card-image-placeholder">
+          <span class="card-badge">SDK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-marker diamond middle"></div>
+
+    <div class="initiative-card reversed">
+      <div class="card-text">
+        <h3>Internet of Cognition</h3>
+        <p>Enabling agents and humans to scale intelligence collectively.</p>
+        <a href="#" class="arrow-link" aria-label="Learn more">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+      </div>
+      <div class="card-image">
+        <div class="card-image-placeholder">
+          <span class="card-badge">AI/ML</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-marker dot right-dot"></div>
   </div>
 
 </body>
