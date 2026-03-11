@@ -211,64 +211,89 @@ h5 {
 }
 .card-line-h {
     position: absolute;
-    top: 0;
+    left: 0;
+    right: 0;
     height: 1px;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+    background: linear-gradient(to right, #EB7251, #F09256, #F5B35C, #74BF4B, #00BCEB, #187ADC, #9345E1);
 }
 .card-line-v {
     position: absolute;
     width: 1px;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+}
+.card-crosshair-v {
+    position: absolute;
+    width: 0.73px;
+    height: 30px;
+    pointer-events: none;
+    z-index: 3;
+}
+.card-crosshair-h {
+    position: absolute;
+    height: 0.73px;
+    width: 30px;
+    pointer-events: none;
+    z-index: 3;
 }
 .card-diamond {
     position: absolute;
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     background: #293247;
     transform: rotate(45deg);
-    z-index: 1;
+    z-index: 4;
 }
-.card-dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #293247;
-    z-index: 1;
-}
+
 .wrapper-1 .card-line-h {
-    left: 2%;
-    right: 0;
-    background: linear-gradient(to right, #EB7251, #F09256, #F5B35C, #74BF4B, #00BCEB, #187ADC, #9345E1);
+    top: 0;
 }
 .wrapper-1 .card-line-v {
     left: 2%;
     top: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, #9345E1, #187ADC, #00BCEB);
+    background: linear-gradient(to bottom, #F09256, #F5B35C, #74BF4B, #00BCEB, #187ADC, #9345E1);
 }
 .wrapper-1 .card-diamond {
-    left: calc(2% - 5.5px);
-    top: -5.5px;
+    left: calc(2% - 6px);
+    top: -6px;
 }
+.wrapper-1 .card-crosshair-v {
+    left: calc(2% - 0.365px);
+    top: -30px;
+    background: linear-gradient(to bottom, transparent, #F09256);
+}
+.wrapper-1 .card-crosshair-h {
+    top: -0.365px;
+    left: calc(2% - 30px);
+    background: linear-gradient(to right, transparent, #EB7251);
+}
+
 .wrapper-2 .card-line-h {
-    right: 2%;
-    left: 0;
     bottom: 0;
     top: auto;
-    background: linear-gradient(to left, #EB7251, #F09256, #F5B35C, #74BF4B, #00BCEB, #187ADC, #9345E1);
 }
 .wrapper-2 .card-line-v {
     right: 2%;
     top: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, #00BCEB, #187ADC, #9345E1);
+    background: linear-gradient(to bottom, #187ADC, #9345E1, #9345E1);
 }
-.wrapper-2 .card-dot {
-    right: calc(2% - 5px);
-    top: -5px;
+.wrapper-2 .card-diamond {
+    right: calc(2% - 6px);
+    bottom: -6px;
+}
+.wrapper-2 .card-crosshair-v {
+    right: calc(2% - 0.365px);
+    bottom: -30px;
+    background: linear-gradient(to top, transparent, #9345E1);
+}
+.wrapper-2 .card-crosshair-h {
+    bottom: -0.365px;
+    right: calc(2% - 30px);
+    background: linear-gradient(to left, transparent, #9345E1);
 }
 
 .initiative-card {
@@ -288,6 +313,7 @@ h5 {
 .initiative-card .card-image {
     flex: 1.2;
     position: relative;
+    z-index: 2;
 }
 .initiative-card .card-image img {
     width: 100%;
@@ -436,6 +462,8 @@ background-image: url("initiative-bg.svg");
     <div class="initiative-card-wrapper wrapper-1">
       <div class="card-line-h"></div>
       <div class="card-line-v"></div>
+      <div class="card-crosshair-v"></div>
+      <div class="card-crosshair-h"></div>
       <div class="card-diamond"></div>
       <div class="initiative-card">
         <div class="card-text">
@@ -458,7 +486,9 @@ background-image: url("initiative-bg.svg");
     <div class="initiative-card-wrapper wrapper-2">
       <div class="card-line-h"></div>
       <div class="card-line-v"></div>
-      <div class="card-dot"></div>
+      <div class="card-crosshair-v"></div>
+      <div class="card-crosshair-h"></div>
+      <div class="card-diamond"></div>
       <div class="initiative-card reversed">
         <div class="card-text">
           <h3>Internet of Cognition</h3>
