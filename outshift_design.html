@@ -6,22 +6,6 @@
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <style type="text/css">
-* { cursor: none; }
-.cursor {
-    position: absolute;
-    z-index: 100;
-    user-select: none;
-    pointer-events: none;
-    backface-visibility: hidden;
-}
-.cursor__inner {
-    width: 12px;
-    height: 12px;
-    opacity: 0.5;
-    border-radius: 100%;
-    background-color: #ED5F37;
-    transform: scale(1);
-}
 :root {
     font-family: Inter, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
@@ -351,9 +335,6 @@ background-image: url("initiative-bg.svg");
 </head>
 
 <body>
-<div id="jsCursor" class="cursor">
-  <div id="jsCursorInner" class="cursor__inner"></div>
-</div>
 <header>
   <div class="container">
     <div class="logo"><img src="outshift_logo.svg">
@@ -429,64 +410,5 @@ background-image: url("initiative-bg.svg");
     </div>
   </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script>
-class Cursor {
-  constructor(el, links) {
-    this.DOM = { el: el, x: 0, y: 0 };
-    this.DOM.inner = this.DOM.el.querySelector('#jsCursorInner');
-    this.links = links;
-    this.initAnimation();
-    this.initEvents();
-  }
-  initEvents() {
-    this.mousemoveFn = (e) => {
-      this.DOM.x = e.pageX - 6;
-      this.DOM.y = e.pageY - 6;
-    };
-    document.addEventListener('mousemove', this.mousemoveFn);
-    Array.from(this.links).forEach(link => new Link(link, this.DOM.inner));
-  }
-  initAnimation() {
-    const _this = this;
-    TweenMax.to({}, 0.02, {
-      repeat: -1,
-      onRepeat: function() {
-        TweenMax.set(_this.DOM.el, {
-          x: _this.DOM.x,
-          y: _this.DOM.y,
-        });
-      },
-    });
-  }
-}
-
-class Link {
-  constructor(el, cursor) {
-    this.DOM = { el: el, cursor: cursor };
-    this.initEvents();
-  }
-  initEvents() {
-    this.DOM.el.addEventListener('mouseenter', this.mouseEnter.bind(this));
-    this.DOM.el.addEventListener('mouseleave', this.mouseLeave.bind(this));
-  }
-  mouseEnter() {
-    TweenMax.to(this.DOM.cursor, 1, {
-      ease: Elastic.easeOut.config(1, 0.5),
-      scale: 3,
-      opacity: 0.75,
-    });
-  }
-  mouseLeave() {
-    TweenMax.to(this.DOM.cursor, 1, {
-      ease: Elastic.easeOut.config(1, 0.5),
-      scale: 1,
-      opacity: 0.5,
-    });
-  }
-}
-
-new Cursor(document.getElementById('jsCursor'), document.querySelectorAll('a'));
-</script>
 </body>
 </html>
