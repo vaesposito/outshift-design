@@ -198,44 +198,36 @@ h5 {
 
 .timeline {
     position: relative;
-    padding: 40px 0;
+    padding: 0;
 }
-.timeline::before {
-    content: '';
+.section-line {
     position: absolute;
-    left: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+.section-line-1 {
     top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+.section-line-2 {
     bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, rgba(41,50,71,0.12), rgba(41,50,71,0.06));
-    transform: translateX(-50%);
+    right: 0;
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1) scaleY(-1);
 }
-.timeline-marker {
+.timeline-dot {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-}
-.timeline-marker.diamond {
     width: 10px;
     height: 10px;
-    border: 1.5px solid rgba(41,50,71,0.25);
-    background: #fff;
-    transform: translateX(-50%) rotate(45deg);
-}
-.timeline-marker.top { top: 0; }
-.timeline-marker.middle { top: 50%; }
-.timeline-marker.dot {
-    width: 8px;
-    height: 8px;
     border-radius: 50%;
     background: #293247;
-}
-.timeline-marker.right-dot {
-    left: auto;
-    right: -4px;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 3;
 }
 
 .initiative-card {
@@ -400,7 +392,7 @@ background-image: url("initiative-bg.svg");
   </div>
 
   <div class="timeline">
-    <div class="timeline-marker diamond top"></div>
+    <img src="section.svg" class="section-line section-line-1" alt="">
 
     <div class="initiative-card">
       <div class="card-text">
@@ -419,9 +411,9 @@ background-image: url("initiative-bg.svg");
       </div>
     </div>
 
-    <div class="timeline-marker diamond middle"></div>
-
-    <div class="initiative-card reversed">
+    <div class="initiative-card reversed" style="position: relative;">
+      <img src="section.svg" class="section-line section-line-2" alt="">
+      <div class="timeline-dot"></div>
       <div class="card-text">
         <h3>Internet of Cognition</h3>
         <p>Enabling agents and humans to scale intelligence collectively.</p>
@@ -437,8 +429,6 @@ background-image: url("initiative-bg.svg");
         </div>
       </div>
     </div>
-
-    <div class="timeline-marker dot right-dot"></div>
   </div>
 
 </body>
