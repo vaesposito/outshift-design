@@ -206,53 +206,46 @@ h5 {
     padding: 0;
     z-index: 1;
 }
-.section-line {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-}
-.section-line-1 {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-}
-.section-line-2 {
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: auto;
-    transform: scaleX(-1) scaleY(-1);
-}
-.timeline-dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #293247;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 3;
-}
-
 .initiative-card {
     display: flex;
     align-items: center;
     gap: 60px;
     padding: 60px 7%;
     position: relative;
+    overflow: hidden;
+}
+.initiative-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5431px;
+    height: 3059px;
+    background: url('section.svg') no-repeat top left;
+    background-size: 5431px 3059px;
+    z-index: 0;
+    pointer-events: none;
 }
 .initiative-card.reversed {
     flex-direction: row-reverse;
 }
+.initiative-card.reversed::before {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    transform: scale(-1, -1);
+}
 .initiative-card .card-text {
     flex: 1;
     text-align: left;
+    position: relative;
+    z-index: 1;
 }
 .initiative-card .card-image {
     flex: 1.2;
     position: relative;
+    z-index: 1;
 }
 .initiative-card .card-image img {
     width: 100%;
@@ -396,8 +389,6 @@ background-image: url("initiative-bg.svg");
   </div>
 
   <div class="timeline">
-    <img src="section.svg" class="section-line section-line-1" alt="">
-
     <div class="initiative-card">
       <div class="card-text">
         <h3>Designing for the Internet of Agents</h3>
@@ -415,9 +406,7 @@ background-image: url("initiative-bg.svg");
       </div>
     </div>
 
-    <div class="initiative-card reversed" style="position: relative;">
-      <img src="section.svg" class="section-line section-line-2" alt="">
-      <div class="timeline-dot"></div>
+    <div class="initiative-card reversed">
       <div class="card-text">
         <h3>Internet of Cognition</h3>
         <p>Enabling agents and humans to scale intelligence collectively.</p>
