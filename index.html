@@ -104,7 +104,7 @@ a:active {
     background-image: url('round-blue.svg');
     bottom: 10%;
     left: 30%;
-    animation: move3 13s infinite alternate ease-in-out;
+    animation: move3 8s infinite alternate ease-in-out;
 }
 
 /* LES KEYFRAMES (Ce qui crée le mouvement) */
@@ -206,94 +206,34 @@ h5 {
     padding: 0;
     z-index: 1;
 }
-.initiative-card-wrapper {
-    position: relative;
-}
-.card-line-h {
+.section-line {
     position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+.section-line-1 {
+    top: 0;
     left: 0;
+    width: 100%;
+    height: auto;
+}
+.section-line-2 {
+    bottom: 0;
     right: 0;
-    height: 1px;
-    pointer-events: none;
-    z-index: 1;
-    background: linear-gradient(to right, #EB7251, #F09256, #F5B35C, #74BF4B, #00BCEB, #187ADC, #9345E1);
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1) scaleY(-1);
 }
-.card-line-v {
+.timeline-dot {
     position: absolute;
-    width: 1px;
-    pointer-events: none;
-    z-index: 1;
-}
-.card-crosshair-v {
-    position: absolute;
-    width: 0.73px;
-    height: 30px;
-    pointer-events: none;
-    z-index: 3;
-}
-.card-crosshair-h {
-    position: absolute;
-    height: 0.73px;
-    width: 30px;
-    pointer-events: none;
-    z-index: 3;
-}
-.card-diamond {
-    position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     background: #293247;
-    transform: rotate(45deg);
-    z-index: 4;
-}
-
-.wrapper-1 .card-line-h {
-    top: 0;
-}
-.wrapper-1 .card-line-v {
-    left: 2%;
-    top: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, #F09256, #F5B35C, #74BF4B, #00BCEB, #187ADC, #9345E1);
-}
-.wrapper-1 .card-diamond {
-    left: calc(2% - 6px);
-    top: -6px;
-}
-.wrapper-1 .card-crosshair-v {
-    left: calc(2% - 0.365px);
-    top: -30px;
-    background: linear-gradient(to bottom, transparent, #F09256);
-}
-.wrapper-1 .card-crosshair-h {
-    top: -0.365px;
-    left: calc(2% - 30px);
-    background: linear-gradient(to right, transparent, #EB7251);
-}
-
-.wrapper-2 .card-line-h {
-    bottom: 0;
-    top: auto;
-}
-.wrapper-2 .card-line-v {
-    right: 2%;
-    top: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, #187ADC, #9345E1, #9345E1);
-}
-.wrapper-2 .card-diamond {
-    right: calc(2% - 6px);
-    bottom: -6px;
-}
-.wrapper-2 .card-crosshair-v {
-    right: calc(2% - 0.365px);
-    bottom: -30px;
-    background: linear-gradient(to top, transparent, #9345E1);
-}
-.wrapper-2 .card-crosshair-h {
-    bottom: -0.365px;
-    right: calc(2% - 30px);
-    background: linear-gradient(to left, transparent, #9345E1);
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
 }
 
 .initiative-card {
@@ -313,7 +253,6 @@ h5 {
 .initiative-card .card-image {
     flex: 1.2;
     position: relative;
-    z-index: 2;
 }
 .initiative-card .card-image img {
     width: 100%;
@@ -438,18 +377,16 @@ background-image: url("initiative-bg.svg");
   <div class="blob blob-3"></div>
 </div>
 <div class="hero-section">
-  <div class="hero-section">
-    <div class="container">
-      <div class="content">
-        <h1>Tech evolves fast</h1>
-        <h2>We evolve faster</h2>
-        <h5>Meet the Outshift product design team, Cisco's innovative force for incubation. We specialize in driving ideation and fostering alignment across cross-functional teams.</h5>
-		 <p></p><p></p>
-        <button>See Our Work</button>
-      </div>
+  <div class="container">
+    <div class="content">
+      <h1>Tech evolves fast</h1>
+      <h2>We evolve faster</h2>
+      <h5>Meet the Outshift product design team, Cisco's innovative force for incubation. We specialize in driving ideation and fostering alignment across cross-functional teams.</h5>
+      <p></p><p></p>
+      <button>See Our Work</button>
     </div>
   </div>
-	  </div>
+</div>
   <div class="initiatives-section">
     <div class="content">
       <h6>Initiatives</h6>
@@ -459,50 +396,40 @@ background-image: url("initiative-bg.svg");
   </div>
 
   <div class="timeline">
-    <div class="initiative-card-wrapper wrapper-1">
-      <div class="card-line-h"></div>
-      <div class="card-line-v"></div>
-      <div class="card-crosshair-v"></div>
-      <div class="card-crosshair-h"></div>
-      <div class="card-diamond"></div>
-      <div class="initiative-card">
-        <div class="card-text">
-          <h3>Designing for the Internet of Agents</h3>
-          <p>Hax: The Framework Guiding Human-Agent Collaboration</p>
-          <a href="#" class="arrow-link" aria-label="Learn more">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12L12 4M12 4H5M12 4V11"/>
-            </svg>
-          </a>
-        </div>
-        <div class="card-image">
-          <div class="card-image-placeholder">
-            <span class="card-badge">SDK</span>
-          </div>
+    <img src="section.svg" class="section-line section-line-1" alt="">
+
+    <div class="initiative-card">
+      <div class="card-text">
+        <h3>Designing for the Internet of Agents</h3>
+        <p>Hax: The Framework Guiding Human-Agent Collaboration</p>
+        <a href="#" class="arrow-link" aria-label="Learn more">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+      </div>
+      <div class="card-image">
+        <div class="card-image-placeholder">
+          <span class="card-badge">SDK</span>
         </div>
       </div>
     </div>
 
-    <div class="initiative-card-wrapper wrapper-2">
-      <div class="card-line-h"></div>
-      <div class="card-line-v"></div>
-      <div class="card-crosshair-v"></div>
-      <div class="card-crosshair-h"></div>
-      <div class="card-diamond"></div>
-      <div class="initiative-card reversed">
-        <div class="card-text">
-          <h3>Internet of Cognition</h3>
-          <p>Enabling agents and humans to scale intelligence collectively.</p>
-          <a href="#" class="arrow-link" aria-label="Learn more">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12L12 4M12 4H5M12 4V11"/>
-            </svg>
-          </a>
-        </div>
-        <div class="card-image">
-          <div class="card-image-placeholder">
-            <span class="card-badge">AI/ML</span>
-          </div>
+    <div class="initiative-card reversed" style="position: relative;">
+      <img src="section.svg" class="section-line section-line-2" alt="">
+      <div class="timeline-dot"></div>
+      <div class="card-text">
+        <h3>Internet of Cognition</h3>
+        <p>Enabling agents and humans to scale intelligence collectively.</p>
+        <a href="#" class="arrow-link" aria-label="Learn more">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+      </div>
+      <div class="card-image">
+        <div class="card-image-placeholder">
+          <span class="card-badge">AI/ML</span>
         </div>
       </div>
     </div>
