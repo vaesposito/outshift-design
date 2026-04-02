@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outshift Design — Style Guide</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<style type="text/css">
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+    color: #293247;
+  }
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #293247;
+}
+.sg-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ── Style Guide Header ── */
+.sg-header {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid rgba(41, 50, 71, 0.08);
+    margin-bottom: 64px;
+}
+.sg-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sg-header .logo {
+    display: flex;
+    align-items: center;
+}
+.sg-header .logo img {
+    height: 36px;
+}
+.sg-header .logo .design {
+    font-size: 1.8em;
+    font-weight: 200;
+    margin-left: 8px;
+}
+.sg-header .sg-title {
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #59616B;
+}
+
+/* ── Section Layout ── */
+.sg-section {
+    margin-bottom: 80px;
+}
+.sg-section-title {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #00BCEB;
+    margin: 0 0 12px;
+}
+.sg-section-heading {
+    font-size: 2.4em;
+    font-weight: 200;
+    margin: 0 0 16px;
+    color: #293247;
+}
+.sg-section-desc {
+    font-size: 1.05em;
+    color: #67707F;
+    line-height: 1.6;
+    margin: 0 0 40px;
+    max-width: 600px;
+}
+.sg-divider {
+    border: none;
+    border-top: 1px solid rgba(41, 50, 71, 0.08);
+    margin: 64px 0;
+}
+
+/* ── Color Palette ── */
+.sg-colors {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.sg-color-card {
+    border-radius: 12px;
+    border: 1px solid rgba(41, 50, 71, 0.08);
+    overflow: hidden;
+}
+.sg-color-swatch {
+    height: 100px;
+}
+.sg-color-info {
+    padding: 16px;
+}
+.sg-color-name {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin: 0 0 4px;
+}
+.sg-color-hex {
+    font-size: 0.82em;
+    color: #59616B;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.sg-color-usage {
+    font-size: 0.78em;
+    color: #67707F;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* ── Gradient Bar ── */
+.sg-gradient-bar {
+    height: 64px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+.sg-gradient-label {
+    font-size: 0.85em;
+    color: #59616B;
+    margin-bottom: 8px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Typography Specimens ── */
+.sg-type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(41, 50, 71, 0.06);
+}
+.sg-type-meta {
+    flex: 0 0 200px;
+    text-align: right;
+}
+.sg-type-tag {
+    font-size: 0.82em;
+    font-weight: 600;
+    color: #00BCEB;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.sg-type-specs {
+    font-size: 0.78em;
+    color: #59616B;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+.sg-type-sample {
+    flex: 1;
+}
+.sg-type-sample h1,
+.sg-type-sample h2,
+.sg-type-sample h3,
+.sg-type-sample h4,
+.sg-type-sample h5,
+.sg-type-sample h6,
+.sg-type-sample p {
+    margin: 0;
+}
+
+/* ── Typography Styles (from main site) ── */
+.demo-h1 { font-size: 4em; font-weight: 200; }
+.demo-h2 { font-size: 4em; font-weight: 600; }
+.demo-h3 { font-size: 3em; font-weight: 200; }
+.demo-h4 { font-size: 1.2em; font-weight: 600; color: #67707F; line-height: 1.6; }
+.demo-h5 { font-size: 1.5em; font-weight: 200; line-height: 1.6; }
+.demo-h6 { font-size: 0.8em; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: #59616B; }
+.demo-body { font-size: 1.05em; font-weight: 400; color: #67707F; line-height: 1.6; }
+.demo-caption { font-size: 0.85em; font-weight: 400; color: #59616B; }
+
+/* ── Font Weight Specimens ── */
+.sg-weights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+}
+.sg-weight-card {
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(41, 50, 71, 0.08);
+}
+.sg-weight-sample {
+    font-size: 2em;
+    margin-bottom: 12px;
+}
+.sg-weight-label {
+    font-size: 0.82em;
+    color: #59616B;
+}
+.sg-weight-value {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.78em;
+    color: #00BCEB;
+}
+
+/* ── Component Demos ── */
+.sg-component-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+.sg-component-card {
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid rgba(41, 50, 71, 0.08);
+}
+.sg-component-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #59616B;
+    margin: 0 0 20px;
+}
+.sg-component-demo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ── Buttons (from main site) ── */
+.demo-btn {
+    position: relative;
+    display: inline-flex;
+    padding: 18px 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    font-size: 1.2em;
+    background: transparent;
+    color: #293247;
+    border: none;
+    cursor: pointer;
+    z-index: 0;
+    font-family: inherit;
+}
+.demo-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 1.5px;
+    background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.demo-btn-sm {
+    padding: 10px 18px;
+    font-size: 0.95em;
+}
+
+/* ── Badges ── */
+.demo-badge {
+    display: inline-block;
+    background: rgba(41, 50, 71, 0.7);
+    color: #fff;
+    font-size: 0.7em;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+}
+
+/* ── Tags ── */
+.demo-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(41, 50, 71, 0.15);
+    color: #67707F;
+    font-size: 0.8em;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.demo-tag:hover {
+    background: rgba(41, 50, 71, 0.04);
+    color: #293247;
+}
+
+/* ── Arrow Links ── */
+.demo-arrow-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(41, 50, 71, 0.15);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: #293247;
+    text-decoration: none;
+}
+.demo-arrow-link:hover {
+    background: rgba(41, 50, 71, 0.04);
+}
+.demo-arrow-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ── Spacing Tokens ── */
+.sg-spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+}
+.sg-spacing-bar {
+    height: 24px;
+    background: linear-gradient(to right, rgba(210, 194, 255, 0.4), rgba(0, 188, 235, 0.3));
+    border-radius: 4px;
+}
+.sg-spacing-label {
+    flex: 0 0 80px;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: #293247;
+}
+.sg-spacing-value {
+    flex: 0 0 60px;
+    font-size: 0.78em;
+    color: #59616B;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Border Radius Tokens ── */
+.sg-radius-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.sg-radius-card {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(210, 194, 255, 0.2), rgba(0, 188, 235, 0.15));
+    border: 1px solid rgba(41, 50, 71, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #59616B;
+}
+
+/* ── Read More Link ── */
+.demo-read-more {
+    color: #00BCEB;
+    font-weight: 600;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+}
+.demo-read-more:hover {
+    color: #187ADC;
+}
+
+/* ── Dark Preview ── */
+.sg-dark-preview {
+    background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
+    border-radius: 16px;
+    padding: 40px;
+}
+
+a:link, a:visited { text-decoration: none; color: inherit; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="sg-container">
+  <div class="sg-header">
+    <div class="sg-header-inner">
+      <div class="logo">
+        <img src="outshift_logo.svg" alt="Outshift">
+        <span class="design">design</span>
+      </div>
+      <span class="sg-title">Style Guide</span>
+    </div>
+  </div>
+</div>
+
+<div class="sg-container">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- COLOR PALETTE -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="sg-section">
+    <p class="sg-section-title">Foundation</p>
+    <h2 class="sg-section-heading">Color Palette</h2>
+    <p class="sg-section-desc">The Outshift Design color system is built on a neutral, professional base with strategic accent colors for emphasis and interaction.</p>
+
+    <p class="sg-component-label" style="margin-top:32px;">Primary Colors</p>
+    <div class="sg-colors">
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#293247;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Ink</p>
+          <p class="sg-color-hex">#293247</p>
+          <p class="sg-color-usage">Primary text, headings, logo</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#67707F;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Slate</p>
+          <p class="sg-color-hex">#67707F</p>
+          <p class="sg-color-usage">Body text, descriptions</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#59616B;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Stone</p>
+          <p class="sg-color-hex">#59616B</p>
+          <p class="sg-color-usage">Captions, metadata, labels</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#FFFFFF; border-bottom:1px solid rgba(41,50,71,0.08);"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">White</p>
+          <p class="sg-color-hex">#FFFFFF</p>
+          <p class="sg-color-usage">Page background, cards</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Accent Colors</p>
+    <div class="sg-colors">
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#00BCEB;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Cyan</p>
+          <p class="sg-color-hex">#00BCEB</p>
+          <p class="sg-color-usage">Links, CTAs, interactive</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#187ADC;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Blue</p>
+          <p class="sg-color-hex">#187ADC</p>
+          <p class="sg-color-usage">Hover states, active links</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#9345E1;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Violet</p>
+          <p class="sg-color-hex">#9345E1</p>
+          <p class="sg-color-usage">Gradient accent</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#D2C2FF;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Lavender</p>
+          <p class="sg-color-hex">#D2C2FF</p>
+          <p class="sg-color-usage">Section backgrounds (15% alpha)</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Brand Gradient</p>
+    <div class="sg-colors">
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#74BF4B;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Green</p>
+          <p class="sg-color-hex">#74BF4B</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#F5B35C;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Amber</p>
+          <p class="sg-color-hex">#F5B35C</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#F09256;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Orange</p>
+          <p class="sg-color-hex">#F09256</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:#EB7251;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Coral</p>
+          <p class="sg-color-hex">#EB7251</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Gradients</p>
+    <p class="sg-gradient-label">Brand Gradient (button borders)</p>
+    <div class="sg-gradient-bar" style="background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);"></div>
+
+    <p class="sg-gradient-label" style="margin-top:24px;">Section Background</p>
+    <div class="sg-gradient-bar" style="background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0)); border: 1px solid rgba(41,50,71,0.08);"></div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Borders & Overlays</p>
+    <div class="sg-colors" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background: rgba(41, 50, 71, 0.08); border-bottom:1px solid rgba(41,50,71,0.08);"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Border Light</p>
+          <p class="sg-color-hex">rgba(41, 50, 71, 0.08)</p>
+          <p class="sg-color-usage">Dividers, card borders</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background: rgba(41, 50, 71, 0.15);"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Border Medium</p>
+          <p class="sg-color-hex">rgba(41, 50, 71, 0.15)</p>
+          <p class="sg-color-usage">Buttons, tags, arrow links</p>
+        </div>
+      </div>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background: rgba(41, 50, 71, 0.7);"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name">Overlay Dark</p>
+          <p class="sg-color-hex">rgba(41, 50, 71, 0.7)</p>
+          <p class="sg-color-usage">Badges, overlays</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- TYPOGRAPHY -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="sg-section">
+    <p class="sg-section-title">Foundation</p>
+    <h2 class="sg-section-heading">Typography</h2>
+    <p class="sg-section-desc">Inter Variable is used across all weights. The type scale pairs light display headings with semibold emphasis for visual hierarchy.</p>
+
+    <p class="sg-component-label">Typeface</p>
+    <div style="font-size: 3em; font-weight: 200; margin-bottom: 4px;">Inter Variable</div>
+    <div style="font-size: 1em; color: #59616B; margin-bottom: 40px; font-family: 'SF Mono', 'Fira Code', monospace;">font-family: InterVariable, sans-serif</div>
+
+    <p class="sg-component-label">Font Weights</p>
+    <div class="sg-weights">
+      <div class="sg-weight-card">
+        <div class="sg-weight-sample" style="font-weight:200;">Aa</div>
+        <div class="sg-weight-label">Extra Light</div>
+        <div class="sg-weight-value">200</div>
+      </div>
+      <div class="sg-weight-card">
+        <div class="sg-weight-sample" style="font-weight:400;">Aa</div>
+        <div class="sg-weight-label">Regular</div>
+        <div class="sg-weight-value">400</div>
+      </div>
+      <div class="sg-weight-card">
+        <div class="sg-weight-sample" style="font-weight:500;">Aa</div>
+        <div class="sg-weight-label">Medium</div>
+        <div class="sg-weight-value">500</div>
+      </div>
+      <div class="sg-weight-card">
+        <div class="sg-weight-sample" style="font-weight:600;">Aa</div>
+        <div class="sg-weight-label">Semibold</div>
+        <div class="sg-weight-value">600</div>
+      </div>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:48px;">Type Scale</p>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;h1&gt;</div>
+        <div class="sg-type-specs">4em / 64px<br>Weight 200<br>Color: #293247</div>
+      </div>
+      <div class="sg-type-sample">
+        <h1 class="demo-h1">Display Light</h1>
+      </div>
+    </div>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;h2&gt;</div>
+        <div class="sg-type-specs">4em / 64px<br>Weight 600<br>Color: #293247</div>
+      </div>
+      <div class="sg-type-sample">
+        <h2 class="demo-h2">Display Bold</h2>
+      </div>
+    </div>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;h3&gt;</div>
+        <div class="sg-type-specs">3em / 48px<br>Weight 200<br>Color: #293247</div>
+      </div>
+      <div class="sg-type-sample">
+        <h3 class="demo-h3">Section Heading</h3>
+      </div>
+    </div>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;h4&gt;</div>
+        <div class="sg-type-specs">1.2em / 19px<br>Weight 600<br>Color: #67707F</div>
+      </div>
+      <div class="sg-type-sample">
+        <h4 class="demo-h4">Subtitle — used for section descriptions and supporting text beneath headings</h4>
+      </div>
+    </div>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;h5&gt;</div>
+        <div class="sg-type-specs">1.5em / 24px<br>Weight 200<br>Line-height: 1.6<br>Color: #293247</div>
+      </div>
+      <div class="sg-type-sample">
+        <h5 class="demo-h5">Lead paragraph — used for hero introductions and prominent body copy that requires extra emphasis.</h5>
+      </div>
+    </div>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;h6&gt;</div>
+        <div class="sg-type-specs">0.8em / 13px<br>Weight 600<br>Uppercase<br>Tracking: 1.8px<br>Color: #59616B</div>
+      </div>
+      <div class="sg-type-sample">
+        <h6 class="demo-h6">Overline Label</h6>
+      </div>
+    </div>
+
+    <div class="sg-type-row">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;p&gt; body</div>
+        <div class="sg-type-specs">1.05em / 17px<br>Weight 400<br>Line-height: 1.6<br>Color: #67707F</div>
+      </div>
+      <div class="sg-type-sample">
+        <p class="demo-body">Body text is used for descriptions, card content, and general reading. It provides comfortable readability with generous line-height.</p>
+      </div>
+    </div>
+
+    <div class="sg-type-row" style="border-bottom:none;">
+      <div class="sg-type-meta">
+        <div class="sg-type-tag">&lt;small&gt; caption</div>
+        <div class="sg-type-specs">0.85em / 14px<br>Weight 400<br>Color: #59616B</div>
+      </div>
+      <div class="sg-type-sample">
+        <p class="demo-caption">Caption and metadata text — timestamps, reading time, copyright notices.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- COMPONENTS -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="sg-section">
+    <p class="sg-section-title">Components</p>
+    <h2 class="sg-section-heading">UI Elements</h2>
+    <p class="sg-section-desc">Reusable components used across the Outshift Design site, from buttons and badges to interactive link elements.</p>
+
+    <div class="sg-component-grid">
+      <div class="sg-component-card">
+        <p class="sg-component-label">Buttons</p>
+        <div class="sg-component-demo" style="gap:20px;">
+          <button class="demo-btn">See Our Work</button>
+          <button class="demo-btn demo-btn-sm">View All Articles</button>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">Gradient border via mask composite. Padding: 18px 24px. Radius: 40px.</p>
+      </div>
+
+      <div class="sg-component-card">
+        <p class="sg-component-label">Badges</p>
+        <div class="sg-component-demo">
+          <span class="demo-badge">SDK</span>
+          <span class="demo-badge">AI/ML</span>
+          <span class="demo-badge">Research</span>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">Overlay dark bg, white text, uppercase. Radius: 6px. Backdrop blur: 8px.</p>
+      </div>
+
+      <div class="sg-component-card">
+        <p class="sg-component-label">Tags</p>
+        <div class="sg-component-demo">
+          <a href="#" class="demo-tag">AI Agents</a>
+          <a href="#" class="demo-tag">Design Systems</a>
+          <a href="#" class="demo-tag">Connectivity</a>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">Pill-shaped, border medium. Radius: 20px. Padding: 4px 12px.</p>
+      </div>
+
+      <div class="sg-component-card">
+        <p class="sg-component-label">Arrow Links</p>
+        <div class="sg-component-demo" style="gap:20px;">
+          <a href="#" class="demo-arrow-link">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg>
+          </a>
+          <a href="#" class="demo-read-more">Read more &rarr;</a>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">40×40px icon button (radius 10px) and inline text link (#00BCEB).</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SPACING -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="sg-section">
+    <p class="sg-section-title">Foundation</p>
+    <h2 class="sg-section-heading">Spacing & Radius</h2>
+    <p class="sg-section-desc">Consistent spacing and border radius values create rhythm and cohesion across the interface.</p>
+
+    <p class="sg-component-label">Spacing Scale</p>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">xs</span>
+      <div class="sg-spacing-bar" style="width:8px;"></div>
+      <span class="sg-spacing-value">8px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">sm</span>
+      <div class="sg-spacing-bar" style="width:16px;"></div>
+      <span class="sg-spacing-value">16px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">md</span>
+      <div class="sg-spacing-bar" style="width:24px;"></div>
+      <span class="sg-spacing-value">24px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">lg</span>
+      <div class="sg-spacing-bar" style="width:32px;"></div>
+      <span class="sg-spacing-value">32px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">xl</span>
+      <div class="sg-spacing-bar" style="width:40px;"></div>
+      <span class="sg-spacing-value">40px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">2xl</span>
+      <div class="sg-spacing-bar" style="width:60px;"></div>
+      <span class="sg-spacing-value">60px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">3xl</span>
+      <div class="sg-spacing-bar" style="width:80px;"></div>
+      <span class="sg-spacing-value">80px</span>
+    </div>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">4xl</span>
+      <div class="sg-spacing-bar" style="width:110px;"></div>
+      <span class="sg-spacing-value">110px</span>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:48px;">Border Radius</p>
+    <div class="sg-radius-grid">
+      <div class="sg-radius-card" style="border-radius:6px;">6px</div>
+      <div class="sg-radius-card" style="border-radius:8px;">8px</div>
+      <div class="sg-radius-card" style="border-radius:10px;">10px</div>
+      <div class="sg-radius-card" style="border-radius:12px;">12px</div>
+      <div class="sg-radius-card" style="border-radius:16px;">16px</div>
+      <div class="sg-radius-card" style="border-radius:20px;">20px</div>
+      <div class="sg-radius-card" style="border-radius:40px;">40px</div>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- USAGE EXAMPLES -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="sg-section">
+    <p class="sg-section-title">Patterns</p>
+    <h2 class="sg-section-heading">Usage Examples</h2>
+    <p class="sg-section-desc">How typography and color combine in context across the site.</p>
+
+    <p class="sg-component-label">Hero Pairing</p>
+    <div style="padding:40px 0 48px;">
+      <h1 class="demo-h1" style="margin:0;">Design evolves fast</h1>
+      <h2 class="demo-h2" style="margin:4px 0 0;">We evolve faster</h2>
+    </div>
+
+    <p class="sg-component-label">Section Header Pattern</p>
+    <div style="text-align:center; padding:32px 0 48px;">
+      <h6 class="demo-h6">Initiatives</h6>
+      <h3 class="demo-h3" style="margin:8px 0 12px;">Featured Initiatives</h3>
+      <h4 class="demo-h4" style="max-width:500px; margin:0 auto;">Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
+    </div>
+
+    <p class="sg-component-label">Card on Gradient Background</p>
+    <div class="sg-dark-preview">
+      <div style="background:#fff; border-radius:16px; border:1px solid rgba(41,50,71,0.08); padding:40px; max-width:380px;">
+        <h4 style="font-size:24px; font-weight:500; color:#293247; margin:0 0 20px; line-height:1.3;">The Future of Design Systems</h4>
+        <p class="demo-body" style="margin:0 0 24px;">How we built a scalable design system that powers hundreds of products.</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="demo-caption">5 min read</span>
+          <a href="#" class="demo-read-more">Read more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div style="border-top:1px solid rgba(41,50,71,0.08); padding:24px 0; text-align:center; color:#59616B; font-size:0.85em; margin-top:40px;">
+  Outshift Design Style Guide &middot; &copy; 2026 Outshift by Cisco
+</div>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= pageTitle %></title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<link rel="stylesheet" href="/css/styleguide.css">
+</head>
+<body>
+
+<div class="sg-container">
+  <div class="sg-header">
+    <div class="sg-header-inner">
+      <div class="logo">
+        <img src="/images/outshift_logo.svg" alt="Outshift">
+        <span class="design">design</span>
+      </div>
+      <span class="sg-title">Style Guide</span>
+    </div>
+  </div>
+</div>
+
+<div class="sg-container">
+
+  <!-- COLOR PALETTE -->
+  <div class="sg-section">
+    <p class="sg-section-title">Foundation</p>
+    <h2 class="sg-section-heading">Color Palette</h2>
+    <p class="sg-section-desc">The Outshift Design color system is built on a neutral, professional base with strategic accent colors for emphasis and interaction.</p>
+
+    <p class="sg-component-label" style="margin-top:32px;">Primary Colors</p>
+    <div class="sg-colors">
+      <% const primaryColors = [
+        { name: 'Ink', hex: '#293247', usage: 'Primary text, headings, logo' },
+        { name: 'Slate', hex: '#67707F', usage: 'Body text, descriptions' },
+        { name: 'Stone', hex: '#59616B', usage: 'Captions, metadata, labels' },
+        { name: 'White', hex: '#FFFFFF', usage: 'Page background, cards' },
+      ] %>
+      <% primaryColors.forEach(c => { %>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:<%= c.hex %>;<%= c.hex === '#FFFFFF' ? ' border-bottom:1px solid rgba(41,50,71,0.08);' : '' %>"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name"><%= c.name %></p>
+          <p class="sg-color-hex"><%= c.hex %></p>
+          <p class="sg-color-usage"><%= c.usage %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Accent Colors</p>
+    <div class="sg-colors">
+      <% const accentColors = [
+        { name: 'Cyan', hex: '#00BCEB', usage: 'Links, CTAs, interactive' },
+        { name: 'Blue', hex: '#187ADC', usage: 'Hover states, active links' },
+        { name: 'Violet', hex: '#9345E1', usage: 'Gradient accent' },
+        { name: 'Lavender', hex: '#D2C2FF', usage: 'Section backgrounds (15% alpha)' },
+      ] %>
+      <% accentColors.forEach(c => { %>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:<%= c.hex %>;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name"><%= c.name %></p>
+          <p class="sg-color-hex"><%= c.hex %></p>
+          <p class="sg-color-usage"><%= c.usage %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Brand Gradient</p>
+    <div class="sg-colors">
+      <% const gradientColors = [
+        { name: 'Green', hex: '#74BF4B' },
+        { name: 'Amber', hex: '#F5B35C' },
+        { name: 'Orange', hex: '#F09256' },
+        { name: 'Coral', hex: '#EB7251' },
+      ] %>
+      <% gradientColors.forEach(c => { %>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:<%= c.hex %>;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name"><%= c.name %></p>
+          <p class="sg-color-hex"><%= c.hex %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Gradients</p>
+    <p class="sg-gradient-label">Brand Gradient (button borders)</p>
+    <div class="sg-gradient-bar" style="background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);"></div>
+    <p class="sg-gradient-label" style="margin-top:24px;">Section Background</p>
+    <div class="sg-gradient-bar" style="background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0)); border: 1px solid rgba(41,50,71,0.08);"></div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Borders &amp; Overlays</p>
+    <div class="sg-colors" style="grid-template-columns: repeat(3, 1fr);">
+      <% const borderColors = [
+        { name: 'Border Light', hex: 'rgba(41, 50, 71, 0.08)', usage: 'Dividers, card borders' },
+        { name: 'Border Medium', hex: 'rgba(41, 50, 71, 0.15)', usage: 'Buttons, tags, arrow links' },
+        { name: 'Overlay Dark', hex: 'rgba(41, 50, 71, 0.7)', usage: 'Badges, overlays' },
+      ] %>
+      <% borderColors.forEach(c => { %>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:<%= c.hex %>;"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name"><%= c.name %></p>
+          <p class="sg-color-hex"><%= c.hex %></p>
+          <p class="sg-color-usage"><%= c.usage %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- TYPOGRAPHY -->
+  <div class="sg-section">
+    <p class="sg-section-title">Foundation</p>
+    <h2 class="sg-section-heading">Typography</h2>
+    <p class="sg-section-desc">Inter Variable is used across all weights. The type scale pairs light display headings with semibold emphasis for visual hierarchy.</p>
+
+    <p class="sg-component-label">Typeface</p>
+    <div style="font-size: 3em; font-weight: 200; margin-bottom: 4px;">Inter Variable</div>
+    <div style="font-size: 1em; color: #59616B; margin-bottom: 40px; font-family: 'SF Mono', 'Fira Code', monospace;">font-family: InterVariable, sans-serif</div>
+
+    <p class="sg-component-label">Font Weights</p>
+    <div class="sg-weights">
+      <% const weights = [
+        { label: 'Extra Light', value: 200 },
+        { label: 'Regular', value: 400 },
+        { label: 'Medium', value: 500 },
+        { label: 'Semibold', value: 600 },
+      ] %>
+      <% weights.forEach(w => { %>
+      <div class="sg-weight-card">
+        <div class="sg-weight-sample" style="font-weight:<%= w.value %>;">Aa</div>
+        <div class="sg-weight-label"><%= w.label %></div>
+        <div class="sg-weight-value"><%= w.value %></div>
+      </div>
+      <% }) %>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:48px;">Type Scale</p>
+
+    <% const typeScale = [
+      { tag: '<h1>', cls: 'demo-h1', specs: '4em / 64px | Weight 200 | Color: #293247', sample: 'Display Light', el: 'h1' },
+      { tag: '<h2>', cls: 'demo-h2', specs: '4em / 64px | Weight 600 | Color: #293247', sample: 'Display Bold', el: 'h2' },
+      { tag: '<h3>', cls: 'demo-h3', specs: '3em / 48px | Weight 200 | Color: #293247', sample: 'Section Heading', el: 'h3' },
+      { tag: '<h4>', cls: 'demo-h4', specs: '1.2em / 19px | Weight 600 | Color: #67707F', sample: 'Subtitle — used for section descriptions and supporting text beneath headings', el: 'h4' },
+      { tag: '<h5>', cls: 'demo-h5', specs: '1.5em / 24px | Weight 200 | Line-height: 1.6 | Color: #293247', sample: 'Lead paragraph — used for hero introductions and prominent body copy that requires extra emphasis.', el: 'h5' },
+      { tag: '<h6>', cls: 'demo-h6', specs: '0.8em / 13px | Weight 600 | Uppercase | Tracking: 1.8px | Color: #59616B', sample: 'Overline Label', el: 'h6' },
+      { tag: '<p> body', cls: 'demo-body', specs: '1.05em / 17px | Weight 400 | Line-height: 1.6 | Color: #67707F', sample: 'Body text is used for descriptions, card content, and general reading. It provides comfortable readability with generous line-height.', el: 'p' },
+      { tag: '<small> caption', cls: 'demo-caption', specs: '0.85em / 14px | Weight 400 | Color: #59616B', sample: 'Caption and metadata text — timestamps, reading time, copyright notices.', el: 'p' },
+    ] %>
+    <% typeScale.forEach((t, i) => { %>
+    <div class="sg-type-row"<%= i === typeScale.length - 1 ? ' style="border-bottom:none;"' : '' %>>
+      <div class="sg-type-meta">
+        <div class="sg-type-tag"><%= t.tag %></div>
+        <div class="sg-type-specs"><%- t.specs.split(' | ').join('<br>') %></div>
+      </div>
+      <div class="sg-type-sample">
+        <<%= t.el %> class="<%= t.cls %>"><%= t.sample %></<%= t.el %>>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- COMPONENTS -->
+  <div class="sg-section">
+    <p class="sg-section-title">Components</p>
+    <h2 class="sg-section-heading">UI Elements</h2>
+    <p class="sg-section-desc">Reusable components used across the Outshift Design site, from buttons and badges to interactive link elements.</p>
+
+    <div class="sg-component-grid">
+      <div class="sg-component-card">
+        <p class="sg-component-label">Buttons</p>
+        <div class="sg-component-demo" style="gap:20px;">
+          <button class="demo-btn">See Our Work</button>
+          <button class="demo-btn demo-btn-sm">View All Articles</button>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">Gradient border via mask composite. Padding: 18px 24px. Radius: 40px.</p>
+      </div>
+
+      <div class="sg-component-card">
+        <p class="sg-component-label">Badges</p>
+        <div class="sg-component-demo">
+          <span class="demo-badge">SDK</span>
+          <span class="demo-badge">AI/ML</span>
+          <span class="demo-badge">Research</span>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">Overlay dark bg, white text, uppercase. Radius: 6px. Backdrop blur: 8px.</p>
+      </div>
+
+      <div class="sg-component-card">
+        <p class="sg-component-label">Tags</p>
+        <div class="sg-component-demo">
+          <a href="#" class="demo-tag">AI Agents</a>
+          <a href="#" class="demo-tag">Design Systems</a>
+          <a href="#" class="demo-tag">Connectivity</a>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">Pill-shaped, border medium. Radius: 20px. Padding: 4px 12px.</p>
+      </div>
+
+      <div class="sg-component-card">
+        <p class="sg-component-label">Arrow Links</p>
+        <div class="sg-component-demo" style="gap:20px;">
+          <a href="#" class="demo-arrow-link">
+            <%- include('partials/arrow-icon') %>
+          </a>
+          <a href="#" class="demo-read-more">Read more &rarr;</a>
+        </div>
+        <p class="demo-caption" style="margin-top:16px;">40&times;40px icon button (radius 10px) and inline text link (#00BCEB).</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- SPACING -->
+  <div class="sg-section">
+    <p class="sg-section-title">Foundation</p>
+    <h2 class="sg-section-heading">Spacing &amp; Radius</h2>
+    <p class="sg-section-desc">Consistent spacing and border radius values create rhythm and cohesion across the interface.</p>
+
+    <p class="sg-component-label">Spacing Scale</p>
+    <% const spacings = [
+      { label: 'xs', value: 8 }, { label: 'sm', value: 16 }, { label: 'md', value: 24 },
+      { label: 'lg', value: 32 }, { label: 'xl', value: 40 }, { label: '2xl', value: 60 },
+      { label: '3xl', value: 80 }, { label: '4xl', value: 110 },
+    ] %>
+    <% spacings.forEach(s => { %>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label"><%= s.label %></span>
+      <div class="sg-spacing-bar" style="width:<%= s.value %>px;"></div>
+      <span class="sg-spacing-value"><%= s.value %>px</span>
+    </div>
+    <% }) %>
+
+    <p class="sg-component-label" style="margin-top:48px;">Border Radius</p>
+    <div class="sg-radius-grid">
+      <% [6, 8, 10, 12, 16, 20, 40].forEach(r => { %>
+      <div class="sg-radius-card" style="border-radius:<%= r %>px;"><%= r %>px</div>
+      <% }) %>
+    </div>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- USAGE EXAMPLES -->
+  <div class="sg-section">
+    <p class="sg-section-title">Patterns</p>
+    <h2 class="sg-section-heading">Usage Examples</h2>
+    <p class="sg-section-desc">How typography and color combine in context across the site.</p>
+
+    <p class="sg-component-label">Hero Pairing</p>
+    <div style="padding:40px 0 48px;">
+      <h1 class="demo-h1" style="margin:0;">Design evolves fast</h1>
+      <h2 class="demo-h2" style="margin:4px 0 0;">We evolve faster</h2>
+    </div>
+
+    <p class="sg-component-label">Section Header Pattern</p>
+    <div style="text-align:center; padding:32px 0 48px;">
+      <h6 class="demo-h6">Initiatives</h6>
+      <h3 class="demo-h3" style="margin:8px 0 12px;">Featured Initiatives</h3>
+      <h4 class="demo-h4" style="max-width:500px; margin:0 auto;">Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
+    </div>
+
+    <p class="sg-component-label">Card on Gradient Background</p>
+    <div class="sg-dark-preview">
+      <div style="background:#fff; border-radius:16px; border:1px solid rgba(41,50,71,0.08); padding:40px; max-width:380px;">
+        <h4 style="font-size:24px; font-weight:500; color:#293247; margin:0 0 20px; line-height:1.3;">The Future of Design Systems</h4>
+        <p class="demo-body" style="margin:0 0 24px;">How we built a scalable design system that powers hundreds of products.</p>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="demo-caption">5 min read</span>
+          <a href="#" class="demo-read-more">Read more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="border-top:1px solid rgba(41,50,71,0.08); padding:24px 0; text-align:center; color:#59616B; font-size:0.85em; margin-top:40px;">
+  Outshift Design Style Guide &middot; &copy; <%= year %> Outshift by Cisco
+</div>
+
+</body>
+</html>

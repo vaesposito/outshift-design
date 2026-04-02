@@ -1,0 +1,23 @@
+<header>
+  <div class="container">
+    <div class="logo">
+      <img src="/images/outshift_logo.svg" alt="Outshift">
+      <div class="design">design</div>
+    </div>
+    <nav>
+      <ul>
+        <% nav.forEach(item => { %>
+        <li>
+          <a href="<%= item.href %>">
+            <span class="text"><%= item.label %></span>
+            <% if (item.hasDropdown) { %>
+            <span class="icon"><img src="/images/keyboard-arrow-down-icon.svg" alt=""></span>
+            <% } %>
+          </a>
+        </li>
+        <% }) %>
+        <li><img src="/images/Moon.svg" class="icon" alt="Toggle theme"></li>
+      </ul>
+    </nav>
+  </div>
+</header>

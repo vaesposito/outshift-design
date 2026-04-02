@@ -335,54 +335,57 @@ button::before {
     gap: 32px;
 }
 .innovation-card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
     transition: transform 0.3s;
-    border: 1px solid rgba(41, 50, 71, 0.06);
 }
 .innovation-card:hover {
     transform: translateY(-4px);
 }
 .innovation-card video {
     width: 100%;
-    height: 260px;
+    height: 280px;
     object-fit: cover;
     display: block;
+    border-radius: 14px;
 }
 .innovation-card-body {
-    padding: 28px;
+    padding: 24px 12px 12px;
 }
-.innovation-card-body .card-arrow {
+.innovation-card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.innovation-card-title-row h3 {
+    color: #293247;
+    font-size: 1.8em;
+    font-weight: 500;
+    margin: 0;
+}
+.innovation-card-title-row .card-arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     border: 1px solid rgba(41, 50, 71, 0.15);
     color: #293247;
-    margin-bottom: 16px;
     transition: background 0.2s;
+    flex-shrink: 0;
 }
-.innovation-card-body .card-arrow:hover {
+.innovation-card-title-row .card-arrow:hover {
     background: rgba(41, 50, 71, 0.04);
 }
-.innovation-card-body .card-arrow svg {
-    width: 14px;
-    height: 14px;
-}
-.innovation-card-body h3 {
-    color: #293247;
-    font-size: 1.6em;
-    font-weight: 500;
-    margin: 0 0 10px;
+.innovation-card-title-row .card-arrow svg {
+    width: 16px;
+    height: 16px;
 }
 .innovation-card-body p {
     color: #67707F;
-    font-size: 0.95em;
+    font-size: 1em;
     line-height: 1.6;
-    margin: 0 0 20px;
+    margin: 0 0 24px;
 }
 .innovation-tags {
     display: flex;
@@ -391,16 +394,17 @@ button::before {
 }
 .innovation-tags a {
     display: inline-block;
-    padding: 4px 12px;
+    padding: 6px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(41, 50, 71, 0.15);
-    color: #67707F;
-    font-size: 0.8em;
+    background: rgba(0, 188, 235, 0.1);
+    border: 1px solid rgba(0, 188, 235, 0.2);
+    color: #187ADC;
+    font-size: 0.85em;
     transition: background 0.2s, color 0.2s;
 }
 .innovation-tags a:hover {
-    background: rgba(41, 50, 71, 0.04);
-    color: #293247;
+    background: rgba(0, 188, 235, 0.15);
+    color: #187ADC;
 }
 
 /* ── Blog ── */
@@ -681,17 +685,19 @@ footer {
           <source src="videos/hax.mp4" type="video/mp4">
         </video>
         <div class="innovation-card-body">
-          <a href="#" class="card-arrow" aria-label="Learn more">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12L12 4M12 4H5M12 4V11"/>
-            </svg>
-          </a>
-          <h3>Hax</h3>
-          <p>A research-driven UX framework, guiding the collaboration between humans and AI agents in scalable enterprise workflows.</p>
+          <div class="innovation-card-title-row">
+            <h3>Hax</h3>
+            <a href="#" class="card-arrow" aria-label="Learn more">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12L12 4M12 4H5M12 4V11"/>
+              </svg>
+            </a>
+          </div>
+          <p>A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.</p>
           <div class="innovation-tags">
-            <a href="#">AI Agents</a>
-            <a href="#">Design Systems</a>
-            <a href="#">SDK</a>
+            <a href="#">AI Research</a>
+            <a href="#">Design Framework</a>
+            <a href="#">Ethics</a>
           </div>
         </div>
       </div>
@@ -700,12 +706,14 @@ footer {
           <source src="videos/cognition.mp4" type="video/mp4">
         </video>
         <div class="innovation-card-body">
-          <a href="#" class="card-arrow" aria-label="Learn more">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12L12 4M12 4H5M12 4V11"/>
-            </svg>
-          </a>
-          <h3>Internet of Cognition</h3>
+          <div class="innovation-card-title-row">
+            <h3>Internet of Cognition</h3>
+            <a href="#" class="card-arrow" aria-label="Learn more">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12L12 4M12 4H5M12 4V11"/>
+              </svg>
+            </a>
+          </div>
           <p>Mapping how collective intelligence can be orchestrated at scale, enabling agents and humans to forge new forms of collaboration.</p>
           <div class="innovation-tags">
             <a href="#">Connectivity</a>

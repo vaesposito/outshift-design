@@ -1,0 +1,114 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+<%- include('partials/blobs') %>
+
+<!-- Hero -->
+<div class="hero-section">
+  <div class="container">
+    <div class="content">
+      <h1>Design evolves fast</h1>
+      <h2>We evolve faster</h2>
+      <h5>Meet the Outshift product design team, Cisco's innovative force for incubation. We specialize in driving ideation and fostering alignment across cross-functional teams.</h5>
+      <p></p>
+      <button>See Our Work</button>
+    </div>
+  </div>
+</div>
+
+<!-- Featured Initiatives -->
+<div class="initiatives-section" id="initiatives">
+  <div class="content">
+    <h6>Initiatives</h6>
+    <h3>Featured Initiatives</h3>
+    <h4>Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
+  </div>
+</div>
+
+<div class="timeline">
+  <% initiatives.forEach(card => { %>
+  <div class="initiative-card<%= card.reversed ? ' reversed' : '' %>">
+    <div class="card-text">
+      <h3><%= card.title %></h3>
+      <p><%= card.description %></p>
+      <a href="#" class="arrow-link" aria-label="Learn more">
+        <%- include('partials/arrow-icon') %>
+      </a>
+    </div>
+    <div class="card-image">
+      <span class="card-badge"><%= card.badge %></span>
+      <video autoplay muted loop playsinline>
+        <source src="<%= card.video %>" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+<!-- Innovation & Research -->
+<div class="innovation-section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <h6>Research</h6>
+      <h3>Innovation &amp; Research</h3>
+      <p>Discover our research explorations across the intersection of design, AI, and human-centered technology.</p>
+    </div>
+    <div class="innovation-cards">
+      <% researchCards.forEach(card => { %>
+      <div class="innovation-card">
+        <video autoplay muted loop playsinline>
+          <source src="<%= card.video %>" type="video/mp4">
+        </video>
+        <div class="innovation-card-body">
+          <div class="innovation-card-title-row">
+            <h3><%= card.title %></h3>
+            <a href="#" class="card-arrow" aria-label="Learn more">
+              <%- include('partials/arrow-icon') %>
+            </a>
+          </div>
+          <p><%= card.description %></p>
+          <div class="innovation-tags">
+            <% card.tags.forEach(tag => { %>
+            <a href="#"><%= tag %></a>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<!-- Latest from Our Blog -->
+<div class="blog-section" id="blog">
+  <div class="container">
+    <div class="section-header">
+      <h3>Latest from Our Blog</h3>
+      <p>Insights, learnings, and stories from our design team.</p>
+    </div>
+    <div class="blog-cards">
+      <% blogPosts.forEach(post => { %>
+      <div class="blog-card">
+        <div>
+          <h4><%= post.title %></h4>
+          <p class="blog-desc"><%= post.description %></p>
+        </div>
+        <div>
+          <div class="blog-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <%= post.author %></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> <%= post.date %></span>
+          </div>
+          <div class="blog-footer">
+            <span><%= post.readTime %></span>
+            <a href="#" class="read-more">Read more &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <div class="section-cta" style="text-align:center;">
+      <button style="margin:0 auto;">View All Articles</button>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
