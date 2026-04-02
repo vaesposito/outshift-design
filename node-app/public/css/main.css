@@ -250,7 +250,8 @@ button::before {
     transition: transform 0.3s;
 }
 .innovation-card:hover { transform: translateY(-4px); }
-.innovation-card video { width: 100%; height: 280px; object-fit: cover; display: block; border-radius: 14px; }
+.innovation-card video,
+.innovation-card img { width: 100%; height: 280px; object-fit: cover; display: block; border-radius: 14px; }
 .innovation-card-body { padding: 24px 12px 12px; }
 .innovation-card-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .innovation-card-title-row h3 { color: #293247; font-size: 1.8em; font-weight: 500; margin: 0; }
@@ -361,7 +362,7 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
     .initiative-card { gap: 40px; padding: 80px 7%; background-size: 4000px auto; }
     .initiative-card .card-text h3 { font-size: 2.4em; }
     .innovation-section .section-header h3 { font-size: 2.4em; }
-    .innovation-card video { height: 220px; }
+    .innovation-card video, .innovation-card img { height: 220px; }
     .innovation-card-title-row h3 { font-size: 1.5em; }
     .blog-section .section-header h3 { font-size: 2.4em; }
     .blog-card { padding: 28px; height: auto; min-height: 260px; }
@@ -410,7 +411,7 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
     .innovation-cards { grid-template-columns: 1fr; gap: 24px; }
     .innovation-section { padding: 60px 0 40px; }
     .innovation-section .section-header h3 { font-size: 2em; }
-    .innovation-card video { height: 200px; }
+    .innovation-card video, .innovation-card img { height: 200px; }
     .blog-cards { grid-template-columns: 1fr; gap: 20px; }
     .blog-section { padding: 60px 0 40px; }
     .blog-section .section-header h3 { font-size: 2em; }
@@ -435,7 +436,7 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
     .initiative-card .card-image video { aspect-ratio: 16 / 10; }
     .innovation-section .section-header h3 { font-size: 1.6em; }
     .innovation-card-title-row h3 { font-size: 1.3em; }
-    .innovation-card video { height: 180px; }
+    .innovation-card video, .innovation-card img { height: 180px; }
     .innovation-card-body { padding: 16px 4px 8px; }
     .blog-section .section-header h3 { font-size: 1.6em; }
     .blog-card { padding: 24px; }

@@ -36,14 +36,14 @@ const siteData = {
   researchCards: [
     {
       title: 'Hax',
-      description: 'A research-driven UX framework, guiding the collaboration between humans and AI agents in scalable enterprise workflows.',
-      video: '/videos/hax.mp4',
-      tags: ['AI Agents', 'Design Systems', 'SDK'],
+      description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
+      image: '/images/hax-research.png',
+      tags: ['AI Research', 'Design Framework', 'Ethics'],
     },
     {
       title: 'Internet of Cognition',
       description: 'Mapping how collective intelligence can be orchestrated at scale, enabling agents and humans to forge new forms of collaboration.',
-      video: '/videos/cognition.mp4',
+      image: '/images/cognition-research.png',
       tags: ['Connectivity', 'Distributed Intelligence', 'AI/ML'],
     },
   ],

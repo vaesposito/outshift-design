@@ -55,9 +55,7 @@
     <div class="innovation-cards">
       <% researchCards.forEach(card => { %>
       <div class="innovation-card">
-        <video autoplay muted loop playsinline>
-          <source src="<%= card.video %>" type="video/mp4">
-        </video>
+        <img src="<%= card.image %>" alt="<%= card.title %> research visualization">
         <div class="innovation-card-body">
           <div class="innovation-card-title-row">
             <h3><%= card.title %></h3>
