@@ -39,6 +39,7 @@ header {
 .logo, nav ul, header .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 nav ul {
     list-style: none;
@@ -246,11 +247,7 @@ button::before {
 .innovation-section .section-header p { color: #67707F; font-size: 1.05em; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .innovation-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .innovation-card {
-    background: rgba(210, 194, 255, 0.08);
-    border-radius: 20px;
     transition: transform 0.3s;
-    border: 1px solid rgba(41, 50, 71, 0.06);
-    padding: 16px;
 }
 .innovation-card:hover { transform: translateY(-4px); }
 .innovation-card video { width: 100%; height: 280px; object-fit: cover; display: block; border-radius: 14px; }
@@ -269,10 +266,11 @@ button::before {
 .innovation-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .innovation-tags a {
     display: inline-block; padding: 6px 16px; border-radius: 20px;
-    border: 1px solid rgba(0, 188, 235, 0.3); color: #187ADC;
+    background: rgba(0, 188, 235, 0.1);
+    border: 1px solid rgba(0, 188, 235, 0.2); color: #187ADC;
     font-size: 0.85em; transition: background 0.2s, color 0.2s;
 }
-.innovation-tags a:hover { background: rgba(0, 188, 235, 0.08); color: #187ADC; }
+.innovation-tags a:hover { background: rgba(0, 188, 235, 0.15); color: #187ADC; }
 
 /* Blog */
 .blog-section { position: relative; z-index: 1; padding: 80px 0 60px; }
@@ -328,3 +326,121 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
 .footer-social-icons a:hover { background: rgba(41, 50, 71, 0.04); color: #293247; }
 .footer-social-icons a svg { width: 18px; height: 18px; }
 .footer-bottom { border-top: 1px solid rgba(41, 50, 71, 0.08); padding: 24px 0; text-align: center; color: #59616B; font-size: 0.85em; }
+
+/* ── Mobile Menu Toggle ── */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+}
+.menu-toggle::before { content: none; }
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #293247;
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Responsive: Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+    h1 { font-size: 3em; }
+    h2 { font-size: 3em; }
+    h3 { font-size: 2.4em; }
+    h5 { font-size: 1.3em; }
+    .hero-section .content { width: 75%; }
+    .initiative-card { gap: 40px; padding: 80px 7%; background-size: 4000px auto; }
+    .initiative-card .card-text h3 { font-size: 2.4em; }
+    .innovation-section .section-header h3 { font-size: 2.4em; }
+    .innovation-card video { height: 220px; }
+    .innovation-card-title-row h3 { font-size: 1.5em; }
+    .blog-section .section-header h3 { font-size: 2.4em; }
+    .blog-card { padding: 28px; height: auto; min-height: 260px; }
+    .blog-card h4 { font-size: 20px; }
+}
+
+/* ── Responsive: Mobile landscape / small tablet (≤768px) ── */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    header nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 320px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(20px);
+        z-index: 9;
+        transition: right 0.35s ease;
+        padding: 80px 32px 32px;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+    }
+    header nav.open { right: 0; }
+    header nav ul { flex-direction: column; gap: 0; padding: 0; margin: 0; }
+    header nav ul li { padding: 16px 0; border-bottom: 1px solid rgba(41, 50, 71, 0.06); }
+    header nav ul li a { font-size: 1.1em; }
+    h1 { font-size: 2.4em; }
+    h2 { font-size: 2.4em; }
+    h3 { font-size: 2em; }
+    h4 { font-size: 1.05em; }
+    h5 { font-size: 1.15em; }
+    .hero-section { min-height: auto; padding: 80px 0 60px; }
+    .hero-section .content { width: 100%; padding: 0; }
+    .initiatives-section { padding: 60px 0 20px; }
+    .initiative-card {
+        flex-direction: column; gap: 32px; padding: 60px 7%;
+        background-size: 3000px auto; background-position: center top;
+    }
+    .initiative-card.reversed {
+        flex-direction: column; margin-top: -40px; background-position: center top;
+    }
+    .initiative-card .card-text { text-align: center; }
+    .initiative-card .card-text h3 { font-size: 2em; }
+    .initiative-card .card-image { margin-top: 0; padding-bottom: 0; }
+    .innovation-cards { grid-template-columns: 1fr; gap: 24px; }
+    .innovation-section { padding: 60px 0 40px; }
+    .innovation-section .section-header h3 { font-size: 2em; }
+    .innovation-card video { height: 200px; }
+    .blog-cards { grid-template-columns: 1fr; gap: 20px; }
+    .blog-section { padding: 60px 0 40px; }
+    .blog-section .section-header h3 { font-size: 2em; }
+    .blog-card { height: auto; padding: 28px; }
+    .footer-top { flex-direction: column; gap: 32px; align-items: flex-start; }
+    .footer-bottom { padding: 20px 0; font-size: 0.8em; }
+}
+
+/* ── Responsive: Mobile portrait (≤480px) ── */
+@media (max-width: 480px) {
+    .container { padding: 0 5%; }
+    h1 { font-size: 1.9em; }
+    h2 { font-size: 1.9em; }
+    h3 { font-size: 1.6em; }
+    h5 { font-size: 1em; }
+    .design { font-size: 1.4em; margin-top: 10px; }
+    button { font-size: 1em; padding: 14px 20px; }
+    .hero-section { padding: 60px 0 40px; }
+    .initiative-card { padding: 40px 5%; background-image: none; }
+    .initiative-card.reversed { background-image: none; margin-top: 0; }
+    .initiative-card .card-text h3 { font-size: 1.6em; }
+    .initiative-card .card-image video { aspect-ratio: 16 / 10; }
+    .innovation-section .section-header h3 { font-size: 1.6em; }
+    .innovation-card-title-row h3 { font-size: 1.3em; }
+    .innovation-card video { height: 180px; }
+    .innovation-card-body { padding: 16px 4px 8px; }
+    .blog-section .section-header h3 { font-size: 1.6em; }
+    .blog-card { padding: 24px; }
+    .blog-card h4 { font-size: 18px; margin-bottom: 12px; }
+    .blog-meta { flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    footer { padding: 40px 0 0; }
+    .footer-logo img { height: 48px; }
+}
