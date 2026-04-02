@@ -31,10 +31,12 @@ header {
     z-index: 2;
 }
 .design {
-    margin-top: 15px;
     font-size: 1.8em;
     font-weight: 200;
     margin-left: 8px;
+}
+.logo {
+    align-items: center;
 }
 .logo, nav ul, header .container {
     display: flex;
@@ -427,7 +429,7 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
     h2 { font-size: 1.9em; }
     h3 { font-size: 1.6em; }
     h5 { font-size: 1em; }
-    .design { font-size: 1.4em; margin-top: 10px; }
+    .design { font-size: 1.4em; }
     button { font-size: 1em; padding: 14px 20px; }
     .hero-section { padding: 60px 0 40px; }
     .initiative-card { padding: 40px 5%; background-image: none; }
