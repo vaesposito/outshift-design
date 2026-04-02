@@ -1,16 +1,17 @@
 <%- include('partials/head') %>
 <%- include('partials/header') %>
 <%- include('partials/blobs') %>
+<% var hp = homepage || {}; %>
 
 <!-- Hero -->
 <div class="hero-section">
   <div class="container">
     <div class="content">
-      <h1>Design evolves fast</h1>
-      <h2>We evolve faster</h2>
-      <h5>Meet the Outshift product design team, Cisco's innovative force for incubation. We specialize in driving ideation and fostering alignment across cross-functional teams.</h5>
+      <h1><%= hp.heroTitle || 'Design evolves fast' %></h1>
+      <h2><%= hp.heroSubtitle || 'We evolve faster' %></h2>
+      <h5><%= hp.heroDescription || "Meet the Outshift product design team, Cisco's innovative force for incubation. We specialize in driving ideation and fostering alignment across cross-functional teams." %></h5>
       <p></p>
-      <button>See Our Work</button>
+      <button><%= hp.heroCtaLabel || 'See Our Work' %></button>
     </div>
   </div>
 </div>
@@ -19,8 +20,8 @@
 <div class="initiatives-section" id="initiatives">
   <div class="content">
     <h6>Initiatives</h6>
-    <h3>Featured Initiatives</h3>
-    <h4>Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
+    <h3><%= hp.initiativesSectionTitle || 'Featured Initiatives' %></h3>
+    <h4><%= hp.initiativesSectionSubtitle || "Explore our recent projects and see how we're shaping the future of enterprise software." %></h4>
   </div>
 </div>
 
@@ -49,8 +50,8 @@
   <div class="container">
     <div class="section-header">
       <h6>Research</h6>
-      <h3>Innovation &amp; Research</h3>
-      <p>Discover our research explorations across the intersection of design, AI, and human-centered technology.</p>
+      <h3><%= hp.researchSectionTitle || 'Innovation & Research' %></h3>
+      <p><%= hp.researchSectionDescription || 'Discover our research explorations across the intersection of design, AI, and human-centered technology.' %></p>
     </div>
     <div class="innovation-cards">
       <% researchCards.forEach(card => { %>
@@ -80,8 +81,8 @@
 <div class="blog-section" id="blog">
   <div class="container">
     <div class="section-header">
-      <h3>Latest from Our Blog</h3>
-      <p>Insights, learnings, and stories from our design team.</p>
+      <h3><%= hp.blogSectionTitle || 'Latest from Our Blog' %></h3>
+      <p><%= hp.blogSectionDescription || 'Insights, learnings, and stories from our design team.' %></p>
     </div>
     <div class="blog-cards">
       <% blogPosts.forEach(post => { %>
