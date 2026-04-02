@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_tags",
+  "info": {
+    "displayName": "Tag",
+    "icon": "hashtag",
+    "description": "Reusable label tag for categorization"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": ["cyan", "violet", "green", "orange", "default"],
+      "default": "default"
+    }
+  }
+}

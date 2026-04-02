@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_media_blocks",
+  "info": {
+    "displayName": "MediaBlock",
+    "icon": "picture",
+    "description": "Flexible media block supporting images and videos"
+  },
+  "options": {},
+  "attributes": {
+    "mediaType": {
+      "type": "enumeration",
+      "enum": ["image", "video"],
+      "default": "image",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "altText": {
+      "type": "string",
+      "required": true
+    },
+    "caption": {
+      "type": "string"
+    }
+  }
+}

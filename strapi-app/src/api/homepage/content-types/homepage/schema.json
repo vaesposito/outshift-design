@@ -1,0 +1,78 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": "Homepage configuration and content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Design evolves fast"
+    },
+    "heroSubtitle": {
+      "type": "string",
+      "required": true,
+      "default": "We evolve faster"
+    },
+    "heroDescription": {
+      "type": "text"
+    },
+    "heroCtaLabel": {
+      "type": "string",
+      "default": "See Our Work"
+    },
+    "heroCtaUrl": {
+      "type": "string",
+      "default": "#initiatives"
+    },
+    "initiativesSectionTitle": {
+      "type": "string",
+      "default": "Featured Initiatives"
+    },
+    "initiativesSectionSubtitle": {
+      "type": "text"
+    },
+    "researchSectionTitle": {
+      "type": "string",
+      "default": "Innovation & Research"
+    },
+    "researchSectionDescription": {
+      "type": "text"
+    },
+    "blogSectionTitle": {
+      "type": "string",
+      "default": "Latest from Our Blog"
+    },
+    "blogSectionDescription": {
+      "type": "text"
+    },
+    "navigation": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.nav-item"
+    },
+    "footerLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.arrow-link"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-link"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo-meta"
+    }
+  }
+}

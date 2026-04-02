@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_shared_arrow_links",
+  "info": {
+    "displayName": "ArrowLink",
+    "icon": "arrowRight",
+    "description": "Call-to-action arrow link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

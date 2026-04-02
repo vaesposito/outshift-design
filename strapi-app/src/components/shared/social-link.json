@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "SocialLink",
+    "icon": "earth",
+    "description": "Social media link with icon"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": ["x", "linkedin", "youtube", "github", "dribbble"],
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "ariaLabel": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
