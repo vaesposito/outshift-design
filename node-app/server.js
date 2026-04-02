@@ -42,9 +42,9 @@ const siteData = {
     },
     {
       title: 'Internet of Cognition',
-      description: 'Mapping how collective intelligence can be orchestrated at scale, enabling agents and humans to forge new forms of collaboration.',
+      description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.',
       image: '/images/cognition-research.png',
-      tags: ['Connectivity', 'Distributed Intelligence', 'AI/ML'],
+      tags: ['Cognitive Systems', 'Future Research', 'Collaboration'],
     },
   ],
   blogPosts: [
