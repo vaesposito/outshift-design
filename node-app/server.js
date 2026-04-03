@@ -26,6 +26,7 @@ const fallbackData = {
   nav: [
     { label: 'Initiatives', href: '/#initiatives', hasDropdown: true },
     { label: 'About us', href: '/#about', hasDropdown: true },
+    { label: 'Research', href: '/research', hasDropdown: false },
     { label: 'Blog', href: '/#blog', hasDropdown: false },
   ],
   initiatives: [
@@ -136,6 +137,26 @@ app.get('/', async (_req, res) => {
   };
 
   res.render('home', data);
+});
+
+app.get('/research', (_req, res) => {
+  const researchItems = [
+    { title: 'Foundations of Hax Agents', description: 'A comprehensive study on the fundamental building blocks of Hax agents, covering perception, memory, and decision-making architectures that enable human-like responsiveness in complex enterprise environments.', image: '/images/research/foundations.png' },
+    { title: 'Cognition Framework', description: 'Our research into cognitive architectures that allow agents to reason, plan, and learn from interactions. The framework enables agents to build mental models of their environment and adapt their behavior over time.', image: '/images/research/cognition-framework.png' },
+    { title: 'Industry Impact', description: 'A deep dive into how agent-based solutions are transforming enterprise workflows. From customer support to engineering operations, this research quantifies efficiency gains and explores emerging patterns of human-agent collaboration.', image: '/images/research/industry-impact.png' },
+    { title: 'Security & Privacy', description: 'A strategic exploration of trust boundaries in agent systems, covering secure data handling, permission models, adversarial robustness, and how to build agents that respect user privacy by design.', image: '/images/research/security-privacy.png' },
+    { title: 'Agent Impact Map', description: 'Mapping the ripple effects of agent deployments across organizations, from productivity metrics to team dynamics. This research provides frameworks for measuring and predicting agent impact at scale.', image: '/images/research/agent-impact.png' },
+    { title: 'Cognition-Level Audit', description: 'Methodologies for evaluating agent reasoning quality, decision coherence, and alignment with human intent. This audit framework ensures agents maintain high cognitive fidelity across diverse tasks.', image: '/images/research/agent-eval.png' },
+    { title: 'Proactive Gateways', description: 'Research into anticipatory agent behaviors that enable systems to proactively surface relevant information and actions before users explicitly request them, reducing friction in complex workflows.', image: '/images/research/proactive-gateways.png' },
+  ];
+
+  res.render('research', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design — Research Behind Hax',
+    researchItems,
+  });
 });
 
 app.get('/styleguide', (_req, res) => {

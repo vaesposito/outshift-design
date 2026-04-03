@@ -1,0 +1,61 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<!-- Research Hero -->
+<div class="research-hero">
+  <div class="container">
+    <div class="research-hero-inner">
+      <div class="research-hero-text">
+        <h1>Exploring the Research Behind Hax</h1>
+        <p>The Hax Research Lab is a leading research lab that explores cutting-edge topics in human-agent interaction. Our team publishes original research across the fields of AI, cognition, multi-agent systems, and security to shape the next generation of agent-based experiences.</p>
+      </div>
+      <div class="research-hero-image">
+        <img src="/images/research/hax-hero.png" alt="Hax Research">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section Title -->
+<div class="research-section-header">
+  <div class="container">
+    <h2>Advancing the Science of Human Agent Interaction</h2>
+    <p>Investigating human-AI synergy so agents feel natural, trustworthy, and useful together.</p>
+  </div>
+</div>
+
+<!-- Research Cards -->
+<div class="research-cards">
+  <div class="container">
+    <% researchItems.forEach(function(item) { %>
+    <div class="research-card">
+      <div class="research-card-image">
+        <img src="<%= item.image %>" alt="<%= item.title %>">
+      </div>
+      <div class="research-card-text">
+        <h3><%= item.title %></h3>
+        <p><%= item.description %></p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<!-- Build with SDK -->
+<div class="sdk-section">
+  <div class="container">
+    <div class="sdk-inner">
+      <div class="sdk-text">
+        <h2>Build with the Hax SDK</h2>
+        <p>The HAX SDK gives developers everything they need to integrate agents into their apps &mdash; offering routing, structures, or context flow. An ecosystem of reusable agent components, and a clear interface to easily engage between more collaborative and goal-driven AI tools.</p>
+        <a href="#"><button>Explore Build SDK</button></a>
+      </div>
+      <div class="sdk-image">
+        <img src="/images/research/cognition-audit.png" alt="Hax SDK">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
