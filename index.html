@@ -24,24 +24,6 @@
 }
 * {
     box-sizing: border-box;
-    cursor: none !important;
-}
-.custom-cursor {
-    position: fixed;
-    z-index: 9999;
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    left: var(--cursor-x);
-    top: var(--cursor-y);
-    background: #fff;
-    border-radius: 9999px;
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%) scale(var(--cursor-scale));
-    pointer-events: none;
-    transition: transform var(--fancy-transition), border-width 0.15s ease-in;
-    border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
-    border-style: solid;
-    border-color: #b4b4b4;
 }
 .container {
     width: 100%;
@@ -360,35 +342,8 @@ button::before {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
 }
-@property --glow-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-@keyframes glow-spin {
-    to { --glow-angle: 360deg; }
-}
 .innovation-card {
     transition: transform 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-.innovation-card::after {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 15px;
-    background: conic-gradient(
-        from var(--glow-angle, 0deg),
-        #9345E1, #187ADC, #00BCEB, #74BF4B, #9345E1
-    );
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s;
-    animation: glow-spin 4s linear infinite;
-}
-.innovation-card:hover::after {
-    opacity: 1;
 }
 .innovation-card:hover {
     transform: translateY(-4px);
@@ -500,24 +455,6 @@ button::before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
-}
-.blog-card::after {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 17px;
-    background: conic-gradient(
-        from var(--glow-angle, 0deg),
-        #9345E1, #187ADC, #00BCEB, #74BF4B, #9345E1
-    );
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s;
-    animation: glow-spin 4s linear infinite;
-}
-.blog-card:hover::after {
-    opacity: 1;
 }
 .blog-card:hover {
     transform: translateY(-4px);
@@ -652,6 +589,28 @@ footer {
     text-align: center;
     color: #59616B;
     font-size: 0.85em;
+}
+
+/* ── Custom Cursor ── */
+@media (pointer: fine) {
+    * { cursor: none !important; }
+    .custom-cursor {
+        position: fixed;
+        z-index: 9999;
+        width: var(--cursor-size);
+        height: var(--cursor-size);
+        left: var(--cursor-x);
+        top: var(--cursor-y);
+        background: #fff;
+        border-radius: 9999px;
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%) scale(var(--cursor-scale));
+        pointer-events: none;
+        transition: transform var(--fancy-transition), border-width 0.15s ease-in;
+        border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
+        border-style: solid;
+        border-color: #b4b4b4;
+    }
 }
 
 /* ── Mobile Menu Toggle ── */
@@ -1167,7 +1126,6 @@ footer {
   </div>
 </footer>
 
-<div class="custom-cursor"></div>
 <script>
 (function () {
     var toggle = document.querySelector('.menu-toggle');
@@ -1183,22 +1141,25 @@ footer {
         });
     });
 
-    var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
-    function isInteractive(e) {
-        return !!e.target.closest(interactiveSelector);
+    if (window.matchMedia('(pointer: fine)').matches) {
+        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
+        var customCursor = document.createElement('div');
+        customCursor.className = 'custom-cursor';
+        document.body.appendChild(customCursor);
+
+        document.addEventListener('mousemove', function (e) {
+            var isInteractive = e.target.closest(interactiveSelector) ||
+                getComputedStyle(e.target).cursor === 'pointer';
+            var scale = isInteractive ? 2 : 1;
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', scale);
+        });
+
+        document.addEventListener('mouseout', function () {
+            document.documentElement.style.setProperty('--cursor-scale', 0);
+        });
     }
-    function hasPointerCursor(e) {
-        try { return getComputedStyle(e.target).cursor === 'pointer'; } catch (_) { return false; }
-    }
-    document.addEventListener('mousemove', function (e) {
-        var scale = isInteractive(e) || hasPointerCursor(e) ? 2 : 1;
-        document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-        document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-        document.documentElement.style.setProperty('--cursor-scale', scale);
-    });
-    document.addEventListener('mouseout', function () {
-        document.documentElement.style.setProperty('--cursor-scale', 0);
-    });
 })();
 </script>
 </body>

@@ -29,7 +29,6 @@
     </div>
   </div>
 </footer>
-<div class="custom-cursor"></div>
 <script>
 (function () {
     var toggle = document.querySelector('.menu-toggle');
@@ -45,22 +44,25 @@
         });
     });
 
-    var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
-    function isInteractive(e) {
-        return !!e.target.closest(interactiveSelector);
+    if (window.matchMedia('(pointer: fine)').matches) {
+        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
+        var customCursor = document.createElement('div');
+        customCursor.className = 'custom-cursor';
+        document.body.appendChild(customCursor);
+
+        document.addEventListener('mousemove', function (e) {
+            var isInteractive = e.target.closest(interactiveSelector) ||
+                getComputedStyle(e.target).cursor === 'pointer';
+            var scale = isInteractive ? 2 : 1;
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', scale);
+        });
+
+        document.addEventListener('mouseout', function () {
+            document.documentElement.style.setProperty('--cursor-scale', 0);
+        });
     }
-    function hasPointerCursor(e) {
-        try { return getComputedStyle(e.target).cursor === 'pointer'; } catch (_) { return false; }
-    }
-    document.addEventListener('mousemove', function (e) {
-        var scale = isInteractive(e) || hasPointerCursor(e) ? 2 : 1;
-        document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-        document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-        document.documentElement.style.setProperty('--cursor-scale', scale);
-    });
-    document.addEventListener('mouseout', function () {
-        document.documentElement.style.setProperty('--cursor-scale', 0);
-    });
 })();
 </script>
 </body>
