@@ -322,6 +322,7 @@ button::before {
 .research-card-image {
     flex: 0 0 200px;
     position: relative;
+    overflow: hidden;
 }
 .research-card-image img {
     width: 200px;
@@ -642,9 +643,9 @@ footer {
 
 <!-- Animated Blobs -->
 <div class="blobs-container">
-  <div class="blob blob-1" data-parallax="-0.12"></div>
-  <div class="blob blob-2" data-parallax="-0.2"></div>
-  <div class="blob blob-3" data-parallax="-0.15"></div>
+  <div class="blob blob-1" data-parallax="0.05" data-parallax-max="50"></div>
+  <div class="blob blob-2" data-parallax="0.1" data-parallax-max="60"></div>
+  <div class="blob blob-3" data-parallax="0.07" data-parallax-max="50"></div>
 </div>
 
 <!-- Research Hero -->
@@ -657,7 +658,7 @@ footer {
       <div class="research-hero-text">
         <p>The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.</p>
       </div>
-      <div class="research-hero-image" data-parallax="-0.15">
+      <div class="research-hero-image" data-parallax="0.08" data-parallax-max="40">
         <img src="images/research/hero.png" alt="Hax Research">
       </div>
     </div>
@@ -677,8 +678,8 @@ footer {
   <div class="container">
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.08">
-        <img src="images/research/foundational-principles.png" alt="Foundational Principles">
+      <div class="research-card-image">
+        <img src="images/research/foundational-principles.png" alt="Foundational Principles" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Foundational Principles</h3>
@@ -688,8 +689,8 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.1">
-        <img src="images/research/cognitive-framework.png" alt="Cognitive Frameworks">
+      <div class="research-card-image">
+        <img src="images/research/cognitive-framework.png" alt="Cognitive Frameworks" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Cognitive Frameworks</h3>
@@ -699,8 +700,8 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.08">
-        <img src="images/research/societal-impact.png" alt="Societal Impact">
+      <div class="research-card-image">
+        <img src="images/research/societal-impact.png" alt="Societal Impact" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Societal Impact</h3>
@@ -710,8 +711,8 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.12">
-        <img src="images/research/security-privacy.png" alt="Security & Privacy">
+      <div class="research-card-image">
+        <img src="images/research/security-privacy.png" alt="Security & Privacy" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Security & Privacy</h3>
@@ -721,8 +722,8 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.08">
-        <img src="images/research/agent-impact.png" alt="Agent Impact Map">
+      <div class="research-card-image">
+        <img src="images/research/agent-impact.png" alt="Agent Impact Map" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Agent Impact Map</h3>
@@ -732,8 +733,8 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.1">
-        <img src="images/research/cognitive-load-audit.png" alt="Cognition-Level Audit">
+      <div class="research-card-image">
+        <img src="images/research/cognitive-load-audit.png" alt="Cognition-Level Audit" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Cognitive Load Audit</h3>
@@ -743,8 +744,8 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.12">
-        <img src="images/research/foresight-canvas.png" alt="Foresight Canvas">
+      <div class="research-card-image">
+        <img src="images/research/foresight-canvas.png" alt="Foresight Canvas" data-parallax="0.06" data-parallax-max="20">
       </div>
       <div class="research-card-text">
         <h3>Foresight Canvas</h3>
@@ -765,7 +766,7 @@ footer {
         <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
         <a href="#"><button>Explore the SDK</button></a>
       </div>
-      <div class="sdk-image" data-parallax="-0.1">
+      <div class="sdk-image" data-parallax="0.06" data-parallax-max="25">
         <img src="images/research/sdk-hero.png" alt="Hax SDK">
       </div>
     </div>
@@ -830,24 +831,19 @@ footer {
 
     // Parallax
     var parallaxEls = document.querySelectorAll('[data-parallax]');
-    var parallaxData = [];
-    for (var i = 0; i < parallaxEls.length; i++) {
-        parallaxData.push({
-            el: parallaxEls[i],
-            speed: parseFloat(parallaxEls[i].getAttribute('data-parallax')),
-            top: parallaxEls[i].offsetTop
-        });
-    }
     function onScroll() {
-        var viewCenter = window.pageYOffset + window.innerHeight * 0.5;
-        for (var i = 0; i < parallaxData.length; i++) {
-            var d = parallaxData[i];
-            var offset = (viewCenter - d.top) * d.speed;
-            d.el.style.transform = 'translateY(' + offset + 'px)';
+        for (var i = 0; i < parallaxEls.length; i++) {
+            var el = parallaxEls[i];
+            var speed = parseFloat(el.getAttribute('data-parallax'));
+            var max = parseFloat(el.getAttribute('data-parallax-max') || 30);
+            var rect = el.parentElement ? el.parentElement.getBoundingClientRect() : el.getBoundingClientRect();
+            var progress = (rect.top + rect.height * 0.5 - window.innerHeight * 0.5) / (window.innerHeight * 0.5);
+            var offset = progress * speed * window.innerHeight * 0.5;
+            offset = Math.max(-max, Math.min(max, offset));
+            el.style.transform = 'translateY(' + offset + 'px)';
         }
     }
     window.addEventListener('scroll', function () { requestAnimationFrame(onScroll); });
-    onScroll();
 
     if (window.matchMedia('(pointer: fine)').matches) {
         var customCursor = document.createElement('div');
