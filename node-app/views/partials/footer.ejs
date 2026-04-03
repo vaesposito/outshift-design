@@ -73,8 +73,8 @@
         });
 
         (function animate() {
-            cx += (mx - cx) * 0.12;
-            cy += (my - cy) * 0.12;
+            cx += (mx - cx) * 0.18;
+            cy += (my - cy) * 0.18;
             customCursor.style.transform = 'translate(' + (cx - 9) + 'px,' + (cy - 9) + 'px)';
             customCursor.style.width = customCursor.style.height = hoverSize ? '32px' : '';
             requestAnimationFrame(animate);
