@@ -348,8 +348,9 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
         background: #fff;
         border-radius: 9999px;
         mix-blend-mode: difference;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(var(--cursor-scale));
         pointer-events: none;
+        transition: transform 0.2s ease;
     }
 }
 

@@ -50,8 +50,10 @@
         document.body.appendChild(customCursor);
 
         document.addEventListener('mousemove', function (e) {
+            var isLink = e.target.closest('a[href], button');
             document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
             document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', isLink ? '1.8' : '1');
         });
     }
 })();
