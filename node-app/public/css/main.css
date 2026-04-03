@@ -1,6 +1,11 @@
 :root {
     font-family: Inter, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1;
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-size: 20px;
+    --cursor-scale: 1;
+    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 }
 @supports (font-variation-settings: normal) {
   :root {
@@ -8,7 +13,24 @@
     color: #293247;
   }
 }
-* { box-sizing: border-box; }
+* { box-sizing: border-box; cursor: none !important; }
+.custom-cursor {
+    position: fixed;
+    z-index: 9999;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    left: var(--cursor-x);
+    top: var(--cursor-y);
+    background: #fff;
+    border-radius: 9999px;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%) scale(var(--cursor-scale));
+    pointer-events: none;
+    transition: transform var(--fancy-transition), border-width 0.15s ease-in;
+    border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
+    border-style: solid;
+    border-color: #b4b4b4;
+}
 .container {
     width: 100%;
     padding: 0 7%;
