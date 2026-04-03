@@ -15,7 +15,11 @@
     font-feature-settings: 'liga' 1, 'calt' 1;
     --cursor-x: -100px;
     --cursor-y: -100px;
-    --cursor-size: 18px;
+    --cursor-size: 20px;
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-scale: 1;
+    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
     --cursor-scale: 1;
     --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 
@@ -674,13 +678,17 @@ footer {
         z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        left: 0;
-        top: 0;
-        background: var(--color-text);
+        left: var(--cursor-x);
+        top: var(--cursor-y);
+        background: #fff;
         border-radius: 9999px;
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%) scale(var(--cursor-scale));
         pointer-events: none;
-        will-change: transform;
-        transition: width 0.3s ease, height 0.3s ease;
+        transition: transform var(--fancy-transition), border-width 0.15s ease-in;
+        border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
+        border-style: solid;
+        border-color: #b4b4b4;
     }
 }
 
@@ -1233,22 +1241,19 @@ footer {
         customCursor.className = 'custom-cursor';
         document.body.appendChild(customCursor);
 
-        var mx = -100, my = -100, cx = -100, cy = -100;
-        var hoverSize = false;
+        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
 
         document.addEventListener('mousemove', function (e) {
-            mx = e.clientX;
-            my = e.clientY;
-            hoverSize = !!e.target.closest('a[href], button');
+            var isInteractive = !!e.target.closest(interactiveSelector) || getComputedStyle(e.target).cursor === 'pointer';
+            var cursorScale = isInteractive ? 2 : 1;
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', cursorScale);
         });
 
-        (function animate() {
-            cx += (mx - cx) * 0.22;
-            cy += (my - cy) * 0.22;
-            customCursor.style.transform = 'translate(' + (cx - 9) + 'px,' + (cy - 9) + 'px)';
-            customCursor.style.width = customCursor.style.height = hoverSize ? '32px' : '';
-            requestAnimationFrame(animate);
-        })();
+        document.addEventListener('mouseout', function () {
+            document.documentElement.style.setProperty('--cursor-scale', 0);
+        });
     }
 })();
 </script>
