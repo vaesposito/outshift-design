@@ -1,0 +1,98 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<!-- Animated Blobs -->
+<%- include('partials/blobs') %>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/research">Research</a> <span>/</span> Foundational Principles
+    </div>
+    <div class="page-hero-title">
+      <h1><%= pageData.title %></h1>
+    </div>
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <p><%= pageData.description %></p>
+      </div>
+      <div class="page-hero-image">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.title %>">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Research to Design Pipeline -->
+<div class="pipeline-section">
+  <div class="container">
+    <div class="pipeline-header">
+      <h2><%= pageData.pipelineTitle %></h2>
+      <p><%= pageData.pipelineSubtitle %></p>
+    </div>
+
+    <div class="pipeline-steps">
+      <% pageData.steps.forEach(function(step, i) { %>
+      <div class="pipeline-step">
+        <div class="step-number">0<%= i + 1 %>.</div>
+        <div class="step-content">
+          <h3><%- step.title %></h3>
+          <p><%= step.description %></p>
+          <% if (step.themes && step.themes.length) { %>
+          <div class="step-themes">
+            <span>Themes</span>
+          </div>
+          <div class="step-themes" style="margin-top:8px;">
+            <% step.themes.forEach(function(t) { %>
+            <span><%= t %></span>
+            <% }) %>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<!-- Case Studies -->
+<div class="case-studies">
+  <div class="container">
+    <div class="case-studies-header">
+      <h2>Case Studies</h2>
+      <p>Real-world applications of our foundational principles in enterprise and research contexts.</p>
+    </div>
+
+    <% pageData.caseStudies.forEach(function(cs) { %>
+    <div class="case-study-card">
+      <h3><%= cs.title %></h3>
+      <p><%= cs.description %></p>
+      <div class="case-study-themes">
+        <% cs.themes.forEach(function(t) { %>
+        <span><%= t %></span>
+        <% }) %>
+      </div>
+    </div>
+    <% }) %>
+
+  </div>
+</div>
+
+<!-- Build with SDK -->
+<div class="sdk-section">
+  <div class="container">
+    <div class="sdk-inner">
+      <div class="sdk-text">
+        <h2>Build with the Hax SDK</h2>
+        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
+        <a href="#"><button>Explore the SDK</button></a>
+      </div>
+      <div class="sdk-image">
+        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

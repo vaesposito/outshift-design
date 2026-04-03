@@ -221,6 +221,37 @@ app.get('/research', async (_req, res) => {
   });
 });
 
+app.get('/research/foundational-principles', (_req, res) => {
+  const pageData = {
+    title: 'Foundational Principles',
+    description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high-level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.',
+    heroImage: '/images/research/foundational-principles-hero.png',
+    pipelineTitle: 'Research to Design Pipeline',
+    pipelineSubtitle: 'A collaborative design process that transforms raw research into practical design guidance and reusable patterns.',
+    steps: [
+      { title: 'Start with Research', description: 'We ground every design decision in evidence. Our process begins with rigorous academic and applied research — reviewing literature, running experiments, and synthesizing findings from cognitive science, HCI, and AI interaction studies. The goal is to uncover principles that are both empirically validated and practically applicable.' },
+      { title: 'Conceptualize the Principle &amp; Map to Design Patterns', description: 'From raw findings, we distill high-level principles — clear statements about how humans and agents should interact. Each principle is then mapped to one or more design patterns: repeatable solutions that address common interaction challenges while respecting the underlying research.' },
+      { title: 'Draft a Pattern', description: 'Each pattern is documented with a clear problem statement, context of use, the solution approach, and practical examples. We include rationale rooted in the original research so designers understand not just the "what" but the "why" behind each recommendation.' },
+      { title: 'Test the Bridge: Use Design Heuristics &amp; applicable methods', description: 'We validate each pattern through heuristic evaluation, usability testing, and expert review. This stage ensures the bridge between research insight and design guidance is sound — that the pattern actually improves the interaction it aims to address.' },
+      { title: 'Prototype &amp; Iterate the validation', description: 'Patterns are implemented in interactive prototypes and tested with real users. We iterate based on feedback, refining both the design pattern and its documentation until it meets our quality bar for clarity, effectiveness, and adoptability.' },
+      { title: 'Update Documentation &amp; Contribute', description: 'Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. We continuously update the library as new research emerges and as patterns evolve through real-world adoption.', themes: ['Trust Calibration', 'Cognitive Load', 'Explainability', 'Control & Agency', 'Error Recovery', 'Feedback Loops'] },
+    ],
+    caseStudies: [
+      { title: 'Agent Trustworthiness: Calibrated Trust Frameworks and Society', description: 'How do users calibrate trust when interacting with autonomous agents? This study examines the cognitive mechanisms behind trust formation and proposes a framework for designing agents that promote appropriate — not blind — reliance.', themes: ['Trust', 'Transparency', 'Calibration', 'Enterprise'] },
+      { title: 'Designing for AI Transparency in Enterprise Agentic Composites', description: 'When multiple agents collaborate within a composite system, understanding who did what — and why — becomes critical. This case study explores transparency design patterns for multi-agent workflows in enterprise settings.', themes: ['Multi-Agent', 'Transparency', 'Audit', 'Explainability'] },
+      { title: 'Multi-Agent Cascades', description: 'When agents trigger other agents, cascading effects can quickly move beyond human oversight. This study maps the interaction patterns of multi-agent cascades and proposes design guardrails to keep humans meaningfully in the loop.', themes: ['Cascades', 'Guardrails', 'Human-in-the-Loop', 'Safety'] },
+    ],
+  };
+
+  res.render('foundational-principles', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design — Foundational Principles',
+    pageData,
+  });
+});
+
 app.get('/styleguide', (_req, res) => {
   res.render('styleguide', {
     title: 'Outshift Design',

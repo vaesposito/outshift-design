@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Outshift Design — Research Behind Hax</title>
+<title>Outshift Design — Foundational Principles</title>
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <script>
@@ -29,13 +29,10 @@
     --color-hover: rgba(41, 50, 71, 0.04);
     --color-accent: #00BCEB;
     --color-accent-hover: #187ADC;
-    --color-tag-bg: rgba(0, 188, 235, 0.1);
-    --color-tag-border: rgba(0, 188, 235, 0.2);
-    --color-tag-text: #187ADC;
     --color-hamburger: #293247;
     --color-shadow: rgba(41, 50, 71, 0.08);
-    --color-research-card-bg: rgba(210, 194, 255, 0.06);
     --color-sdk-bg: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
+    --color-step-number: rgba(0, 188, 235, 0.08);
 }
 @supports (font-variation-settings: normal) {
   :root {
@@ -55,13 +52,10 @@
     --color-hover: rgba(255, 255, 255, 0.06);
     --color-accent: #3fc6ee;
     --color-accent-hover: #00BCEB;
-    --color-tag-bg: rgba(0, 188, 235, 0.12);
-    --color-tag-border: rgba(0, 188, 235, 0.25);
-    --color-tag-text: #3fc6ee;
     --color-hamburger: #e0e4ec;
     --color-shadow: rgba(0, 0, 0, 0.3);
-    --color-research-card-bg: rgba(147, 69, 225, 0.06);
     --color-sdk-bg: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
+    --color-step-number: rgba(63, 198, 238, 0.06);
 }
 [data-theme="dark"] .logo-light,
 [data-theme="dark"] .footer-logo .logo-light { display: none; }
@@ -89,10 +83,7 @@
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
 * { box-sizing: border-box; }
-.container {
-    width: 100%;
-    padding: 0 10%;
-}
+.container { width: 100%; padding: 0 10%; }
 body {
     overflow-x: hidden;
     margin: 0;
@@ -111,37 +102,277 @@ header {
     position: relative;
     z-index: 10;
 }
-.design {
-    font-size: 1.8em;
-    font-weight: 200;
-    margin-left: 8px;
-}
-.logo {
-    align-items: center;
-}
+.design { font-size: 1.8em; font-weight: 200; margin-left: 8px; }
+.logo { align-items: center; }
 .logo, nav ul, header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-nav ul {
-    list-style: none;
-    gap: 30px;
-}
-.text, .icon {
-    display: inline-block;
-    vertical-align: middle;
-}
+nav ul { list-style: none; gap: 30px; }
+.text, .icon { display: inline-block; vertical-align: middle; }
 .icon { margin-top: 2px; }
 a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: var(--color-text);
 }
-h1 { font-size: 4em; font-weight: 200; margin: 5px 0; }
-h2 { font-size: 4em; font-weight: 600; margin: 5px 0; }
-h3 { font-size: 3em; font-weight: 200; margin: 3% 0; }
-h5 { font-size: 1.5em; font-weight: 200; margin: 4% 0; line-height: 1.6em; }
-h6 { font-size: 0.8em; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; margin: 5px 0; color: var(--color-text-subtle); }
+
+/* ── Blobs ── */
+.blob {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+.blob-1 {
+    background-image: url('round-violet.svg');
+    top: -10%; left: 10%;
+    animation: move1 10s infinite alternate ease-in-out;
+}
+.blob-2 {
+    background-image: url('round-orange.svg');
+    top: 20%; right: 10%;
+    animation: move2 15s infinite alternate ease-in-out;
+}
+.blob-3 {
+    background-image: url('round-blue.svg');
+    bottom: 10%; left: 30%;
+    animation: move3 8s infinite alternate ease-in-out;
+}
+@keyframes move1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(20%, 50%) scale(1.1); } }
+@keyframes move2 { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(-30%, 30%) rotate(90deg); } }
+@keyframes move3 { from { transform: translate(0, 0); } to { transform: translate(50%, -30%); } }
+.blobs-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ── Page Hero ── */
+.page-hero {
+    position: relative;
+    z-index: 1;
+    padding: 80px 0 48px;
+}
+.page-hero .breadcrumb {
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+    margin-bottom: 32px;
+}
+.page-hero .breadcrumb a {
+    color: var(--color-accent);
+}
+.page-hero .breadcrumb span {
+    margin: 0 8px;
+    color: var(--color-border-medium);
+}
+.page-hero-title {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.page-hero-title h1 {
+    font-size: 3.5em;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.15;
+}
+.page-hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+.page-hero-text {
+    flex: 5;
+    padding-right: 40px;
+}
+.page-hero-text p {
+    font-size: 18px;
+    font-weight: 300;
+    color: #363E4A;
+    line-height: 1.7;
+    margin: 0;
+}
+[data-theme="dark"] .page-hero-text p {
+    color: var(--color-text-muted);
+}
+.page-hero-image {
+    flex: 7;
+}
+.page-hero-image img {
+    width: 100%;
+    height: 525px;
+    border-radius: 16px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Pipeline Section ── */
+.pipeline-section {
+    position: relative;
+    z-index: 1;
+    padding: 60px 0 40px;
+}
+.pipeline-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+.pipeline-header h2 {
+    font-size: 2.8em;
+    font-weight: 200;
+    margin: 0 0 16px;
+}
+.pipeline-header p {
+    font-size: 1.05em;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── Pipeline Steps ── */
+.pipeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.pipeline-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.pipeline-step:last-child {
+    border-bottom: none;
+}
+.step-number {
+    flex: 0 0 120px;
+    font-size: 5em;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-accent);
+    opacity: 0.15;
+    font-feature-settings: 'tnum';
+}
+.step-content {
+    flex: 1;
+}
+.step-content h3 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: var(--color-text);
+}
+.step-content p {
+    font-size: 1em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+.step-content .step-themes {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.step-content .step-themes span {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border-medium);
+    color: var(--color-text-muted);
+    font-size: 0.8em;
+}
+
+/* ── Case Studies ── */
+.case-studies {
+    position: relative;
+    z-index: 1;
+    padding: 60px 0;
+}
+.case-studies-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.case-studies-header h2 {
+    font-size: 2.8em;
+    font-weight: 200;
+    margin: 0 0 16px;
+}
+.case-studies-header p {
+    font-size: 1.05em;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.case-study-card {
+    padding: 32px;
+    border-bottom: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.case-study-card:last-child {
+    border-bottom: none;
+}
+.case-study-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 24px rgba(34, 104, 190, 0.06);
+}
+.case-study-card h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: var(--color-text);
+}
+.case-study-card p {
+    font-size: 1em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 16px;
+    max-width: 720px;
+}
+.case-study-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.case-study-themes span {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border-medium);
+    color: var(--color-text-muted);
+    font-size: 0.8em;
+}
+
+/* ── SDK Section ── */
+.sdk-section {
+    position: relative;
+    z-index: 1;
+    background: var(--color-sdk-bg);
+    padding: 80px 0;
+    margin-top: 40px;
+}
+.sdk-inner {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.sdk-text { flex: 1; }
+.sdk-text h2 { font-size: 2.4em; font-weight: 200; margin: 0 0 20px; }
+.sdk-text p {
+    font-size: 1.05em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 32px;
+    max-width: 500px;
+}
+.sdk-image { flex: 1; display: flex; justify-content: flex-end; }
+.sdk-image img { width: 100%; border-radius: 16px; object-fit: cover; }
 button {
     position: relative;
     display: flex;
@@ -171,232 +402,6 @@ button::before {
     pointer-events: none;
 }
 
-/* ── Blobs ── */
-.blob {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 1;
-}
-.blob-1 {
-    background-image: url('round-violet.svg');
-    top: -10%;
-    left: 10%;
-    animation: move1 10s infinite alternate ease-in-out;
-}
-.blob-2 {
-    background-image: url('round-orange.svg');
-    top: 20%;
-    right: 10%;
-    animation: move2 15s infinite alternate ease-in-out;
-}
-.blob-3 {
-    background-image: url('round-blue.svg');
-    bottom: 10%;
-    left: 30%;
-    animation: move3 8s infinite alternate ease-in-out;
-}
-@keyframes move1 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(20%, 50%) scale(1.1); }
-}
-@keyframes move2 {
-    from { transform: translate(0, 0) rotate(0deg); }
-    to { transform: translate(-30%, 30%) rotate(90deg); }
-}
-@keyframes move3 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(50%, -30%); }
-}
-.blobs-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* ── Research Hero ── */
-.research-hero {
-    position: relative;
-    z-index: 1;
-    padding: 80px 0 40px;
-}
-.research-hero-title {
-    text-align: center;
-    margin-bottom: 48px;
-}
-.research-hero-title h1 {
-    font-size: 3.5em;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.15;
-}
-.research-hero-inner {
-    display: flex;
-    align-items: center;
-    gap: 0;
-}
-.research-hero-text {
-    flex: 5;
-    padding-right: 40px;
-}
-.research-hero-text p {
-    font-size: 18px;
-    font-weight: 300;
-    color: #363E4A;
-    line-height: 1.7;
-    margin: 0;
-}
-[data-theme="dark"] .research-hero-text p {
-    color: var(--color-text-muted);
-}
-.research-hero-image {
-    flex: 7;
-}
-.research-hero-image img {
-    width: 100%;
-    height: 525px;
-    border-radius: 16px;
-    object-fit: cover;
-    display: block;
-}
-
-/* ── Research Section Title ── */
-.research-section-header {
-    text-align: center;
-    padding: 60px 0 48px;
-    position: relative;
-    z-index: 1;
-}
-.research-section-header h2 {
-    font-size: 2.8em;
-    font-weight: 200;
-    margin: 0 0 16px;
-}
-.research-section-header p {
-    font-size: 1.05em;
-    color: var(--color-text-muted);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
-/* ── Research Cards (Alternating) ── */
-.research-cards {
-    position: relative;
-    z-index: 1;
-    padding: 0 0 40px;
-}
-.research-card {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 32px;
-    position: relative;
-    width: 58.333%;
-    margin: 0 0 40px;
-    border-radius: 20px;
-    background: transparent;
-    z-index: 0;
-}
-.research-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    padding: 1.5px;
-    background: linear-gradient(to right, rgba(77, 99, 128, 0.21), #2268BE);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-.research-card:nth-child(even) {
-    margin-left: auto;
-}
-.research-card-image {
-    flex: 0 0 200px;
-    position: relative;
-    overflow: hidden;
-}
-.research-card-image img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    display: block;
-}
-.research-card-text {
-    flex: 1;
-}
-.research-card-text h3 {
-    font-size: 21px;
-    font-weight: 600;
-    margin: 0 0 12px;
-    color: var(--color-text);
-}
-.research-card-text p {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin: 0 0 16px;
-}
-.read-more {
-    color: var(--color-accent);
-    font-weight: 600;
-    font-size: 0.9em;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-.read-more:hover {
-    color: var(--color-accent-hover) !important;
-}
-
-/* ── SDK Section ── */
-.sdk-section {
-    position: relative;
-    z-index: 1;
-    background: var(--color-sdk-bg);
-    padding: 80px 0;
-    margin-top: 40px;
-}
-.sdk-inner {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-}
-.sdk-text {
-    flex: 1;
-}
-.sdk-text h2 {
-    font-size: 2.4em;
-    font-weight: 200;
-    margin: 0 0 20px;
-}
-.sdk-text p {
-    font-size: 1.05em;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin: 0 0 32px;
-    max-width: 500px;
-}
-.sdk-image {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-.sdk-image img {
-    width: 100%;
-    border-radius: 16px;
-    object-fit: cover;
-}
-
 /* ── Footer ── */
 footer {
     position: relative;
@@ -411,74 +416,16 @@ footer {
     padding-bottom: 40px;
 }
 .footer-logo img { height: 60px; }
-.footer-links h6 {
-    font-size: 0.8em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--color-text);
-    margin: 0 0 16px;
-}
-.footer-links a {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--color-text-subtle);
-    font-size: 0.95em;
-    margin-bottom: 10px;
-}
+.footer-links h6 { font-size: 0.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-text); margin: 0 0 16px; }
+.footer-links a { display: flex; align-items: center; gap: 4px; color: var(--color-text-subtle); font-size: 0.95em; margin-bottom: 10px; }
 .footer-links a svg { width: 14px; height: 14px; }
 .footer-links a:hover { color: var(--color-text); }
-.footer-social h6 {
-    font-size: 0.8em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--color-text);
-    margin: 0 0 16px;
-}
-.footer-social-icons {
-    display: flex;
-    gap: 10px;
-}
-.footer-social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
-    color: var(--color-text-subtle);
-    transition: background 0.2s, color 0.2s;
-}
-.footer-social-icons a:hover {
-    background: var(--color-hover);
-    color: var(--color-text);
-}
+.footer-social h6 { font-size: 0.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-text); margin: 0 0 16px; }
+.footer-social-icons { display: flex; gap: 10px; }
+.footer-social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--color-border); color: var(--color-text-subtle); transition: background 0.2s, color 0.2s; }
+.footer-social-icons a:hover { background: var(--color-hover); color: var(--color-text); }
 .footer-social-icons a svg { width: 18px; height: 18px; }
-.footer-bottom {
-    border-top: 1px solid var(--color-border);
-    padding: 24px 0;
-    text-align: center;
-    color: var(--color-text-subtle);
-    font-size: 0.85em;
-}
-
-/* ── Card Hover ── */
-.research-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.research-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(34, 104, 190, 0.10);
-}
-.research-card-image img {
-    transition: transform 0.4s ease;
-}
-.research-card:hover .research-card-image img {
-    transform: scale(1.05);
-}
+.footer-bottom { border-top: 1px solid var(--color-border); padding: 24px 0; text-align: center; color: var(--color-text-subtle); font-size: 0.85em; }
 
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
@@ -526,27 +473,22 @@ footer {
 .menu-toggle.active span:nth-child(2) { opacity: 0; }
 .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── Responsive: Tablet ── */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-    .research-hero-title h1 { font-size: 2.8em; }
-    .research-hero-image img { height: 400px; }
-    .research-section-header h2 { font-size: 2.2em; }
-    .research-card { width: 60%; padding: 28px; }
-    .research-card-image { flex: 0 0 160px; }
-    .research-card-image img { width: 160px; height: 160px; }
+    .page-hero-title h1 { font-size: 2.8em; }
+    .page-hero-image img { height: 400px; }
+    .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
+    .step-number { flex: 0 0 80px; font-size: 3.5em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
 }
 
-/* ── Responsive: Mobile ── */
 @media (max-width: 768px) {
     .menu-toggle { display: block; }
     nav {
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100vh;
+        top: 0; right: -100%;
+        width: 280px; height: 100vh;
         background: var(--color-surface);
         padding: 80px 30px 30px;
         transition: right 0.3s ease;
@@ -554,67 +496,29 @@ footer {
         box-shadow: -2px 0 20px var(--color-shadow);
     }
     nav.open { right: 0; }
-    nav ul {
-        flex-direction: column;
-        gap: 20px;
-        padding: 0;
-    }
+    nav ul { flex-direction: column; gap: 20px; padding: 0; }
 
-    .research-hero-inner {
-        flex-direction: column;
-        gap: 32px;
-    }
-    .research-hero-text { padding-right: 0; }
-    .research-hero-title h1 { font-size: 2em; }
-    .research-hero-image img { height: 320px; max-width: 100%; }
+    .page-hero-inner { flex-direction: column; gap: 32px; }
+    .page-hero-text { padding-right: 0; }
+    .page-hero-title h1 { font-size: 2em; }
+    .page-hero-image img { height: 320px; max-width: 100%; }
 
-    .research-section-header h2 { font-size: 1.8em; }
+    .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
+    .pipeline-step { flex-direction: column; gap: 12px; }
+    .step-number { flex: none; font-size: 3em; }
 
-    .research-card {
-        width: 100%;
-        flex-direction: column !important;
-        gap: 24px;
-        padding: 28px;
-        margin-bottom: 24px;
-    }
-    .research-card:nth-child(even) {
-        margin-left: 0;
-    }
-    .research-card-image {
-        flex: none;
-        display: flex;
-        justify-content: center;
-    }
-    .research-card-image img {
-        width: 160px;
-        height: 160px;
-    }
-    .research-card-text {
-        text-align: center;
-    }
-    .research-card-text .read-more {
-        justify-content: center;
-    }
-
-    .sdk-inner {
-        flex-direction: column;
-        gap: 32px;
-    }
+    .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
     .sdk-image { justify-content: center; }
     .sdk-image img { max-width: 100%; }
 
-    .footer-top {
-        flex-direction: column;
-        gap: 32px;
-    }
+    .footer-top { flex-direction: column; gap: 32px; }
 }
 
 @media (max-width: 480px) {
-    .research-hero-title h1 { font-size: 1.6em; }
-    .research-hero-image img { height: 240px; }
-    .research-section-header h2 { font-size: 1.5em; }
-    .research-card-image img { width: 160px; height: 160px; }
+    .page-hero-title h1 { font-size: 1.6em; }
+    .page-hero-image img { height: 240px; }
+    .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
     .sdk-text h2 { font-size: 1.5em; }
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
@@ -642,7 +546,7 @@ footer {
     <nav>
       <ul>
         <li><a href="index.html#initiatives"><span class="text">Initiatives</span> <span class="icon"><img src="keyboard-arrow-down-icon.svg" alt=""></span></a></li>
-        <li><a href="research.html" style="color:var(--color-accent);"><span class="text">Research</span></a></li>
+        <li><a href="research.html"><span class="text">Research</span></a></li>
         <li><a href="components.html"><span class="text">Components</span></a></li>
         <li><a href="index.html#blog"><span class="text">Blog</span></a></li>
         <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button></li>
@@ -658,109 +562,137 @@ footer {
   <div class="blob blob-3"></div>
 </div>
 
-<!-- Research Hero -->
-<div class="research-hero">
+<!-- Page Hero -->
+<div class="page-hero">
   <div class="container">
-    <div class="research-hero-title">
-      <h1>Exploring the Research Behind Hax</h1>
+    <div class="breadcrumb">
+      <a href="research.html">Research</a> <span>/</span> Foundational Principles
     </div>
-    <div class="research-hero-inner">
-      <div class="research-hero-text">
-        <p>The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.</p>
+    <div class="page-hero-title">
+      <h1>Foundational Principles</h1>
+    </div>
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <p>We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high-level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.</p>
       </div>
-      <div class="research-hero-image">
-        <img src="images/research/hero.png" alt="Hax Research">
+      <div class="page-hero-image">
+        <img src="images/research/foundational-principles-hero.png" alt="Foundational Principles">
       </div>
     </div>
   </div>
 </div>
 
-<!-- Section Title -->
-<div class="research-section-header">
+<!-- Research to Design Pipeline -->
+<div class="pipeline-section">
   <div class="container">
-    <h2>Advancing the Science of Human Agent Interaction</h2>
-    <p>Investigating how humans and agents think, act, and build together</p>
+    <div class="pipeline-header">
+      <h2>Research to Design Pipeline</h2>
+      <p>A collaborative design process that transforms raw research into practical design guidance and reusable patterns.</p>
+    </div>
+
+    <div class="pipeline-steps">
+
+      <div class="pipeline-step">
+        <div class="step-number">01.</div>
+        <div class="step-content">
+          <h3>Start with Research</h3>
+          <p>We ground every design decision in evidence. Our process begins with rigorous academic and applied research — reviewing literature, running experiments, and synthesizing findings from cognitive science, HCI, and AI interaction studies. The goal is to uncover principles that are both empirically validated and practically applicable.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-number">02.</div>
+        <div class="step-content">
+          <h3>Conceptualize the Principle &amp; Map to Design Patterns</h3>
+          <p>From raw findings, we distill high-level principles — clear statements about how humans and agents should interact. Each principle is then mapped to one or more design patterns: repeatable solutions that address common interaction challenges while respecting the underlying research.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-number">03.</div>
+        <div class="step-content">
+          <h3>Draft a Pattern</h3>
+          <p>Each pattern is documented with a clear problem statement, context of use, the solution approach, and practical examples. We include rationale rooted in the original research so designers understand not just the "what" but the "why" behind each recommendation.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-number">04.</div>
+        <div class="step-content">
+          <h3>Test the Bridge: Use Design Heuristics &amp; applicable methods</h3>
+          <p>We validate each pattern through heuristic evaluation, usability testing, and expert review. This stage ensures the bridge between research insight and design guidance is sound — that the pattern actually improves the interaction it aims to address.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-number">05.</div>
+        <div class="step-content">
+          <h3>Prototype &amp; Iterate the validation</h3>
+          <p>Patterns are implemented in interactive prototypes and tested with real users. We iterate based on feedback, refining both the design pattern and its documentation until it meets our quality bar for clarity, effectiveness, and adoptability.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="step-number">06.</div>
+        <div class="step-content">
+          <h3>Update Documentation &amp; Contribute</h3>
+          <p>Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. We continuously update the library as new research emerges and as patterns evolve through real-world adoption.</p>
+          <div class="step-themes">
+            <span>Themes</span>
+          </div>
+          <div class="step-themes" style="margin-top:8px;">
+            <span>Trust Calibration</span>
+            <span>Cognitive Load</span>
+            <span>Explainability</span>
+            <span>Control & Agency</span>
+            <span>Error Recovery</span>
+            <span>Feedback Loops</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<!-- Research Cards -->
-<div class="research-cards">
+<!-- Case Studies -->
+<div class="case-studies">
   <div class="container">
+    <div class="case-studies-header">
+      <h2>Case Studies</h2>
+      <p>Real-world applications of our foundational principles in enterprise and research contexts.</p>
+    </div>
 
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/foundational-principles.png" alt="Foundational Principles">
-      </div>
-      <div class="research-card-text">
-        <h3>Foundational Principles</h3>
-        <p>We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.</p>
-        <a href="foundational-principles.html" class="read-more">Read more &rarr;</a>
+    <div class="case-study-card">
+      <h3>Agent Trustworthiness: Calibrated Trust Frameworks and Society</h3>
+      <p>How do users calibrate trust when interacting with autonomous agents? This study examines the cognitive mechanisms behind trust formation and proposes a framework for designing agents that promote appropriate — not blind — reliance. We tested across enterprise workflows and found that transparency of reasoning and predictable behavior boundaries are the strongest trust signals.</p>
+      <div class="case-study-themes">
+        <span>Trust</span>
+        <span>Transparency</span>
+        <span>Calibration</span>
+        <span>Enterprise</span>
       </div>
     </div>
 
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/cognitive-framework.png" alt="Cognitive Frameworks">
-      </div>
-      <div class="research-card-text">
-        <h3>Cognitive Frameworks</h3>
-        <p>Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.</p>
-        <a href="#" class="read-more">Read more &rarr;</a>
-      </div>
-    </div>
-
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/societal-impact.png" alt="Societal Impact">
-      </div>
-      <div class="research-card-text">
-        <h3>Societal Impact</h3>
-        <p>Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?</p>
-        <a href="#" class="read-more">Read more &rarr;</a>
+    <div class="case-study-card">
+      <h3>Designing for AI Transparency in Enterprise Agentic Composites</h3>
+      <p>When multiple agents collaborate within a composite system, understanding who did what — and why — becomes critical. This case study explores transparency design patterns for multi-agent workflows in enterprise settings, focusing on audit trails, decision attribution, and user-facing explanations that maintain clarity without overwhelming cognitive load.</p>
+      <div class="case-study-themes">
+        <span>Multi-Agent</span>
+        <span>Transparency</span>
+        <span>Audit</span>
+        <span>Explainability</span>
       </div>
     </div>
 
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/security-privacy.png" alt="Security & Privacy">
-      </div>
-      <div class="research-card-text">
-        <h3>Security & Privacy</h3>
-        <p>As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.</p>
-        <a href="#" class="read-more">Read more &rarr;</a>
-      </div>
-    </div>
-
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/agent-impact.png" alt="Agent Impact Map">
-      </div>
-      <div class="research-card-text">
-        <h3>Agent Impact Map</h3>
-        <p>Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.</p>
-        <a href="#" class="read-more">Read more &rarr;</a>
-      </div>
-    </div>
-
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/cognitive-load-audit.png" alt="Cognition-Level Audit">
-      </div>
-      <div class="research-card-text">
-        <h3>Cognitive Load Audit</h3>
-        <p>Evaluating the agent's impact on a user's mental effort to ensure its design is intuitive, clear and respects diverse cognitive styles.</p>
-        <a href="#" class="read-more">Read more &rarr;</a>
-      </div>
-    </div>
-
-    <div class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/foresight-canvas.png" alt="Foresight Canvas">
-      </div>
-      <div class="research-card-text">
-        <h3>Foresight Canvas</h3>
-        <p>A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks.</p>
-        <a href="#" class="read-more">Read more &rarr;</a>
+    <div class="case-study-card">
+      <h3>Multi-Agent Cascades</h3>
+      <p>When agents trigger other agents, cascading effects can quickly move beyond human oversight. This study maps the interaction patterns of multi-agent cascades and proposes design guardrails — including circuit breakers, approval gates, and progressive disclosure — to keep humans meaningfully in the loop without creating bottlenecks.</p>
+      <div class="case-study-themes">
+        <span>Cascades</span>
+        <span>Guardrails</span>
+        <span>Human-in-the-Loop</span>
+        <span>Safety</span>
       </div>
     </div>
 
