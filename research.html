@@ -291,38 +291,47 @@ button::before {
 .research-card {
     display: flex;
     align-items: center;
-    gap: 60px;
-    padding: 60px 7%;
+    gap: 32px;
+    padding: 40px;
     position: relative;
+    max-width: 75%;
+    margin: 0 0 40px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+[data-theme="dark"] .research-card {
+    background: rgba(255, 255, 255, 0.04);
 }
 .research-card:nth-child(even) {
-    flex-direction: row-reverse;
+    margin-left: auto;
 }
 .research-card-image {
-    flex: 0 0 280px;
+    flex: 0 0 200px;
     position: relative;
 }
 .research-card-image img {
-    width: 280px;
-    height: 280px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
-    border-radius: 16px;
     display: block;
 }
 .research-card-text {
     flex: 1;
 }
 .research-card-text h3 {
-    font-size: 1.5em;
-    font-weight: 600;
-    margin: 0 0 16px;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 0 0 12px;
     color: var(--color-text);
 }
 .research-card-text p {
-    font-size: 1em;
+    font-size: 0.95em;
     color: var(--color-text-muted);
     line-height: 1.7;
-    margin: 0 0 20px;
+    margin: 0 0 16px;
 }
 .read-more {
     color: var(--color-accent);
@@ -334,11 +343,6 @@ button::before {
 }
 .read-more:hover {
     color: var(--color-accent-hover) !important;
-}
-
-/* ── Subtle separator line between cards ── */
-.research-card + .research-card {
-    border-top: 1px solid var(--color-border);
 }
 
 /* ── SDK Section ── */
@@ -496,9 +500,9 @@ footer {
     .research-hero-title h1 { font-size: 2.8em; }
     .research-hero-image img { height: 400px; }
     .research-section-header h2 { font-size: 2.2em; }
-    .research-card { gap: 40px; padding: 48px 7%; }
-    .research-card-image { flex: 0 0 220px; }
-    .research-card-image img { width: 220px; height: 220px; }
+    .research-card { max-width: 85%; padding: 32px; }
+    .research-card-image { flex: 0 0 180px; }
+    .research-card-image img { width: 180px; height: 180px; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
 }
@@ -536,19 +540,23 @@ footer {
     .research-section-header h2 { font-size: 1.8em; }
 
     .research-card {
+        max-width: 100%;
         flex-direction: column !important;
         gap: 24px;
-        padding: 40px 7%;
+        padding: 32px;
+        margin-bottom: 24px;
+    }
+    .research-card:nth-child(even) {
+        margin-left: 0;
     }
     .research-card-image {
         flex: none;
-        width: 100%;
         display: flex;
         justify-content: center;
     }
     .research-card-image img {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
     .research-card-text {
         text-align: center;
@@ -639,7 +647,7 @@ footer {
 <div class="research-section-header">
   <div class="container">
     <h2>Advancing the Science of Human Agent Interaction</h2>
-    <p>Investigating human-AI synergy so agents feel natural, trustworthy, and useful together.</p>
+    <p>Investigating how humans and agents think, act, and build together</p>
   </div>
 </div>
 
@@ -652,8 +660,8 @@ footer {
         <img src="images/research/foundations.png" alt="Foundations of Hax Agents">
       </div>
       <div class="research-card-text">
-        <h3>Foundations of Hax Agents</h3>
-        <p>A comprehensive study on the fundamental building blocks of Hax agents, covering perception, memory, and decision-making architectures that enable human-like responsiveness in complex enterprise environments.</p>
+        <h3>Foundational Principles</h3>
+        <p>We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.</p>
         <a href="#" class="read-more">Read more &rarr;</a>
       </div>
     </div>
@@ -663,8 +671,8 @@ footer {
         <img src="images/research/cognition-framework.png" alt="Cognition Framework">
       </div>
       <div class="research-card-text">
-        <h3>Cognition Framework</h3>
-        <p>Our research into cognitive architectures that allow agents to reason, plan, and learn from interactions. The framework enables agents to build mental models of their environment and adapt their behavior over time.</p>
+        <h3>Cognitive Frameworks</h3>
+        <p>Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.</p>
         <a href="#" class="read-more">Read more &rarr;</a>
       </div>
     </div>
