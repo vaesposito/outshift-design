@@ -67,9 +67,17 @@
     --color-hamburger: #e0e4ec;
     --color-shadow: rgba(0, 0, 0, 0.3);
 }
-[data-theme="dark"] .logo img,
-[data-theme="dark"] .footer-logo img {
-    filter: invert(1) brightness(2);
+[data-theme="dark"] .logo-light,
+[data-theme="dark"] .footer-logo .logo-light { display: none; }
+[data-theme="dark"] .logo-dark,
+[data-theme="dark"] .footer-logo .logo-dark { display: block; }
+.logo-dark,
+.footer-logo .logo-dark { display: none; }
+[data-theme="dark"] .initiative-card {
+    background-image: url('section-darkmode.svg');
+}
+[data-theme="dark"] .initiative-card.reversed {
+    background-image: url('section-inverted-darkmode.svg');
 }
 .theme-toggle {
     display: inline-flex;
@@ -957,7 +965,8 @@ footer {
 <header>
   <div class="container">
     <div class="logo">
-      <img src="outshift_logo.svg" alt="Outshift">
+      <img src="outshift_logo.svg" alt="Outshift" class="logo-light">
+      <img src="outshift_logo-white.svg" alt="Outshift" class="logo-dark">
       <div class="design">design</div>
     </div>
     <button class="menu-toggle" aria-label="Toggle menu">
@@ -1162,7 +1171,8 @@ footer {
   <div class="container">
     <div class="footer-top">
       <div class="footer-logo">
-        <img src="outshift_logo.svg" alt="Outshift">
+        <img src="outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="outshift_logo-white.svg" alt="Outshift" class="logo-dark">
       </div>
       <div class="footer-links">
         <h6>Company</h6>
