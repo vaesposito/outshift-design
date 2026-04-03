@@ -642,9 +642,9 @@ footer {
 
 <!-- Animated Blobs -->
 <div class="blobs-container">
-  <div class="blob blob-1" data-parallax="-0.04"></div>
-  <div class="blob blob-2" data-parallax="-0.08"></div>
-  <div class="blob blob-3" data-parallax="-0.05"></div>
+  <div class="blob blob-1" data-parallax="-0.12"></div>
+  <div class="blob blob-2" data-parallax="-0.2"></div>
+  <div class="blob blob-3" data-parallax="-0.15"></div>
 </div>
 
 <!-- Research Hero -->
@@ -657,7 +657,7 @@ footer {
       <div class="research-hero-text">
         <p>The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.</p>
       </div>
-      <div class="research-hero-image" data-parallax="-0.06">
+      <div class="research-hero-image" data-parallax="-0.15">
         <img src="images/research/hero.png" alt="Hax Research">
       </div>
     </div>
@@ -677,7 +677,7 @@ footer {
   <div class="container">
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.03">
+      <div class="research-card-image" data-parallax="-0.08">
         <img src="images/research/foundational-principles.png" alt="Foundational Principles">
       </div>
       <div class="research-card-text">
@@ -688,7 +688,7 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.04">
+      <div class="research-card-image" data-parallax="-0.1">
         <img src="images/research/cognitive-framework.png" alt="Cognitive Frameworks">
       </div>
       <div class="research-card-text">
@@ -699,7 +699,7 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.03">
+      <div class="research-card-image" data-parallax="-0.08">
         <img src="images/research/societal-impact.png" alt="Societal Impact">
       </div>
       <div class="research-card-text">
@@ -710,7 +710,7 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.05">
+      <div class="research-card-image" data-parallax="-0.12">
         <img src="images/research/security-privacy.png" alt="Security & Privacy">
       </div>
       <div class="research-card-text">
@@ -721,7 +721,7 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.03">
+      <div class="research-card-image" data-parallax="-0.08">
         <img src="images/research/agent-impact.png" alt="Agent Impact Map">
       </div>
       <div class="research-card-text">
@@ -732,7 +732,7 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.04">
+      <div class="research-card-image" data-parallax="-0.1">
         <img src="images/research/cognitive-load-audit.png" alt="Cognition-Level Audit">
       </div>
       <div class="research-card-text">
@@ -743,7 +743,7 @@ footer {
     </div>
 
     <div class="research-card">
-      <div class="research-card-image" data-parallax="-0.05">
+      <div class="research-card-image" data-parallax="-0.12">
         <img src="images/research/foresight-canvas.png" alt="Foresight Canvas">
       </div>
       <div class="research-card-text">
@@ -765,7 +765,7 @@ footer {
         <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
         <a href="#"><button>Explore the SDK</button></a>
       </div>
-      <div class="sdk-image" data-parallax="-0.04">
+      <div class="sdk-image" data-parallax="-0.1">
         <img src="images/research/sdk-hero.png" alt="Hax SDK">
       </div>
     </div>
@@ -830,17 +830,24 @@ footer {
 
     // Parallax
     var parallaxEls = document.querySelectorAll('[data-parallax]');
+    var parallaxData = [];
+    for (var i = 0; i < parallaxEls.length; i++) {
+        parallaxData.push({
+            el: parallaxEls[i],
+            speed: parseFloat(parallaxEls[i].getAttribute('data-parallax')),
+            top: parallaxEls[i].offsetTop
+        });
+    }
     function onScroll() {
-        var scrollY = window.pageYOffset;
-        for (var i = 0; i < parallaxEls.length; i++) {
-            var el = parallaxEls[i];
-            var speed = parseFloat(el.getAttribute('data-parallax'));
-            var rect = el.getBoundingClientRect();
-            var offset = (rect.top + scrollY - window.innerHeight / 2) * speed;
-            el.style.transform = 'translateY(' + offset + 'px)';
+        var viewCenter = window.pageYOffset + window.innerHeight * 0.5;
+        for (var i = 0; i < parallaxData.length; i++) {
+            var d = parallaxData[i];
+            var offset = (viewCenter - d.top) * d.speed;
+            d.el.style.transform = 'translateY(' + offset + 'px)';
         }
     }
     window.addEventListener('scroll', function () { requestAnimationFrame(onScroll); });
+    onScroll();
 
     if (window.matchMedia('(pointer: fine)').matches) {
         var customCursor = document.createElement('div');
