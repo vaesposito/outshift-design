@@ -118,6 +118,42 @@ nav ul {
     list-style: none;
     gap: 30px;
 }
+nav > ul > li { position: relative; }
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    min-width: 220px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 8px 0;
+    box-shadow: 0 8px 32px var(--color-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+    z-index: 20;
+    list-style: none;
+}
+nav > ul > li:hover > .nav-dropdown,
+nav > ul > li:focus-within > .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+.nav-dropdown li a:hover {
+    background: var(--color-hover);
+    color: var(--color-text) !important;
+}
 .text, .icon {
     display: inline-block;
     vertical-align: middle;
@@ -412,6 +448,13 @@ footer {
     nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--color-bg); z-index: 10; flex-direction: column; justify-content: center; align-items: center; }
     nav.open { display: flex; }
     nav ul { flex-direction: column; text-align: center; gap: 24px; font-size: 1.3em; }
+    .nav-dropdown {
+        position: static; transform: none; opacity: 1; visibility: visible;
+        min-width: 0; background: none; border: none; border-radius: 0;
+        box-shadow: none; padding: 4px 0 0 0;
+    }
+    .nav-dropdown li a { padding: 8px 0; font-size: 0.8em; }
+    .nav-dropdown li a:hover { background: none; }
     .comp-grid { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; gap: 32px; }
 }
@@ -438,7 +481,14 @@ footer {
     <nav>
       <ul>
         <li><a href="index.html#initiatives"><span class="text">Initiatives</span> <span class="icon"><img src="keyboard-arrow-down-icon.svg" alt=""></span></a></li>
-        <li><a href="research.html"><span class="text">Research</span></a></li>
+        <li><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="keyboard-arrow-down-icon.svg" alt=""></span></a>
+          <ul class="nav-dropdown">
+            <li><a href="foundational-principles.html">Foundational Principles</a></li>
+            <li><a href="#">Cognitive Frameworks</a></li>
+            <li><a href="#">Societal Impact</a></li>
+            <li><a href="#">Security &amp; Privacy</a></li>
+          </ul>
+        </li>
         <li><a href="components.html" style="color:var(--color-accent);"><span class="text">Components</span></a></li>
         <li><a href="index.html#blog"><span class="text">Blog</span></a></li>
         <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button></li>
