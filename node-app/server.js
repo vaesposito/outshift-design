@@ -32,7 +32,6 @@ const fallbackData = {
       { label: 'Societal Impact', href: '#' },
       { label: 'Security & Privacy', href: '#' },
     ]},
-    { label: 'Components', href: '/components', hasDropdown: false },
     { label: 'Blog', href: '/#blog', hasDropdown: false },
   ],
   initiatives: [
