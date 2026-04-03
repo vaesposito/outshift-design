@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <link rel="stylesheet" href="/css/styleguide.css">
+<script>(function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();</script>
 </head>
 <body>
 
@@ -14,10 +15,14 @@
   <div class="sg-header">
     <div class="sg-header-inner">
       <div class="logo">
-        <img src="/images/outshift_logo.svg" alt="Outshift">
+        <img src="/images/outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="/images/outshift_logo-white.svg" alt="Outshift" class="logo-dark">
         <span class="design">design</span>
       </div>
-      <span class="sg-title">Style Guide</span>
+      <div class="sg-header-right">
+        <span class="sg-title">Style Guide</span>
+        <button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button>
+      </div>
     </div>
   </div>
 </div>
@@ -30,7 +35,7 @@
     <h2 class="sg-section-heading">Color Palette</h2>
     <p class="sg-section-desc">The Outshift Design color system is built on a neutral, professional base with strategic accent colors for emphasis and interaction.</p>
 
-    <p class="sg-component-label" style="margin-top:32px;">Primary Colors</p>
+    <p class="sg-component-label" style="margin-top:32px;">Light Mode — Primary Colors</p>
     <div class="sg-colors">
       <% const primaryColors = [
         { name: 'Ink', hex: '#293247', usage: 'Primary text, headings, logo' },
@@ -41,6 +46,26 @@
       <% primaryColors.forEach(c => { %>
       <div class="sg-color-card">
         <div class="sg-color-swatch" style="background:<%= c.hex %>;<%= c.hex === '#FFFFFF' ? ' border-bottom:1px solid rgba(41,50,71,0.08);' : '' %>"></div>
+        <div class="sg-color-info">
+          <p class="sg-color-name"><%= c.name %></p>
+          <p class="sg-color-hex"><%= c.hex %></p>
+          <p class="sg-color-usage"><%= c.usage %></p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <p class="sg-component-label" style="margin-top:40px;">Dark Mode — Primary Colors</p>
+    <div class="sg-colors">
+      <% const darkColors = [
+        { name: 'Void', hex: '#0f1117', usage: 'Page background' },
+        { name: 'Snow', hex: '#e0e4ec', usage: 'Primary text, headings' },
+        { name: 'Fog', hex: '#9ca3b0', usage: 'Body text, descriptions' },
+        { name: 'Ash', hex: '#8a919c', usage: 'Captions, metadata, labels' },
+      ] %>
+      <% darkColors.forEach(c => { %>
+      <div class="sg-color-card">
+        <div class="sg-color-swatch" style="background:<%= c.hex %>;"></div>
         <div class="sg-color-info">
           <p class="sg-color-name"><%= c.name %></p>
           <p class="sg-color-hex"><%= c.hex %></p>
@@ -92,6 +117,8 @@
     <p class="sg-component-label" style="margin-top:40px;">Gradients</p>
     <p class="sg-gradient-label">Brand Gradient (button borders)</p>
     <div class="sg-gradient-bar" style="background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);"></div>
+    <p class="sg-gradient-label" style="margin-top:24px;">Card Stroke Gradient (research cards)</p>
+    <div class="sg-gradient-bar" style="background: linear-gradient(to right, rgba(77, 99, 128, 0.21), #2268BE);"></div>
     <p class="sg-gradient-label" style="margin-top:24px;">Section Background</p>
     <div class="sg-gradient-bar" style="background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0)); border: 1px solid rgba(41,50,71,0.08);"></div>
 
@@ -222,6 +249,48 @@
 
   <hr class="sg-divider">
 
+  <!-- RESEARCH CARD -->
+  <div class="sg-section">
+    <p class="sg-section-title">Components</p>
+    <h2 class="sg-section-heading">Research Card</h2>
+    <p class="sg-section-desc">Cards used on the Research page. 7/12 width, gradient stroke border, alternating left/right alignment, with hover lift and image zoom.</p>
+
+    <div class="sg-research-card-demo">
+      <div class="sg-demo-rcard">
+        <div class="sg-demo-rcard-image">
+          <img src="/images/research/foundational-principles.png" alt="Foundational Principles">
+        </div>
+        <div class="sg-demo-rcard-text">
+          <h3>Foundational Principles</h3>
+          <p>We build foundational design principles and frameworks for AI-human interaction.</p>
+          <a href="#" class="demo-read-more">Read more &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <p class="demo-caption" style="margin-top:16px;">Width: 7/12 (58.333%). Padding: 32px. Radius: 20px. Stroke: gradient border via mask composite. Title: 21px/600. Text: 14px/600. Hover: translateY(-4px) + shadow + image scale(1.05).</p>
+  </div>
+
+  <hr class="sg-divider">
+
+  <!-- CUSTOM CURSOR -->
+  <div class="sg-section">
+    <p class="sg-section-title">Components</p>
+    <h2 class="sg-section-heading">Custom Cursor</h2>
+    <p class="sg-section-desc">A mix-blend-mode: difference cursor that inverts against the background. Scales 2x on interactive elements with a gray border ring.</p>
+
+    <div style="padding:32px; border-radius:16px; border:1px solid rgba(41,50,71,0.08); text-align:center;">
+      <div style="display:inline-flex; align-items:center; gap:24px;">
+        <div style="width:20px; height:20px; border-radius:9999px; background:#fff; mix-blend-mode:difference;"></div>
+        <span class="demo-caption">Default (20px)</span>
+        <div style="width:40px; height:40px; border-radius:9999px; background:#fff; mix-blend-mode:difference; border:5px solid #b4b4b4;"></div>
+        <span class="demo-caption">Hover (scale 2x + border)</span>
+      </div>
+    </div>
+    <p class="demo-caption" style="margin-top:16px;">Size: 20px. Blend: difference. Transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1). Hides on mouseout.</p>
+  </div>
+
+  <hr class="sg-divider">
+
   <!-- SPACING -->
   <div class="sg-section">
     <p class="sg-section-title">Foundation</p>
@@ -241,6 +310,14 @@
       <span class="sg-spacing-value"><%= s.value %>px</span>
     </div>
     <% }) %>
+
+    <p class="sg-component-label" style="margin-top:48px;">Container</p>
+    <div class="sg-spacing-row">
+      <span class="sg-spacing-label">padding</span>
+      <div class="sg-spacing-bar" style="width:100px; position:relative;"><span style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-size:0.7em; color:var(--color-text-subtle); white-space:nowrap;">0 10%</span></div>
+      <span class="sg-spacing-value">0 10%</span>
+    </div>
+    <p class="demo-caption" style="margin-top:4px;">Content container uses percentage-based horizontal padding for responsive scaling.</p>
 
     <p class="sg-component-label" style="margin-top:48px;">Border Radius</p>
     <div class="sg-radius-grid">
@@ -286,9 +363,25 @@
 
 </div>
 
-<div style="border-top:1px solid rgba(41,50,71,0.08); padding:24px 0; text-align:center; color:#59616B; font-size:0.85em; margin-top:40px;">
+<div style="border-top:1px solid var(--color-border); padding:24px 0; text-align:center; color:var(--color-text-subtle); font-size:0.85em; margin-top:40px;">
   Outshift Design Style Guide &middot; &copy; <%= year %> Outshift by Cisco
 </div>
 
+<script>
+(function () {
+    var saved = localStorage.getItem('theme');
+    if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    document.querySelector('.theme-toggle').addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "research_pages",
+  "info": {
+    "singularName": "research-page",
+    "pluralName": "research-pages",
+    "displayName": "ResearchPage",
+    "description": "Research page configuration and content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.hero-block",
+      "required": true
+    },
+    "sectionHeader": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-header"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.cta-block"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo-meta"
+    }
+  }
+}

@@ -27,6 +27,7 @@ const fallbackData = {
     { label: 'Initiatives', href: '/#initiatives', hasDropdown: true },
     { label: 'About us', href: '/#about', hasDropdown: true },
     { label: 'Research', href: '/research', hasDropdown: false },
+    { label: 'Components', href: '/components', hasDropdown: false },
     { label: 'Blog', href: '/#blog', hasDropdown: false },
   ],
   initiatives: [
@@ -139,8 +140,24 @@ app.get('/', async (_req, res) => {
   res.render('home', data);
 });
 
-app.get('/research', (_req, res) => {
-  const researchItems = [
+const fallbackResearch = {
+  hero: {
+    title: 'Exploring the Research Behind Hax',
+    description: 'The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.',
+    image: '/images/research/hero.png',
+  },
+  sectionHeader: {
+    title: 'Advancing the Science of Human Agent Interaction',
+    subtitle: 'Investigating how humans and agents think, act, and build together',
+  },
+  cta: {
+    title: 'Build with the Hax SDK',
+    description: 'The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.',
+    buttonLabel: 'Explore the SDK',
+    buttonUrl: '#',
+    image: '/images/research/sdk-hero.png',
+  },
+  items: [
     { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.', image: '/images/research/foundational-principles.png' },
     { title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png' },
     { title: 'Societal Impact', description: "Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?", image: '/images/research/societal-impact.png' },
@@ -148,14 +165,59 @@ app.get('/research', (_req, res) => {
     { title: 'Agent Impact Map', description: "Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.", image: '/images/research/foresight-canvas.png' },
     { title: 'Cognitive Load Audit', description: "Evaluating the agent's impact on a user's mental effort to ensure its design is intuitive, clear and respects diverse cognitive styles.", image: '/images/research/cognitive-load-audit.png' },
     { title: 'Foresight Canvas', description: 'A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks.', image: '/images/research/foresight-canvas.png' },
-  ];
+  ],
+};
+
+function mapResearchPage(strapiData) {
+  if (!strapiData) return null;
+  return {
+    hero: strapiData.hero ? {
+      title: strapiData.hero.title,
+      description: strapiData.hero.description,
+      image: strapiData.hero.image?.url || fallbackResearch.hero.image,
+    } : null,
+    sectionHeader: strapiData.sectionHeader ? {
+      title: strapiData.sectionHeader.title,
+      subtitle: strapiData.sectionHeader.subtitle,
+    } : null,
+    cta: strapiData.cta ? {
+      title: strapiData.cta.title,
+      description: strapiData.cta.description,
+      buttonLabel: strapiData.cta.buttonLabel,
+      buttonUrl: strapiData.cta.buttonUrl,
+      image: strapiData.cta.image?.url || fallbackResearch.cta.image,
+    } : null,
+  };
+}
+
+function mapResearchItems(strapiData) {
+  if (!strapiData) return fallbackResearch.items;
+  return strapiData
+    .sort((a, b) => (a.order || 0) - (b.order || 0))
+    .map((item) => ({
+      title: item.title,
+      description: item.description,
+      image: item.media?.image?.url || '/images/research/foundational-principles.png',
+    }));
+}
+
+app.get('/research', async (_req, res) => {
+  const [strapiPage, strapiCards] = await Promise.all([
+    fetchStrapi('research-page?populate=*'),
+    fetchStrapi('research-cards?populate=*&sort=order:asc'),
+  ]);
+
+  const page = mapResearchPage(strapiPage) || {};
 
   res.render('research', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Research Behind Hax',
-    researchItems,
+    researchItems: mapResearchItems(strapiCards),
+    hero: page.hero || fallbackResearch.hero,
+    sectionHeader: page.sectionHeader || fallbackResearch.sectionHeader,
+    cta: page.cta || fallbackResearch.cta,
   });
 });
 
@@ -165,6 +227,90 @@ app.get('/styleguide', (_req, res) => {
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Style Guide',
+  });
+});
+
+function parseFields(attributes) {
+  return Object.entries(attributes).map(([name, def]) => ({
+    name,
+    type: def.type === 'component' ? (def.repeatable ? 'component[]' : 'component') : def.type,
+    required: !!def.required,
+    component: def.component || null,
+  }));
+}
+
+const strapiComponents = [
+  { displayName: 'NavItem', icon: '🔗', description: 'Navigation menu item with label, URL, dropdown flag, and order.', fields: parseFields({ label: { type: 'string', required: true }, href: { type: 'string', required: true }, hasDropdown: { type: 'boolean' }, order: { type: 'integer' } }) },
+  { displayName: 'ArrowLink', icon: '➡️', description: 'Call-to-action arrow link with label, URL, and external flag.', fields: parseFields({ label: { type: 'string', required: true }, url: { type: 'string', required: true }, isExternal: { type: 'boolean' } }) },
+  { displayName: 'Tag', icon: '#️⃣', description: 'Reusable label tag for categorization with optional color.', fields: parseFields({ label: { type: 'string', required: true }, url: { type: 'string' }, color: { type: 'enumeration' } }) },
+  { displayName: 'MediaBlock', icon: '🖼️', description: 'Flexible media block supporting images and videos with alt text.', fields: parseFields({ mediaType: { type: 'enumeration', required: true }, image: { type: 'media' }, videoUrl: { type: 'string' }, altText: { type: 'string', required: true }, caption: { type: 'string' } }) },
+  { displayName: 'SocialLink', icon: '🌐', description: 'Social media link with platform enum and accessibility label.', fields: parseFields({ platform: { type: 'enumeration', required: true }, url: { type: 'string', required: true }, ariaLabel: { type: 'string', required: true } }) },
+  { displayName: 'SeoMeta', icon: '🔍', description: 'SEO metadata with title, description, OG image, and canonical URL.', fields: parseFields({ metaTitle: { type: 'string', required: true }, metaDescription: { type: 'text' }, ogImage: { type: 'media' }, canonicalUrl: { type: 'string' } }) },
+  { displayName: 'HeroBlock', icon: '🏔️', description: 'Reusable hero section with title, description, and image.', fields: parseFields({ title: { type: 'string', required: true }, description: { type: 'text', required: true }, image: { type: 'media' } }) },
+  { displayName: 'SectionHeader', icon: '📌', description: 'Section header with title and optional subtitle.', fields: parseFields({ title: { type: 'string', required: true }, subtitle: { type: 'string' } }) },
+  { displayName: 'CtaBlock', icon: '🎯', description: 'Call-to-action block with title, description, button, and image.', fields: parseFields({ title: { type: 'string', required: true }, description: { type: 'text', required: true }, buttonLabel: { type: 'string', required: true }, buttonUrl: { type: 'string', required: true }, image: { type: 'media' } }) },
+];
+
+const strapiContentTypes = [
+  { displayName: 'Homepage', kind: 'singleType', pluralName: 'homepage', description: 'Homepage configuration — hero, sections, navigation, footer, and social links.', fields: [
+    { name: 'heroTitle', type: 'string', required: true },
+    { name: 'heroSubtitle', type: 'string', required: true },
+    { name: 'heroDescription', type: 'text', required: false },
+    { name: 'heroCtaLabel', type: 'string', required: false },
+    { name: 'heroCtaUrl', type: 'string', required: false },
+    { name: 'navigation', type: 'component[]', required: false, component: 'shared.nav-item' },
+    { name: 'footerLinks', type: 'component[]', required: false, component: 'shared.arrow-link' },
+    { name: 'socialLinks', type: 'component[]', required: false, component: 'shared.social-link' },
+    { name: 'seo', type: 'component', required: false, component: 'shared.seo-meta' },
+  ]},
+  { displayName: 'ResearchPage', kind: 'singleType', pluralName: 'research-page', description: 'Research page — hero, section header, CTA block, and SEO.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'sectionHeader', type: 'component', required: false, component: 'shared.section-header' },
+    { name: 'cta', type: 'component', required: false, component: 'shared.cta-block' },
+    { name: 'seo', type: 'component', required: false, component: 'shared.seo-meta' },
+  ]},
+  { displayName: 'Initiative', kind: 'collection', pluralName: 'initiatives', description: 'Featured initiative cards on the homepage with badge, media, and ordering.', fields: [
+    { name: 'title', type: 'string', required: true },
+    { name: 'description', type: 'text', required: true },
+    { name: 'slug', type: 'uid', required: true },
+    { name: 'badge', type: 'string', required: true },
+    { name: 'media', type: 'component', required: true, component: 'shared.media-block' },
+    { name: 'link', type: 'component', required: false, component: 'shared.arrow-link' },
+    { name: 'reversed', type: 'boolean', required: false },
+    { name: 'order', type: 'integer', required: false },
+  ]},
+  { displayName: 'ResearchCard', kind: 'collection', pluralName: 'research-cards', description: 'Research cards with category (research-area / design-tool), media, tags, and ordering.', fields: [
+    { name: 'title', type: 'string', required: true },
+    { name: 'description', type: 'text', required: true },
+    { name: 'slug', type: 'uid', required: true },
+    { name: 'category', type: 'enumeration', required: true },
+    { name: 'media', type: 'component', required: true, component: 'shared.media-block' },
+    { name: 'tags', type: 'component[]', required: false, component: 'shared.tag' },
+    { name: 'link', type: 'component', required: false, component: 'shared.arrow-link' },
+    { name: 'order', type: 'integer', required: false },
+  ]},
+  { displayName: 'BlogPost', kind: 'collection', pluralName: 'blog-posts', description: 'Blog articles with author, publish date, rich content, tags, and SEO.', fields: [
+    { name: 'title', type: 'string', required: true },
+    { name: 'description', type: 'text', required: true },
+    { name: 'slug', type: 'uid', required: true },
+    { name: 'author', type: 'string', required: true },
+    { name: 'publishDate', type: 'date', required: true },
+    { name: 'readTime', type: 'string', required: false },
+    { name: 'content', type: 'richtext', required: false },
+    { name: 'coverImage', type: 'media', required: false },
+    { name: 'tags', type: 'component[]', required: false, component: 'shared.tag' },
+    { name: 'seo', type: 'component', required: false, component: 'shared.seo-meta' },
+  ]},
+];
+
+app.get('/components', (_req, res) => {
+  res.render('components', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design — Component Library',
+    components: strapiComponents,
+    contentTypes: strapiContentTypes,
   });
 });
 

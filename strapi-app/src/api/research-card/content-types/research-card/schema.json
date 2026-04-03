@@ -5,7 +5,7 @@
     "singularName": "research-card",
     "pluralName": "research-cards",
     "displayName": "ResearchCard",
-    "description": "Innovation & Research section cards"
+    "description": "Research cards for the dedicated research page"
   },
   "options": {
     "draftAndPublish": true
@@ -23,6 +23,12 @@
     "slug": {
       "type": "uid",
       "targetField": "title",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["research-area", "design-tool"],
+      "default": "research-area",
       "required": true
     },
     "media": {

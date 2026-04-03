@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_hero_blocks",
+  "info": {
+    "displayName": "HeroBlock",
+    "icon": "layout",
+    "description": "Reusable hero section with title, description, and image"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

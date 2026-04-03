@@ -1,0 +1,78 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<div class="components-page">
+  <div class="container">
+
+    <!-- Page Header -->
+    <div class="comp-header">
+      <p class="comp-label">Strapi CMS</p>
+      <h1>Component Library</h1>
+      <p class="comp-desc">All reusable Strapi components and content types available in the Outshift Design CMS. Each component maps to a schema that powers the front-end through the REST API.</p>
+    </div>
+
+    <!-- Shared Components -->
+    <section class="comp-section">
+      <h2 class="comp-section-title">Shared Components</h2>
+      <p class="comp-section-desc">Reusable components that can be embedded in any content type.</p>
+
+      <div class="comp-grid">
+        <% components.forEach(c => { %>
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon"><%= c.icon %></span>
+            <h3><%= c.displayName %></h3>
+          </div>
+          <p class="comp-card-desc"><%= c.description %></p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <% c.fields.forEach(f => { %>
+            <div class="comp-field">
+              <span class="comp-field-name"><%= f.name %></span>
+              <span class="comp-field-type"><%= f.type %></span>
+              <% if (f.required) { %><span class="comp-field-req">required</span><% } %>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </section>
+
+    <!-- Content Types -->
+    <section class="comp-section">
+      <h2 class="comp-section-title">Content Types</h2>
+      <p class="comp-section-desc">Top-level content types that define the CMS data model. Each content type has its own API endpoint.</p>
+
+      <div class="comp-grid">
+        <% contentTypes.forEach(ct => { %>
+        <div class="comp-card comp-card--content-type">
+          <div class="comp-card-header">
+            <span class="comp-kind-badge"><%= ct.kind %></span>
+            <h3><%= ct.displayName %></h3>
+          </div>
+          <p class="comp-card-desc"><%= ct.description %></p>
+          <div class="comp-card-endpoint">
+            <span class="comp-endpoint-label">API</span>
+            <code>/api/<%= ct.pluralName %></code>
+          </div>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <% ct.fields.forEach(f => { %>
+            <div class="comp-field">
+              <span class="comp-field-name"><%= f.name %></span>
+              <span class="comp-field-type"><%= f.type %></span>
+              <% if (f.required) { %><span class="comp-field-req">required</span><% } %>
+              <% if (f.component) { %><span class="comp-field-component"><%= f.component %></span><% } %>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>

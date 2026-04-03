@@ -563,7 +563,7 @@ export interface ApiResearchCardResearchCard
   extends Struct.CollectionTypeSchema {
   collectionName: 'research_cards';
   info: {
-    description: 'Innovation & Research section cards';
+    description: 'Research cards for the dedicated research page';
     displayName: 'ResearchCard';
     pluralName: 'research-cards';
     singularName: 'research-card';
@@ -572,6 +572,9 @@ export interface ApiResearchCardResearchCard
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.Enumeration<['research-area', 'design-tool']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'research-area'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -591,6 +594,39 @@ export interface ApiResearchCardResearchCard
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     tags: Schema.Attribute.Component<'shared.tag', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiResearchPageResearchPage extends Struct.SingleTypeSchema {
+  collectionName: 'research_pages';
+  info: {
+    description: 'Research page configuration and content';
+    displayName: 'ResearchPage';
+    pluralName: 'research-pages';
+    singularName: 'research-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cta: Schema.Attribute.Component<'shared.cta-block', false>;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::research-page.research-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sectionHeader: Schema.Attribute.Component<'shared.section-header', false>;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1112,6 +1148,7 @@ declare module '@strapi/strapi' {
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::initiative.initiative': ApiInitiativeInitiative;
       'api::research-card.research-card': ApiResearchCardResearchCard;
+      'api::research-page.research-page': ApiResearchPageResearchPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

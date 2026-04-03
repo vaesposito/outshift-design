@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_section_headers",
+  "info": {
+    "displayName": "SectionHeader",
+    "icon": "heading",
+    "description": "Section header with title and optional subtitle"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  }
+}

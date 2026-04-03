@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outshift Design — Component Library</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script>
+(function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style type="text/css">
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    --cursor-size: 20px;
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-scale: 1;
+    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+
+    --color-bg: #fff;
+    --color-text: #293247;
+    --color-text-muted: #67707F;
+    --color-text-subtle: #59616B;
+    --color-border: rgba(41, 50, 71, 0.08);
+    --color-border-medium: rgba(41, 50, 71, 0.15);
+    --color-surface: rgba(255, 255, 255, 0.97);
+    --color-hover: rgba(41, 50, 71, 0.04);
+    --color-accent: #00BCEB;
+    --color-accent-hover: #187ADC;
+    --color-hamburger: #293247;
+    --color-shadow: rgba(41, 50, 71, 0.08);
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+    color: var(--color-text);
+  }
+}
+
+[data-theme="dark"] {
+    --color-bg: #0f1117;
+    --color-text: #e0e4ec;
+    --color-text-muted: #9ca3b0;
+    --color-text-subtle: #8a919c;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-medium: rgba(255, 255, 255, 0.15);
+    --color-surface: rgba(15, 17, 23, 0.97);
+    --color-hover: rgba(255, 255, 255, 0.06);
+    --color-accent: #3fc6ee;
+    --color-accent-hover: #00BCEB;
+    --color-hamburger: #e0e4ec;
+    --color-shadow: rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .logo-light,
+[data-theme="dark"] .footer-logo .logo-light { display: none; }
+[data-theme="dark"] .logo-dark,
+[data-theme="dark"] .footer-logo .logo-dark { display: block; }
+.logo-dark,
+.footer-logo .logo-dark { display: none; }
+
+.theme-toggle {
+    display: inline-flex;
+    padding: 6px;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-direction: row;
+    z-index: 0;
+}
+.theme-toggle::before { content: none; }
+.theme-toggle:hover { background: var(--color-hover); }
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+* { box-sizing: border-box; }
+.container {
+    width: 100%;
+    padding: 0 10%;
+}
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+header {
+    padding: 1% 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    position: relative;
+    z-index: 10;
+}
+.design {
+    font-size: 1.8em;
+    font-weight: 200;
+    margin-left: 8px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo, nav ul, header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav ul {
+    list-style: none;
+    gap: 30px;
+}
+.text, .icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon { margin-top: 2px; }
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: var(--color-text);
+}
+h1 { font-size: 3em; font-weight: 200; margin: 5px 0; }
+h2 { font-size: 1.8em; font-weight: 200; margin: 5px 0; }
+
+button {
+    position: relative;
+    display: flex;
+    padding: 18px 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 40px;
+    font-size: 1.2em;
+    background: transparent;
+    color: var(--color-text);
+    border: none;
+    cursor: pointer;
+    z-index: 0;
+}
+button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 1.5px;
+    background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* ── Custom Cursor ── */
+.custom-cursor {
+    position: fixed;
+    top: var(--cursor-y);
+    left: var(--cursor-x);
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border-radius: 9999px;
+    background: #fff;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(var(--cursor-scale));
+    transition: transform var(--fancy-transition), border-width 0.15s ease-in;
+    border: 0 solid #b4b4b4;
+}
+.custom-cursor[data-hover="true"] {
+    border-width: 5px;
+}
+
+/* ── Menu Toggle ── */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 11;
+}
+.menu-toggle::before { content: none; }
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--color-hamburger);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ── Components Page ── */
+.components-page {
+    padding-top: 40px;
+    padding-bottom: 80px;
+    position: relative;
+    z-index: 1;
+}
+.comp-header {
+    margin-bottom: 64px;
+}
+.comp-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-accent);
+    margin: 0 0 12px;
+}
+.comp-header h1 {
+    font-size: 3em;
+    font-weight: 200;
+    margin: 0 0 16px;
+}
+.comp-desc {
+    font-size: 1.05em;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0;
+}
+.comp-section {
+    margin-bottom: 64px;
+}
+.comp-section-title {
+    font-size: 1.8em;
+    font-weight: 200;
+    margin: 0 0 8px;
+}
+.comp-section-desc {
+    font-size: 1em;
+    color: var(--color-text-muted);
+    margin: 0 0 32px;
+}
+.comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+.comp-card {
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    padding: 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.comp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(34, 104, 190, 0.08);
+}
+.comp-card--ct {
+    position: relative;
+    border-color: transparent;
+}
+.comp-card--ct::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1.5px;
+    background: linear-gradient(to right, rgba(77, 99, 128, 0.21), #2268BE);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.comp-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.comp-card-header h3 {
+    font-size: 1.15em;
+    font-weight: 600;
+    margin: 0;
+}
+.comp-icon {
+    font-size: 1.3em;
+}
+.comp-kind-badge {
+    display: inline-block;
+    font-size: 0.65em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--color-accent);
+    color: #fff;
+}
+.comp-card-desc {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0 0 16px;
+}
+.comp-card-endpoint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--color-hover);
+}
+.comp-endpoint-label {
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+.comp-card-endpoint code {
+    font-size: 0.85em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--color-text);
+}
+.comp-card-fields {
+    border-top: 1px solid var(--color-border);
+    padding-top: 12px;
+}
+.comp-fields-label {
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-subtle);
+    margin: 0 0 8px;
+}
+.comp-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 0.85em;
+}
+.comp-field-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+.comp-field-type {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+}
+.comp-field-req {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #EB7251;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.comp-field-component {
+    font-size: 0.75em;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--color-accent);
+    background: var(--color-hover);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+/* ── Footer ── */
+footer {
+    border-top: 1px solid var(--color-border);
+    padding: 60px 0 40px;
+    position: relative;
+    z-index: 1;
+}
+.footer-inner {
+    display: flex;
+    gap: 80px;
+}
+.footer-logo img { height: 32px; }
+.footer-column h6 {
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    margin: 0 0 16px;
+    color: var(--color-text-subtle);
+}
+.footer-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95em;
+    color: var(--color-text);
+}
+.footer-links svg { width: 14px; height: 14px; }
+.footer-social-icons { display: flex; gap: 16px; }
+.footer-social-icons a { color: var(--color-text); }
+.footer-social-icons svg { width: 20px; height: 20px; }
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+    nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--color-bg); z-index: 10; flex-direction: column; justify-content: center; align-items: center; }
+    nav.open { display: flex; }
+    nav ul { flex-direction: column; text-align: center; gap: 24px; font-size: 1.3em; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; gap: 32px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <div class="logo">
+      <a href="index.html" style="display:flex;align-items:center;">
+        <img src="outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="outshift_logo-white.svg" alt="Outshift" class="logo-dark">
+        <span class="design">design</span>
+      </a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="index.html#initiatives"><span class="text">Initiatives</span> <span class="icon"><img src="keyboard-arrow-down-icon.svg" alt=""></span></a></li>
+        <li><a href="research.html"><span class="text">Research</span></a></li>
+        <li><a href="components.html" style="color:var(--color-accent);"><span class="text">Components</span></a></li>
+        <li><a href="index.html#blog"><span class="text">Blog</span></a></li>
+        <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="components-page">
+  <div class="container">
+
+    <!-- Page Header -->
+    <div class="comp-header">
+      <p class="comp-label">Strapi CMS</p>
+      <h1>Component Library</h1>
+      <p class="comp-desc">All reusable Strapi components and content types available in the Outshift Design CMS. Each component maps to a schema that powers the front-end through the REST API.</p>
+    </div>
+
+    <!-- Shared Components -->
+    <section class="comp-section">
+      <h2 class="comp-section-title">Shared Components</h2>
+      <p class="comp-section-desc">Reusable components that can be embedded in any content type.</p>
+
+      <div class="comp-grid">
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">🔗</span>
+            <h3>NavItem</h3>
+          </div>
+          <p class="comp-card-desc">Navigation menu item with label, URL, dropdown flag, and order.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">label</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">href</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">hasDropdown</span><span class="comp-field-type">boolean</span></div>
+            <div class="comp-field"><span class="comp-field-name">order</span><span class="comp-field-type">integer</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">➡️</span>
+            <h3>ArrowLink</h3>
+          </div>
+          <p class="comp-card-desc">Call-to-action arrow link with label, URL, and external flag.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">label</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">url</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">isExternal</span><span class="comp-field-type">boolean</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">#️⃣</span>
+            <h3>Tag</h3>
+          </div>
+          <p class="comp-card-desc">Reusable label tag for categorization with optional color.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">label</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">url</span><span class="comp-field-type">string</span></div>
+            <div class="comp-field"><span class="comp-field-name">color</span><span class="comp-field-type">enumeration</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">🖼️</span>
+            <h3>MediaBlock</h3>
+          </div>
+          <p class="comp-card-desc">Flexible media block supporting images and videos with alt text.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">mediaType</span><span class="comp-field-type">enumeration</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">image</span><span class="comp-field-type">media</span></div>
+            <div class="comp-field"><span class="comp-field-name">videoUrl</span><span class="comp-field-type">string</span></div>
+            <div class="comp-field"><span class="comp-field-name">altText</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">caption</span><span class="comp-field-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">🌐</span>
+            <h3>SocialLink</h3>
+          </div>
+          <p class="comp-card-desc">Social media link with platform enum and accessibility label.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">platform</span><span class="comp-field-type">enumeration</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">url</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">ariaLabel</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">🔍</span>
+            <h3>SeoMeta</h3>
+          </div>
+          <p class="comp-card-desc">SEO metadata with title, description, OG image, and canonical URL.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">metaTitle</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">metaDescription</span><span class="comp-field-type">text</span></div>
+            <div class="comp-field"><span class="comp-field-name">ogImage</span><span class="comp-field-type">media</span></div>
+            <div class="comp-field"><span class="comp-field-name">canonicalUrl</span><span class="comp-field-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">🏔️</span>
+            <h3>HeroBlock</h3>
+          </div>
+          <p class="comp-card-desc">Reusable hero section with title, description, and image.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">title</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">description</span><span class="comp-field-type">text</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">image</span><span class="comp-field-type">media</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">📌</span>
+            <h3>SectionHeader</h3>
+          </div>
+          <p class="comp-card-desc">Section header with title and optional subtitle.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">title</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">subtitle</span><span class="comp-field-type">string</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-card-header">
+            <span class="comp-icon">🎯</span>
+            <h3>CtaBlock</h3>
+          </div>
+          <p class="comp-card-desc">Call-to-action block with title, description, button, and image.</p>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">title</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">description</span><span class="comp-field-type">text</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">buttonLabel</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">buttonUrl</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">image</span><span class="comp-field-type">media</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Content Types -->
+    <section class="comp-section">
+      <h2 class="comp-section-title">Content Types</h2>
+      <p class="comp-section-desc">Top-level content types that define the CMS data model. Each content type has its own API endpoint.</p>
+
+      <div class="comp-grid">
+
+        <div class="comp-card comp-card--ct">
+          <div class="comp-card-header">
+            <span class="comp-kind-badge">singleType</span>
+            <h3>Homepage</h3>
+          </div>
+          <p class="comp-card-desc">Homepage configuration — hero, sections, navigation, footer, and social links.</p>
+          <div class="comp-card-endpoint">
+            <span class="comp-endpoint-label">API</span>
+            <code>/api/homepage</code>
+          </div>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">heroTitle</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">heroSubtitle</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">heroDescription</span><span class="comp-field-type">text</span></div>
+            <div class="comp-field"><span class="comp-field-name">navigation</span><span class="comp-field-type">component[]</span><span class="comp-field-component">shared.nav-item</span></div>
+            <div class="comp-field"><span class="comp-field-name">footerLinks</span><span class="comp-field-type">component[]</span><span class="comp-field-component">shared.arrow-link</span></div>
+            <div class="comp-field"><span class="comp-field-name">socialLinks</span><span class="comp-field-type">component[]</span><span class="comp-field-component">shared.social-link</span></div>
+            <div class="comp-field"><span class="comp-field-name">seo</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.seo-meta</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card comp-card--ct">
+          <div class="comp-card-header">
+            <span class="comp-kind-badge">singleType</span>
+            <h3>ResearchPage</h3>
+          </div>
+          <p class="comp-card-desc">Research page — hero, section header, CTA block, and SEO.</p>
+          <div class="comp-card-endpoint">
+            <span class="comp-endpoint-label">API</span>
+            <code>/api/research-page</code>
+          </div>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">hero</span><span class="comp-field-type">component</span><span class="comp-field-req">required</span><span class="comp-field-component">shared.hero-block</span></div>
+            <div class="comp-field"><span class="comp-field-name">sectionHeader</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.section-header</span></div>
+            <div class="comp-field"><span class="comp-field-name">cta</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.cta-block</span></div>
+            <div class="comp-field"><span class="comp-field-name">seo</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.seo-meta</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card comp-card--ct">
+          <div class="comp-card-header">
+            <span class="comp-kind-badge">collection</span>
+            <h3>Initiative</h3>
+          </div>
+          <p class="comp-card-desc">Featured initiative cards on the homepage with badge, media, and ordering.</p>
+          <div class="comp-card-endpoint">
+            <span class="comp-endpoint-label">API</span>
+            <code>/api/initiatives</code>
+          </div>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">title</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">description</span><span class="comp-field-type">text</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">slug</span><span class="comp-field-type">uid</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">badge</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">media</span><span class="comp-field-type">component</span><span class="comp-field-req">required</span><span class="comp-field-component">shared.media-block</span></div>
+            <div class="comp-field"><span class="comp-field-name">link</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.arrow-link</span></div>
+            <div class="comp-field"><span class="comp-field-name">reversed</span><span class="comp-field-type">boolean</span></div>
+            <div class="comp-field"><span class="comp-field-name">order</span><span class="comp-field-type">integer</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card comp-card--ct">
+          <div class="comp-card-header">
+            <span class="comp-kind-badge">collection</span>
+            <h3>ResearchCard</h3>
+          </div>
+          <p class="comp-card-desc">Research cards with category (research-area / design-tool), media, tags, and ordering.</p>
+          <div class="comp-card-endpoint">
+            <span class="comp-endpoint-label">API</span>
+            <code>/api/research-cards</code>
+          </div>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">title</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">description</span><span class="comp-field-type">text</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">slug</span><span class="comp-field-type">uid</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">category</span><span class="comp-field-type">enumeration</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">media</span><span class="comp-field-type">component</span><span class="comp-field-req">required</span><span class="comp-field-component">shared.media-block</span></div>
+            <div class="comp-field"><span class="comp-field-name">tags</span><span class="comp-field-type">component[]</span><span class="comp-field-component">shared.tag</span></div>
+            <div class="comp-field"><span class="comp-field-name">link</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.arrow-link</span></div>
+            <div class="comp-field"><span class="comp-field-name">order</span><span class="comp-field-type">integer</span></div>
+          </div>
+        </div>
+
+        <div class="comp-card comp-card--ct">
+          <div class="comp-card-header">
+            <span class="comp-kind-badge">collection</span>
+            <h3>BlogPost</h3>
+          </div>
+          <p class="comp-card-desc">Blog articles with author, publish date, rich content, tags, and SEO.</p>
+          <div class="comp-card-endpoint">
+            <span class="comp-endpoint-label">API</span>
+            <code>/api/blog-posts</code>
+          </div>
+          <div class="comp-card-fields">
+            <p class="comp-fields-label">Fields</p>
+            <div class="comp-field"><span class="comp-field-name">title</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">description</span><span class="comp-field-type">text</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">slug</span><span class="comp-field-type">uid</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">author</span><span class="comp-field-type">string</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">publishDate</span><span class="comp-field-type">date</span><span class="comp-field-req">required</span></div>
+            <div class="comp-field"><span class="comp-field-name">readTime</span><span class="comp-field-type">string</span></div>
+            <div class="comp-field"><span class="comp-field-name">content</span><span class="comp-field-type">richtext</span></div>
+            <div class="comp-field"><span class="comp-field-name">coverImage</span><span class="comp-field-type">media</span></div>
+            <div class="comp-field"><span class="comp-field-name">tags</span><span class="comp-field-type">component[]</span><span class="comp-field-component">shared.tag</span></div>
+            <div class="comp-field"><span class="comp-field-name">seo</span><span class="comp-field-type">component</span><span class="comp-field-component">shared.seo-meta</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="outshift_logo-white.svg" alt="Outshift" class="logo-dark">
+      </div>
+      <div class="footer-column">
+        <h6>Company</h6>
+        <div class="footer-links">
+          <a href="#">Explore Outshift <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></a>
+          <a href="#">Explore Cisco <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-social">
+        <h6>Connect</h6>
+        <div class="footer-social-icons">
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Outshift. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var nav = document.querySelector('header nav');
+    toggle.addEventListener('click', function () {
+        toggle.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            toggle.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+
+    var saved = localStorage.getItem('theme');
+    if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    document.querySelector('.theme-toggle').addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
+    if (window.matchMedia('(pointer: fine)').matches) {
+        var customCursor = document.createElement('div');
+        customCursor.className = 'custom-cursor';
+        document.body.appendChild(customCursor);
+
+        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
+
+        document.addEventListener('mousemove', function (e) {
+            var isInteractive = !!e.target.closest(interactiveSelector) || getComputedStyle(e.target).cursor === 'pointer';
+            var cursorScale = isInteractive ? 2 : 1;
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', cursorScale);
+        });
+
+        document.addEventListener('mouseout', function () {
+            document.documentElement.style.setProperty('--cursor-scale', 0);
+        });
+    }
+})();
+</script>
+</body>
+</html>

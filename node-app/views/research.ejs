@@ -12,14 +12,14 @@
 <div class="research-hero">
   <div class="container">
     <div class="research-hero-title">
-      <h1>Exploring the Research Behind Hax</h1>
+      <h1><%= hero.title %></h1>
     </div>
     <div class="research-hero-inner">
       <div class="research-hero-text">
-        <p>The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.</p>
+        <p><%= hero.description %></p>
       </div>
       <div class="research-hero-image">
-        <img src="/images/research/hero.png" alt="Hax Research">
+        <img src="<%= hero.image %>" alt="<%= hero.title %>">
       </div>
     </div>
   </div>
@@ -28,8 +28,8 @@
 <!-- Section Title -->
 <div class="research-section-header">
   <div class="container">
-    <h2>Advancing the Science of Human Agent Interaction</h2>
-    <p>Investigating how humans and agents think, act, and build together</p>
+    <h2><%= sectionHeader.title %></h2>
+    <p><%= sectionHeader.subtitle %></p>
   </div>
 </div>
 
@@ -56,12 +56,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="#"><button>Explore the SDK</button></a>
+        <h2><%= cta.title %></h2>
+        <p><%= cta.description %></p>
+        <a href="<%= cta.buttonUrl %>"><button><%= cta.buttonLabel %></button></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= cta.image %>" alt="<%= cta.title %>">
       </div>
     </div>
   </div>

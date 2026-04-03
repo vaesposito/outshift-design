@@ -14,6 +14,36 @@ export interface SharedArrowLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCtaBlock extends Struct.ComponentSchema {
+  collectionName: 'components_shared_cta_blocks';
+  info: {
+    description: 'Call-to-action block with title, description, button, and image';
+    displayName: 'CtaBlock';
+    icon: 'cursor';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    buttonUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedHeroBlock extends Struct.ComponentSchema {
+  collectionName: 'components_shared_hero_blocks';
+  info: {
+    description: 'Reusable hero section with title, description, and image';
+    displayName: 'HeroBlock';
+    icon: 'layout';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedMediaBlock extends Struct.ComponentSchema {
   collectionName: 'components_shared_media_blocks';
   info: {
@@ -44,6 +74,19 @@ export interface SharedNavItem extends Struct.ComponentSchema {
     href: Schema.Attribute.String & Schema.Attribute.Required;
     label: Schema.Attribute.String & Schema.Attribute.Required;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+  };
+}
+
+export interface SharedSectionHeader extends Struct.ComponentSchema {
+  collectionName: 'components_shared_section_headers';
+  info: {
+    description: 'Section header with title and optional subtitle';
+    displayName: 'SectionHeader';
+    icon: 'heading';
+  };
+  attributes: {
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -107,8 +150,11 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.arrow-link': SharedArrowLink;
+      'shared.cta-block': SharedCtaBlock;
+      'shared.hero-block': SharedHeroBlock;
       'shared.media-block': SharedMediaBlock;
       'shared.nav-item': SharedNavItem;
+      'shared.section-header': SharedSectionHeader;
       'shared.seo-meta': SharedSeoMeta;
       'shared.social-link': SharedSocialLink;
       'shared.tag': SharedTag;

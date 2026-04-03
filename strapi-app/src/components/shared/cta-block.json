@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_cta_blocks",
+  "info": {
+    "displayName": "CtaBlock",
+    "icon": "cursor",
+    "description": "Call-to-action block with title, description, button, and image"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "buttonLabel": {
+      "type": "string",
+      "required": true
+    },
+    "buttonUrl": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}
