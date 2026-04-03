@@ -523,7 +523,8 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 400px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
-    .step-number { flex: 0 0 80px; font-size: 3.5em; }
+    .pipeline-step { width: 85%; padding: 40px; }
+    .step-number { font-size: 4.5em; }
 }
 
 /* ── Responsive: Mobile landscape / small tablet (≤768px) ── */
@@ -603,8 +604,10 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .page-hero-title h1 { font-size: 2em; }
     .page-hero-image img { height: 320px; max-width: 100%; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
-    .pipeline-step { flex-direction: column; gap: 12px; }
-    .step-number { flex: none; font-size: 3em; }
+    .pipeline-step { width: 100%; padding: 32px; }
+    .pipeline-step:nth-child(odd),
+    .pipeline-step:nth-child(even) { align-self: center; }
+    .step-number { font-size: 3.5em; }
 }
 
 /* ── Responsive: Mobile portrait (≤480px) ── */
@@ -640,6 +643,9 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img { height: 240px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
+    .pipeline-step { padding: 24px; }
+    .step-number { font-size: 3em; }
+    .step-title { font-size: 1.2em; }
 }
 
 /* ── Research Page ── */
@@ -909,56 +915,76 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 .pipeline-steps {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 48px;
+    align-items: center;
 }
 .pipeline-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 32px;
-    padding: 40px 0;
-    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    width: 75%;
+    padding: 48px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: linear-gradient(180deg, var(--color-bg) 60%, rgba(0, 188, 235, 0.03) 100%);
 }
-.pipeline-step:last-child {
-    border-bottom: none;
-}
+.pipeline-step:nth-child(odd) { align-self: flex-start; }
+.pipeline-step:nth-child(even) { align-self: flex-end; }
 .step-number {
-    flex: 0 0 120px;
-    font-size: 5em;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--color-accent);
-    opacity: 0.15;
+    font-size: 5.5em;
+    font-weight: 800;
+    line-height: 0.85;
+    color: rgba(0, 188, 235, 0.15);
+    margin: 0;
     font-feature-settings: 'tnum';
 }
-.step-content {
-    flex: 1;
-}
-.step-content h3 {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 12px;
+[data-theme="dark"] .step-number { color: rgba(63, 198, 238, 0.12); }
+.step-title {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin: -0.3em 0 4px;
     color: var(--color-text);
 }
-.step-content p {
+.step-subtitle {
+    font-size: 0.9em;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0 0 20px;
+}
+.step-desc {
     font-size: 1em;
     color: var(--color-text-muted);
     line-height: 1.7;
-    margin: 0;
+    margin: 0 0 20px;
 }
-.step-themes {
-    margin-top: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-.step-themes span {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
+.step-quote {
     border: 1px solid var(--color-border-medium);
-    color: var(--color-text-muted);
-    font-size: 0.8em;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 0 0 20px;
+    font-size: 0.95em;
+    color: var(--color-text);
+    line-height: 1.6;
 }
+.step-list {
+    padding-left: 20px;
+    margin: 0 0 20px;
+    color: var(--color-text);
+    line-height: 1.8;
+    font-size: 0.95em;
+}
+.step-list li { margin-bottom: 4px; }
+.step-list ul { padding-left: 20px; margin: 4px 0; }
+.step-deliverable { margin-top: 24px; }
+.step-deliverable-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 10px;
+}
+.step-deliverable-title svg { width: 18px; height: 18px; color: var(--color-text-muted); }
+.step-deliverable .step-list { margin-bottom: 0; }
 
 /* ── Case Studies ── */
 .case-studies {

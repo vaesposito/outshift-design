@@ -277,55 +277,95 @@ a:link, a:visited, a:hover, a:active {
 .pipeline-steps {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 48px;
+    align-items: center;
 }
 .pipeline-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 32px;
-    padding: 40px 0;
-    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    width: 75%;
+    padding: 48px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: linear-gradient(180deg, var(--color-bg) 60%, rgba(0, 188, 235, 0.03) 100%);
 }
-.pipeline-step:last-child {
-    border-bottom: none;
+.pipeline-step:nth-child(odd) {
+    align-self: flex-start;
+}
+.pipeline-step:nth-child(even) {
+    align-self: flex-end;
 }
 .step-number {
-    flex: 0 0 120px;
-    font-size: 5em;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--color-accent);
-    opacity: 0.15;
+    font-size: 5.5em;
+    font-weight: 800;
+    line-height: 0.85;
+    color: rgba(0, 188, 235, 0.15);
+    margin: 0;
     font-feature-settings: 'tnum';
 }
-.step-content {
-    flex: 1;
+[data-theme="dark"] .step-number {
+    color: rgba(63, 198, 238, 0.12);
 }
-.step-content h3 {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 12px;
+.step-title {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin: -0.3em 0 4px;
     color: var(--color-text);
+    position: relative;
 }
-.step-content p {
+.step-subtitle {
+    font-size: 0.9em;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0 0 20px;
+}
+.step-desc {
     font-size: 1em;
     color: var(--color-text-muted);
     line-height: 1.7;
-    margin: 0;
+    margin: 0 0 20px;
 }
-.step-content .step-themes {
-    margin-top: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-.step-content .step-themes span {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
+.step-quote {
     border: 1px solid var(--color-border-medium);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 0 0 20px;
+    font-size: 0.95em;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+.step-list {
+    padding-left: 20px;
+    margin: 0 0 20px;
+    color: var(--color-text);
+    line-height: 1.8;
+    font-size: 0.95em;
+}
+.step-list li {
+    margin-bottom: 4px;
+}
+.step-list ul {
+    padding-left: 20px;
+    margin: 4px 0;
+}
+.step-deliverable {
+    margin-top: 24px;
+}
+.step-deliverable-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 10px;
+}
+.step-deliverable-title svg {
+    width: 18px;
+    height: 18px;
     color: var(--color-text-muted);
-    font-size: 0.8em;
+}
+.step-deliverable .step-list {
+    margin-bottom: 0;
 }
 
 /* ── Case Studies ── */
@@ -518,7 +558,8 @@ footer {
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 400px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
-    .step-number { flex: 0 0 80px; font-size: 3.5em; }
+    .pipeline-step { width: 85%; padding: 40px; }
+    .step-number { font-size: 4.5em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
 }
@@ -551,8 +592,10 @@ footer {
     .page-hero-image img { height: 320px; max-width: 100%; }
 
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
-    .pipeline-step { flex-direction: column; gap: 12px; }
-    .step-number { flex: none; font-size: 3em; }
+    .pipeline-step { width: 100%; padding: 32px; }
+    .pipeline-step:nth-child(odd),
+    .pipeline-step:nth-child(even) { align-self: center; }
+    .step-number { font-size: 3.5em; }
 
     .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
@@ -566,6 +609,9 @@ footer {
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img { height: 240px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
+    .pipeline-step { padding: 24px; }
+    .step-number { font-size: 3em; }
+    .step-title { font-size: 1.2em; }
     .sdk-text h2 { font-size: 1.5em; }
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
@@ -646,61 +692,123 @@ footer {
     <div class="pipeline-steps">
 
       <div class="pipeline-step">
-        <div class="step-number">01.</div>
-        <div class="step-content">
-          <h3>Start with Research</h3>
-          <p>We ground every design decision in evidence. Our process begins with rigorous academic and applied research — reviewing literature, running experiments, and synthesizing findings from cognitive science, HCI, and AI interaction studies. The goal is to uncover principles that are both empirically validated and practically applicable.</p>
+        <div class="step-number">01</div>
+        <div class="step-title">Framing the inquiry</div>
+        <div class="step-subtitle">Research Framing</div>
+        <p class="step-desc">Define the phenomenon that you want to explore, not the feature or product.</p>
+        <div class="step-quote">
+          "How might X change the way people Y in a world where Z is true?"<br>
+          "How do operators build trust in agent decisions during incident response?"
+        </div>
+        <ul class="step-list">
+          <li>Capture context: who, where, when, stakes.</li>
+          <li>Define time horizon (e.g. 5, 10, 20, years)</li>
+        </ul>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+          <ul class="step-list">
+            <li>Research brief (scope, goals, assumptions)</li>
+            <li>A short intent statement: "This inquiry explores... in order to inform design decisions about... in tomorrow's world."</li>
+          </ul>
         </div>
       </div>
 
       <div class="pipeline-step">
-        <div class="step-number">02.</div>
-        <div class="step-content">
-          <h3>Conceptualize the Principle &amp; Map to Design Patterns</h3>
-          <p>From raw findings, we distill high-level principles — clear statements about how humans and agents should interact. Each principle is then mapped to one or more design patterns: repeatable solutions that address common interaction challenges while respecting the underlying research.</p>
+        <div class="step-number">02</div>
+        <div class="step-title">Research: Mapping the Present &amp; Emerging Signals</div>
+        <div class="step-subtitle">Field input / Ground truth</div>
+        <p class="step-desc">Build a grounded understanding of what's already happening and what's starting to happen.</p>
+        <ul class="step-list">
+          <li>Desk research: academic papers, industry reports, patents, standards, policy, expert interviews.</li>
+          <li>Foresight inputs: horizon scanning, weak signals, trends, wildcards, tensions</li>
+        </ul>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+          <ul class="step-list">
+            <li>Evidence map:
+              <ul>
+                <li>Current practices &amp; pain points</li>
+                <li>Emerging technologies / norms</li>
+              </ul>
+            </li>
+            <li>Insight clusters: 5-8 thematic clusters (e.g., "delegated decisions," "opacity of automation," "new forms of social risk")</li>
+          </ul>
         </div>
       </div>
 
       <div class="pipeline-step">
-        <div class="step-number">03.</div>
-        <div class="step-content">
-          <h3>Draft a Pattern</h3>
-          <p>Each pattern is documented with a clear problem statement, context of use, the solution approach, and practical examples. We include rationale rooted in the original research so designers understand not just the "what" but the "why" behind each recommendation.</p>
+        <div class="step-number">03</div>
+        <div class="step-title">Synthesis: From Signals to Principles</div>
+        <div class="step-subtitle">Conceptual modeling</div>
+        <p class="step-desc">Transform raw findings into conceptual frameworks and actionable design principles.</p>
+        <ul class="step-list">
+          <li>Identify recurring tensions and design trade-offs</li>
+          <li>Draft principle statements grounded in evidence</li>
+          <li>Map principles to interaction patterns and heuristics</li>
+        </ul>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+          <ul class="step-list">
+            <li>Principle cards with rationale, applicability, and known limitations</li>
+            <li>Pattern mapping matrix (principle &rarr; pattern &rarr; component)</li>
+          </ul>
         </div>
       </div>
 
       <div class="pipeline-step">
-        <div class="step-number">04.</div>
-        <div class="step-content">
-          <h3>Test the Bridge: Use Design Heuristics &amp; applicable methods</h3>
-          <p>We validate each pattern through heuristic evaluation, usability testing, and expert review. This stage ensures the bridge between research insight and design guidance is sound — that the pattern actually improves the interaction it aims to address.</p>
+        <div class="step-number">04</div>
+        <div class="step-title">Test the Bridge: Design Heuristics &amp; applicable methods</div>
+        <div class="step-subtitle">Validation</div>
+        <p class="step-desc">Validate each pattern through heuristic evaluation, usability testing, and expert review to ensure the bridge between research and design guidance is sound.</p>
+        <ul class="step-list">
+          <li>Heuristic walkthroughs against real agent workflows</li>
+          <li>Expert panel review with domain specialists</li>
+          <li>Gap analysis: does the pattern address the original insight?</li>
+        </ul>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+          <ul class="step-list">
+            <li>Evaluation report with findings and recommendations</li>
+            <li>Refined patterns with annotated revisions</li>
+          </ul>
         </div>
       </div>
 
       <div class="pipeline-step">
-        <div class="step-number">05.</div>
-        <div class="step-content">
-          <h3>Prototype &amp; Iterate the validation</h3>
-          <p>Patterns are implemented in interactive prototypes and tested with real users. We iterate based on feedback, refining both the design pattern and its documentation until it meets our quality bar for clarity, effectiveness, and adoptability.</p>
+        <div class="step-number">05</div>
+        <div class="step-title">Prototype &amp; Iterate the validation</div>
+        <div class="step-subtitle">Implementation testing</div>
+        <p class="step-desc">Patterns are implemented in interactive prototypes and tested with real users, iterating until they meet our quality bar for clarity, effectiveness, and adoptability.</p>
+        <ul class="step-list">
+          <li>Build interactive prototypes embodying the pattern</li>
+          <li>Run usability sessions with target users</li>
+          <li>Iterate on both design and documentation</li>
+        </ul>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+          <ul class="step-list">
+            <li>Validated prototype with test findings</li>
+            <li>Final pattern specification ready for documentation</li>
+          </ul>
         </div>
       </div>
 
       <div class="pipeline-step">
-        <div class="step-number">06.</div>
-        <div class="step-content">
-          <h3>Update Documentation &amp; Contribute</h3>
-          <p>Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. We continuously update the library as new research emerges and as patterns evolve through real-world adoption.</p>
-          <div class="step-themes">
-            <span>Themes</span>
-          </div>
-          <div class="step-themes" style="margin-top:8px;">
-            <span>Trust Calibration</span>
-            <span>Cognitive Load</span>
-            <span>Explainability</span>
-            <span>Control & Agency</span>
-            <span>Error Recovery</span>
-            <span>Feedback Loops</span>
-          </div>
+        <div class="step-number">06</div>
+        <div class="step-title">Update Documentation &amp; Contribute</div>
+        <div class="step-subtitle">Publication</div>
+        <p class="step-desc">Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. The library evolves as new research emerges.</p>
+        <ul class="step-list">
+          <li>Write pattern documentation with rationale and examples</li>
+          <li>Publish to the Hax pattern library</li>
+          <li>Tag with relevant themes for discoverability</li>
+        </ul>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+          <ul class="step-list">
+            <li>Published pattern with code samples and usage guidelines</li>
+            <li>Changelog entry and contribution record</li>
+          </ul>
         </div>
       </div>
 
