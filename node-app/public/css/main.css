@@ -680,6 +680,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 .research-card-image {
     flex: 0 0 200px;
     position: relative;
+    overflow: hidden;
 }
 .research-card-image img {
     width: 200px;
@@ -713,6 +714,19 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 }
 .read-more:hover {
     color: var(--color-accent-hover) !important;
+}
+.research-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.research-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(34, 104, 190, 0.10);
+}
+.research-card-image img {
+    transition: transform 0.4s ease;
+}
+.research-card:hover .research-card-image img {
+    transform: scale(1.05);
 }
 .sdk-section {
     position: relative;
