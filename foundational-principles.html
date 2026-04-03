@@ -114,10 +114,13 @@ nav > ul > li { position: relative; }
 .text, .icon { display: inline-block; vertical-align: middle; }
 .icon { margin-top: 2px; }
 .nav-dropdown {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: calc(100% + 4px);
     left: 0;
     min-width: 200px;
+    gap: 0;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 10px;
