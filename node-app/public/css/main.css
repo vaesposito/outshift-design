@@ -3,7 +3,7 @@
     font-feature-settings: 'liga' 1, 'calt' 1;
     --cursor-x: -100px;
     --cursor-y: -100px;
-    --cursor-size: 14px;
+    --cursor-size: 18px;
     --cursor-scale: 1;
     --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 }
@@ -343,14 +343,14 @@ footer { position: relative; z-index: 1; background: #fff; padding: 60px 0 0; }
         z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        left: var(--cursor-x);
-        top: var(--cursor-y);
+        left: 0;
+        top: 0;
         background: #fff;
         border-radius: 9999px;
         mix-blend-mode: difference;
-        transform: translate(-50%, -50%) scale(var(--cursor-scale));
         pointer-events: none;
-        transition: transform 0.2s ease;
+        will-change: transform;
+        transition: width 0.3s ease, height 0.3s ease;
     }
 }
 

@@ -49,12 +49,22 @@
         customCursor.className = 'custom-cursor';
         document.body.appendChild(customCursor);
 
+        var mx = -100, my = -100, cx = -100, cy = -100;
+        var hoverSize = false;
+
         document.addEventListener('mousemove', function (e) {
-            var isLink = e.target.closest('a[href], button');
-            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', isLink ? '1.8' : '1');
+            mx = e.clientX;
+            my = e.clientY;
+            hoverSize = !!e.target.closest('a[href], button');
         });
+
+        (function animate() {
+            cx += (mx - cx) * 0.12;
+            cy += (my - cy) * 0.12;
+            customCursor.style.transform = 'translate(' + (cx - 9) + 'px,' + (cy - 9) + 'px)';
+            customCursor.style.width = customCursor.style.height = hoverSize ? '32px' : '';
+            requestAnimationFrame(animate);
+        })();
     }
 })();
 </script>

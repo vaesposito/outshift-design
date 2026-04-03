@@ -12,7 +12,7 @@
     font-feature-settings: 'liga' 1, 'calt' 1;
     --cursor-x: -100px;
     --cursor-y: -100px;
-    --cursor-size: 14px;
+    --cursor-size: 18px;
     --cursor-scale: 1;
     --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 }
@@ -599,14 +599,14 @@ footer {
         z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        left: var(--cursor-x);
-        top: var(--cursor-y);
+        left: 0;
+        top: 0;
         background: #fff;
         border-radius: 9999px;
         mix-blend-mode: difference;
-        transform: translate(-50%, -50%) scale(var(--cursor-scale));
         pointer-events: none;
-        transition: transform 0.2s ease;
+        will-change: transform;
+        transition: width 0.3s ease, height 0.3s ease;
     }
 }
 
@@ -1143,12 +1143,22 @@ footer {
         customCursor.className = 'custom-cursor';
         document.body.appendChild(customCursor);
 
+        var mx = -100, my = -100, cx = -100, cy = -100;
+        var hoverSize = false;
+
         document.addEventListener('mousemove', function (e) {
-            var isLink = e.target.closest('a[href], button');
-            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', isLink ? '1.8' : '1');
+            mx = e.clientX;
+            my = e.clientY;
+            hoverSize = !!e.target.closest('a[href], button');
         });
+
+        (function animate() {
+            cx += (mx - cx) * 0.12;
+            cy += (my - cy) * 0.12;
+            customCursor.style.transform = 'translate(' + (cx - 9) + 'px,' + (cy - 9) + 'px)';
+            customCursor.style.width = customCursor.style.height = hoverSize ? '32px' : '';
+            requestAnimationFrame(animate);
+        })();
     }
 })();
 </script>
