@@ -58,6 +58,21 @@
         localStorage.setItem('theme', next);
     });
 
+    document.querySelectorAll('.has-dropdown > a').forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            var parent = trigger.parentElement;
+            var wasActive = parent.classList.contains('is-active');
+            document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+            if (!wasActive) parent.classList.add('is-active');
+        });
+    });
+    window.addEventListener('click', function (e) {
+        if (!e.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+        }
+    });
+
     if (window.matchMedia('(pointer: fine)').matches) {
         var customCursor = document.createElement('div');
         customCursor.className = 'custom-cursor';

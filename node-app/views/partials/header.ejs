@@ -13,7 +13,7 @@
     <nav>
       <ul>
         <% nav.forEach(item => { %>
-        <li>
+        <li<% if (item.children && item.children.length) { %> class="has-dropdown"<% } %>>
           <a href="<%= item.href %>">
             <span class="text"><%= item.label %></span>
             <% if (item.hasDropdown) { %>
