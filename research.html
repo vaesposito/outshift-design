@@ -173,6 +173,16 @@ button::before {
     z-index: 1;
     padding: 80px 0 40px;
 }
+.research-hero-title {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.research-hero-title h1 {
+    font-size: 3.5em;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.15;
+}
 .research-hero-inner {
     display: flex;
     align-items: center;
@@ -181,29 +191,24 @@ button::before {
 .research-hero-text {
     flex: 1;
 }
-.research-hero-text h1 {
-    font-size: 3em;
-    font-weight: 200;
-    margin: 0 0 20px;
-    line-height: 1.15;
-}
 .research-hero-text p {
     font-size: 1.05em;
     color: var(--color-text-muted);
     line-height: 1.7;
     margin: 0;
-    max-width: 500px;
+    max-width: 420px;
 }
 .research-hero-image {
-    flex: 1;
+    flex: 1.2;
     display: flex;
     justify-content: flex-end;
 }
 .research-hero-image img {
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     border-radius: 16px;
     object-fit: cover;
+    box-shadow: 0 8px 40px var(--color-shadow);
 }
 
 /* ── Research Section Title ── */
@@ -437,7 +442,7 @@ footer {
 
 /* ── Responsive: Tablet ── */
 @media (max-width: 1024px) {
-    .research-hero-text h1 { font-size: 2.4em; }
+    .research-hero-title h1 { font-size: 2.8em; }
     .research-hero-inner { gap: 40px; }
     .research-section-header h2 { font-size: 2.2em; }
     .research-card { gap: 40px; padding: 48px 7%; }
@@ -473,7 +478,7 @@ footer {
         flex-direction: column;
         gap: 32px;
     }
-    .research-hero-text h1 { font-size: 2em; }
+    .research-hero-title h1 { font-size: 2em; }
     .research-hero-image { justify-content: center; }
     .research-hero-image img { max-width: 100%; }
 
@@ -516,7 +521,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .research-hero-text h1 { font-size: 1.6em; }
+    .research-hero-title h1 { font-size: 1.6em; }
     .research-section-header h2 { font-size: 1.5em; }
     .research-card-image img { width: 160px; height: 160px; }
     .sdk-text h2 { font-size: 1.5em; }
@@ -557,10 +562,12 @@ footer {
 <!-- Research Hero -->
 <div class="research-hero">
   <div class="container">
+    <div class="research-hero-title">
+      <h1>Exploring the Research Behind Hax</h1>
+    </div>
     <div class="research-hero-inner">
       <div class="research-hero-text">
-        <h1>Exploring the Research Behind Hax</h1>
-        <p>The Hax Research Lab is a leading research lab that explores cutting-edge topics in human-agent interaction. Our team publishes original research across the fields of AI, cognition, multi-agent systems, and security to shape the next generation of agent-based experiences.</p>
+        <p>The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.</p>
       </div>
       <div class="research-hero-image">
         <img src="images/research/hero.png" alt="Hax Research">
