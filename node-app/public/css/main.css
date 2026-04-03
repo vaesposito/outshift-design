@@ -270,8 +270,32 @@ button::before {
 .innovation-section .section-header h3 { color: #293247; font-size: 3em; font-weight: 200; margin: 8px 0 12px; }
 .innovation-section .section-header p { color: #67707F; font-size: 1.05em; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .innovation-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@property --glow-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+@keyframes glow-spin {
+    to { --glow-angle: 360deg; }
+}
 .innovation-card {
     transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.innovation-card::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 15px;
+    background: conic-gradient(from var(--glow-angle, 0deg), #9345E1, #187ADC, #00BCEB, #74BF4B, #9345E1);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: glow-spin 4s linear infinite;
+}
+.innovation-card:hover::after {
+    opacity: 1;
 }
 .innovation-card:hover { transform: translateY(-4px); }
 .innovation-card video,
@@ -314,6 +338,22 @@ button::before {
     height: 296px;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+.blog-card::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 17px;
+    background: conic-gradient(from var(--glow-angle, 0deg), #9345E1, #187ADC, #00BCEB, #74BF4B, #9345E1);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: glow-spin 4s linear infinite;
+}
+.blog-card:hover::after {
+    opacity: 1;
+}
     justify-content: space-between;
 }
 .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(41, 50, 71, 0.08); }

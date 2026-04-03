@@ -360,8 +360,35 @@ button::before {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
 }
+@property --glow-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+@keyframes glow-spin {
+    to { --glow-angle: 360deg; }
+}
 .innovation-card {
     transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.innovation-card::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 15px;
+    background: conic-gradient(
+        from var(--glow-angle, 0deg),
+        #9345E1, #187ADC, #00BCEB, #74BF4B, #9345E1
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: glow-spin 4s linear infinite;
+}
+.innovation-card:hover::after {
+    opacity: 1;
 }
 .innovation-card:hover {
     transform: translateY(-4px);
@@ -473,6 +500,24 @@ button::before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+}
+.blog-card::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 17px;
+    background: conic-gradient(
+        from var(--glow-angle, 0deg),
+        #9345E1, #187ADC, #00BCEB, #74BF4B, #9345E1
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: glow-spin 4s linear infinite;
+}
+.blog-card:hover::after {
+    opacity: 1;
 }
 .blog-card:hover {
     transform: translateY(-4px);
