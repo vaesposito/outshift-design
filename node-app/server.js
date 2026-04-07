@@ -62,6 +62,7 @@ const fallbackData = {
       description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
       image: '/images/hax-research.png',
       tags: ['AI Research', 'Design Framework', 'Ethics'],
+      href: '/research',
     },
     {
       title: 'Internet of Cognition',
