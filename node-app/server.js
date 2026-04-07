@@ -306,75 +306,126 @@ app.get('/blog', (_req, res) => {
   });
 });
 
-const articleBodies = {
-  'building-accessible-interfaces': `
-    <h2>Why Accessibility Matters</h2>
-    <p>Accessibility isn't just a legal requirement or a box to check — it's a fundamental aspect of good design. When we build accessible interfaces, we create products that work better for everyone, not just users with disabilities. Curb cuts, originally designed for wheelchair users, benefit parents with strollers, delivery workers, and cyclists alike. The same principle applies to digital accessibility.</p>
+const articleData = {
+  'building-accessible-interfaces': {
+    toc: [
+      { id: 'why-accessibility-matters', label: 'Why Accessibility Matters' },
+      { id: 'core-principles', label: 'Core Principles of Accessible Design' },
+      { id: 'practical-implementation', label: 'Practical Implementation' },
+      { id: 'testing', label: 'Testing for Accessibility' },
+      { id: 'building-culture', label: 'Building a Culture of Accessibility' },
+    ],
+    body: `
+    <h2 id="why-accessibility-matters">Why Accessibility Matters</h2>
+    <p>Accessibility isn't just a legal requirement or a box to check — it's a fundamental aspect of good design. When we build accessible interfaces, we create products that work better for everyone, not just users with disabilities.</p>
     <blockquote><p>"The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect." — Tim Berners-Lee</p></blockquote>
-    <p>Over one billion people worldwide live with some form of disability. By designing accessible interfaces, we're not serving a niche audience — we're designing for a significant portion of the global population. Moreover, accessible design often leads to cleaner code, better SEO, and improved usability for all users.</p>
-    <h2>Core Principles of Accessible Design</h2>
+    <p>Over one billion people worldwide live with some form of disability. By designing accessible interfaces, we're designing for a significant portion of the global population.</p>
+    <h2 id="core-principles">Core Principles of Accessible Design</h2>
     <p>The Web Content Accessibility Guidelines (WCAG) are built around four core principles, often remembered by the acronym POUR:</p>
     <ul>
       <li><strong>Perceivable</strong> — Information and UI components must be presentable in ways all users can perceive.</li>
       <li><strong>Operable</strong> — Users must be able to interact with all controls and navigation.</li>
       <li><strong>Understandable</strong> — Content and the operation of the UI must be understandable.</li>
-      <li><strong>Robust</strong> — Content must be robust enough to be interpreted by a wide variety of user agents, including assistive technologies.</li>
+      <li><strong>Robust</strong> — Content must be robust enough to be interpreted by a wide variety of user agents.</li>
     </ul>
-    <h2>Practical Implementation</h2>
+    <h2 id="practical-implementation">Practical Implementation</h2>
     <h3>Semantic HTML First</h3>
     <p>The foundation of accessible interfaces is semantic HTML. Using the correct HTML elements communicates meaning and structure to assistive technologies.</p>
     <h3>Color and Contrast</h3>
-    <p>Ensure sufficient color contrast between text and backgrounds. WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text. Never rely on color alone to convey information.</p>
+    <p>Ensure sufficient color contrast between text and backgrounds. WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text.</p>
     <h3>Keyboard Navigation</h3>
     <p>Every interactive element should be reachable and operable via keyboard. Implement visible focus indicators that clearly show which element is currently focused.</p>
     <h3>Screen Reader Compatibility</h3>
-    <p>Test your interfaces with actual screen readers (VoiceOver, NVDA, JAWS). Provide descriptive alt text for images, use ARIA labels where visual context is missing, and ensure dynamic content changes are announced.</p>
-    <h2>Testing for Accessibility</h2>
-    <p>Accessibility testing should be integrated into your development workflow, not treated as an afterthought:</p>
+    <p>Test your interfaces with actual screen readers (VoiceOver, NVDA, JAWS). Provide descriptive alt text for images and use ARIA labels where visual context is missing.</p>
+    <h2 id="testing">Testing for Accessibility</h2>
+    <p>Accessibility testing should be integrated into your development workflow:</p>
     <ol>
-      <li><strong>Automated scanning</strong> — Use tools like axe, Lighthouse, or WAVE to catch common issues early.</li>
+      <li><strong>Automated scanning</strong> — Use tools like axe, Lighthouse, or WAVE.</li>
       <li><strong>Keyboard testing</strong> — Navigate your entire application using only a keyboard.</li>
-      <li><strong>Screen reader testing</strong> — Test with at least one screen reader to verify content is announced correctly.</li>
+      <li><strong>Screen reader testing</strong> — Verify content is announced correctly.</li>
       <li><strong>User testing</strong> — Include people with disabilities in your user research.</li>
     </ol>
-    <h2>Building a Culture of Accessibility</h2>
-    <p>At Outshift, we've found that the most effective approach is to embed accessibility into every stage of the design and development process, rather than treating it as a separate workstream. When everyone on the team understands and values accessibility, it naturally becomes part of how we build products.</p>
-    <p>The journey toward fully accessible interfaces is ongoing, but every improvement matters. Start where you are, use the tools and techniques available, and keep learning. Your users will thank you.</p>`,
-  'future-of-design-systems': `
-    <h2>The Evolution of Design Systems</h2>
-    <p>Design systems have transformed from simple style guides into complex, living ecosystems that power entire product suites. As organizations scale, the challenge of maintaining consistency while enabling innovation becomes increasingly critical.</p>
-    <h2>Scalability Challenges</h2>
-    <p>When a design system serves hundreds of products and thousands of developers, traditional approaches break down. Token-based architecture, component composition patterns, and automated testing become essential tools for managing complexity at scale.</p>
-    <h2>The Future</h2>
-    <p>AI-assisted design, dynamic theming, and cross-platform component libraries are reshaping what's possible. The next generation of design systems will be more adaptive, more intelligent, and more deeply integrated into the development workflow.</p>`,
-  'user-research-age-of-ai': `
-    <h2>AI-Powered Research Methods</h2>
+    <h2 id="building-culture">Building a Culture of Accessibility</h2>
+    <p>At Outshift, we embed accessibility into every stage of the design and development process. When everyone on the team understands and values accessibility, it naturally becomes part of how we build products.</p>
+    <p>The journey toward fully accessible interfaces is ongoing, but every improvement matters. Start where you are, use the tools and techniques available, and keep learning.</p>`,
+  },
+  'future-of-design-systems': {
+    toc: [
+      { id: 'starting-with-foundations', label: 'Starting with Foundations' },
+      { id: 'component-architecture', label: 'Component Architecture' },
+      { id: 'scaling-across-teams', label: 'Scaling Across Teams' },
+      { id: 'measuring-success', label: 'Measuring Success' },
+      { id: 'conclusion', label: 'Conclusion' },
+    ],
+    body: `
+    <p>Building a design system that scales across hundreds of products is no small feat. It requires careful planning, collaboration, and a deep understanding of both design principles and technical implementation. In this article, we share our journey and the lessons we learned along the way.</p>
+    <h2 id="starting-with-foundations">Starting with Foundations</h2>
+    <p>We began by establishing core design principles that would guide every decision. These principles needed to be flexible enough to accommodate diverse product needs while maintaining a consistent brand identity. We focused on creating a token-based system for colors, typography, spacing, and other fundamental design elements.</p>
+    <h2 id="component-architecture">Component Architecture</h2>
+    <p>Our component library was built with reusability and composability in mind. Each component was designed to be atomic, meaning it could stand alone or be combined with other components to create more complex interfaces. We established clear naming conventions and documentation standards to ensure the system remained accessible to all team members.</p>
+    <h2 id="scaling-across-teams">Scaling Across Teams</h2>
+    <p>As the design system grew, we implemented governance processes to maintain quality and consistency. We created a core team responsible for the system's evolution, while empowering product teams to contribute improvements and new components. Regular design system office hours and a dedicated Slack channel fostered community and collaboration.</p>
+    <h2 id="measuring-success">Measuring Success</h2>
+    <p>We track key metrics to understand the design system's impact: adoption rates across products, time saved in design and development, and consistency scores across our product portfolio. These metrics help us prioritize improvements and demonstrate value to stakeholders.</p>
+    <h2 id="conclusion">Conclusion</h2>
+    <p>Building a design system is an ongoing journey, not a destination. As our products evolve and new technologies emerge, our design system must evolve with them. The key is maintaining a balance between consistency and flexibility, always keeping the end user experience at the center of every decision.</p>`,
+  },
+  'user-research-age-of-ai': {
+    toc: [
+      { id: 'ai-powered-research', label: 'AI-Powered Research Methods' },
+      { id: 'ethical-considerations', label: 'Ethical Considerations' },
+      { id: 'practical-applications', label: 'Practical Applications' },
+    ],
+    body: `
+    <h2 id="ai-powered-research">AI-Powered Research Methods</h2>
     <p>Artificial intelligence is opening new frontiers in user research. From automated sentiment analysis to predictive behavior modeling, AI tools are enabling researchers to process larger datasets and uncover patterns that would be impossible to detect manually.</p>
-    <h2>Ethical Considerations</h2>
+    <h2 id="ethical-considerations">Ethical Considerations</h2>
     <p>With great power comes great responsibility. AI-driven research must be conducted ethically, with proper consent, transparency about data usage, and safeguards against bias in algorithmic analysis.</p>
-    <h2>Practical Applications</h2>
+    <h2 id="practical-applications">Practical Applications</h2>
     <p>Teams are already using AI to automate transcription and coding of interviews, generate synthetic personas from large datasets, and predict user behavior patterns. These tools augment rather than replace human researchers.</p>`,
-  'design-thinking-workshop': `
-    <h2>Workshop Design and Facilitation</h2>
+  },
+  'design-thinking-workshop': {
+    toc: [
+      { id: 'workshop-design', label: 'Workshop Design and Facilitation' },
+      { id: 'lessons-from-field', label: 'Lessons from the Field' },
+      { id: 'remote-strategies', label: 'Remote Workshop Strategies' },
+    ],
+    body: `
+    <h2 id="workshop-design">Workshop Design and Facilitation</h2>
     <p>Effective design thinking workshops require careful preparation, skilled facilitation, and a deep understanding of group dynamics. The best workshops create safe spaces for divergent thinking while maintaining focus on actionable outcomes.</p>
-    <h2>Lessons from the Field</h2>
+    <h2 id="lessons-from-field">Lessons from the Field</h2>
     <p>After facilitating dozens of workshops across industries, several key patterns emerge: diverse teams produce better outcomes, time constraints drive creativity, and follow-through is more important than the workshop itself.</p>
-    <h2>Remote Workshop Strategies</h2>
+    <h2 id="remote-strategies">Remote Workshop Strategies</h2>
     <p>The shift to remote work has transformed workshop facilitation. Digital whiteboards, breakout rooms, and asynchronous exercises have become essential tools for distributed design thinking.</p>`,
-  'modern-web-development': `
-    <h2>The Design-Development Gap</h2>
+  },
+  'modern-web-development': {
+    toc: [
+      { id: 'design-development-gap', label: 'The Design-Development Gap' },
+      { id: 'collaborative-workflows', label: 'Collaborative Workflows' },
+      { id: 'looking-forward', label: 'Looking Forward' },
+    ],
+    body: `
+    <h2 id="design-development-gap">The Design-Development Gap</h2>
     <p>Despite decades of progress, a significant gap remains between design intent and development implementation. Bridging this gap requires shared tools, shared language, and shared understanding of constraints and possibilities.</p>
-    <h2>Collaborative Workflows</h2>
+    <h2 id="collaborative-workflows">Collaborative Workflows</h2>
     <p>Modern teams are finding success with design tokens, component-driven development, and shared design-development environments that allow real-time collaboration across disciplines.</p>
-    <h2>Looking Forward</h2>
+    <h2 id="looking-forward">Looking Forward</h2>
     <p>The future of web development lies in closer integration between design and code. Tools that allow designers to create production-ready components and developers to contribute to design systems are blurring the boundaries between disciplines.</p>`,
-  'cross-functional-collaboration': `
-    <h2>Breaking Down Silos</h2>
+  },
+  'cross-functional-collaboration': {
+    toc: [
+      { id: 'breaking-down-silos', label: 'Breaking Down Silos' },
+      { id: 'communication-frameworks', label: 'Communication Frameworks' },
+      { id: 'measuring-impact', label: 'Measuring Collaboration Impact' },
+    ],
+    body: `
+    <h2 id="breaking-down-silos">Breaking Down Silos</h2>
     <p>The most innovative products emerge from teams that transcend traditional organizational boundaries. Cross-functional collaboration brings together diverse perspectives — design, engineering, product, research — to solve complex problems more effectively.</p>
-    <h2>Communication Frameworks</h2>
+    <h2 id="communication-frameworks">Communication Frameworks</h2>
     <p>Effective collaboration requires intentional communication structures. Regular sync meetings, shared documentation, and transparent decision-making processes help maintain alignment across functions.</p>
-    <h2>Measuring Collaboration Impact</h2>
+    <h2 id="measuring-impact">Measuring Collaboration Impact</h2>
     <p>Teams that invest in collaboration see measurable improvements in product quality, development velocity, and team satisfaction. The key is creating an environment where every voice is heard and valued.</p>`,
+  },
 };
 
 app.get('/blog/:slug', (req, res) => {
@@ -392,12 +443,17 @@ app.get('/blog/:slug', (req, res) => {
       categories: ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
     });
   }
+  const data = articleData[slug] || { toc: [], body: '<p>Article content coming soon.</p>' };
+  const relatedPosts = fallbackData.blogHub
+    .filter((p) => (p.href || '').replace(/^\/blog[#/]?/, '') !== slug)
+    .slice(0, 2);
   res.render('blog-article', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: `${post.title} — Outshift Design`,
-    post: { ...post, body: articleBodies[slug] || '<p>Article content coming soon.</p>' },
+    post: { ...post, body: data.body, toc: data.toc },
+    relatedPosts,
   });
 });
 
