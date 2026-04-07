@@ -1,0 +1,21 @@
+---
+description: Always update both the static HTML (GitHub Pages) and Node.js/Strapi versions of the site
+globs: "**/*.html,**/*.ejs,**/*.css,**/server.js"
+alwaysApply: false
+---
+
+# Dual Version Updates
+
+This project has two versions of the site that must stay in sync:
+
+1. **Static HTML (GitHub Pages)**: Root-level `.html` files (`index.html`, `hax.html`, `research.html`, `foundational-principles.html`, `sdk.html`, `sdk-pages/*.html`, `styleguide.html`, `components.html`) with inline `<style>` blocks.
+
+2. **Node.js/Strapi version**: Under `node-app/` — EJS templates in `views/`, CSS in `public/css/main.css`, route data in `server.js`.
+
+## Rules
+
+- When making any content, styling, or structural change, always apply it to **both** versions.
+- Static HTML pages use inline `<style>` tags; the Node.js version uses `node-app/public/css/main.css` and EJS partials (`views/partials/`).
+- Navigation data lives in `fallbackData.nav` inside `server.js` — always use this for nav (Strapi's flat NavItem can't represent nested dropdowns).
+- Research page items use `fallbackResearch.items` in `server.js` (not Strapi research-cards, which are homepage cards).
+- SDK documentation pages (`sdk.html`, `sdk-pages/*.html`) are static-only; they don't have a Node.js counterpart.

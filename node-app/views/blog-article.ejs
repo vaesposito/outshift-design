@@ -66,15 +66,17 @@
 <!-- More Articles -->
 <% if (relatedPosts && relatedPosts.length > 0) { %>
 <div class="more-articles">
-  <h2>More Articles</h2>
-  <div class="more-articles-grid">
-    <% relatedPosts.forEach(function(rp) { %>
-      <a href="<%= rp.href || '/blog' %>" class="more-article-card">
-        <h3><%= rp.title %></h3>
-        <p><%= rp.description %></p>
-        <span class="read-more-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
-      </a>
-    <% }); %>
+  <div class="more-articles-inner">
+    <h2>More Articles</h2>
+    <div class="more-articles-grid">
+      <% relatedPosts.forEach(function(rp) { %>
+        <a href="<%= rp.href || '/blog' %>" class="more-article-card">
+          <h3><%= rp.title %></h3>
+          <p><%= rp.description %></p>
+          <span class="read-more-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
+        </a>
+      <% }); %>
+    </div>
   </div>
 </div>
 <% } %>

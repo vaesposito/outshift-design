@@ -312,18 +312,21 @@ nav > ul > li { position: relative; }
 
 /* ── More Articles ── */
 .more-articles {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 56px 48px;
     position: relative;
     z-index: 1;
-    border: 1px solid rgba(77, 99, 128, 0.21);
+    margin-top: 40px;
+    padding: 56px 0 80px;
+    border-top: 1px solid rgba(77, 99, 128, 0.21);
+    border-bottom: 1px solid rgba(77, 99, 128, 0.21);
     background: linear-gradient(132deg, rgba(210, 194, 255, 0.15) 26.47%, rgba(255, 255, 255, 0.00) 88.42%);
     box-shadow: 0 6.593px 10.548px 0 rgba(0, 0, 0, 0.00), 0 15.823px 52.742px 0 rgba(0, 0, 0, 0.00), 0 34.282px 105.484px 0 rgba(0, 0, 0, 0.00);
     backdrop-filter: blur(32.96px);
     -webkit-backdrop-filter: blur(32.96px);
-    border-radius: 16px;
-    margin-bottom: 80px;
+}
+.more-articles-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 .more-articles h2 {
     font-size: 1.4em;
@@ -542,18 +545,20 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
 
 <!-- More Articles -->
 <div class="more-articles">
-  <h2>More Articles</h2>
-  <div class="more-articles-grid">
-    <a href="blog.html" class="more-article-card">
-      <h3>Designing for Accessibility</h3>
-      <p>Our approach to creating inclusive experiences that work for everyone.</p>
-      <span class="read-more-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
-    </a>
-    <a href="blog.html" class="more-article-card">
-      <h3>Remote collaboration at scale</h3>
-      <p>Lessons learned from building tools for distributed teams across the globe.</p>
-      <span class="read-more-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
-    </a>
+  <div class="more-articles-inner">
+    <h2>More Articles</h2>
+    <div class="more-articles-grid">
+      <a href="blog.html" class="more-article-card">
+        <h3>Designing for Accessibility</h3>
+        <p>Our approach to creating inclusive experiences that work for everyone.</p>
+        <span class="read-more-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
+      </a>
+      <a href="blog.html" class="more-article-card">
+        <h3>Remote collaboration at scale</h3>
+        <p>Lessons learned from building tools for distributed teams across the globe.</p>
+        <span class="read-more-link">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
+      </a>
+    </div>
   </div>
 </div>
 
