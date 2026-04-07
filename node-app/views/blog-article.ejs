@@ -3,12 +3,14 @@
 <%- include('partials/blobs') %>
 
 <!-- Article Cover -->
-<div class="article-cover">
-  <% if (post.coverImage) { %>
-    <img src="<%= post.coverImage %>" alt="<%= post.title %>">
-  <% } else { %>
-    <div style="width:100%;height:100%;background:<%= post.coverGradient || 'linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%)' %>;"></div>
-  <% } %>
+<div class="article-cover-wrap">
+  <div class="article-cover">
+    <% if (post.coverImage) { %>
+      <img src="<%= post.coverImage %>" alt="<%= post.title %>">
+    <% } else { %>
+      <div style="width:100%;height:100%;background:<%= post.coverGradient || 'linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%)' %>;"></div>
+    <% } %>
+  </div>
 </div>
 
 <!-- Article Header -->
