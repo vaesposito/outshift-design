@@ -1100,15 +1100,15 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     display: inline-block;
     padding: 5px 14px;
     border-radius: 20px;
-    background: rgba(70, 170, 206, 0.12);
-    color: #2a7a9a;
     font-size: 0.85em;
     font-weight: 500;
-    border: none;
+    border: 1px solid rgba(24, 48, 86, 0.20);
+    color: var(--color-text);
+    background: linear-gradient(to right, rgba(26, 193, 229, 0.12) 26%, rgba(255, 255, 255, 0) 88%), rgba(223, 241, 245, 0.60);
 }
 [data-theme="dark"] .case-study-themes span {
-    background: rgba(70, 170, 206, 0.15);
-    color: #6ec4e0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(to right, rgba(26, 193, 229, 0.12) 26%, rgba(255, 255, 255, 0) 88%), rgba(30, 60, 80, 0.40);
 }
 
 /* ── Components Page ── */
