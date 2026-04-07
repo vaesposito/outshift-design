@@ -24,7 +24,10 @@ async function fetchStrapi(endpoint) {
 
 const fallbackData = {
   nav: [
-    { label: 'Initiatives', href: '/#initiatives', hasDropdown: true },
+    { label: 'Initiatives', href: '/#initiatives', hasDropdown: true, children: [
+      { label: 'The Human-Agent Experience', href: '/#initiatives' },
+      { label: 'Internet of Cognition', href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
+    ]},
     { label: 'About us', href: '/#about', hasDropdown: true },
     { label: 'Research', href: '/research', hasDropdown: true, children: [
       { label: 'Foundational Principles', href: '/research/foundational-principles' },
