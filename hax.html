@@ -404,9 +404,13 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     line-height: 1.7;
 }
 .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 32px;
+    justify-content: center;
+}
+.pillar-card {
+    flex: 0 0 calc(33.333% - 22px);
 }
 .pillar-card {
     padding: 40px 32px;
@@ -637,7 +641,8 @@ footer {
     .page-hero-title h1 { font-size: 2em; }
     .page-hero-image img, .page-hero-image video { height: 320px; max-width: 100%; }
 
-    .pillars-grid { grid-template-columns: 1fr; gap: 24px; }
+    .pillars-grid { flex-direction: column; gap: 24px; }
+    .pillar-card { flex: none; width: 100%; }
     .pillars-header h2 { font-size: 1.8em; }
 
     .detail-inner, .detail-inner.reversed { flex-direction: column; gap: 32px; }
@@ -738,15 +743,20 @@ footer {
   </div>
 </div>
 
-<!-- Three Pillars -->
+<!-- Human-Centered AI Patterns -->
 <div class="pillars-section">
   <div class="container">
     <div class="pillars-header">
-      <h2>Agency, Composability &amp; Transparency</h2>
-      <p>Three foundational pillars that guide every design decision in the Hax framework, ensuring agents augment human capabilities rather than obscure them.</p>
+      <h2>Human-Centered AI Patterns</h2>
+      <p>These 5 guiding principles emerged from studying how people interact with agentic systems. Using these patterns is the foundation for building trustworthy AI experiences that prioritize human control and agency.</p>
     </div>
 
     <div class="pillars-grid">
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Transparency</h3>
+        <p>Every agent action, decision, and data flow should be observable and explainable. Transparency builds trust by making agent reasoning visible and auditable at every level.</p>
+      </div>
       <div class="pillar-card">
         <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         <h3>Agency</h3>
@@ -758,9 +768,45 @@ footer {
         <p>Agents should be designed as modular, interoperable building blocks. Composability ensures that complex multi-agent workflows remain structured, debuggable, and adaptable to changing needs.</p>
       </div>
       <div class="pillar-card">
-        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        <h3>Transparency</h3>
-        <p>Every agent action, decision, and data flow should be observable and explainable. Transparency builds trust by making agent reasoning visible and auditable at every level.</p>
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Trust</h3>
+        <p>Trust is built through consistent, predictable behavior. Systems must earn trust progressively by demonstrating reliability, honoring boundaries, and recovering gracefully from errors.</p>
+      </div>
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3>Collaboration</h3>
+        <p>Agents and humans should work as partners, not replacements. Effective collaboration requires clear role boundaries, shared context, and fluid handoff between human and machine capabilities.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Detail: Transparency -->
+<div class="detail-section">
+  <div class="container">
+    <div class="detail-inner">
+      <div class="detail-content">
+        <div class="detail-label">Pattern 01</div>
+        <h2>Making Agent Behavior Transparent</h2>
+        <p>Transparency is the bridge between agent capability and human trust. When users can see what an agent is doing, why it made a decision, and what data informed that decision, they can collaborate effectively.</p>
+        <p>Hax approaches transparency through layered disclosure: summaries for quick understanding, detailed reasoning for deep inspection, and full audit logs for compliance and review.</p>
+        <ul>
+          <li>Decision reasoning visible at every interaction point</li>
+          <li>Data provenance and source attribution</li>
+          <li>Confidence indicators and uncertainty signals</li>
+          <li>Layered disclosure (summary &rarr; detail &rarr; raw data)</li>
+        </ul>
+      </div>
+      <div class="detail-aside">
+        <h4>Transparency Mechanisms</h4>
+        <p>Practical transparency implementation:</p>
+        <ul>
+          <li>Reasoning Trace UI</li>
+          <li>Confidence Score Display</li>
+          <li>Data Source Attribution</li>
+          <li>Decision Timeline View</li>
+          <li>Exportable Audit Reports</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -769,12 +815,12 @@ footer {
 <!-- Detail: Agency -->
 <div class="detail-section">
   <div class="container">
-    <div class="detail-inner">
+    <div class="detail-inner reversed">
       <div class="detail-content">
-        <div class="detail-label">Pillar 01</div>
+        <div class="detail-label">Pattern 02</div>
         <h2>Designing for Human Agency</h2>
         <p>Agency is the cornerstone of human-agent collaboration. When users feel in control, they trust the system. When control is ambiguous or absent, even capable agents become liabilities.</p>
-        <p>Hax designs for agency through explicit interaction boundaries, progressive autonomy levels, and always-available intervention points. Users should never wonder "what is the agent doing?" or "can I stop it?"</p>
+        <p>Hax designs for agency through explicit interaction boundaries, progressive autonomy levels, and always-available intervention points. Users should never wonder &ldquo;what is the agent doing?&rdquo; or &ldquo;can I stop it?&rdquo;</p>
         <ul>
           <li>Clear action previews before agent execution</li>
           <li>Adjustable autonomy levels (suggest, draft, execute)</li>
@@ -800,9 +846,9 @@ footer {
 <!-- Detail: Composability -->
 <div class="detail-section">
   <div class="container">
-    <div class="detail-inner reversed">
+    <div class="detail-inner">
       <div class="detail-content">
-        <div class="detail-label">Pillar 02</div>
+        <div class="detail-label">Pattern 03</div>
         <h2>Building Composable Agent Systems</h2>
         <p>Enterprise workflows demand agents that can work together without creating tangled, opaque systems. Composability means agents are designed as discrete units with clear inputs, outputs, and boundaries.</p>
         <p>When agents are composable, teams can assemble complex workflows from trusted building blocks, swap components without breaking chains, and debug issues at the individual agent level.</p>
@@ -828,31 +874,62 @@ footer {
   </div>
 </div>
 
-<!-- Detail: Transparency -->
+<!-- Detail: Trust -->
+<div class="detail-section">
+  <div class="container">
+    <div class="detail-inner reversed">
+      <div class="detail-content">
+        <div class="detail-label">Pattern 04</div>
+        <h2>Earning and Sustaining Trust</h2>
+        <p>Trust in agentic systems isn&rsquo;t given &mdash; it&rsquo;s earned through consistent, predictable behavior. Users need to see that an agent honors boundaries, handles errors gracefully, and escalates when uncertain.</p>
+        <p>Progressive trust-building means starting with low-risk actions, demonstrating reliability, and expanding autonomy only as confidence grows. A single unexplained failure can undo months of earned trust.</p>
+        <ul>
+          <li>Progressive trust calibration based on track record</li>
+          <li>Graceful degradation and clear error communication</li>
+          <li>Boundary honoring and scope limitation signals</li>
+          <li>Trust recovery protocols after failures or incidents</li>
+        </ul>
+      </div>
+      <div class="detail-aside">
+        <h4>Trust Patterns</h4>
+        <p>Building and maintaining user trust:</p>
+        <ul>
+          <li>Progressive Autonomy Escalation</li>
+          <li>Error Recovery &amp; Explanation</li>
+          <li>Scope Boundary Indicators</li>
+          <li>Reliability Track Record UI</li>
+          <li>Trust Reset &amp; Recalibration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Detail: Collaboration -->
 <div class="detail-section">
   <div class="container">
     <div class="detail-inner">
       <div class="detail-content">
-        <div class="detail-label">Pillar 03</div>
-        <h2>Making Agent Behavior Transparent</h2>
-        <p>Transparency is the bridge between agent capability and human trust. When users can see what an agent is doing, why it made a decision, and what data informed that decision, they can collaborate effectively.</p>
-        <p>Hax approaches transparency through layered disclosure: summaries for quick understanding, detailed reasoning for deep inspection, and full audit logs for compliance and review.</p>
+        <div class="detail-label">Pattern 05</div>
+        <h2>Human-Agent Collaboration</h2>
+        <p>The most effective agentic systems position AI as a partner, not a replacement. Collaboration means clear role boundaries, shared context, and fluid handoff between what humans do best and what machines excel at.</p>
+        <p>Designing for collaboration requires understanding when agents should lead, when they should assist, and when they should step aside entirely. The interface must make these roles legible at all times.</p>
         <ul>
-          <li>Decision reasoning visible at every interaction point</li>
-          <li>Data provenance and source attribution</li>
-          <li>Confidence indicators and uncertainty signals</li>
-          <li>Layered disclosure (summary → detail → raw data)</li>
+          <li>Clear role assignment and visibility for each task</li>
+          <li>Shared workspace with synchronized context</li>
+          <li>Fluid handoff protocols between human and agent</li>
+          <li>Adaptive assistance that responds to user expertise level</li>
         </ul>
       </div>
       <div class="detail-aside">
-        <h4>Transparency Mechanisms</h4>
-        <p>Practical transparency implementation:</p>
+        <h4>Collaboration Patterns</h4>
+        <p>Designing effective human-agent teams:</p>
         <ul>
-          <li>Reasoning Trace UI</li>
-          <li>Confidence Score Display</li>
-          <li>Data Source Attribution</li>
-          <li>Decision Timeline View</li>
-          <li>Exportable Audit Reports</li>
+          <li>Role Assignment Matrix</li>
+          <li>Context Synchronization</li>
+          <li>Handoff Protocol Design</li>
+          <li>Expertise-Adaptive Interfaces</li>
+          <li>Shared Decision Workspace</li>
         </ul>
       </div>
     </div>

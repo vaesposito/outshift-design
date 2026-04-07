@@ -1409,9 +1409,13 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     line-height: 1.7;
 }
 .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 32px;
+    justify-content: center;
+}
+.pillar-card {
+    flex: 0 0 calc(33.333% - 22px);
 }
 .pillar-card {
     padding: 40px 32px;
@@ -1528,7 +1532,8 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 }
 
 @media (max-width: 768px) {
-    .pillars-grid { grid-template-columns: 1fr; gap: 24px; }
+    .pillars-grid { flex-direction: column; gap: 24px; }
+    .pillar-card { flex: none; width: 100%; }
     .pillars-header h2 { font-size: 1.8em; }
     .detail-inner, .detail-inner.reversed { flex-direction: column; gap: 32px; }
     .detail-aside { flex: none; width: 100%; }
