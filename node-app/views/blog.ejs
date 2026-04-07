@@ -30,13 +30,13 @@
           <% if (post.coverImage) { %>
             <img src="<%= post.coverImage %>" alt="<%= post.title %>">
           <% } %>
+        </div>
+        <div class="blog-hub-body">
           <div class="blog-hub-tags">
             <% (post.tags || []).forEach(function(tag) { %>
               <span class="blog-hub-tag"><%= tag %></span>
             <% }); %>
           </div>
-        </div>
-        <div class="blog-hub-body">
           <h3><%= post.title %></h3>
           <p class="blog-hub-desc"><%= post.description %></p>
           <div class="blog-hub-meta">
