@@ -14,9 +14,18 @@
     <div class="page-hero-inner">
       <div class="page-hero-text">
         <p><%= pageData.description %></p>
+        <% if (pageData.descriptionExtra) { %>
+        <p><%= pageData.descriptionExtra %></p>
+        <% } %>
       </div>
       <div class="page-hero-image">
+        <% if (pageData.heroVideo) { %>
+        <video autoplay muted loop playsinline>
+          <source src="<%= pageData.heroVideo %>" type="video/mp4">
+        </video>
+        <% } else { %>
         <img src="<%= pageData.heroImage %>" alt="<%= pageData.title %>">
+        <% } %>
       </div>
     </div>
   </div>

@@ -286,8 +286,9 @@ app.get('/research/foundational-principles', (_req, res) => {
 app.get('/hax', (_req, res) => {
   const pageData = {
     title: 'The Human-Agent Experience',
-    description: 'Hax is our design framework for building human-agent collaboration that is intuitive, transparent, and trustworthy. It provides the principles, patterns, and tools that ensure AI agents work with people \u2014 not in place of them \u2014 across enterprise workflows.',
-    heroImage: '/images/hax-research.png',
+    description: "We're moving beyond assistants and copilots. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in more nuanced ways. Designing for this shift requires new patterns of interaction and trust.",
+    descriptionExtra: 'This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.',
+    heroVideo: '/videos/hax-hero.mp4',
     pillars: [
       {
         icon: 'clock',
