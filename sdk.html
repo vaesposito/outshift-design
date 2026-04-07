@@ -103,7 +103,9 @@ a:link, a:visited, a:hover, a:active {
     font-size: 1em;
     font-weight: 500;
     color: var(--color-text);
+    text-decoration: none;
 }
+.doc-header-left .doc-title:hover { opacity: 0.7; }
 .doc-header-right {
     display: flex;
     align-items: center;
@@ -319,9 +321,9 @@ a:link, a:visited, a:hover, a:active {
 <header class="doc-header">
   <div class="doc-header-inner">
     <div class="doc-header-left">
-      <a href="index.html"><img src="images/outshift_logo.svg" alt="Outshift" class="logo-light"><img src="images/outshift_logo-white.svg" alt="Outshift" class="logo-dark"></a>
+      <a href="sdk.html"><img src="images/outshift_logo.svg" alt="Outshift" class="logo-light"><img src="images/outshift_logo-white.svg" alt="Outshift" class="logo-dark"></a>
       <div class="doc-separator"></div>
-      <span class="doc-title">HAX SDK</span>
+      <a href="sdk.html" class="doc-title">HAX SDK</a>
     </div>
     <div class="doc-header-right">
       <a href="hax.html" class="doc-back-link">&larr; Back to HAX</a>
@@ -364,6 +366,11 @@ a:link, a:visited, a:hover, a:active {
       <a href="sdk-pages/chat-commands.html" class="sdk-sidebar-link">Chat Commands</a>
       <a href="sdk-pages/file-upload.html" class="sdk-sidebar-link">File Upload</a>
       <a href="sdk-pages/rules-context.html" class="sdk-sidebar-link">Rules Context</a>
+    </div>
+    <div class="sdk-sidebar-section">
+      <div class="sdk-sidebar-title">Resources</div>
+      <a href="styleguide.html" class="sdk-sidebar-link">Style Guide</a>
+      <a href="components.html" class="sdk-sidebar-link">Strapi Components</a>
     </div>
   </aside>
 

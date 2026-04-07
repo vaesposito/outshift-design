@@ -37,7 +37,7 @@ const fallbackData = {
         { label: 'Security & Privacy', href: '#' },
       ]},
     ]},
-    { label: 'Blog', href: '/#blog', hasDropdown: false },
+    { label: 'Blog', href: '/blog', hasDropdown: false },
   ],
   initiatives: [
     {
@@ -79,6 +79,14 @@ const fallbackData = {
     { title: 'Designing for Accessibility', description: 'Our approach to creating inclusive experiences that work for everyone.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
     { title: 'Remote Collaboration at Scale', description: 'Lessons learned from building tools for distributed teams across the globe.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
   ],
+  blogHub: [
+    { title: 'The Future of Design Systems: Scalability and Consistency', description: 'Exploring how modern design systems are evolving to meet the demands of large-scale enterprise applications while maintaining flexibility and innovation.', author: 'Jaime Holland', date: 'March 1, 2026', readTime: '5 min read', tags: ['Design Systems', 'UX/UI'], coverGradient: 'linear-gradient(135deg, #0a3d5c 0%, #1a6e5c 100%)', href: '/blog#future-of-design-systems' },
+    { title: 'User Research in the Age of AI: New Methodologies', description: 'How artificial intelligence is transforming user research practices and enabling deeper insights into user behavior and preferences.', author: 'Monserrat Gonzalez Gacel', date: 'March 1, 2026', readTime: '8 min read', tags: ['Research', 'AI'], coverGradient: 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)', href: '/blog#user-research-age-of-ai' },
+    { title: 'Building Accessible Interfaces: A Practical Guide', description: 'Practical tips and techniques for creating web applications that are accessible to all users, regardless of their abilities or disabilities.', author: 'Valentina Esposito', date: 'March 1, 2026', readTime: '6 min read', tags: ['UX/UI', 'Accessibility'], coverGradient: 'linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%)', href: '/blog#building-accessible-interfaces' },
+    { title: 'Design Thinking Workshop: Lessons from the Field', description: 'Key takeaways and insights from facilitating design thinking workshops across diverse teams and industries.', author: 'Marc Sotelli', date: 'March 1, 2026', readTime: '5 min read', tags: ['Design Thinking', 'Workshop'], coverGradient: 'linear-gradient(135deg, #8b3a62 0%, #c94b4b 100%)', href: '/blog#design-thinking-workshop' },
+    { title: 'Modern Web Development: Bridging Design and Code', description: 'Understanding how designers and developers can collaborate more effectively to create seamless digital experiences.', author: 'Krystelle Gonzalez', date: 'March 1, 2026', readTime: '7 min read', tags: ['Development', 'Collaboration'], coverGradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)', href: '/blog#modern-web-development' },
+    { title: 'The Power of Cross-Functional Collaboration', description: 'How effective team collaboration leads to better product outcomes and a more cohesive user experience.', author: 'Serin Kuth', date: 'March 1, 2026', readTime: '5 min read', tags: ['Collaboration', 'Team'], coverGradient: 'linear-gradient(135deg, #1a5276 0%, #2ecc71 100%)', href: '/blog#cross-functional-collaboration' },
+  ],
   homepage: null,
 };
 
@@ -92,6 +100,8 @@ function mapInitiatives(strapiData) {
       badge: item.badge,
       video: item.media?.videoUrl || '/videos/agents.mp4',
       reversed: item.reversed || false,
+      href: item.link?.url || '#',
+      external: item.link?.isExternal || false,
     }));
 }
 
@@ -105,6 +115,9 @@ function mapResearchCards(strapiData) {
       description: item.description,
       image: imageMap[item.slug] || '/images/hax-research.png',
       tags: (item.tags || []).map((t) => t.label),
+      href: item.link?.url || null,
+      external: item.link?.isExternal || false,
+      comingSoon: false,
     }));
 }
 
@@ -121,15 +134,8 @@ function mapBlogPosts(strapiData) {
   }));
 }
 
-function mapNav(homepage) {
-  if (!homepage?.navigation?.length) return fallbackData.nav;
-  return homepage.navigation
-    .sort((a, b) => (a.order || 0) - (b.order || 0))
-    .map((item) => ({
-      label: item.label,
-      href: item.href,
-      hasDropdown: item.hasDropdown,
-    }));
+function mapNav() {
+  return fallbackData.nav;
 }
 
 app.get('/', async (_req, res) => {
@@ -143,7 +149,7 @@ app.get('/', async (_req, res) => {
   const data = {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
-    nav: mapNav(strapiHomepage),
+    nav: mapNav(),
     initiatives: mapInitiatives(strapiInitiatives),
     researchCards: mapResearchCards(strapiResearch),
     blogPosts: mapBlogPosts(strapiBlog),
@@ -176,7 +182,7 @@ const fallbackResearch = {
     { title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png' },
     { title: 'Societal Impact', description: "Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?", image: '/images/research/societal-impact.png' },
     { title: 'Security & Privacy', description: 'As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.', image: '/images/research/security-privacy.png' },
-    { title: 'Agent Impact Map', description: "Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.", image: '/images/research/foresight-canvas.png' },
+    { title: 'Agent Impact Map', description: "Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.", image: '/images/research/agent-impact.png' },
     { title: 'Cognitive Load Audit', description: "Evaluating the agent's impact on a user's mental effort to ensure its design is intuitive, clear and respects diverse cognitive styles.", image: '/images/research/cognitive-load-audit.png' },
     { title: 'Foresight Canvas', description: 'A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks.', image: '/images/research/foresight-canvas.png' },
   ],
@@ -216,11 +222,7 @@ function mapResearchItems(strapiData) {
 }
 
 app.get('/research', async (_req, res) => {
-  const [strapiPage, strapiCards] = await Promise.all([
-    fetchStrapi('research-page?populate=*'),
-    fetchStrapi('research-cards?populate=*&sort=order:asc'),
-  ]);
-
+  const strapiPage = await fetchStrapi('research-page?populate=*');
   const page = mapResearchPage(strapiPage) || {};
 
   res.render('research', {
@@ -228,7 +230,7 @@ app.get('/research', async (_req, res) => {
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Research Behind Hax',
-    researchItems: mapResearchItems(strapiCards),
+    researchItems: fallbackResearch.items,
     hero: page.hero || fallbackResearch.hero,
     sectionHeader: page.sectionHeader || fallbackResearch.sectionHeader,
     cta: page.cta || fallbackResearch.cta,
@@ -285,100 +287,22 @@ app.get('/research/foundational-principles', (_req, res) => {
 });
 
 app.get('/hax', (_req, res) => {
-  const pageData = {
-    title: 'The Human-Agent Experience',
-    description: "We're moving beyond assistants and copilots. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in more nuanced ways. Designing for this shift requires new patterns of interaction and trust.",
-    descriptionExtra: 'This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.',
-    heroVideo: '/videos/hax-hero.mp4',
-    pillarsTitle: 'Human-Centered AI Patterns',
-    pillarsSubtitle: 'These 5 guiding principles emerged from studying how people interact with agentic systems. Using these patterns is the foundation for building trustworthy AI experiences that prioritize human control and agency.',
-    pillars: [
-      {
-        icon: 'eye',
-        title: 'Transparency',
-        description: 'Every agent action, decision, and data flow should be observable and explainable. Transparency builds trust by making agent reasoning visible and auditable at every level.',
-      },
-      {
-        icon: 'clock',
-        title: 'Agency',
-        description: 'Users must always retain meaningful control over agent behavior. Agency means the ability to understand, direct, pause, and override agent actions at every stage of a workflow.',
-      },
-      {
-        icon: 'grid',
-        title: 'Composability',
-        description: 'Agents should be designed as modular, interoperable building blocks. Composability ensures that complex multi-agent workflows remain structured, debuggable, and adaptable to changing needs.',
-      },
-      {
-        icon: 'shield',
-        title: 'Trust',
-        description: 'Trust is built through consistent, predictable behavior. Systems must earn trust progressively by demonstrating reliability, honoring boundaries, and recovering gracefully from errors.',
-      },
-      {
-        icon: 'users',
-        title: 'Collaboration',
-        description: 'Agents and humans should work as partners, not replacements. Effective collaboration requires clear role boundaries, shared context, and fluid handoff between human and machine capabilities.',
-      },
-    ],
-    details: [
-      {
-        label: 'Pattern 01',
-        title: 'Making Agent Behavior Transparent',
-        content: '<p>Transparency is the bridge between agent capability and human trust. When users can see what an agent is doing, why it made a decision, and what data informed that decision, they can collaborate effectively.</p><p>Hax approaches transparency through layered disclosure: summaries for quick understanding, detailed reasoning for deep inspection, and full audit logs for compliance and review.</p>',
-        bullets: ['Decision reasoning visible at every interaction point', 'Data provenance and source attribution', 'Confidence indicators and uncertainty signals', 'Layered disclosure (summary \u2192 detail \u2192 raw data)'],
-        asideTitle: 'Transparency Mechanisms',
-        asideDesc: 'Practical transparency implementation:',
-        asideItems: ['Reasoning Trace UI', 'Confidence Score Display', 'Data Source Attribution', 'Decision Timeline View', 'Exportable Audit Reports'],
-        reversed: false,
-      },
-      {
-        label: 'Pattern 02',
-        title: 'Designing for Human Agency',
-        content: '<p>Agency is the cornerstone of human-agent collaboration. When users feel in control, they trust the system. When control is ambiguous or absent, even capable agents become liabilities.</p><p>Hax designs for agency through explicit interaction boundaries, progressive autonomy levels, and always-available intervention points. Users should never wonder \u201cwhat is the agent doing?\u201d or \u201ccan I stop it?\u201d</p>',
-        bullets: ['Clear action previews before agent execution', 'Adjustable autonomy levels (suggest, draft, execute)', 'One-click pause, undo, and rollback capabilities', 'Approval gates for high-impact or irreversible actions'],
-        asideTitle: 'Design Patterns',
-        asideDesc: 'Key patterns that embody the agency principle:',
-        asideItems: ['Action Preview & Confirmation', 'Progressive Autonomy Slider', 'Circuit Breaker Controls', 'Decision Audit Trail', 'Human-in-the-Loop Gates'],
-        reversed: true,
-      },
-      {
-        label: 'Pattern 03',
-        title: 'Building Composable Agent Systems',
-        content: '<p>Enterprise workflows demand agents that can work together without creating tangled, opaque systems. Composability means agents are designed as discrete units with clear inputs, outputs, and boundaries.</p><p>When agents are composable, teams can assemble complex workflows from trusted building blocks, swap components without breaking chains, and debug issues at the individual agent level.</p>',
-        bullets: ['Standardized agent interfaces and data contracts', 'Visual workflow composition with drag-and-drop', 'Independent testing and validation per agent', 'Version management and rollback per component'],
-        asideTitle: 'Architecture Principles',
-        asideDesc: 'How composability shapes system design:',
-        asideItems: ['Single-Responsibility Agents', 'Typed Data Contracts', 'Orchestration Layer Patterns', 'Cascade Prevention Guards', 'Hot-Swap Agent Deployment'],
-        reversed: false,
-      },
-      {
-        label: 'Pattern 04',
-        title: 'Earning and Sustaining Trust',
-        content: "<p>Trust in agentic systems isn\u2019t given \u2014 it\u2019s earned through consistent, predictable behavior. Users need to see that an agent honors boundaries, handles errors gracefully, and escalates when uncertain.</p><p>Progressive trust-building means starting with low-risk actions, demonstrating reliability, and expanding autonomy only as confidence grows. A single unexplained failure can undo months of earned trust.</p>",
-        bullets: ['Progressive trust calibration based on track record', 'Graceful degradation and clear error communication', 'Boundary honoring and scope limitation signals', 'Trust recovery protocols after failures or incidents'],
-        asideTitle: 'Trust Patterns',
-        asideDesc: 'Building and maintaining user trust:',
-        asideItems: ['Progressive Autonomy Escalation', 'Error Recovery & Explanation', 'Scope Boundary Indicators', 'Reliability Track Record UI', 'Trust Reset & Recalibration'],
-        reversed: true,
-      },
-      {
-        label: 'Pattern 05',
-        title: 'Human-Agent Collaboration',
-        content: '<p>The most effective agentic systems position AI as a partner, not a replacement. Collaboration means clear role boundaries, shared context, and fluid handoff between what humans do best and what machines excel at.</p><p>Designing for collaboration requires understanding when agents should lead, when they should assist, and when they should step aside entirely. The interface must make these roles legible at all times.</p>',
-        bullets: ['Clear role assignment and visibility for each task', 'Shared workspace with synchronized context', 'Fluid handoff protocols between human and agent', 'Adaptive assistance that responds to user expertise level'],
-        asideTitle: 'Collaboration Patterns',
-        asideDesc: 'Designing effective human-agent teams:',
-        asideItems: ['Role Assignment Matrix', 'Context Synchronization', 'Handoff Protocol Design', 'Expertise-Adaptive Interfaces', 'Shared Decision Workspace'],
-        reversed: false,
-      },
-    ],
-  };
-
   res.render('hax', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design \u2014 The Human-Agent Experience',
-    pageData,
+  });
+});
+
+app.get('/blog', (_req, res) => {
+  res.render('blog', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design — Blog',
+    blogPosts: fallbackData.blogHub,
+    categories: ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
   });
 });
 

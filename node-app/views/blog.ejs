@@ -1,0 +1,91 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+<%- include('partials/blobs') %>
+
+<!-- Blog Hero -->
+<div class="blog-hero">
+  <div class="container">
+    <h1>Insights &amp; Perspectives</h1>
+    <p>Explore our latest thoughts on design, research, and innovation in the world of product development.</p>
+
+    <div class="blog-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Search articles...">
+    </div>
+
+    <div class="blog-filters">
+      <% categories.forEach(function(cat) { %>
+        <button class="blog-filter"><%= cat %></button>
+      <% }); %>
+    </div>
+  </div>
+</div>
+
+<!-- Blog Grid -->
+<div class="container">
+  <div class="blog-hub-grid">
+    <% blogPosts.forEach(function(post) { %>
+      <a href="<%= post.href || '/blog' %>" class="blog-hub-card" data-tags="<%= (post.tags || []).map(function(t){ return t.toLowerCase().replace(/[\s\/]+/g, '-'); }).join(',') %>">
+        <div class="blog-hub-cover" style="background:<%= post.coverGradient || 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)' %>;">
+          <% if (post.coverImage) { %>
+            <img src="<%= post.coverImage %>" alt="<%= post.title %>">
+          <% } %>
+          <div class="blog-hub-tags">
+            <% (post.tags || []).forEach(function(tag) { %>
+              <span class="blog-hub-tag"><%= tag %></span>
+            <% }); %>
+          </div>
+        </div>
+        <div class="blog-hub-body">
+          <h3><%= post.title %></h3>
+          <p class="blog-hub-desc"><%= post.description %></p>
+          <div class="blog-hub-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <%= post.author %></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> <%= post.date %></span>
+          </div>
+          <div class="blog-hub-footer">
+            <span class="blog-hub-read-time"><%= post.readTime %></span>
+            <span class="blog-hub-read-more">Read more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></span>
+          </div>
+        </div>
+      </a>
+    <% }); %>
+  </div>
+
+  <div class="blog-hub-show-more">
+    <button>Show more</button>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<script>
+(function () {
+    document.querySelectorAll('.blog-filter').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            btn.classList.toggle('is-active');
+            filterCards();
+        });
+    });
+
+    var searchInput = document.querySelector('.blog-search input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function () { filterCards(); });
+    }
+
+    function filterCards() {
+        var activeFilters = [];
+        document.querySelectorAll('.blog-filter.is-active').forEach(function (f) {
+            activeFilters.push(f.textContent.trim().toLowerCase().replace(/[\s\/]+/g, '-'));
+        });
+        var query = (searchInput ? searchInput.value : '').toLowerCase();
+
+        document.querySelectorAll('.blog-hub-card').forEach(function (card) {
+            var tags = (card.getAttribute('data-tags') || '').split(',');
+            var text = card.textContent.toLowerCase();
+            var matchesFilter = activeFilters.length === 0 || activeFilters.some(function (f) { return tags.indexOf(f) !== -1; });
+            var matchesSearch = !query || text.indexOf(query) !== -1;
+            card.style.display = (matchesFilter && matchesSearch) ? '' : 'none';
+        });
+    }
+})();
+</script>

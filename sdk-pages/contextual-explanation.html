@@ -52,7 +52,8 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color
 .doc-header-left { display: flex; align-items: center; gap: 12px; }
 .doc-header-left img { height: 40px; }
 .doc-header-left .doc-separator { width: 1px; height: 24px; background: var(--color-border-medium); }
-.doc-header-left .doc-title { font-size: 1em; font-weight: 500; color: var(--color-text); }
+.doc-header-left .doc-title { font-size: 1em; font-weight: 500; color: var(--color-text); text-decoration: none; }
+.doc-header-left .doc-title:hover { opacity: 0.7; }
 .doc-header-right { display: flex; align-items: center; gap: 16px; }
 .doc-header-right a { font-size: 0.9em; color: var(--color-text-muted); transition: color 0.15s ease; }
 .doc-header-right a:hover { color: var(--color-text); }
@@ -113,9 +114,9 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color
 <header class="doc-header">
   <div class="doc-header-inner">
     <div class="doc-header-left">
-      <a href="../index.html"><img src="../images/outshift_logo.svg" alt="Outshift" class="logo-light"><img src="../images/outshift_logo-white.svg" alt="Outshift" class="logo-dark"></a>
+      <a href="../sdk.html"><img src="../images/outshift_logo.svg" alt="Outshift" class="logo-light"><img src="../images/outshift_logo-white.svg" alt="Outshift" class="logo-dark"></a>
       <div class="doc-separator"></div>
-      <span class="doc-title">HAX SDK</span>
+      <a href="../sdk.html" class="doc-title">HAX SDK</a>
     </div>
     <div class="doc-header-right">
       <a href="../hax.html" class="doc-back-link">&larr; Back to HAX</a>
@@ -156,6 +157,11 @@ a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color
       <a href="chat-commands.html" class="sdk-sidebar-link">Chat Commands</a>
       <a href="file-upload.html" class="sdk-sidebar-link">File Upload</a>
       <a href="rules-context.html" class="sdk-sidebar-link">Rules Context</a>
+    </div>
+    <div class="sdk-sidebar-section">
+      <div class="sdk-sidebar-title">Resources</div>
+      <a href="../styleguide.html" class="sdk-sidebar-link">Style Guide</a>
+      <a href="../components.html" class="sdk-sidebar-link">Strapi Components</a>
     </div>
   </aside>
   <main class="sdk-main">

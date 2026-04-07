@@ -653,6 +653,7 @@ button::before, .cta-button::before {
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
 }
+a.blog-card { color: inherit; text-decoration: none; }
 .blog-card {
     background: var(--color-blog-card-bg);
     border-radius: 16px;
@@ -1155,7 +1156,7 @@ footer {
             </li>
           </ul>
         </li>
-        <li><a href="#blog"><span class="text">Blog</span></a></li>
+        <li><a href="blog.html"><span class="text">Blog</span></a></li>
         <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button></li>
       </ul>
     </nav>
@@ -1284,7 +1285,7 @@ footer {
       <p>Insights, learnings, and stories from our design team.</p>
     </div>
     <div class="blog-cards">
-      <div class="blog-card">
+      <a href="blog.html" class="blog-card">
         <div>
           <h4>The Future of Design Systems</h4>
           <p class="blog-desc">How we built a scalable design system that powers hundreds of products across the enterprise.</p>
@@ -1296,11 +1297,11 @@ footer {
           </div>
           <div class="blog-footer">
             <span>5 min read</span>
-            <a href="#" class="read-more">Read more &rarr;</a>
+            <span class="read-more">Read more &rarr;</span>
           </div>
         </div>
-      </div>
-      <div class="blog-card">
+      </a>
+      <a href="blog.html" class="blog-card">
         <div>
           <h4>Designing for Accessibility</h4>
           <p class="blog-desc">Our approach to creating inclusive experiences that work for everyone.</p>
@@ -1312,11 +1313,11 @@ footer {
           </div>
           <div class="blog-footer">
             <span>5 min read</span>
-            <a href="#" class="read-more">Read more &rarr;</a>
+            <span class="read-more">Read more &rarr;</span>
           </div>
         </div>
-      </div>
-      <div class="blog-card">
+      </a>
+      <a href="blog.html" class="blog-card">
         <div>
           <h4>Remote Collaboration at Scale</h4>
           <p class="blog-desc">Lessons learned from building tools for distributed teams across the globe.</p>
@@ -1328,13 +1329,13 @@ footer {
           </div>
           <div class="blog-footer">
             <span>5 min read</span>
-            <a href="#" class="read-more">Read more &rarr;</a>
+            <span class="read-more">Read more &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
     </div>
     <div class="section-cta" style="text-align:center;">
-      <button style="margin:0 auto;">View All Articles</button>
+      <a href="blog.html" style="margin:0 auto;"><button style="margin:0 auto;">View All Articles</button></a>
     </div>
   </div>
 </div>

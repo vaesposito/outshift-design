@@ -90,7 +90,7 @@
     </div>
     <div class="blog-cards">
       <% blogPosts.forEach(post => { %>
-      <div class="blog-card">
+      <a href="/blog" class="blog-card">
         <div>
           <h4><%= post.title %></h4>
           <p class="blog-desc"><%= post.description %></p>
@@ -102,14 +102,14 @@
           </div>
           <div class="blog-footer">
             <span><%= post.readTime %></span>
-            <a href="#" class="read-more">Read more &rarr;</a>
+            <span class="read-more">Read more &rarr;</span>
           </div>
         </div>
-      </div>
+      </a>
       <% }) %>
     </div>
     <div class="section-cta" style="text-align:center;">
-      <button style="margin:0 auto;">View All Articles</button>
+      <a href="/blog" style="margin:0 auto;"><button style="margin:0 auto;">View All Articles</button></a>
     </div>
   </div>
 </div>
