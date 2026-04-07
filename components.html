@@ -166,6 +166,23 @@ nav > ul > li { position: relative; }
     background: var(--color-hover);
     color: var(--color-text) !important;
 }
+.nav-dropdown-group {
+    padding: 0;
+}
+.nav-dropdown-label {
+    display: block;
+    padding: 10px 20px 4px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+}
+.nav-dropdown-sub {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .external-link-icon {
     display: inline-block;
     width: 12px;
@@ -508,10 +525,15 @@ footer {
         </li>
         <li class="has-dropdown"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
           <ul class="nav-dropdown">
-            <li><a href="foundational-principles.html">Foundational Principles</a></li>
-            <li><a href="#">Cognitive Frameworks</a></li>
-            <li><a href="#">Societal Impact</a></li>
-            <li><a href="#">Security &amp; Privacy</a></li>
+            <li class="nav-dropdown-group">
+              <span class="nav-dropdown-label">Hax</span>
+              <ul class="nav-dropdown-sub">
+                <li><a href="foundational-principles.html">Foundational Principles</a></li>
+                <li><a href="#">Cognitive Frameworks</a></li>
+                <li><a href="#">Societal Impact</a></li>
+                <li><a href="#">Security &amp; Privacy</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li><a href="index.html#blog"><span class="text">Blog</span></a></li>

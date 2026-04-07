@@ -30,10 +30,12 @@ const fallbackData = {
     ]},
     { label: 'About us', href: '/#about', hasDropdown: true },
     { label: 'Research', href: '/research', hasDropdown: true, children: [
-      { label: 'Foundational Principles', href: '/research/foundational-principles' },
-      { label: 'Cognitive Frameworks', href: '#' },
-      { label: 'Societal Impact', href: '#' },
-      { label: 'Security & Privacy', href: '#' },
+      { group: 'Hax', items: [
+        { label: 'Foundational Principles', href: '/research/foundational-principles' },
+        { label: 'Cognitive Frameworks', href: '#' },
+        { label: 'Societal Impact', href: '#' },
+        { label: 'Security & Privacy', href: '#' },
+      ]},
     ]},
     { label: 'Blog', href: '/#blog', hasDropdown: false },
   ],
@@ -51,6 +53,7 @@ const fallbackData = {
       badge: 'AI/ML',
       video: '/videos/cognition.mp4',
       reversed: true,
+      comingSoon: true,
     },
   ],
   researchCards: [
@@ -65,6 +68,7 @@ const fallbackData = {
       description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.',
       image: '/images/cognition-research.png',
       tags: ['Cognitive Systems', 'Future Research', 'Collaboration'],
+      comingSoon: true,
     },
   ],
   blogPosts: [

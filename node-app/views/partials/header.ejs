@@ -23,7 +23,18 @@
           <% if (item.children && item.children.length) { %>
           <ul class="nav-dropdown">
             <% item.children.forEach(child => { %>
-            <li><a href="<%= child.href %>"<% if (child.external) { %> target="_blank" rel="noopener noreferrer"<% } %>><%= child.label %><% if (child.external) { %> <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><% } %></a></li>
+              <% if (child.group) { %>
+              <li class="nav-dropdown-group">
+                <span class="nav-dropdown-label"><%= child.group %></span>
+                <ul class="nav-dropdown-sub">
+                  <% child.items.forEach(sub => { %>
+                  <li><a href="<%= sub.href %>"<% if (sub.external) { %> target="_blank" rel="noopener noreferrer"<% } %>><%= sub.label %><% if (sub.external) { %> <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><% } %></a></li>
+                  <% }) %>
+                </ul>
+              </li>
+              <% } else { %>
+              <li><a href="<%= child.href %>"<% if (child.external) { %> target="_blank" rel="noopener noreferrer"<% } %>><%= child.label %><% if (child.external) { %> <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><% } %></a></li>
+              <% } %>
             <% }) %>
           </ul>
           <% } %>

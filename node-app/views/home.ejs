@@ -30,6 +30,7 @@
   <div class="initiative-card<%= card.reversed ? ' reversed' : '' %>">
     <div class="card-text">
       <h3><%= card.title %></h3>
+      <% if (card.comingSoon) { %><span class="coming-soon-badge">Coming soon</span><% } %>
       <p><%= card.description %></p>
       <a href="#" class="arrow-link" aria-label="Learn more">
         <%- include('partials/arrow-icon') %>
@@ -60,9 +61,13 @@
         <div class="innovation-card-body">
           <div class="innovation-card-title-row">
             <h3><%= card.title %></h3>
+            <% if (card.comingSoon) { %>
+            <span class="coming-soon-badge">Coming soon</span>
+            <% } else { %>
             <a href="#" class="card-arrow" aria-label="Learn more">
               <%- include('partials/arrow-icon') %>
             </a>
+            <% } %>
           </div>
           <p><%= card.description %></p>
           <div class="innovation-tags">

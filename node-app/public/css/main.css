@@ -177,6 +177,17 @@ nav ul {
     background: var(--color-hover);
     color: var(--color-text) !important;
 }
+.nav-dropdown-group { padding: 0; }
+.nav-dropdown-label {
+    display: block;
+    padding: 10px 20px 4px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+}
+.nav-dropdown-sub { list-style: none; padding: 0; margin: 0; }
 .external-link-icon {
     display: inline-block;
     width: 12px;
@@ -404,6 +415,17 @@ button::before, .cta-button::before {
 }
 .innovation-card-title-row .card-arrow:hover { background: var(--color-hover); }
 .innovation-card-title-row .card-arrow svg { width: 16px; height: 16px; }
+.coming-soon-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #46AACE;
+    background: rgba(70, 170, 206, 0.10);
+    border: 1px solid rgba(70, 170, 206, 0.25);
+    margin-bottom: 8px;
+}
 .innovation-card-body p { color: var(--color-text-muted); font-size: 1em; line-height: 1.6; margin: 0 0 24px; }
 .innovation-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .innovation-tags a {
