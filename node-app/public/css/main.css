@@ -805,7 +805,6 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     width: 75%;
     margin: 0 0 40px;
     border-radius: 20px;
-    background: linear-gradient(to right, rgba(41, 114, 255, 0.30), rgba(255, 255, 255, 0));
     z-index: 0;
 }
 .research-card::before {
