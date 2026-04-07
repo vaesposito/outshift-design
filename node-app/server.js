@@ -32,7 +32,7 @@ const fallbackData = {
     { label: 'Research', href: '/research', hasDropdown: true, children: [
       { group: 'Hax', groupHref: '/research', items: [
         { label: 'Foundational Principles', href: '/research/foundational-principles' },
-        { label: 'Cognitive Frameworks', href: '#' },
+        { label: 'Cognitive Frameworks', href: '/research/cognitive-frameworks' },
         { label: 'Societal Impact', href: '#' },
         { label: 'Security & Privacy', href: '#' },
       ]},
@@ -179,7 +179,7 @@ const fallbackResearch = {
   },
   items: [
     { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.', image: '/images/research/foundational-principles.png', href: '/research/foundational-principles' },
-    { title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png' },
+    { title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png', href: '/research/cognitive-frameworks' },
     { title: 'Societal Impact', description: "Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?", image: '/images/research/societal-impact.png' },
     { title: 'Security & Privacy', description: 'As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.', image: '/images/research/security-privacy.png' },
     { title: 'Agent Impact Map', description: "Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.", image: '/images/research/agent-impact.png' },
@@ -283,6 +283,15 @@ app.get('/research/foundational-principles', (_req, res) => {
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Foundational Principles',
     pageData,
+  });
+});
+
+app.get('/research/cognitive-frameworks', (_req, res) => {
+  res.render('cognitive-frameworks', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design — Cognitive Frameworks',
   });
 });
 
