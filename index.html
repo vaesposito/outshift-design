@@ -147,14 +147,23 @@ nav ul {
     gap: 30px;
     align-items: center;
 }
-.nav-dropdown li {
+.nav-dropdown > li {
     display: block;
     width: 100%;
 }
-.nav-dropdown li a {
+.nav-dropdown > li > a {
     display: block;
     width: 100%;
     text-align: left;
+    padding: 10px 20px;
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+.nav-dropdown > li > a:hover {
+    background: var(--color-hover);
+    color: var(--color-text) !important;
 }
 .external-link-icon {
     display: inline-block;
@@ -200,10 +209,6 @@ nav > ul > li { position: relative; }
     opacity: 1;
     visibility: visible;
     transform: scaleY(1);
-}
-.nav-dropdown li a:hover {
-    background: var(--color-hover);
-    color: var(--color-text) !important;
 }
 .nav-dropdown-group {
     padding: 0;
@@ -1206,9 +1211,8 @@ footer {
   <div class="initiative-card reversed">
     <div class="card-text">
       <h3>Internet of Cognition</h3>
-      <span class="coming-soon-badge">Coming soon</span>
       <p>Enabling agents and humans to scale intelligence collectively.</p>
-      <a href="#" class="arrow-link" aria-label="Learn more">
+      <a href="https://outshift.cisco.com/internet-of-cognition/explore" target="_blank" rel="noopener noreferrer" class="arrow-link" aria-label="Learn more">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 12L12 4M12 4H5M12 4V11"/>
         </svg>
@@ -1256,7 +1260,11 @@ footer {
         <div class="innovation-card-body">
           <div class="innovation-card-title-row">
             <h3>Internet of Cognition</h3>
-            <span class="coming-soon-badge">Coming soon</span>
+            <a href="https://outshift.cisco.com/internet-of-cognition/explore" target="_blank" rel="noopener noreferrer" class="card-arrow" aria-label="Learn more">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12L12 4M12 4H5M12 4V11"/>
+              </svg>
+            </a>
           </div>
           <p>Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.</p>
           <div class="innovation-tags">

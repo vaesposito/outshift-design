@@ -148,21 +148,21 @@ nav > ul > li { position: relative; }
     visibility: visible;
     transform: scaleY(1);
 }
-.nav-dropdown li {
+.nav-dropdown > li {
     display: block;
     width: 100%;
 }
-.nav-dropdown li a {
+.nav-dropdown > li > a {
     display: block;
     width: 100%;
     text-align: left;
     padding: 10px 20px;
-    font-size: 0.9em;
     color: var(--color-text-muted);
-    transition: background 0.15s, color 0.15s;
+    font-size: 0.9em;
     white-space: nowrap;
+    transition: background 0.2s;
 }
-.nav-dropdown li a:hover {
+.nav-dropdown > li > a:hover {
     background: var(--color-hover);
     color: var(--color-text) !important;
 }

@@ -53,7 +53,8 @@ const fallbackData = {
       badge: 'AI/ML',
       video: '/videos/cognition.mp4',
       reversed: true,
-      comingSoon: true,
+      href: 'https://outshift.cisco.com/internet-of-cognition/explore',
+      external: true,
     },
   ],
   researchCards: [
@@ -69,7 +70,8 @@ const fallbackData = {
       description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.',
       image: '/images/cognition-research.png',
       tags: ['Cognitive Systems', 'Future Research', 'Collaboration'],
-      comingSoon: true,
+      href: 'https://outshift.cisco.com/internet-of-cognition/explore',
+      external: true,
     },
   ],
   blogPosts: [
