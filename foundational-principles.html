@@ -428,9 +428,13 @@ a:link, a:visited, a:hover, a:active {
     padding: 4px 14px;
     border-radius: 20px;
     font-size: 0.85em;
-    border: 1px solid var(--color-border-medium);
+    border: 1px solid rgba(24, 48, 86, 0.20);
     color: var(--color-text);
-    background: transparent;
+    background: linear-gradient(to right, rgba(26, 193, 229, 0.12) 26%, rgba(255, 255, 255, 0) 88%), rgba(223, 241, 245, 0.60);
+}
+[data-theme="dark"] .case-study-tags span {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(to right, rgba(26, 193, 229, 0.12) 26%, rgba(255, 255, 255, 0) 88%), rgba(30, 60, 80, 0.40);
 }
 .case-study-desc {
     font-size: 1em;
