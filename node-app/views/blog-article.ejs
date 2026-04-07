@@ -94,5 +94,25 @@
             document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         }
     });
+
+    var tocLinks = document.querySelectorAll('.article-toc a');
+    if (tocLinks.length) {
+        tocLinks[0].classList.add('active');
+        var headings = [];
+        tocLinks.forEach(function (link) {
+            var id = link.getAttribute('href').replace('#', '');
+            var el = document.getElementById(id);
+            if (el) headings.push({ el: el, link: link });
+        });
+        window.addEventListener('scroll', function () {
+            var scrollY = window.scrollY + 120;
+            var current = headings[0];
+            headings.forEach(function (h) {
+                if (h.el.offsetTop <= scrollY) current = h;
+            });
+            tocLinks.forEach(function (l) { l.classList.remove('active'); });
+            if (current) current.link.classList.add('active');
+        });
+    }
 })();
 </script>
