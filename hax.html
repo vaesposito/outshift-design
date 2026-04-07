@@ -62,30 +62,33 @@ body {
     line-height: 1.6;
     font-size: 16px;
     overflow-x: hidden;
-    cursor: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 10%; }
+.container { width: 100%; padding: 0 10%; }
 a:link, a:visited { text-decoration: none; color: inherit; }
 
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
+    * { cursor: none !important; }
     .custom-cursor {
+        position: fixed;
+        z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        border-radius: 50%;
-        background: var(--color-text);
-        position: fixed;
-        top: 0; left: 0;
-        pointer-events: none;
-        z-index: 9999;
+        left: var(--cursor-x);
+        top: var(--cursor-y);
+        background: #fff;
+        border-radius: 9999px;
         mix-blend-mode: difference;
-        transform: translate(calc(var(--cursor-x) - var(--cursor-size) / 2), calc(var(--cursor-y) - var(--cursor-size) / 2)) scale(var(--cursor-scale));
-        transition: transform var(--fancy-transition);
-        will-change: transform;
+        transform: translate(-50%, -50%) scale(var(--cursor-scale));
+        pointer-events: none;
+        transition: transform var(--fancy-transition), border-width 0.15s ease-in;
+        border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
+        border-style: solid;
+        border-color: #b4b4b4;
     }
-}
-@media (pointer: coarse) {
-    body { cursor: auto; }
 }
 
 /* ── Header ── */
