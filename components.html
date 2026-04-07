@@ -177,6 +177,10 @@ nav > ul > li { position: relative; }
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-accent);
+    text-decoration: none;
+}
+.nav-dropdown-label:hover {
+    opacity: 0.8;
 }
 .nav-dropdown-sub {
     list-style: none;
@@ -550,7 +554,7 @@ footer {
         <li class="has-dropdown"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
           <ul class="nav-dropdown">
             <li class="nav-dropdown-group">
-              <span class="nav-dropdown-label">Hax</span>
+              <a href="research.html" class="nav-dropdown-label">Hax</a>
               <ul class="nav-dropdown-sub">
                 <li><a href="foundational-principles.html">Foundational Principles</a></li>
                 <li><a href="#">Cognitive Frameworks</a></li>

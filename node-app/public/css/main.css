@@ -186,6 +186,10 @@ nav ul {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-accent);
+    text-decoration: none;
+}
+.nav-dropdown-label:hover {
+    opacity: 0.8;
 }
 .nav-dropdown-sub {
     list-style: none;

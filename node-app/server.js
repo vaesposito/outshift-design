@@ -30,7 +30,7 @@ const fallbackData = {
     ]},
     { label: 'About us', href: '/#about', hasDropdown: true },
     { label: 'Research', href: '/research', hasDropdown: true, children: [
-      { group: 'Hax', items: [
+      { group: 'Hax', groupHref: '/research', items: [
         { label: 'Foundational Principles', href: '/research/foundational-principles' },
         { label: 'Cognitive Frameworks', href: '#' },
         { label: 'Societal Impact', href: '#' },
