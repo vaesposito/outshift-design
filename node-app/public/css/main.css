@@ -515,7 +515,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .research-hero-title h1 { font-size: 2.8em; }
     .research-hero-image img { height: 400px; }
     .research-section-header h2 { font-size: 2.2em; }
-    .research-card { width: 60%; padding: 28px; }
+    .research-card { width: 85%; padding: 28px; }
     .research-card-image { flex: 0 0 160px; }
     .research-card-image img { width: 160px; height: 160px; }
     .sdk-text h2 { font-size: 2em; }
@@ -722,10 +722,10 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     gap: 24px;
     padding: 32px;
     position: relative;
-    width: 58.333%;
+    width: 75%;
     margin: 0 0 40px;
     border-radius: 20px;
-    background: transparent;
+    background: linear-gradient(to right, rgba(41, 114, 255, 0.30), rgba(255, 255, 255, 0));
     z-index: 0;
 }
 .research-card::before {
@@ -932,11 +932,13 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     font-size: 5.5em;
     font-weight: 800;
     line-height: 0.85;
-    color: rgba(0, 188, 235, 0.15);
-    margin: 0;
+    margin: 0 0 -25px;
     font-feature-settings: 'tnum';
+    background: linear-gradient(to bottom, #46AACE, rgba(70, 170, 206, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-[data-theme="dark"] .step-number { color: rgba(63, 198, 238, 0.12); }
 .step-title {
     font-size: 1.4em;
     font-weight: 700;

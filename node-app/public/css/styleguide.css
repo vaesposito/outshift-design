@@ -176,9 +176,9 @@ body { margin: 0; padding: 0; background: var(--color-bg); color: var(--color-te
     gap: 24px;
     padding: 32px;
     border-radius: 20px;
-    background: transparent;
+    background: linear-gradient(to right, rgba(41, 114, 255, 0.30), rgba(255, 255, 255, 0));
     position: relative;
-    max-width: 58.333%;
+    max-width: 75%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .sg-demo-rcard::before {
