@@ -75,15 +75,32 @@
       <p>Real-world applications of our foundational principles in enterprise and research contexts.</p>
     </div>
 
-    <% pageData.caseStudies.forEach(function(cs) { %>
+    <% pageData.caseStudies.forEach(function(cs, i) { %>
     <div class="case-study-card">
+      <p class="case-study-label">Case Study 0<%= i + 1 %></p>
       <h3><%= cs.title %></h3>
-      <p><%= cs.description %></p>
-      <div class="case-study-themes">
-        <% cs.themes.forEach(function(t) { %>
+      <% if (cs.tags && cs.tags.length) { %>
+      <div class="case-study-tags">
+        <% cs.tags.forEach(function(t) { %>
         <span><%= t %></span>
         <% }) %>
       </div>
+      <% } %>
+      <p class="case-study-desc"><%= cs.description %></p>
+      <% if (cs.problem) { %>
+      <div class="case-study-problem">
+        <p class="case-study-problem-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Problem</p>
+        <p><%= cs.problem %></p>
+      </div>
+      <% } %>
+      <% if (cs.principles && cs.principles.length) { %>
+      <p class="case-study-principles-label">Design principles applied</p>
+      <div class="case-study-themes">
+        <% cs.principles.forEach(function(p) { %>
+        <span><%= p %></span>
+        <% }) %>
+      </div>
+      <% } %>
     </div>
     <% }) %>
 

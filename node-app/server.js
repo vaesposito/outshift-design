@@ -241,9 +241,27 @@ app.get('/research/foundational-principles', (_req, res) => {
       { title: 'Update Documentation &amp; Contribute', subtitle: 'Publication', description: 'Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. The library evolves as new research emerges.', bullets: ['Write pattern documentation with rationale and examples', 'Publish to the Hax pattern library', 'Tag with relevant themes for discoverability'], deliverables: ['Published pattern with code samples and usage guidelines', 'Changelog entry and contribution record'] },
     ],
     caseStudies: [
-      { title: 'Agent Trustworthiness: Calibrated Trust Frameworks and Society', description: 'How do users calibrate trust when interacting with autonomous agents? This study examines the cognitive mechanisms behind trust formation and proposes a framework for designing agents that promote appropriate — not blind — reliance.', themes: ['Trust', 'Transparency', 'Calibration', 'Enterprise'] },
-      { title: 'Designing for AI Transparency in Enterprise Agentic Composites', description: 'When multiple agents collaborate within a composite system, understanding who did what — and why — becomes critical. This case study explores transparency design patterns for multi-agent workflows in enterprise settings.', themes: ['Multi-Agent', 'Transparency', 'Audit', 'Explainability'] },
-      { title: 'Multi-Agent Cascades', description: 'When agents trigger other agents, cascading effects can quickly move beyond human oversight. This study maps the interaction patterns of multi-agent cascades and proposes design guardrails to keep humans meaningfully in the loop.', themes: ['Cascades', 'Guardrails', 'Human-in-the-Loop', 'Safety'] },
+      {
+        title: 'Agent Transparency in Change Impact Assessment, Verification and Testing',
+        tags: ['Infrastructure', 'Change management'],
+        description: 'Building transparent AI systems that assess infrastructure changes, verify modifications, conduct automated testing, and manage approval workflows \u2014 all while maintaining clear visibility into agent decision-making and human oversight.',
+        problem: 'Infrastructure changes carry high risk, but manual impact assessment, testing, and approval processes create bottlenecks. Organizations struggle to balance automation speed with safety and accountability, often lacking visibility into what AI agents are actually evaluating and why certain changes get flagged.',
+        principles: ['Traceability', 'Control', 'Clarity'],
+      },
+      {
+        title: 'Designing for AI Transparency in Enterprise Agentic Composites',
+        tags: ['Multi-Agent', 'Enterprise'],
+        description: 'When multiple agents collaborate within a composite system, understanding who did what \u2014 and why \u2014 becomes critical. This case study explores transparency design patterns for multi-agent workflows in enterprise settings.',
+        problem: 'Multi-agent systems create opaque decision chains where audit trails, decision attribution, and user-facing explanations must maintain clarity without overwhelming cognitive load. Users lose trust when they can\'t trace outcomes to specific agents.',
+        principles: ['Transparency', 'Explainability', 'Audit'],
+      },
+      {
+        title: 'Multi-Agent Cascades: Guardrails for Chain Reactions',
+        tags: ['Cascades', 'Safety'],
+        description: 'When agents trigger other agents, cascading effects can quickly move beyond human oversight. This study maps the interaction patterns of multi-agent cascades and proposes design guardrails to keep humans meaningfully in the loop.',
+        problem: 'Cascading agent actions can amplify errors, create unintended consequences, and move beyond human oversight. Without circuit breakers, approval gates, and progressive disclosure, organizations risk losing control over automated workflows.',
+        principles: ['Human-in-the-Loop', 'Guardrails', 'Control'],
+      },
     ],
   };
 
