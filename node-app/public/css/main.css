@@ -139,13 +139,14 @@ nav ul {
     min-width: 200px;
     overflow: hidden;
     opacity: 0;
+    visibility: hidden;
     transform: scaleY(0);
     transform-origin: top;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     box-shadow: 0 6px 24px var(--color-shadow);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -155,6 +156,7 @@ nav ul {
 }
 .has-dropdown.is-active > .nav-dropdown {
     opacity: 1;
+    visibility: visible;
     transform: scaleY(1);
 }
 .nav-dropdown li a {
@@ -559,7 +561,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     header nav ul li { padding: 16px 0; border-bottom: 1px solid var(--color-border); }
     header nav ul li a { font-size: 1.1em; }
     .nav-dropdown {
-        position: static; transform: scaleY(1); opacity: 1;
+        position: static; transform: scaleY(1); opacity: 1; visibility: visible;
         min-width: 0; background: none; border: none; border-radius: 0;
         box-shadow: none; padding: 4px 0 0 16px; overflow: visible;
     }

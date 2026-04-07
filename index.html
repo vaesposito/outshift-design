@@ -175,13 +175,14 @@ nav > ul > li { position: relative; }
     min-width: 200px;
     overflow: hidden;
     opacity: 0;
+    visibility: hidden;
     transform: scaleY(0);
     transform-origin: top;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     box-shadow: 0 6px 24px var(--color-shadow);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -191,6 +192,7 @@ nav > ul > li { position: relative; }
 }
 .has-dropdown.is-active > .nav-dropdown {
     opacity: 1;
+    visibility: visible;
     transform: scaleY(1);
 }
 .nav-dropdown li a {
@@ -865,6 +867,7 @@ footer {
         position: static;
         transform: scaleY(1);
         opacity: 1;
+        visibility: visible;
         min-width: 0;
         background: none;
         border: none;
