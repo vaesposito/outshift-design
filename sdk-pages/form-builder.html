@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+<title>HAX SDK — Form Builder</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script>
+(function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style type="text/css">
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    --cursor-size: 20px;
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-scale: 1;
+    --color-bg: #fff;
+    --color-text: #293247;
+    --color-text-muted: #67707F;
+    --color-text-subtle: #59616B;
+    --color-border: rgba(41, 50, 71, 0.08);
+    --color-border-medium: rgba(41, 50, 71, 0.15);
+    --color-surface: rgba(255, 255, 255, 0.97);
+    --color-hover: rgba(41, 50, 71, 0.04);
+    --color-accent: #00BCEB;
+    --color-accent-hover: #187ADC;
+    --color-shadow: rgba(41, 50, 71, 0.08);
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; color: var(--color-text); }
+}
+[data-theme="dark"] {
+    --color-bg: #0F1117; --color-text: #e0e4ec; --color-text-muted: #9ca3af;
+    --color-text-subtle: #717a87; --color-border: rgba(255,255,255,0.08);
+    --color-border-medium: rgba(255,255,255,0.15); --color-surface: rgba(15,17,23,0.97);
+    --color-hover: rgba(255,255,255,0.06); --color-accent: #3fc6ee;
+    --color-accent-hover: #00BCEB; --color-shadow: rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .logo-light { display: none; }
+[data-theme="dark"] .logo-dark { display: block; }
+.logo-dark { display: none; }
+* { box-sizing: border-box; }
+body { overflow-x: hidden; margin: 0; padding: 0; width: 100%; background: var(--color-bg); color: var(--color-text); }
+a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color-text); }
+
+.doc-header { width: 100%; border-bottom: 1px solid var(--color-border); position: relative; z-index: 10; }
+.doc-header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; }
+.doc-header-left { display: flex; align-items: center; gap: 12px; }
+.doc-header-left img { height: 40px; }
+.doc-header-left .doc-separator { width: 1px; height: 24px; background: var(--color-border-medium); }
+.doc-header-left .doc-title { font-size: 1em; font-weight: 500; color: var(--color-text); }
+.doc-header-right { display: flex; align-items: center; gap: 16px; }
+.doc-header-right a { font-size: 0.9em; color: var(--color-text-muted); transition: color 0.15s ease; }
+.doc-header-right a:hover { color: var(--color-text); }
+.theme-toggle { background: none; border: none; cursor: pointer; padding: 8px; color: var(--color-text); display: flex; align-items: center; }
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+
+@media (pointer: fine) {
+  html.has-custom-cursor, html.has-custom-cursor * { cursor: none !important; }
+  .custom-cursor {
+    position: fixed; top: calc(var(--cursor-y) - var(--cursor-size)/2); left: calc(var(--cursor-x) - var(--cursor-size)/2);
+    width: var(--cursor-size); height: var(--cursor-size); border-radius: 50%; background: var(--color-text);
+    pointer-events: none; z-index: 9999; mix-blend-mode: difference;
+    transform: scale(var(--cursor-scale)); transition: transform 0.15s cubic-bezier(0.25,0.1,0.25,1);
+    will-change: top, left, transform;
+  }
+}
+
+.sdk-layout { display: flex; min-height: calc(100vh - 120px); }
+.sdk-sidebar { width: 300px; min-width: 300px; border-right: 1px solid var(--color-border); padding: 32px 24px 32px 48px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.sdk-sidebar-section { margin-bottom: 24px; }
+.sdk-sidebar-title { font-size: 0.85em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); margin: 0 0 10px; padding: 8px 0; }
+.sdk-sidebar-link { display: block; padding: 7px 12px; font-size: 0.95em; color: var(--color-text-muted); border-radius: 6px; transition: all 0.15s ease; }
+.sdk-sidebar-link:hover { background: var(--color-hover); color: var(--color-text); }
+.sdk-sidebar-link.is-active { background: rgba(0,188,235,0.1); color: var(--color-accent); font-weight: 500; }
+
+.sdk-main { flex: 1; padding: 48px 10% 80px 48px; max-width: calc(100% - 300px); }
+.sdk-main h1 { font-size: 2.4em; font-weight: 200; margin: 0 0 24px; letter-spacing: -0.02em; }
+.sdk-main h2 { font-size: 1.5em; font-weight: 400; margin: 40px 0 16px; }
+.sdk-main h3 { font-size: 1.2em; font-weight: 500; margin: 32px 0 12px; }
+.sdk-main p, .sdk-main li { font-size: 1.05em; line-height: 1.7; color: var(--color-text-muted); margin: 0 0 16px; max-width: 720px; }
+.sdk-main ul { padding-left: 24px; }
+.sdk-main pre { background: var(--color-hover); border: 1px solid var(--color-border); border-radius: 8px; padding: 16px 20px; overflow-x: auto; margin: 0 0 24px; max-width: 720px; }
+.sdk-main code { font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 0.9em; }
+.sdk-main p code { background: var(--color-hover); padding: 2px 6px; border-radius: 4px; }
+.preview-image { margin: 24px 0 32px; max-width: 720px; }
+.preview-image img { width: 100%; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 4px 24px var(--color-shadow); }
+.coming-soon { display: inline-block; background: var(--color-hover); border: 1px solid var(--color-border); border-radius: 8px; padding: 12px 24px; font-size: 0.95em; color: var(--color-text-muted); margin: 24px 0; }
+
+.doc-footer { border-top: 1px solid var(--color-border); padding: 20px 48px; font-size: 0.8em; color: var(--color-text-subtle); display: flex; justify-content: space-between; align-items: center; }
+.doc-footer a { color: var(--color-text-muted); }
+.doc-footer a:hover { color: var(--color-text); }
+
+@media (max-width: 768px) {
+    .doc-header-inner { padding: 12px 20px; }
+    .doc-header-right a.doc-back-link { display: none; }
+    .sdk-layout { flex-direction: column; }
+    .sdk-sidebar { width: 100%; min-width: unset; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--color-border); padding: 24px 20px; display: flex; flex-wrap: wrap; gap: 8px 32px; }
+    .sdk-sidebar-section { margin-bottom: 0; }
+    .sdk-main { max-width: 100%; padding: 32px 20px; }
+    .doc-footer { padding: 16px 20px; flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <div class="doc-header-left">
+      <a href="../index.html"><img src="../images/outshift_logo.svg" alt="Outshift" class="logo-light"><img src="../images/outshift_logo-white.svg" alt="Outshift" class="logo-dark"></a>
+      <div class="doc-separator"></div>
+      <span class="doc-title">HAX SDK</span>
+    </div>
+    <div class="doc-header-right">
+      <a href="../hax.html" class="doc-back-link">&larr; Back to HAX</a>
+      <button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="sdk-layout">
+  <aside class="sdk-sidebar">
+    <div class="sdk-sidebar-section">
+      <div class="sdk-sidebar-title">SDK</div>
+      <a href="../sdk.html" class="sdk-sidebar-link">Introduction</a>
+      <a href="sdk-pages/installation.html" class="sdk-sidebar-link">Installation</a>
+      <a href="sdk-pages/custom-repositories.html" class="sdk-sidebar-link">Custom Repositories</a>
+    </div>
+    <div class="sdk-sidebar-section">
+      <div class="sdk-sidebar-title">Components</div>
+      <a href="sdk-pages/source-attribution.html" class="sdk-sidebar-link">Source Attribution</a>
+      <a href="sdk-pages/timeline.html" class="sdk-sidebar-link">Timeline</a>
+      <a href="sdk-pages/details-dashboard.html" class="sdk-sidebar-link">Details Dashboard</a>
+      <a href="sdk-pages/data-visualizer.html" class="sdk-sidebar-link">Data Visualizer</a>
+      <a href="sdk-pages/mindmap.html" class="sdk-sidebar-link">Mindmap</a>
+      <a href="sdk-pages/form-builder.html" class="sdk-sidebar-link is-active">Form Builder</a>
+      <a href="sdk-pages/code-editor.html" class="sdk-sidebar-link">Code Editor</a>
+      <a href="sdk-pages/inline-rationale.html" class="sdk-sidebar-link">Inline Rationale</a>
+      <a href="sdk-pages/capability-manifest.html" class="sdk-sidebar-link">Capability Manifest</a>
+      <a href="sdk-pages/workshop-card.html" class="sdk-sidebar-link">Workshop Card</a>
+      <a href="sdk-pages/contextual-explanation.html" class="sdk-sidebar-link">Contextual Explanation</a>
+      <a href="sdk-pages/findings.html" class="sdk-sidebar-link">Findings</a>
+      <a href="sdk-pages/diagnostic-report.html" class="sdk-sidebar-link">Diagnostic Report</a>
+      <a href="sdk-pages/rich-text-editor.html" class="sdk-sidebar-link">Rich Text Editor</a>
+      <a href="sdk-pages/co-editing-interface.html" class="sdk-sidebar-link">Co-Editing Interface</a>
+      <a href="sdk-pages/thinking-process.html" class="sdk-sidebar-link">Thinking Process</a>
+    </div>
+    <div class="sdk-sidebar-section">
+      <div class="sdk-sidebar-title">Add Ons</div>
+      <a href="sdk-pages/chat-commands.html" class="sdk-sidebar-link">Chat Commands</a>
+      <a href="sdk-pages/file-upload.html" class="sdk-sidebar-link">File Upload</a>
+      <a href="sdk-pages/rules-context.html" class="sdk-sidebar-link">Rules Context</a>
+    </div>
+  </aside>
+  <main class="sdk-main">
+    <h1>Form Builder</h1>
+    <p>A dynamic form component with validation, multiple field types, and user-friendly interfaces. Perfect for registration, settings, surveys, and structured data entry.</p>
+    <div class="preview-image"><img src="https://hax-design-prod-s3.s3.us-east-2.amazonaws.com/v4_sdk_form_builder_3c605a1fae.png" alt="Form Builder Preview"></div>
+    <h2>Installation</h2>
+    <pre><code>hax init
+hax add artifact form</code></pre>
+    <h2>Component Setup</h2>
+    <pre><code>import { HAXForm, useFormAction } from "@/hax/artifacts/form";
+
+export function RegistrationPage() {
+  const [artifacts, setArtifacts] = useState([]);
+
+  useFormAction({
+    addOrUpdateArtifact: (type, data) =&gt; {
+      // Handle form updates
+    }
+  });
+
+  return (
+    &lt;HAXForm
+      title="User Registration"
+      fields={formFields}
+      onFormSubmit={handleFormSubmit}
+    /&gt;
+  );
+}</code></pre>
+  </main>
+</div>
+
+<footer class="doc-footer">
+  <span>&copy; 2026 Outshift. All rights reserved.</span>
+  <a href="../hax.html">outshift.design</a>
+</footer>
+
+<script>
+(function () {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+    document.querySelector('.theme-toggle').addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+    if (window.matchMedia('(pointer: fine)').matches) {
+        document.documentElement.classList.add('has-custom-cursor');
+        var c = document.createElement('div'); c.className = 'custom-cursor'; document.body.appendChild(c);
+        var s = 'a[href]:not([disabled]), button:not([disabled]), [role="button"]';
+        document.addEventListener('mousemove', function (e) {
+            var i = !!e.target.closest(s);
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', i ? 2 : 1);
+        });
+        document.addEventListener('mouseout', function () { document.documentElement.style.setProperty('--cursor-scale', 0); });
+    }
+})();
+</script>
+</body>
+</html>
