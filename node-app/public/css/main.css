@@ -894,7 +894,10 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 .pipeline-section {
     position: relative;
     z-index: 1;
-    padding: 60px 0 40px;
+    padding: 80px 0;
+    background: var(--color-bg);
+    border: 1px solid transparent;
+    border-image: linear-gradient(to right, rgba(77, 99, 128, 0.21) 50%, rgba(167, 146, 99, 0.41) 100%) 1;
 }
 .pipeline-header {
     text-align: center;
