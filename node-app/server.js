@@ -46,6 +46,7 @@ const fallbackData = {
       badge: 'SDK',
       video: '/videos/agents.mp4',
       reversed: false,
+      href: '/hax',
     },
     {
       title: 'Internet of Cognition',
