@@ -40,16 +40,16 @@
 <div class="research-cards">
   <div class="container">
     <% researchItems.forEach(function(item) { %>
-    <div class="research-card">
+    <a href="<%= item.href || '#' %>" class="research-card">
       <div class="research-card-image">
         <img src="<%= item.image %>" alt="<%= item.title %>">
       </div>
       <div class="research-card-text">
         <h3><%= item.title %></h3>
         <p><%= item.description %></p>
-        <a href="#" class="read-more">Read more &rarr;</a>
+        <span class="read-more">Read more &rarr;</span>
       </div>
-    </div>
+    </a>
     <% }) %>
   </div>
 </div>
