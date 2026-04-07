@@ -636,6 +636,12 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     var tocLinks = document.querySelectorAll('.article-toc a');
     if (tocLinks.length) {
         tocLinks[0].classList.add('active');
+        tocLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                tocLinks.forEach(function (l) { l.classList.remove('active'); });
+                link.classList.add('active');
+            });
+        });
         var headings = [];
         tocLinks.forEach(function (link) {
             var id = link.getAttribute('href').replace('#', '');
