@@ -2,6 +2,9 @@
 <%- include('partials/header') %>
 <%- include('partials/blobs') %>
 
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="readingProgress"></div>
+
 <!-- Article Cover -->
 <div class="article-cover-wrap">
   <div class="article-cover">
@@ -94,6 +97,14 @@
             document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         }
     });
+
+    var progressBar = document.getElementById('readingProgress');
+    if (progressBar) {
+        window.addEventListener('scroll', function () {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        });
+    }
 
     var tocLinks = document.querySelectorAll('.article-toc a');
     if (tocLinks.length) {

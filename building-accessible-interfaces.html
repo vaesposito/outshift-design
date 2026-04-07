@@ -118,6 +118,18 @@ nav > ul > li { position: relative; }
 .custom-cursor { position: fixed; top: var(--cursor-y); left: var(--cursor-x); width: var(--cursor-size); height: var(--cursor-size); border-radius: 9999px; background: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%) scale(var(--cursor-scale)); transition: transform var(--fancy-transition), border-width 0.15s ease-in; border: 0 solid #b4b4b4; }
 .custom-cursor[data-hover="true"] { border-width: 5px; }
 
+/* ── Reading Progress Bar ── */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #00BCEB, #187ADC);
+    z-index: 100;
+    transition: width 0.1s linear;
+}
+
 /* ── Article Cover ── */
 .article-cover-wrap {
     max-width: 900px;
@@ -436,6 +448,9 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
   </div>
 </header>
 
+<!-- Reading Progress Bar -->
+<div class="reading-progress" id="readingProgress"></div>
+
 <!-- Animated Blobs -->
 <div class="blobs-container">
   <div class="blob blob-1"></div>
@@ -600,6 +615,14 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
             document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         }
     });
+
+    var progressBar = document.getElementById('readingProgress');
+    if (progressBar) {
+        window.addEventListener('scroll', function () {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        });
+    }
 
     var tocLinks = document.querySelectorAll('.article-toc a');
     if (tocLinks.length) {

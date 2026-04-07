@@ -543,6 +543,9 @@ a.blog-hub-card { color: inherit; text-decoration: none; }
 .blog-hub-show-more button { position: relative; display: inline-flex; padding: 14px 32px; justify-content: center; align-items: center; border-radius: 40px; font-size: 1em; font-weight: 500; background: transparent; color: var(--color-text); border: none; cursor: pointer; z-index: 0; font-family: inherit; }
 .blog-hub-show-more button::before { content: ''; position: absolute; inset: 0; border-radius: 40px; padding: 1.5px; background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
 
+/* Reading Progress Bar */
+.reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #00BCEB, #187ADC); z-index: 100; transition: width 0.1s linear; }
+
 /* Article Page */
 .article-cover-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; position: relative; z-index: 1; }
 .article-cover { display: flex; height: 523px; padding: 0 1.785px 0 0.215px; justify-content: center; align-items: center; flex-shrink: 0; align-self: stretch; overflow: hidden; border-radius: 16px; }
