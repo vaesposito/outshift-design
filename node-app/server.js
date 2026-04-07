@@ -70,8 +70,7 @@ const fallbackData = {
       description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.',
       image: '/images/cognition-research.png',
       tags: ['Cognitive Systems', 'Future Research', 'Collaboration'],
-      href: 'https://outshift.cisco.com/internet-of-cognition/explore',
-      external: true,
+      comingSoon: true,
     },
   ],
   blogPosts: [
