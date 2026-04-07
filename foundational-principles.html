@@ -626,6 +626,38 @@ button::before {
     pointer-events: none;
 }
 
+/* ── SDK CTA Pill ── */
+.sdk-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--color-text);
+    background: transparent;
+    border: none;
+    position: relative;
+    z-index: 0;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+.sdk-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 1.5px;
+    background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.sdk-cta:hover { transform: scale(1.03); }
+.sdk-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+
 /* ── Footer ── */
 footer {
     position: relative;
@@ -1054,7 +1086,7 @@ footer {
       <div class="sdk-text">
         <h2>Build with the Hax SDK</h2>
         <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer"><button>Explore the SDK</button></a>
+        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
         <img src="images/research/sdk-hero.png" alt="Hax SDK">
