@@ -497,7 +497,7 @@ button::before, .cta-button::before {
 .blog-meta span { display: inline-flex; align-items: center; gap: 5px; }
 .blog-meta svg { width: 14px; height: 14px; }
 .blog-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85em; color: var(--color-text-subtle); }
-.blog-footer .read-more { color: var(--color-accent); font-weight: 600; font-size: 0.9em; display: inline-flex; align-items: center; gap: 4px; }
+.blog-footer .read-more { color: #1BCDFF; font-weight: 600; font-size: 0.9em; display: inline-flex; align-items: center; gap: 4px; }
 .blog-footer .read-more:hover { color: var(--color-accent-hover); }
 .blog-section .section-cta { text-align: center; margin-top: 48px; }
 
@@ -863,7 +863,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     margin: 0 0 16px;
 }
 .read-more {
-    color: var(--color-accent);
+    color: #1BCDFF;
     font-weight: 600;
     font-size: 0.9em;
     display: inline-flex;
