@@ -1,0 +1,74 @@
+site_name: HAX SDK
+site_description: The Human-Agent Experience SDK Documentation
+site_url: https://vaesposito.github.io/outshift-design/hax-sdk-docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+    - search.highlight
+    - search.suggest
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+
+nav:
+  - Introduction: index.md
+  - Installation: installation.md
+  - Custom Repositories: custom-repositories.md
+  - Components:
+    - Source Attribution: components/source-attribution.md
+    - Timeline: components/timeline.md
+    - Details Dashboard: components/details-dashboard.md
+    - Data Visualizer: components/data-visualizer.md
+    - Mindmap: components/mindmap.md
+    - Form Builder: components/form-builder.md
+    - Code Editor: components/code-editor.md
+    - Inline Rationale: components/inline-rationale.md
+    - Capability Manifest: components/capability-manifest.md
+    - Workshop Card: components/workshop-card.md
+    - Contextual Explanation: components/contextual-explanation.md
+    - Findings: components/findings.md
+    - Diagnostic Report: components/diagnostic-report.md
+    - Rich Text Editor: components/rich-text-editor.md
+    - Co-Editing Interface: components/co-editing-interface.md
+    - Thinking Process: components/thinking-process.md
+  - Add Ons:
+    - Chat Commands: add-ons/chat-commands.md
+    - File Upload: add-ons/file-upload.md
+    - Rules Context: add-ons/rules-context.md
