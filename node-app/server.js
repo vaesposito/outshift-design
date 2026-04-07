@@ -354,6 +354,7 @@ const articleData = {
       <li><strong>Screen reader testing</strong> — Verify content is announced correctly.</li>
       <li><strong>User testing</strong> — Include people with disabilities in your user research.</li>
     </ol>
+    <hr class="article-divider">
     <h2 id="building-culture">Building a Culture of Accessibility</h2>
     <p>At Outshift, we embed accessibility into every stage of the design and development process. When everyone on the team understands and values accessibility, it naturally becomes part of how we build products.</p>
     <p>The journey toward fully accessible interfaces is ongoing, but every improvement matters. Start where you are, use the tools and techniques available, and keep learning.</p>`,
@@ -376,6 +377,7 @@ const articleData = {
     <p>As the design system grew, we implemented governance processes to maintain quality and consistency. We created a core team responsible for the system's evolution, while empowering product teams to contribute improvements and new components. Regular design system office hours and a dedicated Slack channel fostered community and collaboration.</p>
     <h2 id="measuring-success">Measuring Success</h2>
     <p>We track key metrics to understand the design system's impact: adoption rates across products, time saved in design and development, and consistency scores across our product portfolio. These metrics help us prioritize improvements and demonstrate value to stakeholders.</p>
+    <hr class="article-divider">
     <h2 id="conclusion">Conclusion</h2>
     <p>Building a design system is an ongoing journey, not a destination. As our products evolve and new technologies emerge, our design system must evolve with them. The key is maintaining a balance between consistency and flexibility, always keeping the end user experience at the center of every decision.</p>`,
   },
