@@ -25,7 +25,7 @@ async function fetchStrapi(endpoint) {
 const fallbackData = {
   nav: [
     { label: 'Initiatives', href: '/#initiatives', hasDropdown: true, children: [
-      { label: 'The Human-Agent Experience', href: '/#initiatives' },
+      { label: 'The Human-Agent Experience', href: '/hax' },
       { label: 'Internet of Cognition', href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
     ]},
     { label: 'About us', href: '/#about', hasDropdown: true },
@@ -280,6 +280,71 @@ app.get('/research/foundational-principles', (_req, res) => {
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Foundational Principles',
+    pageData,
+  });
+});
+
+app.get('/hax', (_req, res) => {
+  const pageData = {
+    title: 'The Human-Agent Experience',
+    description: 'Hax is our design framework for building human-agent collaboration that is intuitive, transparent, and trustworthy. It provides the principles, patterns, and tools that ensure AI agents work with people \u2014 not in place of them \u2014 across enterprise workflows.',
+    heroImage: '/images/hax-research.png',
+    pillars: [
+      {
+        icon: 'clock',
+        title: 'Agency',
+        description: 'Users must always retain meaningful control over agent behavior. Agency means the ability to understand, direct, pause, and override agent actions at every stage of a workflow.',
+      },
+      {
+        icon: 'grid',
+        title: 'Composability',
+        description: 'Agents should be designed as modular, interoperable building blocks. Composability ensures that complex multi-agent workflows remain structured, debuggable, and adaptable to changing needs.',
+      },
+      {
+        icon: 'eye',
+        title: 'Transparency',
+        description: 'Every agent action, decision, and data flow should be observable and explainable. Transparency builds trust by making agent reasoning visible and auditable at every level.',
+      },
+    ],
+    details: [
+      {
+        label: 'Pillar 01',
+        title: 'Designing for Human Agency',
+        content: '<p>Agency is the cornerstone of human-agent collaboration. When users feel in control, they trust the system. When control is ambiguous or absent, even capable agents become liabilities.</p><p>Hax designs for agency through explicit interaction boundaries, progressive autonomy levels, and always-available intervention points. Users should never wonder "what is the agent doing?" or "can I stop it?"</p>',
+        bullets: ['Clear action previews before agent execution', 'Adjustable autonomy levels (suggest, draft, execute)', 'One-click pause, undo, and rollback capabilities', 'Approval gates for high-impact or irreversible actions'],
+        asideTitle: 'Design Patterns',
+        asideDesc: 'Key patterns that embody the agency principle:',
+        asideItems: ['Action Preview & Confirmation', 'Progressive Autonomy Slider', 'Circuit Breaker Controls', 'Decision Audit Trail', 'Human-in-the-Loop Gates'],
+        reversed: false,
+      },
+      {
+        label: 'Pillar 02',
+        title: 'Building Composable Agent Systems',
+        content: '<p>Enterprise workflows demand agents that can work together without creating tangled, opaque systems. Composability means agents are designed as discrete units with clear inputs, outputs, and boundaries.</p><p>When agents are composable, teams can assemble complex workflows from trusted building blocks, swap components without breaking chains, and debug issues at the individual agent level.</p>',
+        bullets: ['Standardized agent interfaces and data contracts', 'Visual workflow composition with drag-and-drop', 'Independent testing and validation per agent', 'Version management and rollback per component'],
+        asideTitle: 'Architecture Principles',
+        asideDesc: 'How composability shapes system design:',
+        asideItems: ['Single-Responsibility Agents', 'Typed Data Contracts', 'Orchestration Layer Patterns', 'Cascade Prevention Guards', 'Hot-Swap Agent Deployment'],
+        reversed: true,
+      },
+      {
+        label: 'Pillar 03',
+        title: 'Making Agent Behavior Transparent',
+        content: '<p>Transparency is the bridge between agent capability and human trust. When users can see what an agent is doing, why it made a decision, and what data informed that decision, they can collaborate effectively.</p><p>Hax approaches transparency through layered disclosure: summaries for quick understanding, detailed reasoning for deep inspection, and full audit logs for compliance and review.</p>',
+        bullets: ['Decision reasoning visible at every interaction point', 'Data provenance and source attribution', 'Confidence indicators and uncertainty signals', 'Layered disclosure (summary \u2192 detail \u2192 raw data)'],
+        asideTitle: 'Transparency Mechanisms',
+        asideDesc: 'Practical transparency implementation:',
+        asideItems: ['Reasoning Trace UI', 'Confidence Score Display', 'Data Source Attribution', 'Decision Timeline View', 'Exportable Audit Reports'],
+        reversed: false,
+      },
+    ],
+  };
+
+  res.render('hax', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design \u2014 The Human-Agent Experience',
     pageData,
   });
 });

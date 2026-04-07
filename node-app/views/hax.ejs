@@ -1,0 +1,96 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+<%- include('partials/blobs') %>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/#initiatives">Initiatives</a> <span>/</span> Hax
+    </div>
+    <div class="page-hero-title">
+      <h1><%= pageData.title %></h1>
+    </div>
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <p><%= pageData.description %></p>
+      </div>
+      <div class="page-hero-image">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.title %>">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Three Pillars -->
+<div class="pillars-section">
+  <div class="container">
+    <div class="pillars-header">
+      <h2>Agency, Composability &amp; Transparency</h2>
+      <p>Three foundational pillars that guide every design decision in the Hax framework, ensuring agents augment human capabilities rather than obscure them.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <% pageData.pillars.forEach(pillar => { %>
+      <div class="pillar-card">
+        <% if (pillar.icon === 'clock') { %>
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <% } else if (pillar.icon === 'grid') { %>
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <% } else if (pillar.icon === 'eye') { %>
+        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <% } %>
+        <h3><%= pillar.title %></h3>
+        <p><%= pillar.description %></p>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<!-- Detail Sections -->
+<% pageData.details.forEach(detail => { %>
+<div class="detail-section">
+  <div class="container">
+    <div class="detail-inner<%= detail.reversed ? ' reversed' : '' %>">
+      <div class="detail-content">
+        <div class="detail-label"><%= detail.label %></div>
+        <h2><%= detail.title %></h2>
+        <%- detail.content %>
+        <ul>
+          <% detail.bullets.forEach(bullet => { %>
+          <li><%= bullet %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="detail-aside">
+        <h4><%= detail.asideTitle %></h4>
+        <p><%= detail.asideDesc %></p>
+        <ul>
+          <% detail.asideItems.forEach(item => { %>
+          <li><%= item %></li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% }) %>
+
+<!-- Build with SDK -->
+<div class="sdk-section">
+  <div class="container">
+    <div class="sdk-inner">
+      <div class="sdk-text">
+        <h2>Build with the Hax SDK</h2>
+        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
+        <a href="#" class="cta-button">Explore the SDK</a>
+      </div>
+      <div class="sdk-image">
+        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
