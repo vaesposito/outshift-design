@@ -199,7 +199,8 @@ nav > ul > li { position: relative; }
 
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
-    * { cursor: none !important; }
+    html.has-custom-cursor,
+    html.has-custom-cursor * { cursor: none !important; }
     .custom-cursor {
         position: fixed;
         z-index: 9999;
@@ -930,16 +931,16 @@ footer {
     });
 
     if (window.matchMedia('(pointer: fine)').matches) {
+        document.documentElement.classList.add('has-custom-cursor');
         var customCursor = document.createElement('div');
         customCursor.className = 'custom-cursor';
         document.body.appendChild(customCursor);
-        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
+        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled]), [role="button"]';
         document.addEventListener('mousemove', function (e) {
-            var isInteractive = !!e.target.closest(interactiveSelector) || getComputedStyle(e.target).cursor === 'pointer';
-            var cursorScale = isInteractive ? 2 : 1;
+            var isInteractive = !!e.target.closest(interactiveSelector);
             document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
             document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', cursorScale);
+            document.documentElement.style.setProperty('--cursor-scale', isInteractive ? 2 : 1);
         });
         document.addEventListener('mouseout', function () {
             document.documentElement.style.setProperty('--cursor-scale', 0);
