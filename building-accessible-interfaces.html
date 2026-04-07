@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<title>Building Accessible Interfaces: A Practical Guide — Outshift Design</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script>
+(function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style type="text/css">
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    --cursor-size: 20px;
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-scale: 1;
+    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+
+    --color-bg: #fff;
+    --color-text: #293247;
+    --color-text-muted: #67707F;
+    --color-text-subtle: #59616B;
+    --color-border: rgba(41, 50, 71, 0.08);
+    --color-border-medium: rgba(41, 50, 71, 0.15);
+    --color-surface: rgba(255, 255, 255, 0.97);
+    --color-hover: rgba(41, 50, 71, 0.04);
+    --color-accent: #00BCEB;
+    --color-accent-hover: #187ADC;
+    --color-hamburger: #293247;
+    --color-shadow: rgba(41, 50, 71, 0.08);
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+    color: var(--color-text);
+  }
+}
+
+[data-theme="dark"] {
+    --color-bg: #0f1117;
+    --color-text: #e0e4ec;
+    --color-text-muted: #9ca3b0;
+    --color-text-subtle: #8a919c;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-medium: rgba(255, 255, 255, 0.15);
+    --color-surface: rgba(15, 17, 23, 0.97);
+    --color-hover: rgba(255, 255, 255, 0.06);
+    --color-accent: #3fc6ee;
+    --color-accent-hover: #00BCEB;
+    --color-hamburger: #e0e4ec;
+    --color-shadow: rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .logo-light,
+[data-theme="dark"] .footer-logo .logo-light { display: none; }
+[data-theme="dark"] .logo-dark,
+[data-theme="dark"] .footer-logo .logo-dark { display: block; }
+.logo-dark,
+.footer-logo .logo-dark { display: none; }
+
+* { box-sizing: border-box; }
+.container { width: 100%; padding: 0 10%; }
+body { overflow-x: hidden; margin: 0; padding: 0; width: 100%; background: var(--color-bg); color: var(--color-text); }
+a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color-text); }
+
+/* ── Header ── */
+header { padding: 1% 0; width: 100%; border-bottom: 1px solid var(--color-border); display: flex; position: relative; z-index: 10; }
+.design { font-size: 1.8em; font-weight: 200; margin-left: 8px; }
+.logo { display: flex; align-items: center; }
+.logo, nav ul, header .container { display: flex; justify-content: space-between; align-items: center; }
+nav ul { list-style: none; gap: 30px; }
+nav > ul > li { position: relative; }
+.has-dropdown { position: relative; }
+.nav-dropdown { position: absolute; top: calc(100% + 0.5rem); left: 0; z-index: 20; min-width: 200px; overflow: hidden; opacity: 0; visibility: hidden; transform: scaleY(0); transform-origin: top; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; box-shadow: 0 6px 24px var(--color-shadow); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.has-dropdown.is-active > .nav-dropdown { opacity: 1; visibility: visible; transform: scaleY(1); }
+.nav-dropdown > li { display: block; width: 100%; }
+.nav-dropdown > li > a { display: block; width: 100%; text-align: left; padding: 10px 20px; color: var(--color-text-muted); font-size: 0.9em; white-space: nowrap; transition: background 0.2s; }
+.nav-dropdown > li > a:hover { background: var(--color-hover); color: var(--color-text) !important; }
+.nav-dropdown-group { padding: 0; }
+.nav-dropdown-label { display: flex; align-items: center; gap: 6px; padding: 10px 20px; font-size: 0.95em; font-weight: 600; color: var(--color-text); text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+.nav-dropdown-label::after { content: '\2192'; font-size: 0.85em; opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translateX(-4px); }
+.nav-dropdown-label:hover { background: var(--color-hover); }
+.nav-dropdown-label:hover::after { opacity: 1; transform: translateX(0); }
+.nav-dropdown-sub { list-style: none; padding: 0; margin: 0 12px 8px 20px; display: flex; flex-direction: column; gap: 0; border-left: 2px solid var(--color-border); }
+.nav-dropdown-sub li { display: block; width: 100%; }
+.nav-dropdown-sub li a { display: block; width: 100%; text-align: left; padding: 6px 16px; color: var(--color-text-muted); font-size: 0.85em; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.nav-dropdown-sub li a:hover { background: var(--color-hover); color: var(--color-text) !important; }
+.external-link-icon { display: inline-block; width: 12px; height: 12px; margin-left: 4px; vertical-align: middle; opacity: 0.5; }
+.text, .icon { display: inline-block; vertical-align: middle; }
+.icon { margin-top: 2px; }
+
+.theme-toggle { display: inline-flex; padding: 6px; border-radius: 8px; background: none; border: none; color: var(--color-text); cursor: pointer; transition: background 0.2s; flex-direction: row; z-index: 0; }
+.theme-toggle::before { content: none; }
+.theme-toggle:hover { background: var(--color-hover); }
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+/* ── Menu Toggle ── */
+.menu-toggle { display: none; flex-direction: column; gap: 5px; padding: 10px; background: none; border: none; cursor: pointer; z-index: 11; }
+.menu-toggle::before { content: none; }
+.menu-toggle span { width: 24px; height: 2px; background: var(--color-hamburger); transition: transform 0.3s, opacity 0.3s; }
+
+/* ── Blobs ── */
+.blob { position: absolute; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; opacity: 1; }
+.blob-1 { background-image: url('images/round-violet.svg'); top: -10%; left: 10%; animation: move1 10s infinite alternate ease-in-out; }
+.blob-2 { background-image: url('images/round-orange.svg'); top: 20%; right: 10%; animation: move2 15s infinite alternate ease-in-out; }
+.blob-3 { background-image: url('images/round-blue.svg'); bottom: 10%; left: 30%; animation: move3 8s infinite alternate ease-in-out; }
+@keyframes move1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(20%, 50%) scale(1.1); } }
+@keyframes move2 { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(-30%, 30%) rotate(90deg); } }
+@keyframes move3 { from { transform: translate(0, 0); } to { transform: translate(50%, -30%); } }
+.blobs-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; pointer-events: none; }
+
+/* ── Custom Cursor ── */
+.custom-cursor { position: fixed; top: var(--cursor-y); left: var(--cursor-x); width: var(--cursor-size); height: var(--cursor-size); border-radius: 9999px; background: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%) scale(var(--cursor-scale)); transition: transform var(--fancy-transition), border-width 0.15s ease-in; border: 0 solid #b4b4b4; }
+.custom-cursor[data-hover="true"] { border-width: 5px; }
+
+/* ── Article Layout ── */
+.article-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    margin-bottom: 32px;
+    transition: color 0.2s;
+}
+.article-back:hover { color: var(--color-text); }
+.article-back svg { width: 16px; height: 16px; }
+
+.article-cover {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    aspect-ratio: 16 / 9;
+}
+.article-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.article-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+.article-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 23px;
+    gap: 10px;
+    border-radius: 13px;
+    border: 1px solid rgba(79, 98, 141, 0.20);
+    background: linear-gradient(139deg, rgba(210, 194, 255, 0.15) 27.78%, rgba(255, 255, 255, 0.00) 86.28%), rgba(255, 255, 255, 0.40);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--color-text);
+    box-shadow: 0 6.593px 10.548px 0 rgba(0, 0, 0, 0.00), 0 15.823px 52.742px 0 rgba(0, 0, 0, 0.00), 0 34.282px 105.484px 0 rgba(0, 0, 0, 0.00);
+}
+
+.article-title {
+    font-size: 2.4em;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    color: var(--color-text);
+}
+
+.article-lead {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0 0 28px;
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-border);
+}
+.article-meta-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.article-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9em;
+    color: var(--color-text-subtle);
+}
+.article-meta-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.article-read-time {
+    font-size: 0.9em;
+    color: var(--color-text-subtle);
+}
+
+/* ── Article Body ── */
+.article-body h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin: 48px 0 16px;
+    color: var(--color-text);
+}
+.article-body h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 36px 0 12px;
+    color: var(--color-text);
+}
+.article-body p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin: 0 0 20px;
+}
+.article-body ul, .article-body ol {
+    margin: 0 0 24px;
+    padding-left: 24px;
+}
+.article-body li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+}
+.article-body blockquote {
+    margin: 32px 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-hover);
+    border-radius: 0 12px 12px 0;
+}
+.article-body blockquote p {
+    margin: 0;
+    font-style: italic;
+    color: var(--color-text);
+}
+.article-body code {
+    background: var(--color-hover);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+.article-body pre {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 0 0 24px;
+}
+.article-body pre code {
+    background: none;
+    padding: 0;
+}
+.article-body img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 32px 0;
+}
+
+/* ── Article Footer ── */
+.article-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.article-footer .article-back { margin-bottom: 0; }
+.article-share {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9em;
+    color: var(--color-text-subtle);
+}
+.article-share a {
+    color: var(--color-text-subtle);
+    transition: color 0.2s;
+}
+.article-share a:hover { color: var(--color-text); }
+.article-share svg { width: 18px; height: 18px; }
+
+/* ── Footer ── */
+footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; position: relative; z-index: 1; }
+.footer-top { display: flex; gap: 80px; }
+.footer-logo img { height: 56px; }
+.footer-links h6, .footer-social h6 { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; margin: 0 0 16px; color: var(--color-text-subtle); }
+.footer-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-links a { display: inline-flex; align-items: center; gap: 6px; font-size: 0.95em; color: var(--color-text); }
+.footer-links svg { width: 14px; height: 14px; }
+.footer-social-icons { display: flex; gap: 16px; }
+.footer-social-icons a { color: var(--color-text); }
+.footer-social-icons svg { width: 20px; height: 20px; }
+.footer-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 0.85em; color: var(--color-text-subtle); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+    nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--color-bg); z-index: 10; flex-direction: column; justify-content: center; align-items: center; }
+    nav.open { display: flex; }
+    nav ul { flex-direction: column; text-align: center; gap: 24px; font-size: 1.3em; }
+    .nav-dropdown { position: static; transform: scaleY(1); opacity: 1; visibility: visible; min-width: 0; background: none; border: none; border-radius: 0; box-shadow: none; padding: 4px 0 0 0; overflow: visible; }
+    .nav-dropdown li a { padding: 8px 0; font-size: 0.95em; }
+    .nav-dropdown li a:hover { background: none; }
+    .nav-dropdown-label { padding: 8px 0 4px; font-size: 1em; }
+    .nav-dropdown-label::after { display: none; }
+    .nav-dropdown-sub { margin: 0 0 0 8px; border-left: 2px solid var(--color-border); }
+    .nav-dropdown-sub li a { padding: 6px 0 6px 12px; font-size: 0.9em; }
+    .nav-dropdown-sub li a:hover { background: none; }
+
+    .article-title { font-size: 1.8em; }
+    .article-meta { flex-direction: column; align-items: flex-start; }
+    .footer-top { flex-direction: column; gap: 32px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <div class="logo">
+      <a href="index.html" style="display:flex;align-items:center;">
+        <img src="images/outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="images/outshift_logo-white.svg" alt="Outshift" class="logo-dark">
+        <span class="design">design</span>
+      </a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav>
+      <ul>
+        <li class="has-dropdown"><a href="index.html#initiatives"><span class="text">Initiatives</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
+          <ul class="nav-dropdown">
+            <li><a href="hax.html">The Human-Agent Experience</a></li>
+            <li><a href="https://outshift.cisco.com/internet-of-cognition/explore" target="_blank" rel="noopener noreferrer">Internet of Cognition <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
+          <ul class="nav-dropdown">
+            <li class="nav-dropdown-group">
+              <a href="research.html" class="nav-dropdown-label">Hax</a>
+              <ul class="nav-dropdown-sub">
+                <li><a href="foundational-principles.html">Foundational Principles</a></li>
+                <li><a href="#">Cognitive Frameworks</a></li>
+                <li><a href="#">Societal Impact</a></li>
+                <li><a href="#">Security &amp; Privacy</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="index.html#about"><span class="text">About us</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a></li>
+        <li><a href="blog.html"><span class="text">Blog</span></a></li>
+        <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Animated Blobs -->
+<div class="blobs-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- Article -->
+<article class="article-wrapper">
+
+  <a href="blog.html" class="article-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    Back to Blog
+  </a>
+
+  <div class="article-cover">
+    <div style="width:100%;height:100%;background:linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%);"></div>
+  </div>
+
+  <div class="article-tags">
+    <span class="article-tag">UX/UI</span>
+    <span class="article-tag">Accessibility</span>
+  </div>
+
+  <h1 class="article-title">Building Accessible Interfaces: A Practical Guide</h1>
+
+  <p class="article-lead">Practical tips and techniques for creating web applications that are accessible to all users, regardless of their abilities or disabilities.</p>
+
+  <div class="article-meta">
+    <div class="article-meta-left">
+      <span class="article-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Valentina Esposito
+      </span>
+      <span class="article-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        March 1, 2026
+      </span>
+    </div>
+    <span class="article-read-time">8 min read</span>
+  </div>
+
+  <div class="article-body">
+
+    <h2>Why Accessibility Matters</h2>
+    <p>Accessibility isn't just a legal requirement or a box to check — it's a fundamental aspect of good design. When we build accessible interfaces, we create products that work better for everyone, not just users with disabilities. Curb cuts, originally designed for wheelchair users, benefit parents with strollers, delivery workers, and cyclists alike. The same principle applies to digital accessibility.</p>
+
+    <blockquote>
+      <p>"The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect." — Tim Berners-Lee</p>
+    </blockquote>
+
+    <p>Over one billion people worldwide live with some form of disability. By designing accessible interfaces, we're not serving a niche audience — we're designing for a significant portion of the global population. Moreover, accessible design often leads to cleaner code, better SEO, and improved usability for all users.</p>
+
+    <h2>Core Principles of Accessible Design</h2>
+    <p>The Web Content Accessibility Guidelines (WCAG) are built around four core principles, often remembered by the acronym POUR:</p>
+
+    <ul>
+      <li><strong>Perceivable</strong> — Information and UI components must be presentable in ways all users can perceive. This means providing text alternatives for non-text content, captions for multimedia, and ensuring content can be presented in different ways without losing meaning.</li>
+      <li><strong>Operable</strong> — Users must be able to interact with all controls and navigation. Every interactive element must be keyboard accessible, users should have enough time to read content, and nothing should cause seizures or physical reactions.</li>
+      <li><strong>Understandable</strong> — Content and the operation of the UI must be understandable. Text should be readable, pages should behave predictably, and users should be helped to avoid and correct mistakes.</li>
+      <li><strong>Robust</strong> — Content must be robust enough to be interpreted by a wide variety of user agents, including assistive technologies. This means using valid, semantic HTML and ensuring compatibility with current and future tools.</li>
+    </ul>
+
+    <h2>Practical Implementation</h2>
+
+    <h3>Semantic HTML First</h3>
+    <p>The foundation of accessible interfaces is semantic HTML. Using the correct HTML elements communicates meaning and structure to assistive technologies. A <code>&lt;button&gt;</code> element inherently communicates that it's interactive, while a <code>&lt;div&gt;</code> styled to look like a button does not.</p>
+
+    <h3>Color and Contrast</h3>
+    <p>Ensure sufficient color contrast between text and backgrounds. WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text. Never rely on color alone to convey information — always pair color indicators with text labels, icons, or patterns.</p>
+
+    <h3>Keyboard Navigation</h3>
+    <p>Every interactive element should be reachable and operable via keyboard. Implement visible focus indicators that clearly show which element is currently focused. Manage focus order logically and use ARIA attributes when native HTML elements aren't sufficient.</p>
+
+    <h3>Screen Reader Compatibility</h3>
+    <p>Test your interfaces with actual screen readers (VoiceOver, NVDA, JAWS). Provide descriptive alt text for images, use ARIA labels where visual context is missing, and ensure dynamic content changes are announced to assistive technologies using ARIA live regions.</p>
+
+    <h2>Testing for Accessibility</h2>
+    <p>Accessibility testing should be integrated into your development workflow, not treated as an afterthought. Combine automated tools with manual testing for comprehensive coverage:</p>
+
+    <ol>
+      <li><strong>Automated scanning</strong> — Use tools like axe, Lighthouse, or WAVE to catch common issues early in development.</li>
+      <li><strong>Keyboard testing</strong> — Navigate your entire application using only a keyboard. Can you reach every interactive element? Is the focus order logical?</li>
+      <li><strong>Screen reader testing</strong> — Test with at least one screen reader to verify content is announced correctly and interactions work as expected.</li>
+      <li><strong>User testing</strong> — Include people with disabilities in your user research. Automated tools can only catch about 30% of accessibility issues — real users will find the rest.</li>
+    </ol>
+
+    <h2>Building a Culture of Accessibility</h2>
+    <p>Accessibility is a team effort. Designers need to consider accessibility from the earliest wireframes. Developers need to implement semantic, accessible code. QA engineers need to include accessibility in their test plans. Product managers need to prioritize accessibility alongside other requirements.</p>
+
+    <p>At Outshift, we've found that the most effective approach is to embed accessibility into every stage of the design and development process, rather than treating it as a separate workstream. When everyone on the team understands and values accessibility, it naturally becomes part of how we build products.</p>
+
+    <p>The journey toward fully accessible interfaces is ongoing, but every improvement matters. Start where you are, use the tools and techniques available, and keep learning. Your users will thank you.</p>
+
+  </div>
+
+  <div class="article-footer">
+    <a href="blog.html" class="article-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Blog
+    </a>
+    <div class="article-share">
+      Share
+      <a href="#" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    </div>
+  </div>
+
+</article>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img src="images/outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="images/outshift_logo-white.svg" alt="Outshift" class="logo-dark">
+      </div>
+      <div class="footer-links">
+        <h6>Company</h6>
+        <a href="#">Explore Outshift <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></a>
+        <a href="#">Explore Cisco <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4V11"/></svg></a>
+      </div>
+      <div class="footer-social">
+        <h6>Connect</h6>
+        <div class="footer-social-icons">
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Outshift. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var nav = document.querySelector('header nav');
+    toggle.addEventListener('click', function () {
+        toggle.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            toggle.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+    document.querySelector('.theme-toggle').addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
+    document.querySelectorAll('.has-dropdown > a').forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            var parent = trigger.parentElement;
+            var wasActive = parent.classList.contains('is-active');
+            document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+            if (!wasActive) parent.classList.add('is-active');
+        });
+    });
+    window.addEventListener('click', function (e) {
+        if (!e.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+        }
+    });
+
+    if (window.matchMedia('(pointer: fine)').matches) {
+        var customCursor = document.createElement('div');
+        customCursor.className = 'custom-cursor';
+        document.body.appendChild(customCursor);
+        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
+        document.addEventListener('mousemove', function (e) {
+            var isInteractive = !!e.target.closest(interactiveSelector) || getComputedStyle(e.target).cursor === 'pointer';
+            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+            document.documentElement.style.setProperty('--cursor-scale', isInteractive ? 2 : 1);
+        });
+        document.addEventListener('mouseout', function () {
+            document.documentElement.style.setProperty('--cursor-scale', 0);
+        });
+    }
+})();
+</script>
+</body>
+</html>

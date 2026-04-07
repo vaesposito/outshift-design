@@ -80,12 +80,12 @@ const fallbackData = {
     { title: 'Remote Collaboration at Scale', description: 'Lessons learned from building tools for distributed teams across the globe.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
   ],
   blogHub: [
-    { title: 'The Future of Design Systems: Scalability and Consistency', description: 'Exploring how modern design systems are evolving to meet the demands of large-scale enterprise applications while maintaining flexibility and innovation.', author: 'Jaime Holland', date: 'March 1, 2026', readTime: '5 min read', tags: ['Design Systems', 'UX/UI'], coverGradient: 'linear-gradient(135deg, #0a3d5c 0%, #1a6e5c 100%)', href: '/blog#future-of-design-systems' },
-    { title: 'User Research in the Age of AI: New Methodologies', description: 'How artificial intelligence is transforming user research practices and enabling deeper insights into user behavior and preferences.', author: 'Monserrat Gonzalez Gacel', date: 'March 1, 2026', readTime: '8 min read', tags: ['Research', 'AI'], coverGradient: 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)', href: '/blog#user-research-age-of-ai' },
-    { title: 'Building Accessible Interfaces: A Practical Guide', description: 'Practical tips and techniques for creating web applications that are accessible to all users, regardless of their abilities or disabilities.', author: 'Valentina Esposito', date: 'March 1, 2026', readTime: '6 min read', tags: ['UX/UI', 'Accessibility'], coverGradient: 'linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%)', href: '/blog#building-accessible-interfaces' },
-    { title: 'Design Thinking Workshop: Lessons from the Field', description: 'Key takeaways and insights from facilitating design thinking workshops across diverse teams and industries.', author: 'Marc Sotelli', date: 'March 1, 2026', readTime: '5 min read', tags: ['Design Thinking', 'Workshop'], coverGradient: 'linear-gradient(135deg, #8b3a62 0%, #c94b4b 100%)', href: '/blog#design-thinking-workshop' },
-    { title: 'Modern Web Development: Bridging Design and Code', description: 'Understanding how designers and developers can collaborate more effectively to create seamless digital experiences.', author: 'Krystelle Gonzalez', date: 'March 1, 2026', readTime: '7 min read', tags: ['Development', 'Collaboration'], coverGradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)', href: '/blog#modern-web-development' },
-    { title: 'The Power of Cross-Functional Collaboration', description: 'How effective team collaboration leads to better product outcomes and a more cohesive user experience.', author: 'Serin Kuth', date: 'March 1, 2026', readTime: '5 min read', tags: ['Collaboration', 'Team'], coverGradient: 'linear-gradient(135deg, #1a5276 0%, #2ecc71 100%)', href: '/blog#cross-functional-collaboration' },
+    { title: 'The Future of Design Systems: Scalability and Consistency', description: 'Exploring how modern design systems are evolving to meet the demands of large-scale enterprise applications while maintaining flexibility and innovation.', author: 'Jaime Holland', date: 'March 1, 2026', readTime: '5 min read', tags: ['Design Systems', 'UX/UI'], coverGradient: 'linear-gradient(135deg, #0a3d5c 0%, #1a6e5c 100%)', href: '/blog/future-of-design-systems' },
+    { title: 'User Research in the Age of AI: New Methodologies', description: 'How artificial intelligence is transforming user research practices and enabling deeper insights into user behavior and preferences.', author: 'Monserrat Gonzalez Gacel', date: 'March 1, 2026', readTime: '8 min read', tags: ['Research', 'AI'], coverGradient: 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)', href: '/blog/user-research-age-of-ai' },
+    { title: 'Building Accessible Interfaces: A Practical Guide', description: 'Practical tips and techniques for creating web applications that are accessible to all users, regardless of their abilities or disabilities.', author: 'Valentina Esposito', date: 'March 1, 2026', readTime: '8 min read', tags: ['UX/UI', 'Accessibility'], coverGradient: 'linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%)', href: '/blog/building-accessible-interfaces' },
+    { title: 'Design Thinking Workshop: Lessons from the Field', description: 'Key takeaways and insights from facilitating design thinking workshops across diverse teams and industries.', author: 'Marc Sotelli', date: 'March 1, 2026', readTime: '5 min read', tags: ['Design Thinking', 'Workshop'], coverGradient: 'linear-gradient(135deg, #8b3a62 0%, #c94b4b 100%)', href: '/blog/design-thinking-workshop' },
+    { title: 'Modern Web Development: Bridging Design and Code', description: 'Understanding how designers and developers can collaborate more effectively to create seamless digital experiences.', author: 'Krystelle Gonzalez', date: 'March 1, 2026', readTime: '7 min read', tags: ['Development', 'Collaboration'], coverGradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)', href: '/blog/modern-web-development' },
+    { title: 'The Power of Cross-Functional Collaboration', description: 'How effective team collaboration leads to better product outcomes and a more cohesive user experience.', author: 'Serin Kuth', date: 'March 1, 2026', readTime: '5 min read', tags: ['Collaboration', 'Team'], coverGradient: 'linear-gradient(135deg, #1a5276 0%, #2ecc71 100%)', href: '/blog/cross-functional-collaboration' },
   ],
   homepage: null,
 };
@@ -303,6 +303,101 @@ app.get('/blog', (_req, res) => {
     pageTitle: 'Outshift Design — Blog',
     blogPosts: fallbackData.blogHub,
     categories: ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
+  });
+});
+
+const articleBodies = {
+  'building-accessible-interfaces': `
+    <h2>Why Accessibility Matters</h2>
+    <p>Accessibility isn't just a legal requirement or a box to check — it's a fundamental aspect of good design. When we build accessible interfaces, we create products that work better for everyone, not just users with disabilities. Curb cuts, originally designed for wheelchair users, benefit parents with strollers, delivery workers, and cyclists alike. The same principle applies to digital accessibility.</p>
+    <blockquote><p>"The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect." — Tim Berners-Lee</p></blockquote>
+    <p>Over one billion people worldwide live with some form of disability. By designing accessible interfaces, we're not serving a niche audience — we're designing for a significant portion of the global population. Moreover, accessible design often leads to cleaner code, better SEO, and improved usability for all users.</p>
+    <h2>Core Principles of Accessible Design</h2>
+    <p>The Web Content Accessibility Guidelines (WCAG) are built around four core principles, often remembered by the acronym POUR:</p>
+    <ul>
+      <li><strong>Perceivable</strong> — Information and UI components must be presentable in ways all users can perceive.</li>
+      <li><strong>Operable</strong> — Users must be able to interact with all controls and navigation.</li>
+      <li><strong>Understandable</strong> — Content and the operation of the UI must be understandable.</li>
+      <li><strong>Robust</strong> — Content must be robust enough to be interpreted by a wide variety of user agents, including assistive technologies.</li>
+    </ul>
+    <h2>Practical Implementation</h2>
+    <h3>Semantic HTML First</h3>
+    <p>The foundation of accessible interfaces is semantic HTML. Using the correct HTML elements communicates meaning and structure to assistive technologies.</p>
+    <h3>Color and Contrast</h3>
+    <p>Ensure sufficient color contrast between text and backgrounds. WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text. Never rely on color alone to convey information.</p>
+    <h3>Keyboard Navigation</h3>
+    <p>Every interactive element should be reachable and operable via keyboard. Implement visible focus indicators that clearly show which element is currently focused.</p>
+    <h3>Screen Reader Compatibility</h3>
+    <p>Test your interfaces with actual screen readers (VoiceOver, NVDA, JAWS). Provide descriptive alt text for images, use ARIA labels where visual context is missing, and ensure dynamic content changes are announced.</p>
+    <h2>Testing for Accessibility</h2>
+    <p>Accessibility testing should be integrated into your development workflow, not treated as an afterthought:</p>
+    <ol>
+      <li><strong>Automated scanning</strong> — Use tools like axe, Lighthouse, or WAVE to catch common issues early.</li>
+      <li><strong>Keyboard testing</strong> — Navigate your entire application using only a keyboard.</li>
+      <li><strong>Screen reader testing</strong> — Test with at least one screen reader to verify content is announced correctly.</li>
+      <li><strong>User testing</strong> — Include people with disabilities in your user research.</li>
+    </ol>
+    <h2>Building a Culture of Accessibility</h2>
+    <p>At Outshift, we've found that the most effective approach is to embed accessibility into every stage of the design and development process, rather than treating it as a separate workstream. When everyone on the team understands and values accessibility, it naturally becomes part of how we build products.</p>
+    <p>The journey toward fully accessible interfaces is ongoing, but every improvement matters. Start where you are, use the tools and techniques available, and keep learning. Your users will thank you.</p>`,
+  'future-of-design-systems': `
+    <h2>The Evolution of Design Systems</h2>
+    <p>Design systems have transformed from simple style guides into complex, living ecosystems that power entire product suites. As organizations scale, the challenge of maintaining consistency while enabling innovation becomes increasingly critical.</p>
+    <h2>Scalability Challenges</h2>
+    <p>When a design system serves hundreds of products and thousands of developers, traditional approaches break down. Token-based architecture, component composition patterns, and automated testing become essential tools for managing complexity at scale.</p>
+    <h2>The Future</h2>
+    <p>AI-assisted design, dynamic theming, and cross-platform component libraries are reshaping what's possible. The next generation of design systems will be more adaptive, more intelligent, and more deeply integrated into the development workflow.</p>`,
+  'user-research-age-of-ai': `
+    <h2>AI-Powered Research Methods</h2>
+    <p>Artificial intelligence is opening new frontiers in user research. From automated sentiment analysis to predictive behavior modeling, AI tools are enabling researchers to process larger datasets and uncover patterns that would be impossible to detect manually.</p>
+    <h2>Ethical Considerations</h2>
+    <p>With great power comes great responsibility. AI-driven research must be conducted ethically, with proper consent, transparency about data usage, and safeguards against bias in algorithmic analysis.</p>
+    <h2>Practical Applications</h2>
+    <p>Teams are already using AI to automate transcription and coding of interviews, generate synthetic personas from large datasets, and predict user behavior patterns. These tools augment rather than replace human researchers.</p>`,
+  'design-thinking-workshop': `
+    <h2>Workshop Design and Facilitation</h2>
+    <p>Effective design thinking workshops require careful preparation, skilled facilitation, and a deep understanding of group dynamics. The best workshops create safe spaces for divergent thinking while maintaining focus on actionable outcomes.</p>
+    <h2>Lessons from the Field</h2>
+    <p>After facilitating dozens of workshops across industries, several key patterns emerge: diverse teams produce better outcomes, time constraints drive creativity, and follow-through is more important than the workshop itself.</p>
+    <h2>Remote Workshop Strategies</h2>
+    <p>The shift to remote work has transformed workshop facilitation. Digital whiteboards, breakout rooms, and asynchronous exercises have become essential tools for distributed design thinking.</p>`,
+  'modern-web-development': `
+    <h2>The Design-Development Gap</h2>
+    <p>Despite decades of progress, a significant gap remains between design intent and development implementation. Bridging this gap requires shared tools, shared language, and shared understanding of constraints and possibilities.</p>
+    <h2>Collaborative Workflows</h2>
+    <p>Modern teams are finding success with design tokens, component-driven development, and shared design-development environments that allow real-time collaboration across disciplines.</p>
+    <h2>Looking Forward</h2>
+    <p>The future of web development lies in closer integration between design and code. Tools that allow designers to create production-ready components and developers to contribute to design systems are blurring the boundaries between disciplines.</p>`,
+  'cross-functional-collaboration': `
+    <h2>Breaking Down Silos</h2>
+    <p>The most innovative products emerge from teams that transcend traditional organizational boundaries. Cross-functional collaboration brings together diverse perspectives — design, engineering, product, research — to solve complex problems more effectively.</p>
+    <h2>Communication Frameworks</h2>
+    <p>Effective collaboration requires intentional communication structures. Regular sync meetings, shared documentation, and transparent decision-making processes help maintain alignment across functions.</p>
+    <h2>Measuring Collaboration Impact</h2>
+    <p>Teams that invest in collaboration see measurable improvements in product quality, development velocity, and team satisfaction. The key is creating an environment where every voice is heard and valued.</p>`,
+};
+
+app.get('/blog/:slug', (req, res) => {
+  const slug = req.params.slug;
+  const post = fallbackData.blogHub.find(
+    (p) => (p.href || '').replace(/^\/blog[#/]?/, '') === slug
+  );
+  if (!post) {
+    return res.status(404).render('blog', {
+      title: 'Outshift Design',
+      year: new Date().getFullYear(),
+      nav: fallbackData.nav,
+      pageTitle: 'Outshift Design — Blog',
+      blogPosts: fallbackData.blogHub,
+      categories: ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
+    });
+  }
+  res.render('blog-article', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: `${post.title} — Outshift Design`,
+    post: { ...post, body: articleBodies[slug] || '<p>Article content coming soon.</p>' },
   });
 });
 
