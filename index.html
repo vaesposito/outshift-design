@@ -103,6 +103,9 @@
 * {
     box-sizing: border-box;
 }
+html {
+    scroll-behavior: smooth;
+}
 .container {
     width: 100%;
     padding: 0 10%;
@@ -295,11 +298,10 @@ h6 {
     margin: 5px 0;
     color: var(--color-text-subtle);
 }
-button {
+button, .cta-button {
     position: relative;
-    display: flex;
+    display: inline-flex;
     padding: 18px 24px;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8px;
@@ -310,8 +312,10 @@ button {
     border: none;
     cursor: pointer;
     z-index: 0;
+    text-decoration: none;
+    font-family: inherit;
 }
-button::before {
+button::before, .cta-button::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -1070,7 +1074,7 @@ footer {
       <h2>We evolve faster</h2>
       <h5>Meet the Outshift product design team, Cisco's innovative force for incubation. We specialize in driving ideation and fostering alignment across cross-functional teams.</h5>
       <p></p>
-      <button>See Our Work</button>
+      <a href="#initiatives" class="cta-button">See Our Work</a>
     </div>
   </div>
 </div>
