@@ -168,7 +168,7 @@ const fallbackResearch = {
     title: 'Build with the Hax SDK',
     description: 'The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.',
     buttonLabel: 'Explore the SDK',
-    buttonUrl: '#',
+    buttonUrl: 'https://vaesposito.github.io/outshift-design/sdk.html#introduction',
     image: '/images/research/sdk-hero.png',
   },
   items: [

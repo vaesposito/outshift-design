@@ -528,23 +528,22 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
-    * { cursor: none !important; }
+    html.has-custom-cursor,
+    html.has-custom-cursor * { cursor: none !important; }
     .custom-cursor {
         position: fixed;
         z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        left: var(--cursor-x);
-        top: var(--cursor-y);
-        background: #fff;
-        border-radius: 9999px;
+        top: calc(var(--cursor-y) - var(--cursor-size) / 2);
+        left: calc(var(--cursor-x) - var(--cursor-size) / 2);
+        background: var(--color-text);
+        border-radius: 50%;
         mix-blend-mode: difference;
-        transform: translate(-50%, -50%) scale(var(--cursor-scale));
+        transform: scale(var(--cursor-scale));
         pointer-events: none;
-        transition: transform var(--fancy-transition), border-width 0.15s ease-in;
-        border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
-        border-style: solid;
-        border-color: #b4b4b4;
+        transition: transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
+        will-change: top, left, transform;
     }
 }
 
