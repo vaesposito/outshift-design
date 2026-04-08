@@ -361,25 +361,16 @@ a:link, a:visited, a:hover, a:active {
 .pipeline-step {
     position: relative;
     width: 100%;
-    padding: 48px;
-    border: 1px solid rgba(77, 99, 128, 0.21);
-    border-radius: 16px;
-    background: linear-gradient(132deg, rgba(210, 194, 255, 0.06) 26.47%, rgba(255, 255, 255, 0.00) 88.42%);
-    box-shadow: 0 6.593px 10.548px 0 rgba(0, 0, 0, 0.00), 0 15.823px 52.742px 0 rgba(0, 0, 0, 0.00), 0 34.282px 105.484px 0 rgba(0, 0, 0, 0.00);
-    backdrop-filter: blur(32.96px);
-    -webkit-backdrop-filter: blur(32.96px);
-}
-.pipeline-step:nth-child(odd) {
-    align-self: flex-start;
-    border: none;
-    background: none;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     padding: 48px 0;
 }
 .pipeline-step:nth-child(even) {
-    align-self: flex-end;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
 }
 .step-number {
     font-size: 5.5em;
@@ -741,7 +732,7 @@ footer {
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 400px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
-    .pipeline-step { width: 100%; padding: 40px; }
+    .pipeline-step { width: 100%; padding: 40px 0; }
     .step-number { font-size: 4.5em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
@@ -783,7 +774,7 @@ footer {
     .page-hero-image img { height: 320px; max-width: 100%; }
 
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
-    .pipeline-step { width: 100%; padding: 32px; }
+    .pipeline-step { width: 100%; padding: 32px 0; }
     .pipeline-step:nth-child(odd),
     .pipeline-step:nth-child(even) { align-self: center; }
     .step-number { font-size: 3.5em; }
@@ -805,7 +796,7 @@ footer {
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img { height: 240px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
-    .pipeline-step { padding: 24px; }
+    .pipeline-step { padding: 24px 0; }
     .step-number { font-size: 3em; }
     .step-title { font-size: 1.2em; }
     .sdk-text h2 { font-size: 1.5em; }
