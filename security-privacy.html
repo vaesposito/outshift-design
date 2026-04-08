@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-<title>Outshift Design — Societal Impact</title>
+<title>Outshift Design — Security & Privacy</title>
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <script>
@@ -288,132 +288,188 @@ a:link, a:visited, a:hover, a:active {
     object-fit: cover;
     display: block;
 }
-.page-hero-text ul {
-    padding-left: 20px;
-    margin: 16px 0 0;
-    line-height: 1.8;
-    font-size: 18px;
-    font-weight: 300;
-    color: #363E4A;
-}
-[data-theme="dark"] .page-hero-text ul { color: var(--color-text-muted); }
 
-/* ── Framework Section ── */
-.framework-section {
+/* ── Building Secure Systems Section ── */
+.secure-systems-section {
     position: relative;
     z-index: 1;
     padding: 80px 0;
-    border: 1px solid rgba(77, 99, 128, 0.21);
-    background: linear-gradient(132deg, rgba(210, 194, 255, 0.15) 26.47%, rgba(255, 255, 255, 0.00) 88.42%);
-    box-shadow: 0 6.593px 10.548px 0 rgba(0, 0, 0, 0.00), 0 15.823px 52.742px 0 rgba(0, 0, 0, 0.00), 0 34.282px 105.484px 0 rgba(0, 0, 0, 0.00);
-    backdrop-filter: blur(32.96px);
-    -webkit-backdrop-filter: blur(32.96px);
+    border-top: 1px solid var(--color-border);
 }
-.framework-section-header {
+.secure-systems-header {
+    text-align: center;
     margin-bottom: 64px;
 }
-.framework-section-header h2 {
+.secure-systems-header h2 {
     font-size: 2.8em;
     font-weight: 200;
     margin: 0 0 16px;
 }
-.framework-section-header p {
-    font-size: 1.05em;
-    color: var(--color-text-muted);
-    max-width: 700px;
-    line-height: 1.7;
+.secure-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
 }
-
-/* ── Responsible Agent Steps ── */
-.responsible-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+.secure-card {
+    padding: 32px;
+    border: 1px dashed var(--color-border-medium);
+    border-radius: 12px;
 }
-.responsible-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 48px 0;
-    border-bottom: 1px solid var(--color-border);
-}
-.responsible-step:first-child {
-    padding-top: 0;
-}
-.responsible-step:last-child {
-    border-bottom: none;
-}
-.responsible-step-image {
-    flex-shrink: 0;
-    width: 160px;
-}
-.responsible-step-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-.responsible-step-content {
-    flex: 1;
-}
-.responsible-step-label {
-    font-size: 0.82em;
-    font-weight: 500;
-    color: var(--color-text-muted);
-    margin: 0 0 6px;
-}
-.responsible-step-content h3 {
-    font-size: 1.5em;
+.secure-card h3 {
+    font-size: 1.15em;
     font-weight: 600;
-    margin: 0 0 12px;
-    line-height: 1.3;
+    margin: 0 0 10px;
 }
-.responsible-step-content ul {
-    padding-left: 20px;
+.secure-card p {
+    font-size: 0.95em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+.key-questions {
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+}
+.key-questions h3 {
+    font-size: 1.1em;
+    font-weight: 600;
     margin: 0 0 16px;
+}
+.key-questions ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
     color: var(--color-text-muted);
     line-height: 1.8;
     font-size: 0.95em;
 }
-.responsible-step-content ul li {
-    margin-bottom: 2px;
-}
-.responsible-step-template {
-    font-size: 0.88em;
-    color: var(--color-text-muted);
-}
-.responsible-step-template strong {
-    display: block;
-    color: var(--color-text);
-    font-weight: 600;
-    margin-bottom: 2px;
+.key-questions ul li {
+    margin-bottom: 6px;
 }
 
-/* ── Mobile Toggle ── */
-.menu-toggle {
-    display: none;
+/* ── Research Approach Section ── */
+.research-approach-section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 0;
+    border-top: 1px solid var(--color-border);
+}
+.research-approach-header {
+    margin-bottom: 64px;
+}
+.research-approach-header h2 {
+    font-size: 2.8em;
+    font-weight: 200;
+    margin: 0 0 16px;
+}
+.research-approach-header p {
+    font-size: 1.05em;
+    color: var(--color-text-muted);
+    max-width: 800px;
+    line-height: 1.7;
+}
+.research-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.research-item:first-of-type {
+    padding-top: 0;
+}
+.research-item:last-of-type {
+    border-bottom: none;
+}
+.research-item-text {
+    flex: 1;
+}
+.research-item-text h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 16px;
+    line-height: 1.3;
+}
+.research-item-text p {
+    font-size: 0.95em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 0 16px;
+}
+.research-item-text ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    font-size: 0.95em;
+}
+.research-item-image {
+    flex: 1;
+}
+.research-item-image img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+}
+
+/* ── Use Cases ── */
+.use-cases {
+    padding-top: 48px;
+}
+.use-cases-label {
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+    margin: 0 0 24px;
+}
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.use-case-card {
+    display: flex;
     flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    z-index: 10;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-surface);
+    transition: box-shadow 0.2s;
 }
-.menu-toggle span {
-    width: 22px; height: 2px;
-    background: var(--color-hamburger);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    position: absolute;
-    left: 0;
+.use-case-card:hover {
+    box-shadow: 0 4px 16px var(--color-shadow);
 }
-.menu-toggle { position: relative; width: 22px; height: 16px; }
-.menu-toggle span:nth-child(1) { top: 0; }
-.menu-toggle span:nth-child(2) { top: 7px; }
-.menu-toggle span:nth-child(3) { top: 14px; }
-.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.use-case-card h4 {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--color-text);
+    line-height: 1.4;
+}
+.use-case-card p {
+    font-size: 0.88em;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    flex: 1;
+}
+.use-case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.use-case-tag {
+    font-size: 0.72em;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--color-hover);
+    color: var(--color-text-muted);
+}
 
 /* ── SDK Section ── */
 .sdk-section {
@@ -548,6 +604,33 @@ footer {
     text-align: center;
 }
 
+/* ── Mobile Toggle ── */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 10;
+}
+.menu-toggle span {
+    width: 22px; height: 2px;
+    background: var(--color-hamburger);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+}
+.menu-toggle { position: relative; width: 22px; height: 16px; }
+.menu-toggle span:nth-child(1) { top: 0; }
+.menu-toggle span:nth-child(2) { top: 7px; }
+.menu-toggle span:nth-child(3) { top: 14px; }
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
     html.has-custom-cursor,
@@ -575,10 +658,9 @@ footer {
 @media (max-width: 1024px) {
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 400px; }
-    .framework-section-header h2 { font-size: 2.2em; }
+    .secure-systems-header h2, .research-approach-header h2 { font-size: 2.2em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
-    .responsible-step-image { width: 140px; }
 }
 
 @media (max-width: 768px) {
@@ -625,9 +707,11 @@ footer {
     .page-hero-text { padding-right: 0; }
     .page-hero-title h1 { font-size: 2em; }
     .page-hero-image img { height: 320px; max-width: 100%; }
-    .framework-section-header h2 { font-size: 1.8em; }
-    .responsible-step { flex-direction: column; gap: 24px; }
-    .responsible-step-image { width: 120px; }
+    .secure-systems-header h2, .research-approach-header h2 { font-size: 1.8em; }
+    .secure-cards-grid { grid-template-columns: 1fr; }
+    .research-item { flex-direction: column; gap: 24px; }
+    .research-item.reversed { flex-direction: column; }
+    .use-cases-grid { grid-template-columns: 1fr; }
     .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
     .footer-top { flex-direction: column; gap: 32px; }
@@ -636,10 +720,12 @@ footer {
 @media (max-width: 480px) {
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img { height: 240px; }
-    .framework-section-header h2 { font-size: 1.5em; }
+    .secure-systems-header h2, .research-approach-header h2 { font-size: 1.5em; }
     .sdk-text h2 { font-size: 1.5em; }
-    .responsible-step-content h3 { font-size: 1.2em; }
-    .responsible-step-image { width: 100px; }
+    .secure-card { padding: 24px; }
+    .secure-card h3 { font-size: 1.05em; }
+    .research-item-text h3 { font-size: 1.2em; }
+    .use-case-card h4 { font-size: 0.95em; }
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
 }
@@ -703,112 +789,130 @@ footer {
 <div class="page-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="research.html">Research</a> <span>/</span> <a href="research.html">Hax</a> <span>/</span> Societal Impact
+      <a href="research.html">Research</a> <span>/</span> <a href="research.html">Hax</a> <span>/</span> Security &amp; Privacy
     </div>
     <div class="page-hero-title">
-      <h1>Societal Impact</h1>
+      <h1>Security &amp; Privacy</h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>Agentic systems have profound ripple effects: they influence how we work, what knowledge is accessible, how power is distributed, and how we make decisions at scale. That's why we treat societal impact as a design responsibility, not a byproduct. We ask not just What works? but:</p>
-        <ul>
-          <li>Who does this serve?</li>
-          <li>Who might it exclude or harm?</li>
-          <li>What are the long-term consequences of deploying this system at scale?</li>
-        </ul>
+        <p>We see security not as a barrier to innovation, but as its foundation. As AI Agent systems grow in complexity and scope, our research focuses on building secure, privacy-preserving, and globally interoperable systems.</p>
       </div>
       <div class="page-hero-image">
-        <img src="images/research/societal-impact/hero.png" alt="Societal Impact">
+        <img src="images/research/security-privacy/hero.png" alt="Security & Privacy">
       </div>
     </div>
   </div>
 </div>
 
-<!-- A Framework for Responsible Agent Design -->
-<div class="framework-section">
+<!-- Building Secure Systems -->
+<div class="secure-systems-section">
   <div class="container">
-    <div class="framework-section-header">
-      <h2>A Framework for Responsible Agent Design</h2>
-      <p>To support teams building agentic systems, we developed a practical, five-part framework—adaptable across roles, from UX designers to backend engineers.</p>
+    <div class="secure-systems-header">
+      <h2>Building Secure Systems</h2>
     </div>
 
-    <div class="responsible-steps">
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="images/research/societal-impact/contextual-inquiry.png" alt="Design Begins with Understanding">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Contextual Inquiry</p>
-          <h3>Design Begins with Understanding</h3>
-          <ul>
-            <li>Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?</li>
-            <li>Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?</li>
-            <li>Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Agent Impact Map
-          </div>
-        </div>
+    <div class="secure-cards-grid">
+      <div class="secure-card">
+        <h3>Enabling Safe Innovation</h3>
+        <p>Develop security frameworks that empower agent developers to innovate without compromising user trust, data integrity, or system resilience.</p>
       </div>
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="images/research/societal-impact/intentional-scope.png" alt="What Should This Agent Do">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Intentional Scope</p>
-          <h3>What Should This Agent Do</h3>
-          <ul>
-            <li>Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?</li>
-            <li>Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Agent Impact Map
-          </div>
-        </div>
+      <div class="secure-card">
+        <h3>Scaling Systems Responsibly</h3>
+        <p>Design protection models that scale alongside agentic complexity, ensuring secure communication, authorization, and resource management in multi-agent systems.</p>
       </div>
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="images/research/societal-impact/inclusive-design.png" alt="Respect Diverse Ways of Thinking & Working">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Inclusive Cognitive Design</p>
-          <h3>Respect Diverse Ways of Thinking &amp; Working</h3>
-          <ul>
-            <li>Design for neurodiversity and multilingualism.</li>
-            <li>Support different expertise levels—novices, experts, non-coders, etc.</li>
-            <li>Minimize cognitive overload: surface what's necessary, when it's needed.</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Cognitive Load Audit
-          </div>
-        </div>
+      <div class="secure-card">
+        <h3>Strengthening Trust</h3>
+        <p>Create transparent, verifiable approaches to agent identity, behavior auditing, and data stewardship that foster user confidence and organizational trust.</p>
       </div>
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="images/research/societal-impact/foresight.png" alt="Built for Change. Expect the Unexpected">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Foresight &amp; Feedback Loops</p>
-          <h3>Built for Change. Expect the Unexpected</h3>
-          <ul>
-            <li>Use speculative scenarios to anticipate unintended consequences.</li>
-            <li>Include continuous user feedback mechanisms (not just surveys—embedded nudges, annotations, corrections).</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Foresight Canvas
-          </div>
-        </div>
+      <div class="secure-card">
+        <h3>Supporting Global Interoperability</h3>
+        <p>Build privacy-preserving architectures that respect diverse regulatory landscapes, enabling agents to operate securely across jurisdictions and platforms.</p>
       </div>
-
     </div>
+
+    <div class="key-questions">
+      <h3>Key Questions</h3>
+      <ul>
+        <li>How do we create security architectures that remain robust when agents learn from each other, adapt in real time, and negotiate shared goals?</li>
+        <li>What does privacy-preserving computation look like when agents maintain persistent memory across sessions, domains, and user contexts?</li>
+        <li>How can we design transparent auditing systems that capture the full lifecycle of agentic decisions—from intent to execution to outcome?</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Research Approach -->
+<div class="research-approach-section">
+  <div class="container">
+    <div class="research-approach-header">
+      <h2>Research Approach</h2>
+      <p>We take an evidence-driven approach to understanding how security controls, privacy models, and governance frameworks must evolve for agentic architectures. Our work spans exploratory prototyping, adversarial testing, and collaborative design.</p>
+    </div>
+
+    <div class="research-item">
+      <div class="research-item-text">
+        <h3>Adaptive Security for Autonomous Agents</h3>
+        <p>The traditional security model of "trust but verify" doesn't hold when agents can self-modify, share tools, interact with external APIs, and execute multi-step workflows.</p>
+        <p><strong>Approach:</strong> We prototype context-aware security controls that adjust based on agent behavior, interaction history, and environmental risk signals.</p>
+        <ul>
+          <li>Agent sandboxing and capability boundaries</li>
+          <li>Dynamic permission escalation with human-in-the-loop gates</li>
+          <li>Behavior anomaly detection across agent interactions</li>
+        </ul>
+      </div>
+      <div class="research-item-image">
+        <img src="images/research/security-privacy/adaptive-security.png" alt="Adaptive Security for Autonomous Agents">
+      </div>
+    </div>
+
+    <div class="research-item reversed">
+      <div class="research-item-image">
+        <img src="images/research/security-privacy/privacy-context.png" alt="Privacy-Preserving Context for Intelligent Agents">
+      </div>
+      <div class="research-item-text">
+        <h3>Privacy-Preserving Context for Intelligent Agents</h3>
+        <p>Agent AI systems must remember in order to be useful—but that memory needs to be bounded, secure, and privacy-respecting.</p>
+        <p><strong>Approach:</strong> We explore memory architectures that give agents enough context to be helpful while enforcing data minimization, consent boundaries, and regulatory compliance.</p>
+        <ul>
+          <li>Contextual memory with automatic expiration and redaction</li>
+          <li>Differential privacy for agent learning signals</li>
+          <li>User-controlled data scoping and consent management</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="use-cases">
+      <p class="use-cases-label">Use Cases</p>
+      <div class="use-cases-grid">
+        <div class="use-case-card">
+          <h4>Self Automation of Routine Tasks</h4>
+          <p>Agents autonomously handle repetitive workflows while maintaining secure access boundaries and audit trails.</p>
+          <div class="use-case-tags">
+            <span class="use-case-tag">Automation</span>
+            <span class="use-case-tag">Security</span>
+          </div>
+        </div>
+        <div class="use-case-card">
+          <h4>Risk Analysis &amp; Agentic Decisions</h4>
+          <p>Multi-agent systems that assess risk factors collaboratively while preserving data isolation between organizational boundaries.</p>
+          <div class="use-case-tags">
+            <span class="use-case-tag">Risk</span>
+            <span class="use-case-tag">Multi-Agent</span>
+          </div>
+        </div>
+        <div class="use-case-card">
+          <h4>Adaptive Risk Detection</h4>
+          <p>Agents that evolve their threat detection capabilities over time using privacy-preserving learning techniques.</p>
+          <div class="use-case-tags">
+            <span class="use-case-tag">Detection</span>
+            <span class="use-case-tag">Privacy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
