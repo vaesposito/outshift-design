@@ -539,15 +539,16 @@ footer {
 
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
-    html.has-custom-cursor { cursor: none; }
+    html.has-custom-cursor,
     html.has-custom-cursor * { cursor: none !important; }
     .custom-cursor {
         position: fixed;
+        z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        top: var(--cursor-y);
         left: var(--cursor-x);
-        background: transparent;
+        top: var(--cursor-y);
+        background: #fff;
         border-radius: 9999px;
         mix-blend-mode: difference;
         transform: translate(-50%, -50%) scale(var(--cursor-scale));
