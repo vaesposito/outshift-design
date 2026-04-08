@@ -57,6 +57,7 @@ const fallbackData = {
         { label: 'Cognitive Frameworks', href: '/research/cognitive-frameworks' },
         { label: 'Societal Impact', href: '/research/societal-impact' },
         { label: 'Security & Privacy', href: '/research/security-privacy' },
+        { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
       ]},
     ]},
     { label: 'Blog', href: '/blog', hasDropdown: false },
