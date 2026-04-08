@@ -641,10 +641,10 @@ a.more-article-card { color: inherit; text-decoration: none; }
 .secure-systems-header { text-align: center; margin-bottom: 64px; }
 .secure-systems-header h2 { font-size: 2.8em; font-weight: 200; margin: 0 0 16px; }
 .secure-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
-.secure-card { padding: 32px; border: 1px dashed var(--color-border-medium); border-radius: 12px; }
+.secure-card { padding: 32px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); }
 .secure-card h3 { font-size: 1.15em; font-weight: 600; margin: 0 0 10px; }
 .secure-card p { font-size: 0.95em; color: var(--color-text-muted); line-height: 1.7; margin: 0; }
-.key-questions { padding-top: 32px; border-top: 1px solid var(--color-border); }
+.key-questions { padding: 32px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); }
 .key-questions h3 { font-size: 1.1em; font-weight: 600; margin: 0 0 16px; }
 .key-questions ul { list-style: disc; padding-left: 20px; margin: 0; color: var(--color-text-muted); line-height: 1.8; font-size: 0.95em; }
 .key-questions ul li { margin-bottom: 6px; }
