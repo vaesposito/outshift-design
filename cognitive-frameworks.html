@@ -856,6 +856,15 @@ footer {
 .framework-core-svg {
     width: 100%;
 }
+.framework-approaches-cards {
+    display: flex;
+    gap: 16px;
+}
+.framework-approach-svg {
+    flex: 1;
+    width: 0;
+    height: auto;
+}
 .framework-concepts {
     margin: 20px 0;
 }
@@ -931,32 +940,59 @@ footer {
 }
 .use-cases-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
 }
+a.use-case-card { color: inherit; text-decoration: none; }
 .use-case-card {
-    padding: 24px;
-    border-radius: 12px;
-    border: 1px solid var(--color-border-medium);
-    background: var(--color-surface);
-    transition: transform 0.2s, box-shadow 0.2s;
+    background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--color-border);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+[data-theme="dark"] .use-case-card {
+    background: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
 }
 .use-case-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px var(--color-shadow);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--color-shadow);
 }
 .use-case-card h4 {
-    font-size: 1em;
-    font-weight: 600;
+    font-size: 1.25em;
+    font-weight: 500;
     color: var(--color-text);
-    margin: 0 0 8px;
-    line-height: 1.4;
+    margin: 0 0 12px;
+    line-height: 1.3;
 }
-.use-case-card p {
-    font-size: 0.88em;
-    color: var(--color-text-muted);
+.use-case-card .use-case-desc {
+    font-size: 0.9em;
+    color: var(--color-text-subtle);
     line-height: 1.6;
     margin: 0;
+}
+.use-case-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+    margin-top: 20px;
+}
+.use-case-footer .read-more {
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.use-case-footer .read-more:hover {
+    color: var(--color-accent-hover);
 }
 .use-case-tag {
     display: inline-block;
@@ -1127,13 +1163,28 @@ footer {
         </div>
         <p class="use-cases-label">USE CASES</p>
         <div class="use-cases-grid">
-          <div class="use-case-card">
-            <span class="use-case-tag">Scality</span>
-            <h4>Sead Graph Exploration: Turning Complexity into Comprehension</h4>
-          </div>
-          <div class="use-case-card">
-            <h4>Security</h4>
-          </div>
+          <a href="#" class="use-case-card">
+            <div>
+              <span class="use-case-tag">Scalability</span>
+              <h4>Sead Graph Exploration: Turning Complexity into Comprehension</h4>
+              <p class="use-case-desc">How distributed cognition principles helped transform complex graph data into intuitive, navigable interfaces.</p>
+            </div>
+            <div class="use-case-footer">
+              <span>Case Study</span>
+              <span class="read-more">Read more &rarr;</span>
+            </div>
+          </a>
+          <a href="#" class="use-case-card">
+            <div>
+              <span class="use-case-tag">Security</span>
+              <h4>Cognitive Load in Security Workflows: Reducing Alert Fatigue</h4>
+              <p class="use-case-desc">Applying cognitive frameworks to simplify threat analysis and help analysts focus on what matters most.</p>
+            </div>
+            <div class="use-case-footer">
+              <span>Case Study</span>
+              <span class="read-more">Read more &rarr;</span>
+            </div>
+          </a>
         </div>
       </div>
 
@@ -1142,23 +1193,31 @@ footer {
           <div class="framework-left">
             <div class="step-number">02</div>
             <div class="step-title">Situated Action</div>
-            <p class="step-desc">Cognition isn't just about individual mechanisms — it's also about how actions are deeply shaped by the specific context in which they unfold.</p>
+            <p class="step-desc">Cognition is shaped by context. Users rarely execute fixed plans all of the time—they adapt in real time to their surroundings, constraints, and evolving goals. Our agents are built to thrive in these fluid, unpredictable settings—sensing timing and environmental cues to provide assistance that feels natural, situationally aware, and attuned to the moment.</p>
             <div class="framework-concepts">
               <p class="framework-concepts-title">Key Concepts</p>
               <ul class="step-list" style="margin-bottom:0;">
-                <li>Actions emerge from moment-to-moment circumstances</li>
-                <li>Plans are resources for action, not scripts</li>
-                <li>Context shapes behavior in real time</li>
+                <li>Dynamic environmental adaptation.</li>
+                <li>Temporal awareness for timely interventions.</li>
+                <li>Cue recognition and response.</li>
+                <li>Improvisational support over rigid planning.</li>
               </ul>
             </div>
           </div>
           <div class="framework-right">
-            <img src="images/research/situated-action.png" alt="Situated action">
+            <div class="framework-collab-box">
+              <h4 class="framework-collab-title">Approaches</h4>
+              <p class="framework-collab-desc">Agents that improvise and adapt based on environment, timing, and social context—not rigid plans.</p>
+              <div class="framework-approaches-cards">
+                <img src="images/research/abstract-planning.svg" alt="Abstract Planning — Traditional approach" class="framework-approach-svg">
+                <img src="images/research/situated-action-card.svg" alt="Situated Action — Our approach" class="framework-approach-svg">
+              </div>
+            </div>
           </div>
         </div>
         <div class="framework-why">
           <p class="framework-why-title">Why this matters</p>
-          <p>Designing for situated action means building AI systems that can adapt to evolving contexts rather than rigidly following predetermined workflows.</p>
+          <p>Intelligence emerges from ongoing interaction with dynamic contexts, not from executing predetermined plans. For designers, this means creating systems that remain open, adaptive, and responsive—shaping intelligence through interaction rather than instruction.</p>
         </div>
       </div>
 
