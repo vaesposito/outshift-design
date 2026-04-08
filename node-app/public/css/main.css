@@ -647,7 +647,19 @@ a.use-case-card { color: inherit; text-decoration: none; }
     .use-case-card h4 { font-size: 20px; }
 }
 @media (max-width: 768px) {
-    .framework-content { grid-template-columns: 1fr; }
+    .framework-content { grid-template-columns: 1fr; gap: 24px; }
+    .framework-right { gap: 16px; }
+    .framework-collab-box { gap: 16px; }
+    .framework-collab-title { font-size: 1em; }
+    .framework-collab-desc { font-size: 0.88em; }
+    .framework-approaches-cards { flex-direction: column; gap: 12px; }
+    .framework-approach-svg { flex: none; width: 100%; }
+    .framework-diagram { max-width: 100%; }
+    .framework-core-svg { max-width: 100%; }
+    .framework-why { padding: 16px 20px; }
+    .framework-why-title { font-size: 0.9em; }
+    .framework-why p { font-size: 0.88em; }
+    .step-desc { font-size: 0.92em; }
     .use-cases-grid { grid-template-columns: 1fr; gap: 20px; }
     .use-case-card { height: auto; padding: 28px; }
     .cognitive-metrics { flex-wrap: wrap; }
@@ -887,6 +899,12 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .pipeline-step { padding: 24px 0; }
     .step-number { font-size: 3em; }
     .step-title { font-size: 1.2em; }
+    .step-desc { font-size: 0.88em; }
+    .framework-content { gap: 20px; }
+    .framework-collab-title { font-size: 0.95em; }
+    .framework-why { padding: 14px 16px; margin-top: 16px; }
+    .framework-concepts { margin: 14px 0; }
+    .step-list li { font-size: 0.88em; }
 }
 
 /* ── Research Page ── */
