@@ -371,6 +371,12 @@ a:link, a:visited, a:hover, a:active {
 }
 .pipeline-step:nth-child(odd) {
     align-self: flex-start;
+    border: none;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 48px 0;
 }
 .pipeline-step:nth-child(even) {
     align-self: flex-end;
@@ -822,6 +828,39 @@ footer {
     object-fit: cover;
 }
 
+.framework-collab-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.framework-collab-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+.framework-collab-desc {
+    font-size: 0.92em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+.framework-diagram {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-medium);
+    padding: 20px;
+    background: var(--color-surface);
+}
+.framework-core-title {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+.framework-core-svg {
+    width: 100%;
+}
 .framework-concepts {
     margin: 20px 0;
 }
@@ -1082,23 +1121,12 @@ footer {
             </div>
           </div>
           <div class="framework-right">
-            <img src="images/research/distributed-cognition.png" alt="Distributed cognition">
-            <div>
-              <div class="cognitive-metrics-label">Cognitive metrics</div>
-              <div class="cognitive-metrics">
-                <div class="metric-card">
-                  <p class="metric-value">2B</p>
-                  <p class="metric-label">Awareness</p>
-                </div>
-                <div class="metric-card">
-                  <p class="metric-value">1M</p>
-                  <p class="metric-label">Retention</p>
-                </div>
-                <div class="metric-card">
-                  <p class="metric-value">94%</p>
-                  <p class="metric-label">Accuracy</p>
-                </div>
-              </div>
+            <div class="framework-collab-box">
+              <h4 class="framework-collab-title">Framework for Human-AI Collaboration</h4>
+              <p class="framework-collab-desc">In Designing agentic systems we consider cognitive processes to be distributed across human and AI agents working within the unified system. This helps us to conceptualize experiences that allow agents to seamlessly integrate into user workflows and interfaces that act as spaces of mutual sense-making and collaboration.</p>
+              <img src="images/research/human-ai-diagram.svg" alt="Human-AI collaboration diagram" class="framework-diagram">
+              <h5 class="framework-core-title">Core functionalities</h5>
+              <img src="images/research/core-functionalities.svg" alt="Core functionalities: Summarizing, Remembering, Suggesting, Contextualizing" class="framework-core-svg">
             </div>
           </div>
         </div>
