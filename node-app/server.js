@@ -59,6 +59,7 @@ const fallbackData = {
         { label: 'Security & Privacy', href: '/research/security-privacy' },
         { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
         { label: 'Cognitive Load Audit', href: '/research/cognitive-load-audit' },
+        { label: 'Foresight Canvas', href: '/research/foresight-canvas' },
       ]},
     ]},
     { label: 'Blog', href: '/blog', hasDropdown: false },
@@ -446,8 +447,8 @@ const fallbackSocietal = {
   steps: [
     { label: 'Contextual Inquiry', title: 'Design Begins with Understanding', image: '/images/research/societal-impact/contextual-inquiry.png', imageAlt: 'Design Begins with Understanding', bullets: ['Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?', 'Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?', 'Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
     { label: 'Intentional Scope', title: 'What Should This Agent Do', image: '/images/research/societal-impact/intentional-scope.png', imageAlt: 'What Should This Agent Do', bullets: ['Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?', 'Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
-    { label: 'Inclusive Cognitive Design', title: 'Respect Diverse Ways of Thinking & Working', image: '/images/research/societal-impact/inclusive-design.png', imageAlt: 'Respect Diverse Ways of Thinking & Working', bullets: ['Design for neurodiversity and multilingualism.', 'Support different expertise levels\u2014novices, experts, non-coders, etc.', 'Minimize cognitive overload: surface what\u2019s necessary, when it\u2019s needed.'], templateLabel: 'Cognitive Load Audit', templateLink: '#' },
-    { label: 'Foresight & Feedback Loops', title: 'Built for Change. Expect the Unexpected', image: '/images/research/societal-impact/foresight.png', imageAlt: 'Built for Change. Expect the Unexpected', bullets: ['Use speculative scenarios to anticipate unintended consequences.', 'Include continuous user feedback mechanisms (not just surveys\u2014embedded nudges, annotations, corrections).'], templateLabel: 'Foresight Canvas', templateLink: '#' },
+    { label: 'Inclusive Cognitive Design', title: 'Respect Diverse Ways of Thinking & Working', image: '/images/research/societal-impact/inclusive-design.png', imageAlt: 'Respect Diverse Ways of Thinking & Working', bullets: ['Design for neurodiversity and multilingualism.', 'Support different expertise levels\u2014novices, experts, non-coders, etc.', 'Minimize cognitive overload: surface what\u2019s necessary, when it\u2019s needed.'], templateLabel: 'Cognitive Load Audit', templateLink: '/research/cognitive-load-audit' },
+    { label: 'Foresight & Feedback Loops', title: 'Built for Change. Expect the Unexpected', image: '/images/research/societal-impact/foresight.png', imageAlt: 'Built for Change. Expect the Unexpected', bullets: ['Use speculative scenarios to anticipate unintended consequences.', 'Include continuous user feedback mechanisms (not just surveys\u2014embedded nudges, annotations, corrections).'], templateLabel: 'Foresight Canvas', templateLink: '/research/foresight-canvas' },
   ],
   sdk: sdkFallback,
 };
@@ -665,6 +666,69 @@ app.get('/research/cognitive-load-audit', async (_req, res) => {
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design \u2014 Cognitive Load Audit',
+    pageData,
+  });
+});
+
+/* ──────────────────────────────────────────────────────────
+   FORESIGHT CANVAS
+   ────────────────────────────────────────────────────────── */
+const fallbackForesightCanvas = {
+  hero: { title: 'Foresight Canvas', description: "A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks." },
+  heroImage: '/images/research/foresight-canvas/hero.png',
+  templateTitle: 'Foresight Canvas',
+  templateSubtitle: 'Applying the Foresight & Feedback Loop to your agent helps to stress-test against future scenarios, surface unintended consequences, and ensure long-term viability and trust in an evolving world.',
+  steps: [
+    {
+      title: 'Futures Wheel',
+      instructions: [
+        'Define the core innovation or capability your agent introduces at the center of the wheel.',
+        'Identify first-order consequences: direct, immediate effects on users, workflows, and stakeholders.',
+        'Map second-order consequences: ripple effects that emerge from those direct impacts, especially on organizations, markets, and society.',
+        'Continue mapping higher-order effects as they branch outward, paying attention to unintended or non-obvious outcomes.',
+        'For each consequence, assess whether it is positive, neutral, or negative and consider who is affected.',
+        'Highlight areas of uncertainty or risk that require deeper investigation, monitoring, or design intervention.',
+      ],
+      methodology: "The Futures Wheel is a structured brainstorming tool originally developed by Jerome Glenn. It starts with a central event or change and maps outward in concentric rings of consequences. In the context of agent design, it helps teams move beyond immediate functionality to explore the broader systemic effects of deploying autonomous agents. By systematically tracing cause-and-effect chains, designers can surface hidden risks, anticipate unintended behaviors, and identify opportunities for proactive safeguards. This method is especially valuable in speculative design settings where the goal is to stress-test agent capabilities against plausible future scenarios before they reach production.\n\nResult: A Futures Wheel artifact documenting all orders of consequences related to the agent\u2019s core innovation, usable as a living reference for design decisions, risk assessments, and stakeholder communication.",
+      diagram: '/images/research/foresight-canvas/step1.svg',
+    },
+    {
+      title: 'Futures Types',
+      instructions: [
+        'Start from the consequences identified in the Futures Wheel.',
+        'Classify each scenario into one of four futures types: Positive, Negative, Plausible, or Dystopian.',
+        'For each classification, describe the scenario and its implications for users, systems, and society.',
+        'Identify design responses: what guardrails, fallback mechanisms, or ethical boundaries can be embedded to steer toward positive futures and mitigate negative ones?',
+        'Use the resulting map to prioritize design interventions based on likelihood and severity of impact.',
+      ],
+      methodology: "The Futures Types framework draws on established futures studies methodology, particularly the work of Jim Dator and Sohail Inayatullah. It categorizes possible futures into archetypes, helping designers move from abstract speculation to actionable design priorities. By placing agent-related scenarios into Positive, Negative, Plausible, and Dystopian quadrants, teams gain a structured way to evaluate not just what could happen, but how desirable or dangerous each outcome might be. This approach bridges the gap between speculative foresight and practical design decisions, ensuring that autonomous systems are built with resilience, accountability, and ethical awareness from the start.\n\nResult: A Futures Types map that classifies agent-related scenarios into four quadrants, providing a clear framework for prioritizing design interventions and embedding safeguards against the most impactful negative outcomes.",
+      diagram: '/images/research/foresight-canvas/step2.svg',
+    },
+  ],
+  sdk: sdkFallback,
+};
+
+function mapForesightCanvasPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackForesightCanvas.hero,
+    heroImage: s.hero?.image?.url || fallbackForesightCanvas.heroImage,
+    templateTitle: s.templateTitle || fallbackForesightCanvas.templateTitle,
+    templateSubtitle: s.templateSubtitle || fallbackForesightCanvas.templateSubtitle,
+    steps: fallbackForesightCanvas.steps,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/foresight-canvas', async (_req, res) => {
+  const strapiData = await fetchStrapi(`foresight-canvas-page?${deepPopulate(['hero', 'sdk', 'seo'])}`);
+  const pageData = mapForesightCanvasPage(strapiData) || fallbackForesightCanvas;
+
+  res.render('foresight-canvas', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design \u2014 Foresight Canvas',
     pageData,
   });
 });

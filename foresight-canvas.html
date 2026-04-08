@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-<title>Outshift Design — Security & Privacy</title>
+<title>Outshift Design — Foresight Canvas</title>
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <script>
@@ -34,6 +34,7 @@
     --color-shadow: rgba(41, 50, 71, 0.08);
     --color-sdk-bg: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
     --color-step-number: rgba(0, 188, 235, 0.08);
+    --color-blog-card-bg: linear-gradient(132deg, rgba(210, 194, 255, 0.15) 26.47%, rgba(255, 255, 255, 0.00) 88.42%);
 }
 @supports (font-variation-settings: normal) {
   :root {
@@ -57,6 +58,7 @@
     --color-shadow: rgba(0, 0, 0, 0.3);
     --color-sdk-bg: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
     --color-step-number: rgba(63, 198, 238, 0.06);
+    --color-blog-card-bg: linear-gradient(132deg, rgba(147, 69, 225, 0.10) 26.47%, rgba(15, 17, 23, 0.00) 88.42%);
 }
 [data-theme="dark"] .logo-light,
 [data-theme="dark"] .footer-logo .logo-light { display: none; }
@@ -289,205 +291,81 @@ a:link, a:visited, a:hover, a:active {
     display: block;
 }
 
-/* ── Building Secure Systems Section ── */
-.secure-systems-section {
+/* ── Template Content Section ── */
+.template-section {
     position: relative;
     z-index: 1;
     padding: 80px 0;
     border-top: 1px solid var(--color-border);
 }
-.secure-systems-header {
+.template-header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 16px;
 }
-.secure-systems-header h2 {
+.template-header h2 {
     font-size: 2.8em;
     font-weight: 200;
-    margin: 0 0 16px;
+    margin: 0;
 }
-.secure-cards-grid {
+.template-subtitle {
+    text-align: center;
+    font-size: 1.05em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 64px;
+}
+.template-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 48px;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 64px;
 }
-.secure-card {
+.template-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.template-block {
     padding: 32px;
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
+    background: var(--color-blog-card-bg);
 }
-[data-theme="dark"] .secure-card {
-    background: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
-}
-.secure-card h3 {
+.template-block h3 {
     font-size: 1.4em;
     font-weight: 500;
     margin: 0 0 10px;
 }
-.secure-card p {
-    font-size: 0.95em;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin: 0;
-}
-.key-questions {
-    padding: 32px;
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
-}
-[data-theme="dark"] .key-questions {
-    background: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
-}
-.key-questions h3 {
-    font-size: 1.1em;
-    font-weight: 600;
-    margin: 0 0 16px;
-}
-.key-questions ul {
-    list-style: disc;
+.template-block ol {
     padding-left: 20px;
     margin: 0;
     color: var(--color-text-muted);
     line-height: 1.8;
-    font-size: 0.95em;
-}
-.key-questions ul li {
-    margin-bottom: 6px;
-}
-
-/* ── Research Approach Section ── */
-.research-approach-section {
-    position: relative;
-    z-index: 1;
-    padding: 80px 0;
-    border-top: 1px solid var(--color-border);
-}
-.research-approach-header {
-    text-align: center;
-    margin-bottom: 64px;
-}
-.research-approach-header h2 {
-    font-size: 2.8em;
-    font-weight: 200;
-    margin: 0 0 16px;
-}
-.research-approach-header p {
-    font-size: 1.05em;
-    color: var(--color-text-muted);
-    margin: 0 auto;
-    line-height: 1.7;
-}
-.research-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 48px;
-    padding: 48px 0;
-    border-bottom: 1px solid var(--color-border);
-}
-.research-item:first-of-type {
-    padding-top: 0;
-}
-.research-item:last-of-type {
-    border-bottom: none;
-}
-.research-item-text {
-    flex: 1;
-}
-.research-item-text h3 {
-    font-size: 1.5em;
-    font-weight: 600;
-    margin: 0 0 16px;
-    line-height: 1.3;
-}
-.research-item-text p {
-    font-size: 0.95em;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin: 0 0 16px;
-}
-.research-item-text ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin: 0;
-    color: var(--color-text-muted);
-    line-height: 1.8;
-    font-size: 0.95em;
-}
-.research-item-image {
-    flex: 1;
-}
-.research-item-image img {
-    width: 100%;
-    border-radius: 16px;
-    display: block;
-}
-
-/* ── Use Cases ── */
-.use-cases {
-    padding-top: 48px;
-    border-top: none;
-}
-.research-item + .use-cases {
-    border-top: none;
-}
-.research-item:last-child {
-    border-bottom: none;
-}
-.use-cases-label {
-    font-size: 0.85em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-subtle);
-    margin: 0 0 16px;
-}
-.blog-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-}
-.blog-card {
-    background: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid var(--color-border);
-    padding: 40px;
-    gap: 20px;
-    height: 296px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-[data-theme="dark"] .blog-card {
-    background: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
-}
-.blog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px var(--color-shadow);
-}
-.blog-card h4 {
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--color-text);
-    margin: 0 0 20px;
-    line-height: 1.3;
-}
-.blog-card .blog-desc {
     font-size: 0.92em;
-    color: var(--color-text-subtle);
-    line-height: 1.6;
+}
+.template-block ol li {
+    margin-bottom: 8px;
+}
+.template-block p {
+    font-size: 0.95em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
     margin: 0;
 }
-.blog-meta {
+.template-diagram {
     display: flex;
     align-items: center;
-    gap: 16px;
-    font-size: 0.82em;
-    color: var(--color-text-subtle);
-    margin-bottom: 20px;
+    justify-content: center;
+}
+.template-diagram img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.importance-note {
+    margin-top: 32px;
 }
 
 /* ── SDK Section ── */
@@ -592,10 +470,7 @@ footer {
     font-size: 0.95em;
     margin-bottom: 10px;
 }
-.footer-links a svg {
-    width: 14px;
-    height: 14px;
-}
+.footer-links a svg { width: 14px; height: 14px; }
 .footer-social h6 {
     font-size: 0.8em;
     font-weight: 700;
@@ -604,17 +479,9 @@ footer {
     color: var(--color-text);
     margin: 0 0 16px;
 }
-.footer-social-icons {
-    display: flex;
-    gap: 16px;
-}
-.footer-social-icons a {
-    color: var(--color-text-subtle);
-}
-.footer-social-icons a svg {
-    width: 20px;
-    height: 20px;
-}
+.footer-social-icons { display: flex; gap: 16px; }
+.footer-social-icons a { color: var(--color-text-subtle); }
+.footer-social-icons a svg { width: 20px; height: 20px; }
 .footer-bottom {
     border-top: 1px solid var(--color-border);
     padding: 24px 0;
@@ -677,12 +544,9 @@ footer {
 @media (max-width: 1024px) {
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 400px; }
-    .secure-systems-header h2, .research-approach-header h2 { font-size: 2.2em; }
+    .template-header h2 { font-size: 2.2em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
-    .blog-cards { grid-template-columns: repeat(2, 1fr); }
-    .blog-card { padding: 28px; height: auto; min-height: 260px; }
-    .blog-card h4 { font-size: 20px; }
 }
 
 @media (max-width: 768px) {
@@ -729,12 +593,8 @@ footer {
     .page-hero-text { padding-right: 0; }
     .page-hero-title h1 { font-size: 2em; }
     .page-hero-image img { height: 320px; max-width: 100%; }
-    .secure-systems-header h2, .research-approach-header h2 { font-size: 1.8em; }
-    .secure-cards-grid { grid-template-columns: 1fr; }
-    .research-item { flex-direction: column; gap: 24px; }
-    .research-item.reversed { flex-direction: column; }
-    .blog-cards { grid-template-columns: 1fr; gap: 20px; }
-    .blog-card { height: auto; padding: 28px; }
+    .template-header h2 { font-size: 1.8em; }
+    .template-content { grid-template-columns: 1fr; }
     .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
     .footer-top { flex-direction: column; gap: 32px; }
@@ -743,13 +603,10 @@ footer {
 @media (max-width: 480px) {
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img { height: 240px; }
-    .secure-systems-header h2, .research-approach-header h2 { font-size: 1.5em; }
+    .template-header h2 { font-size: 1.5em; }
+    .template-block { padding: 24px; }
+    .template-block h3 { font-size: 1.05em; }
     .sdk-text h2 { font-size: 1.5em; }
-    .blog-card { padding: 24px; }
-    .secure-card { padding: 24px; }
-    .secure-card h3 { font-size: 1.05em; }
-    .research-item-text h3 { font-size: 1.2em; }
-    .blog-card h4 { font-size: 18px; }
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
 }
@@ -816,140 +673,78 @@ footer {
 <div class="page-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="research.html">Research</a> <span>/</span> <a href="research.html">Hax</a> <span>/</span> Security &amp; Privacy
+      <a href="research.html">Research</a> <span>/</span> <a href="hax.html">Hax</a> <span>/</span> Foresight Canvas
     </div>
     <div class="page-hero-title">
-      <h1>Security &amp; Privacy</h1>
+      <h1>Foresight Canvas</h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>We're building the future of secure, autonomous multi-agent systems. As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.</p>
+        <p>A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks.</p>
       </div>
       <div class="page-hero-image">
-        <img src="images/research/security-privacy/hero.png" alt="Security & Privacy">
+        <img src="images/research/foresight-canvas/hero.png" alt="Foresight Canvas">
       </div>
     </div>
   </div>
 </div>
 
-<!-- Building Secure Systems -->
-<div class="secure-systems-section">
+<!-- Cognitive Load Audit Template -->
+<div class="template-section">
   <div class="container">
-    <div class="secure-systems-header">
-      <h2>Building Secure Systems</h2>
+    <div class="template-header">
+      <h2>Foresight Canvas</h2>
     </div>
+    <p class="template-subtitle">Applying the Foresight &amp; Feedback Loop to your agent helps to stress-test against future scenarios, surface unintended consequences, and ensure long-term viability and trust in an evolving world.</p>
 
-    <div class="secure-cards-grid">
-      <div class="secure-card">
-        <h3>Enabling Safe Innovation</h3>
-        <p>Strong security and privacy foundations support confident experimentation with autonomous agents while maintaining safety and trust.</p>
-      </div>
-      <div class="secure-card">
-        <h3>Scaling Systems Responsibly</h3>
-        <p>Adaptive protections keep pace with growing agent capabilities and increasingly complex environments.</p>
-      </div>
-      <div class="secure-card">
-        <h3>Strengthening Trust</h3>
-        <p>Clear safeguards and transparent data boundaries build confidence among users, developers, and stakeholders.</p>
-      </div>
-      <div class="secure-card">
-        <h3>Supporting Global Interoperability</h3>
-        <p>Unified, flexible frameworks help agent systems operate consistently across diverse regulatory and cultural contexts.</p>
-      </div>
-    </div>
-
-    <div class="key-questions">
-      <h3>Key Questions</h3>
-      <ul>
-        <li>How do we design security systems that adapt as agents become more autonomous and capable?</li>
-        <li>What privacy guarantees can we provide when agents require rich contextual information to function effectively?</li>
-        <li>What privacy guarantees can we provide when agents require rich contextual information to function effectively?</li>
-        <li>How do traditional security models need to evolve for systems that reason, plan, and act independently?</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Research Approach -->
-<div class="research-approach-section">
-  <div class="container">
-    <div class="research-approach-header">
-      <h2>Research Approach</h2>
-      <p>Our research focuses on defining how autonomous agents can operate safely and responsibly as they take on more decision-making and contextual reasoning. We examine two foundational dimensions — security and privacy — to develop adaptive models that evolve alongside increasing agent capability.</p>
-    </div>
-
-    <div class="research-item reversed">
-      <div class="research-item-image">
-        <img src="images/research/security-privacy/adaptive-security.png" alt="Adaptive Security for Autonomous Agents">
-      </div>
-      <div class="research-item-text">
-        <h3>Adaptive Security for Autonomous Agents</h3>
-        <p>The environments agents operate in are dynamic and unpredictable, calling for security models that can respond with similar agility. We focus on creating mechanisms that adapt to context, behavioral signals, and evolving system states.</p>
-        <p><strong>We Explore</strong></p>
-        <ul>
-          <li>Dynamic policies that shift based on context and risk signals.</li>
-          <li>Behavioral guardrails that set clear boundaries for safe operation.</li>
-          <li>Continuous monitoring that flags anomalies and triggers fallback actions.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="research-item">
-      <div class="research-item-text">
-        <h3>Privacy-Preserving Context for Intelligent Agents</h3>
-        <p>Agents work with a wide range of context—identity signals, system state, historical patterns, and environmental cues—to operate effectively. Ensuring this context is handled in a safe, responsible, and transparent way is essential for building systems that remain both capable and trustworthy.</p>
-        <p><strong>We Explore</strong></p>
-        <ul>
-          <li>Scoped access that provides only the context needed for each task.</li>
-          <li>Privacy techniques that protect data while keeping agents functional.</li>
-          <li>Clear data boundaries that show what is used, how, and why.</li>
-        </ul>
-      </div>
-      <div class="research-item-image">
-        <img src="images/research/security-privacy/privacy-context.png" alt="Privacy-Preserving Context for Intelligent Agents">
-      </div>
-    </div>
-
-    <!-- Use Cases -->
-    <div class="use-cases">
-      <p class="use-cases-label">Use Cases</p>
-      <div class="blog-cards">
-        <div class="blog-card">
-          <div>
-            <div class="blog-meta">
-              <span>Automation</span>
-              <span>Security</span>
-            </div>
-            <h4>Self Automation of Routine Tasks</h4>
-            <p class="blog-desc">Agents autonomously handle repetitive workflows while maintaining secure access boundaries and audit trails.</p>
-          </div>
-          <div></div>
+    <!-- Step 1: Futures Wheel -->
+    <div class="template-content">
+      <div class="template-text-col">
+        <div class="template-block">
+          <h3>Instructions</h3>
+          <ol>
+            <li>Define the core innovation or capability your agent introduces at the center of the wheel.</li>
+            <li>Identify first-order consequences: direct, immediate effects on users, workflows, and stakeholders.</li>
+            <li>Map second-order consequences: ripple effects that emerge from those direct impacts, especially on organizations, markets, and society.</li>
+            <li>Continue mapping higher-order effects as they branch outward, paying attention to unintended or non-obvious outcomes.</li>
+            <li>For each consequence, assess whether it is positive, neutral, or negative and consider who is affected.</li>
+            <li>Highlight areas of uncertainty or risk that require deeper investigation, monitoring, or design intervention.</li>
+          </ol>
         </div>
-        <div class="blog-card">
-          <div>
-            <div class="blog-meta">
-              <span>Risk</span>
-              <span>Multi-Agent</span>
-            </div>
-            <h4>Risk Analysis &amp; Agentic Decisions</h4>
-            <p class="blog-desc">Multi-agent systems that assess risk factors collaboratively while preserving data isolation between organizational boundaries.</p>
-          </div>
-          <div></div>
-        </div>
-        <div class="blog-card">
-          <div>
-            <div class="blog-meta">
-              <span>Detection</span>
-              <span>Privacy</span>
-            </div>
-            <h4>Adaptive Risk Detection</h4>
-            <p class="blog-desc">Agents that evolve their threat detection capabilities over time using privacy-preserving learning techniques.</p>
-          </div>
-          <div></div>
+        <div class="template-block">
+          <h3>Methodology</h3>
+          <p>The Futures Wheel is a structured brainstorming tool originally developed by Jerome Glenn. It starts with a central event or change and maps outward in concentric rings of consequences. In the context of agent design, it helps teams move beyond immediate functionality to explore the broader systemic effects of deploying autonomous agents. By systematically tracing cause-and-effect chains, designers can surface hidden risks, anticipate unintended behaviors, and identify opportunities for proactive safeguards. This method is especially valuable in speculative design settings where the goal is to stress-test agent capabilities against plausible future scenarios before they reach production.</p>
+          <p style="margin-top: 16px;">Result: A Futures Wheel artifact documenting all orders of consequences related to the agent&rsquo;s core innovation, usable as a living reference for design decisions, risk assessments, and stakeholder communication.</p>
         </div>
       </div>
+      <div class="template-diagram">
+        <img src="images/research/foresight-canvas/step1.svg" alt="Futures Wheel">
+      </div>
     </div>
 
+    <!-- Step 2: Futures Types -->
+    <div class="template-content">
+      <div class="template-text-col">
+        <div class="template-block">
+          <h3>Instructions</h3>
+          <ol>
+            <li>Start from the consequences identified in the Futures Wheel.</li>
+            <li>Classify each scenario into one of four futures types: Positive, Negative, Plausible, or Dystopian.</li>
+            <li>For each classification, describe the scenario and its implications for users, systems, and society.</li>
+            <li>Identify design responses: what guardrails, fallback mechanisms, or ethical boundaries can be embedded to steer toward positive futures and mitigate negative ones?</li>
+            <li>Use the resulting map to prioritize design interventions based on likelihood and severity of impact.</li>
+          </ol>
+        </div>
+        <div class="template-block">
+          <h3>Methodology</h3>
+          <p>The Futures Types framework draws on established futures studies methodology, particularly the work of Jim Dator and Sohail Inayatullah. It categorizes possible futures into archetypes, helping designers move from abstract speculation to actionable design priorities. By placing agent-related scenarios into Positive, Negative, Plausible, and Dystopian quadrants, teams gain a structured way to evaluate not just what could happen, but how desirable or dangerous each outcome might be. This approach bridges the gap between speculative foresight and practical design decisions, ensuring that autonomous systems are built with resilience, accountability, and ethical awareness from the start.</p>
+          <p style="margin-top: 16px;">Result: A Futures Types map that classifies agent-related scenarios into four quadrants, providing a clear framework for prioritizing design interventions and embedding safeguards against the most impactful negative outcomes.</p>
+        </div>
+      </div>
+      <div class="template-diagram">
+        <img src="images/research/foresight-canvas/step2.svg" alt="Futures Types">
+      </div>
+    </div>
   </div>
 </div>
 
