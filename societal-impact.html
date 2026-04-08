@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-<title>Outshift Design — Research Behind Hax</title>
+<title>Outshift Design — Societal Impact</title>
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <script>
@@ -30,13 +30,10 @@
     --color-hover: rgba(41, 50, 71, 0.04);
     --color-accent: #00BCEB;
     --color-accent-hover: #187ADC;
-    --color-tag-bg: rgba(0, 188, 235, 0.1);
-    --color-tag-border: rgba(0, 188, 235, 0.2);
-    --color-tag-text: #187ADC;
     --color-hamburger: #293247;
     --color-shadow: rgba(41, 50, 71, 0.08);
-    --color-research-card-bg: rgba(210, 194, 255, 0.06);
     --color-sdk-bg: linear-gradient(to right, rgba(210, 194, 255, 0.15), rgba(255, 255, 255, 0));
+    --color-step-number: rgba(0, 188, 235, 0.08);
 }
 @supports (font-variation-settings: normal) {
   :root {
@@ -56,13 +53,10 @@
     --color-hover: rgba(255, 255, 255, 0.06);
     --color-accent: #3fc6ee;
     --color-accent-hover: #00BCEB;
-    --color-tag-bg: rgba(0, 188, 235, 0.12);
-    --color-tag-border: rgba(0, 188, 235, 0.25);
-    --color-tag-text: #3fc6ee;
     --color-hamburger: #e0e4ec;
     --color-shadow: rgba(0, 0, 0, 0.3);
-    --color-research-card-bg: rgba(147, 69, 225, 0.06);
     --color-sdk-bg: linear-gradient(to right, rgba(147, 69, 225, 0.1), rgba(15, 17, 23, 0));
+    --color-step-number: rgba(63, 198, 238, 0.06);
 }
 [data-theme="dark"] .logo-light,
 [data-theme="dark"] .footer-logo .logo-light { display: none; }
@@ -90,10 +84,7 @@
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
 * { box-sizing: border-box; }
-.container {
-    width: 100%;
-    padding: 0 10%;
-}
+.container { width: 100%; padding: 0 10%; }
 body {
     overflow-x: hidden;
     margin: 0;
@@ -112,28 +103,16 @@ header {
     position: relative;
     z-index: 10;
 }
-.design {
-    font-size: 1.8em;
-    font-weight: 200;
-    margin-left: 8px;
-}
-.logo {
-    align-items: center;
-}
+.design { font-size: 1.8em; font-weight: 200; margin-left: 8px; }
+.logo { align-items: center; }
 .logo, nav ul, header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-nav ul {
-    list-style: none;
-    gap: 30px;
-}
+nav ul { list-style: none; gap: 30px; }
 nav > ul > li { position: relative; }
-.text, .icon {
-    display: inline-block;
-    vertical-align: middle;
-}
+.text, .icon { display: inline-block; vertical-align: middle; }
 .icon { margin-top: 2px; }
 .has-dropdown { position: relative; }
 .nav-dropdown {
@@ -164,10 +143,7 @@ nav > ul > li { position: relative; }
     visibility: visible;
     transform: scaleY(1);
 }
-.nav-dropdown > li {
-    display: block;
-    width: 100%;
-}
+.nav-dropdown > li { display: block; width: 100%; }
 .nav-dropdown > li > a {
     display: block;
     width: 100%;
@@ -182,9 +158,7 @@ nav > ul > li { position: relative; }
     background: var(--color-hover);
     color: var(--color-text) !important;
 }
-.nav-dropdown-group {
-    padding: 0;
-}
+.nav-dropdown-group { padding: 0; }
 .nav-dropdown-label {
     display: flex;
     align-items: center;
@@ -204,13 +178,8 @@ nav > ul > li { position: relative; }
     transition: opacity 0.2s, transform 0.2s;
     transform: translateX(-4px);
 }
-.nav-dropdown-label:hover {
-    background: var(--color-hover);
-}
-.nav-dropdown-label:hover::after {
-    opacity: 1;
-    transform: translateX(0);
-}
+.nav-dropdown-label:hover { background: var(--color-hover); }
+.nav-dropdown-label:hover::after { opacity: 1; transform: translateX(0); }
 .nav-dropdown-sub {
     list-style: none;
     padding: 0;
@@ -220,10 +189,7 @@ nav > ul > li { position: relative; }
     gap: 0;
     border-left: 2px solid var(--color-border);
 }
-.nav-dropdown-sub li {
-    display: block;
-    width: 100%;
-}
+.nav-dropdown-sub li { display: block; width: 100%; }
 .nav-dropdown-sub li a {
     display: block;
     width: 100%;
@@ -250,39 +216,6 @@ a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: var(--color-text);
 }
-h1 { font-size: 4em; font-weight: 200; margin: 5px 0; }
-h2 { font-size: 4em; font-weight: 600; margin: 5px 0; }
-h3 { font-size: 3em; font-weight: 200; margin: 3% 0; }
-h5 { font-size: 1.5em; font-weight: 200; margin: 4% 0; line-height: 1.6em; }
-h6 { font-size: 0.8em; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; margin: 5px 0; color: var(--color-text-subtle); }
-button {
-    position: relative;
-    display: flex;
-    padding: 18px 24px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 40px;
-    font-size: 1.2em;
-    background: transparent;
-    color: var(--color-text);
-    border: none;
-    cursor: pointer;
-    z-index: 0;
-}
-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 40px;
-    padding: 1.5px;
-    background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
 
 /* ── Blobs ── */
 .blob {
@@ -293,269 +226,254 @@ button::before {
     background-repeat: no-repeat;
     opacity: 1;
 }
-.blob-1 {
-    background-image: url('images/round-violet.svg');
-    top: -10%;
-    left: 10%;
-    animation: move1 10s infinite alternate ease-in-out;
-}
-.blob-2 {
-    background-image: url('images/round-orange.svg');
-    top: 20%;
-    right: 10%;
-    animation: move2 15s infinite alternate ease-in-out;
-}
-.blob-3 {
-    background-image: url('images/round-blue.svg');
-    bottom: 10%;
-    left: 30%;
-    animation: move3 8s infinite alternate ease-in-out;
-}
-@keyframes move1 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(20%, 50%) scale(1.1); }
-}
-@keyframes move2 {
-    from { transform: translate(0, 0) rotate(0deg); }
-    to { transform: translate(-30%, 30%) rotate(90deg); }
-}
-@keyframes move3 {
-    from { transform: translate(0, 0); }
-    to { transform: translate(50%, -30%); }
-}
+.blob-1 { background-image: url('images/round-violet.svg'); top: -10%; left: 10%; animation: move1 10s infinite alternate ease-in-out; }
+.blob-2 { background-image: url('images/round-orange.svg'); top: 20%; right: 10%; animation: move2 15s infinite alternate ease-in-out; }
+.blob-3 { background-image: url('images/round-blue.svg'); bottom: 10%; left: 30%; animation: move3 8s infinite alternate ease-in-out; }
+@keyframes move1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(20%, 50%) scale(1.1); } }
+@keyframes move2 { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(-30%, 30%) rotate(90deg); } }
+@keyframes move3 { from { transform: translate(0, 0); } to { transform: translate(50%, -30%); } }
 .blobs-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
     z-index: 0;
     pointer-events: none;
 }
 
-/* ── Research Hero ── */
-.research-hero {
+/* ── Page Hero ── */
+.page-hero {
     position: relative;
     z-index: 1;
-    padding: 80px 0 40px;
+    padding: 40px 0;
 }
-.research-hero .breadcrumb {
+.page-hero .breadcrumb {
     font-size: 0.85em;
     color: var(--color-text-subtle);
     margin-bottom: 32px;
 }
-.research-hero .breadcrumb a {
-    color: var(--color-accent);
-    text-decoration: none;
-}
-.research-hero .breadcrumb span {
-    margin: 0 8px;
-    color: var(--color-border-medium);
-}
-.research-hero-title {
+.page-hero .breadcrumb a { color: var(--color-accent); }
+.page-hero .breadcrumb span { margin: 0 8px; color: var(--color-border-medium); }
+.page-hero-title {
     text-align: center;
     margin-bottom: 48px;
 }
-.research-hero-title h1 {
+.page-hero-title h1 {
     font-size: 3.5em;
     font-weight: 600;
     margin: 0;
     line-height: 1.15;
 }
-.research-hero-inner {
+.page-hero-inner {
     display: flex;
     align-items: center;
     gap: 0;
 }
-.research-hero-text {
+.page-hero-text {
     flex: 5;
     padding-right: 40px;
 }
-.research-hero-text p {
+.page-hero-text p {
     font-size: 18px;
     font-weight: 300;
     color: #363E4A;
     line-height: 1.7;
     margin: 0;
 }
-[data-theme="dark"] .research-hero-text p {
-    color: var(--color-text-muted);
-}
-.research-hero-image {
-    flex: 7;
-}
-.research-hero-image img {
+[data-theme="dark"] .page-hero-text p { color: var(--color-text-muted); }
+.page-hero-image { flex: 7; }
+.page-hero-image img {
     width: 100%;
     height: 525px;
     border-radius: 16px;
     object-fit: cover;
     display: block;
 }
+.page-hero-text ul {
+    padding-left: 20px;
+    margin: 16px 0 0;
+    line-height: 1.8;
+    font-size: 18px;
+    font-weight: 300;
+    color: #363E4A;
+}
+[data-theme="dark"] .page-hero-text ul { color: var(--color-text-muted); }
 
-/* ── Research Section Title ── */
-.research-section-header {
-    text-align: center;
-    padding: 60px 0 48px;
+/* ── Framework Section ── */
+.framework-section {
     position: relative;
     z-index: 1;
+    padding: 80px 0;
+    border-top: 1px solid var(--color-border);
 }
-.research-section-header h2 {
+.framework-section-header {
+    margin-bottom: 64px;
+}
+.framework-section-header h2 {
     font-size: 2.8em;
     font-weight: 200;
     margin: 0 0 16px;
 }
-.research-section-header p {
+.framework-section-header p {
     font-size: 1.05em;
     color: var(--color-text-muted);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
+    max-width: 700px;
+    line-height: 1.7;
 }
 
-/* ── Research Cards (Alternating) ── */
-.research-cards {
-    position: relative;
-    z-index: 1;
-    padding: 0 0 40px;
-}
-.research-card {
+/* ── Responsible Agent Steps ── */
+.responsible-steps {
     display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 32px;
-    position: relative;
-    width: 58.333%;
-    margin: 0 0 40px;
-    border-radius: 20px;
-    z-index: 0;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+    flex-direction: column;
+    gap: 0;
 }
-.research-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    padding: 1.5px;
-    background: linear-gradient(to right, rgba(77, 99, 128, 0.21), #2268BE);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+.responsible-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--color-border);
 }
-.research-card:nth-child(even) {
-    margin-left: auto;
+.responsible-step:first-child {
+    padding-top: 0;
 }
-.research-card-image {
-    flex: 0 0 200px;
-    position: relative;
-    overflow: hidden;
+.responsible-step-image {
+    flex-shrink: 0;
+    width: 160px;
 }
-.research-card-image img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
+.responsible-step-image img {
+    width: 100%;
+    height: auto;
     display: block;
 }
-.research-card-text {
+.responsible-step-content {
     flex: 1;
 }
-.research-card-text h3 {
-    font-size: 21px;
+.responsible-step-label {
+    font-size: 0.82em;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin: 0 0 6px;
+}
+.responsible-step-content h3 {
+    font-size: 1.5em;
     font-weight: 600;
     margin: 0 0 12px;
-    color: var(--color-text);
+    line-height: 1.3;
 }
-.research-card-text p {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text-muted);
-    line-height: 1.7;
+.responsible-step-content ul {
+    padding-left: 20px;
     margin: 0 0 16px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    font-size: 0.95em;
 }
-.read-more {
-    color: #1BCDFF;
+.responsible-step-content ul li {
+    margin-bottom: 2px;
+}
+.responsible-step-template {
+    font-size: 0.88em;
+    color: var(--color-text-muted);
+}
+.responsible-step-template strong {
+    display: block;
+    color: var(--color-text);
     font-weight: 600;
-    font-size: 0.9em;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    margin-bottom: 2px;
 }
-.read-more:hover {
-    color: var(--color-accent-hover) !important;
+
+/* ── Mobile Toggle ── */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 10;
 }
+.menu-toggle span {
+    width: 22px; height: 2px;
+    background: var(--color-hamburger);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+}
+.menu-toggle { position: relative; width: 22px; height: 16px; }
+.menu-toggle span:nth-child(1) { top: 0; }
+.menu-toggle span:nth-child(2) { top: 7px; }
+.menu-toggle span:nth-child(3) { top: 14px; }
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── SDK Section ── */
 .sdk-section {
     position: relative;
     z-index: 1;
-    background: var(--color-sdk-bg);
     padding: 80px 0;
-    margin-top: 40px;
+    border-top: 1px solid var(--color-border);
 }
 .sdk-inner {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 48px;
 }
-.sdk-text {
-    flex: 1;
-}
+.sdk-text { flex: 1; }
 .sdk-text h2 {
     font-size: 2.4em;
-    font-weight: 200;
-    margin: 0 0 20px;
+    font-weight: 600;
+    margin: 0 0 16px;
 }
 .sdk-text p {
-    font-size: 1.05em;
     color: var(--color-text-muted);
+    font-size: 1.05em;
     line-height: 1.7;
     margin: 0 0 32px;
-    max-width: 500px;
 }
-.sdk-image {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-.sdk-image img {
-    width: 100%;
-    border-radius: 16px;
-    object-fit: cover;
-}
-
-/* ── SDK CTA Pill ── */
 .sdk-cta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 32px;
-    border-radius: 40px;
-    font-size: 1em;
-    font-weight: 500;
-    color: var(--color-text);
-    background: transparent;
+    padding: 14px 28px;
+    background: none;
     border: none;
+    border-radius: 999px;
     position: relative;
     z-index: 0;
-    text-decoration: none;
     transition: transform 0.2s ease;
+    font-size: 0.95em;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--color-text);
+    cursor: pointer;
 }
 .sdk-cta::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 40px;
+    border-radius: 999px;
     padding: 1.5px;
-    background: linear-gradient(294deg, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
+    background: conic-gradient(
+        from 180deg,
+        #c084fc, #818cf8, #38bdf8, #34d399,
+        #facc15, #f97316, #ef4444, #c084fc
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    pointer-events: none;
+    z-index: -1;
 }
 .sdk-cta:hover { transform: scale(1.03); }
 .sdk-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+.sdk-image { flex: 1; }
+.sdk-image img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+}
 
 /* ── Footer ── */
 footer {
@@ -563,6 +481,7 @@ footer {
     z-index: 1;
     background: var(--color-bg);
     padding: 60px 0 0;
+    border-top: 1px solid var(--color-border);
 }
 .footer-top {
     display: flex;
@@ -587,8 +506,10 @@ footer {
     font-size: 0.95em;
     margin-bottom: 10px;
 }
-.footer-links a svg { width: 14px; height: 14px; }
-.footer-links a:hover { color: var(--color-text); }
+.footer-links a svg {
+    width: 14px;
+    height: 14px;
+}
 .footer-social h6 {
     font-size: 0.8em;
     font-weight: 700;
@@ -599,59 +520,34 @@ footer {
 }
 .footer-social-icons {
     display: flex;
-    gap: 10px;
+    gap: 16px;
 }
 .footer-social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
     color: var(--color-text-subtle);
-    transition: background 0.2s, color 0.2s;
 }
-.footer-social-icons a:hover {
-    background: var(--color-hover);
-    color: var(--color-text);
+.footer-social-icons a svg {
+    width: 20px;
+    height: 20px;
 }
-.footer-social-icons a svg { width: 18px; height: 18px; }
 .footer-bottom {
     border-top: 1px solid var(--color-border);
     padding: 24px 0;
-    text-align: center;
-    color: var(--color-text-subtle);
     font-size: 0.85em;
-}
-
-/* ── Card Hover ── */
-.research-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.research-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(34, 104, 190, 0.10);
-}
-.research-card-image img {
-    transition: transform 0.4s ease;
-}
-.research-card:hover .research-card-image img {
-    transform: scale(1.05);
+    color: var(--color-text-subtle);
+    text-align: center;
 }
 
 /* ── Custom Cursor ── */
 @media (pointer: fine) {
-    html.has-custom-cursor,
+    html.has-custom-cursor { cursor: none; }
     html.has-custom-cursor * { cursor: none !important; }
     .custom-cursor {
         position: fixed;
-        z-index: 9999;
         width: var(--cursor-size);
         height: var(--cursor-size);
-        left: var(--cursor-x);
         top: var(--cursor-y);
-        background: #fff;
+        left: var(--cursor-x);
+        background: transparent;
         border-radius: 9999px;
         mix-blend-mode: difference;
         transform: translate(-50%, -50%) scale(var(--cursor-scale));
@@ -663,134 +559,76 @@ footer {
     }
 }
 
-/* ── Mobile Menu Toggle ── */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    z-index: 10;
-    position: relative;
-}
-.menu-toggle::before { content: none; }
-.menu-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--color-hamburger);
-    margin: 5px 0;
-    border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s;
-}
-.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ── Responsive: Tablet ── */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-    .research-hero-title h1 { font-size: 2.8em; }
-    .research-hero-image img { height: 400px; }
-    .research-section-header h2 { font-size: 2.2em; }
-    .research-card { width: 70%; padding: 28px; }
-    .research-card-image { flex: 0 0 160px; }
-    .research-card-image img { width: 160px; height: 160px; }
+    .page-hero-title h1 { font-size: 2.8em; }
+    .page-hero-image img { height: 400px; }
+    .framework-section-header h2 { font-size: 2.2em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
+    .responsible-step-image { width: 140px; }
 }
 
-/* ── Responsive: Mobile ── */
 @media (max-width: 768px) {
     .menu-toggle { display: block; }
-    nav {
+    header nav {
+        display: none;
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100vh;
-        background: var(--color-surface);
-        padding: 80px 30px 30px;
-        transition: right 0.3s ease;
-        z-index: 5;
-        box-shadow: -2px 0 20px var(--color-shadow);
-    }
-    nav.open { right: 0; }
-    nav ul {
+        top: 0; left: 0;
+        width: 100%; height: 100vh;
+        background: var(--color-bg);
+        z-index: 100;
+        padding: 80px 24px 24px;
         flex-direction: column;
-        gap: 20px;
-        padding: 0;
     }
+    header nav.open { display: flex; }
+    header nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+    }
+    header nav ul li {
+        width: 100%;
+        border-bottom: 1px solid var(--color-border);
+    }
+    header nav ul li a { font-size: 1.1em; }
     .nav-dropdown {
-        position: static; transform: scaleY(1); opacity: 1; visibility: visible;
-        min-width: 0; background: none; border: none; border-radius: 0;
-        box-shadow: none; padding: 4px 0 0 16px; overflow: visible;
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 4px 0 0 16px;
+        overflow: visible;
+        background: transparent;
     }
-    .nav-dropdown li a { padding: 8px 0; font-size: 0.95em; }
-    .nav-dropdown li a:hover { background: none; }
-    .nav-dropdown-label { padding: 8px 0 4px; font-size: 1em; }
-    .nav-dropdown-label::after { display: none; }
     .nav-dropdown-sub { margin: 0 0 0 8px; border-left: 2px solid var(--color-border); }
     .nav-dropdown-sub li a { padding: 6px 0 6px 12px; font-size: 0.9em; }
     .nav-dropdown-sub li a:hover { background: none; }
 
-    .research-hero-inner {
-        flex-direction: column;
-        gap: 32px;
-    }
-    .research-hero-text { padding-right: 0; }
-    .research-hero-title h1 { font-size: 2em; }
-    .research-hero-image img { height: 320px; max-width: 100%; }
-
-    .research-section-header h2 { font-size: 1.8em; }
-
-    .research-card {
-        width: 100%;
-        flex-direction: column !important;
-        gap: 24px;
-        padding: 28px;
-        margin-bottom: 24px;
-    }
-    .research-card:nth-child(even) {
-        margin-left: 0;
-    }
-    .research-card-image {
-        flex: none;
-        display: flex;
-        justify-content: center;
-    }
-    .research-card-image img {
-        width: 160px;
-        height: 160px;
-    }
-    .research-card-text {
-        text-align: center;
-    }
-    .research-card-text .read-more {
-        justify-content: center;
-    }
-
-    .sdk-inner {
-        flex-direction: column;
-        gap: 32px;
-    }
+    .page-hero-inner { flex-direction: column; gap: 32px; }
+    .page-hero-text { padding-right: 0; }
+    .page-hero-title h1 { font-size: 2em; }
+    .page-hero-image img { height: 320px; max-width: 100%; }
+    .framework-section-header h2 { font-size: 1.8em; }
+    .responsible-step { flex-direction: column; gap: 24px; }
+    .responsible-step-image { width: 120px; }
+    .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
-    .sdk-image { justify-content: center; }
-    .sdk-image img { max-width: 100%; }
-
-    .footer-top {
-        flex-direction: column;
-        gap: 32px;
-    }
+    .footer-top { flex-direction: column; gap: 32px; }
 }
 
 @media (max-width: 480px) {
-    .research-hero-title h1 { font-size: 1.6em; }
-    .research-hero-image img { height: 240px; }
-    .research-section-header h2 { font-size: 1.5em; }
-    .research-card-image img { width: 160px; height: 160px; }
+    .page-hero-title h1 { font-size: 1.6em; }
+    .page-hero-image img { height: 240px; }
+    .framework-section-header h2 { font-size: 1.5em; }
     .sdk-text h2 { font-size: 1.5em; }
+    .responsible-step-content h3 { font-size: 1.2em; }
+    .responsible-step-image { width: 100px; }
     footer { padding: 40px 0 0; }
-    .footer-logo img { height: 48px; }
 }
 </style>
 </head>
@@ -848,115 +686,116 @@ footer {
   <div class="blob blob-3"></div>
 </div>
 
-<!-- Research Hero -->
-<div class="research-hero">
+<!-- Page Hero -->
+<div class="page-hero">
   <div class="container">
     <div class="breadcrumb">
-      <a href="research.html">Research</a> <span>/</span> Hax
+      <a href="research.html">Research</a> <span>/</span> <a href="research.html">Hax</a> <span>/</span> Societal Impact
     </div>
-    <div class="research-hero-title">
-      <h1>Exploring the Research Behind Hax</h1>
+    <div class="page-hero-title">
+      <h1>Societal Impact</h1>
     </div>
-    <div class="research-hero-inner">
-      <div class="research-hero-text">
-        <p>The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.</p>
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <p>Agentic systems have profound ripple effects: they influence how we work, what knowledge is accessible, how power is distributed, and how we make decisions at scale. That's why we treat societal impact as a design responsibility, not a byproduct. We ask not just What works? but:</p>
+        <ul>
+          <li>Who does this serve?</li>
+          <li>Who might it exclude or harm?</li>
+          <li>What are the long-term consequences of deploying this system at scale?</li>
+        </ul>
       </div>
-      <div class="research-hero-image">
-        <img src="images/research/hero.png" alt="Hax Research">
+      <div class="page-hero-image">
+        <img src="images/research/societal-impact/hero.png" alt="Societal Impact">
       </div>
     </div>
   </div>
 </div>
 
-<!-- Section Title -->
-<div class="research-section-header">
+<!-- A Framework for Responsible Agent Design -->
+<div class="framework-section">
   <div class="container">
-    <h2>Advancing the Science of Human Agent Interaction</h2>
-    <p>Investigating how humans and agents think, act, and build together</p>
-  </div>
-</div>
+    <div class="framework-section-header">
+      <h2>A Framework for Responsible Agent Design</h2>
+      <p>To support teams building agentic systems, we developed a practical, five-part framework—adaptable across roles, from UX designers to backend engineers.</p>
+    </div>
 
-<!-- Research Cards -->
-<div class="research-cards">
-  <div class="container">
+    <div class="responsible-steps">
 
-    <a href="foundational-principles.html" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/foundational-principles.png" alt="Foundational Principles">
+      <div class="responsible-step">
+        <div class="responsible-step-image">
+          <img src="images/research/societal-impact/contextual-inquiry.png" alt="Design Begins with Understanding">
+        </div>
+        <div class="responsible-step-content">
+          <p class="responsible-step-label">Contextual Inquiry</p>
+          <h3>Design Begins with Understanding</h3>
+          <ul>
+            <li>Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?</li>
+            <li>Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?</li>
+            <li>Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).</li>
+          </ul>
+          <div class="responsible-step-template">
+            <strong>Templates</strong>
+            Agent Impact Map
+          </div>
+        </div>
       </div>
-      <div class="research-card-text">
-        <h3>Foundational Principles</h3>
-        <p>We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
 
-    <a href="cognitive-frameworks.html" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/cognitive-framework.png" alt="Cognitive Frameworks">
+      <div class="responsible-step">
+        <div class="responsible-step-image">
+          <img src="images/research/societal-impact/intentional-scope.png" alt="What Should This Agent Do">
+        </div>
+        <div class="responsible-step-content">
+          <p class="responsible-step-label">Intentional Scope</p>
+          <h3>What Should This Agent Do</h3>
+          <ul>
+            <li>Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?</li>
+            <li>Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.</li>
+          </ul>
+          <div class="responsible-step-template">
+            <strong>Templates</strong>
+            Agent Impact Map
+          </div>
+        </div>
       </div>
-      <div class="research-card-text">
-        <h3>Cognitive Frameworks</h3>
-        <p>Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
 
-    <a href="societal-impact.html" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/societal-impact.png" alt="Societal Impact">
+      <div class="responsible-step">
+        <div class="responsible-step-image">
+          <img src="images/research/societal-impact/inclusive-design.png" alt="Respect Diverse Ways of Thinking & Working">
+        </div>
+        <div class="responsible-step-content">
+          <p class="responsible-step-label">Inclusive Cognitive Design</p>
+          <h3>Respect Diverse Ways of Thinking &amp; Working</h3>
+          <ul>
+            <li>Design for neurodiversity and multilingualism.</li>
+            <li>Support different expertise levels—novices, experts, non-coders, etc.</li>
+            <li>Minimize cognitive overload: surface what's necessary, when it's needed.</li>
+          </ul>
+          <div class="responsible-step-template">
+            <strong>Templates</strong>
+            Cognitive Load Audit
+          </div>
+        </div>
       </div>
-      <div class="research-card-text">
-        <h3>Societal Impact</h3>
-        <p>Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
 
-    <a href="#" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/security-privacy.png" alt="Security & Privacy">
+      <div class="responsible-step">
+        <div class="responsible-step-image">
+          <img src="images/research/societal-impact/foresight.png" alt="Built for Change. Expect the Unexpected">
+        </div>
+        <div class="responsible-step-content">
+          <p class="responsible-step-label">Foresight &amp; Feedback Loops</p>
+          <h3>Built for Change. Expect the Unexpected</h3>
+          <ul>
+            <li>Use speculative scenarios to anticipate unintended consequences.</li>
+            <li>Include continuous user feedback mechanisms (not just surveys—embedded nudges, annotations, corrections).</li>
+          </ul>
+          <div class="responsible-step-template">
+            <strong>Templates</strong>
+            Foresight Canvas
+          </div>
+        </div>
       </div>
-      <div class="research-card-text">
-        <h3>Security & Privacy</h3>
-        <p>As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
 
-    <a href="#" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/agent-impact.png" alt="Agent Impact Map">
-      </div>
-      <div class="research-card-text">
-        <h3>Agent Impact Map</h3>
-        <p>Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
-
-    <a href="#" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/cognitive-load-audit.png" alt="Cognition-Level Audit">
-      </div>
-      <div class="research-card-text">
-        <h3>Cognitive Load Audit</h3>
-        <p>Evaluating the agent's impact on a user's mental effort to ensure its design is intuitive, clear and respects diverse cognitive styles.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
-
-    <a href="#" class="research-card">
-      <div class="research-card-image">
-        <img src="images/research/foresight-canvas.png" alt="Foresight Canvas">
-      </div>
-      <div class="research-card-text">
-        <h3>Foresight Canvas</h3>
-        <p>A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
-
+    </div>
   </div>
 </div>
 

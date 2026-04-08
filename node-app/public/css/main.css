@@ -600,6 +600,26 @@ a.more-article-card { color: inherit; text-decoration: none; }
     .more-articles-grid { grid-template-columns: 1fr; }
 }
 
+/* Societal Impact Page */
+.framework-section { position: relative; z-index: 1; padding: 80px 0; border-top: 1px solid var(--color-border); }
+.framework-section-header { margin-bottom: 64px; }
+.framework-section-header h2 { font-size: 2.8em; font-weight: 200; margin: 0 0 16px; }
+.framework-section-header p { font-size: 1.05em; color: var(--color-text-muted); max-width: 700px; line-height: 1.7; }
+.responsible-steps { display: flex; flex-direction: column; gap: 0; }
+.responsible-step { display: flex; align-items: flex-start; gap: 40px; padding: 48px 0; border-bottom: 1px solid var(--color-border); }
+.responsible-step:first-child { padding-top: 0; }
+.responsible-step-image { flex-shrink: 0; width: 160px; }
+.responsible-step-image img { width: 100%; height: auto; display: block; }
+.responsible-step-content { flex: 1; }
+.responsible-step-label { font-size: 0.82em; font-weight: 500; color: var(--color-text-muted); margin: 0 0 6px; }
+.responsible-step-content h3 { font-size: 1.5em; font-weight: 600; margin: 0 0 12px; line-height: 1.3; }
+.responsible-step-content ul { padding-left: 20px; margin: 0 0 16px; color: var(--color-text-muted); line-height: 1.8; font-size: 0.95em; }
+.responsible-step-content ul li { margin-bottom: 2px; }
+.responsible-step-template { font-size: 0.88em; color: var(--color-text-muted); }
+.responsible-step-template strong { display: block; color: var(--color-text); font-weight: 600; margin-bottom: 2px; }
+.page-hero-text ul { padding-left: 20px; margin: 16px 0 0; line-height: 1.8; font-size: 18px; font-weight: 300; color: #363E4A; }
+[data-theme="dark"] .page-hero-text ul { color: var(--color-text-muted); }
+
 /* Cognitive Frameworks Page */
 .framework-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 32px; }
 .framework-right { display: flex; flex-direction: column; gap: 20px; }
@@ -763,7 +783,8 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .sdk-inner { gap: 40px; }
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img, .page-hero-image video { height: 400px; }
-    .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
+    .pipeline-header h2, .case-studies-header h2, .framework-section-header h2 { font-size: 2.2em; }
+    .responsible-step-image { width: 140px; }
     .pipeline-step { width: 85%; padding: 40px; }
     .pipeline-steps--fullwidth .pipeline-step { width: 100%; padding: 40px 0; }
     .step-number { font-size: 4.5em; }
@@ -856,7 +877,9 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .page-hero-text { padding-right: 0; }
     .page-hero-title h1 { font-size: 2em; }
     .page-hero-image img, .page-hero-image video { height: 320px; max-width: 100%; }
-    .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
+    .pipeline-header h2, .case-studies-header h2, .framework-section-header h2 { font-size: 1.8em; }
+    .responsible-step { flex-direction: column; gap: 24px; }
+    .responsible-step-image { width: 120px; }
     .pipeline-step { width: 100%; padding: 32px; }
     .pipeline-step:nth-child(odd),
     .pipeline-step:nth-child(even) { align-self: center; }
@@ -897,7 +920,9 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .sdk-text h2 { font-size: 1.5em; }
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img, .page-hero-image video { height: 240px; }
-    .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
+    .pipeline-header h2, .case-studies-header h2, .framework-section-header h2 { font-size: 1.5em; }
+    .responsible-step-content h3 { font-size: 1.2em; }
+    .responsible-step-image { width: 100px; }
     .pipeline-step { padding: 24px; }
     .pipeline-steps--fullwidth .pipeline-step { padding: 24px 0; }
     .step-number { font-size: 3em; }
