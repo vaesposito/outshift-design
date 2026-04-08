@@ -1069,7 +1069,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     transform: scale(1.05);
 }
 /* Hax Research Section */
-.hax-research-section { position: relative; z-index: 1; padding: 80px 0; }
+.hax-research-section { position: relative; z-index: 1; padding: 80px 0; border-bottom: 1px solid var(--color-border); }
 .hax-research-inner { display: flex; align-items: center; gap: 48px; }
 .hax-research-text { flex: 1; }
 .hax-research-text h2 { font-size: 2.4em; font-weight: 600; margin: 0 0 16px; }
