@@ -58,6 +58,7 @@ const fallbackData = {
         { label: 'Societal Impact', href: '/research/societal-impact' },
         { label: 'Security & Privacy', href: '/research/security-privacy' },
         { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
+        { label: 'Cognitive Load Audit', href: '/research/cognitive-load-audit' },
       ]},
     ]},
     { label: 'Blog', href: '/blog', hasDropdown: false },
@@ -600,6 +601,70 @@ app.get('/research/agent-impact-map', async (_req, res) => {
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Agent Impact Map',
+    pageData,
+  });
+});
+
+/* ──────────────────────────────────────────────────────────
+   COGNITIVE LOAD AUDIT
+   ────────────────────────────────────────────────────────── */
+const fallbackCognitiveLoadAudit = {
+  hero: { title: 'Cognitive Load Audit', description: "Evaluating the agent\u2019s impact on a user\u2019s mental effort to ensure its design is intuitive, clear, and respects diverse cognitive styles." },
+  heroImage: '/images/research/cognitive-load-audit/hero.png',
+  templateTitle: 'Cognitive Load Audit',
+  templateSubtitle: 'Auditing the total mental effort (Cognitive Load) your agent demands is paramount to ensure diverse ways of thinking and acting are respected.',
+  steps: [
+    {
+      title: 'First Step: List',
+      instructions: [
+        'Identify all tasks, decisions, and information a user must process when interacting with the agent.',
+        'For each item, list the type (e.g. recall, decision, search) and the context in which it occurs.',
+        'Then rate the cognitive effort on a simple scale (e.g. Low, Medium, High).',
+        'Plot those on the matrix.',
+        'Finally, combine tasks with high load: can we simplify, automate, defer or restructure to reduce the overall mental effort and shift the balance toward more intuitive user performance?',
+      ],
+      methodology: "This methodology profiles how cognitive load auditing reveals the real cost of the agent\u2019s UX. It helps designers characterize how the agent\u2019s information architecture, conversational patterns, and decision-making demands affect a user\u2019s ability to think clearly, act confidently, and maintain an appropriate level of control. Identifying when, the agent overloads users with choices, context switches, ambiguous cues, or high-frequency interactions leads to a cognitive overhead or low readability of the interface and its ability to support efficient and intuitive user performance.",
+      diagram: '/images/research/cognitive-load-audit/step1.svg',
+    },
+    {
+      title: 'Second Step: Plot',
+      instructions: [
+        'For each item listed in the first step, plot the corresponding data point in the matrix.',
+        'Place each item according to whether it is "primary or secondary information" and whether it is "mandatory or optional".',
+        'Then rate each one by its importance and impact.',
+        'Plot those on the matrix.',
+        'Finally, combine tasks with high load: can we simplify, automate, defer or restructure to reduce the overall mental effort and shift the balance toward more intuitive user performance?',
+      ],
+      methodology: "This step moves from the cognitive load inventory to a strategic prioritization. After cataloging the information the user processes, the matrix maps each item by its nature (primary vs. secondary) and its role in the workflow (mandatory vs. optional). Plotting items into these quadrants lets designers visually identify what is essential to the core experience, what supports efficiency, and what may be safely deferred, hidden, or removed. The goal is to build an information architecture that reduces cognitive friction by surfacing only what matters most at each moment, respecting the user\u2019s limited cognitive bandwidth and ensuring that the agent\u2019s design does not overwhelm but instead supports efficient and intuitive user performance.",
+      diagram: '/images/research/cognitive-load-audit/step2.svg',
+    },
+  ],
+  importanceNote: 'How essential the information is in accomplishing task or decision? Impact: how information affects overall user workflows?',
+  sdk: sdkFallback,
+};
+
+function mapCognitiveLoadAuditPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackCognitiveLoadAudit.hero,
+    heroImage: s.hero?.image?.url || fallbackCognitiveLoadAudit.heroImage,
+    templateTitle: s.templateTitle || fallbackCognitiveLoadAudit.templateTitle,
+    templateSubtitle: s.templateSubtitle || fallbackCognitiveLoadAudit.templateSubtitle,
+    steps: fallbackCognitiveLoadAudit.steps,
+    importanceNote: s.importanceNote || fallbackCognitiveLoadAudit.importanceNote,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/cognitive-load-audit', async (_req, res) => {
+  const strapiData = await fetchStrapi(`cognitive-load-audit-page?${deepPopulate(['hero', 'sdk', 'seo'])}`);
+  const pageData = mapCognitiveLoadAuditPage(strapiData) || fallbackCognitiveLoadAudit;
+
+  res.render('cognitive-load-audit', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design \u2014 Cognitive Load Audit',
     pageData,
   });
 });

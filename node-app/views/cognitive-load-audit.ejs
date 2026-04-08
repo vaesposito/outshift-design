@@ -1,0 +1,79 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+<%- include('partials/blobs') %>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/research">Research</a> <span>/</span> <a href="/hax">Hax</a> <span>/</span> Cognitive Load Audit
+    </div>
+    <div class="page-hero-title">
+      <h1><%= pageData.hero.title %></h1>
+    </div>
+    <div class="page-hero-inner">
+      <div class="page-hero-text">
+        <p><%= pageData.hero.description %></p>
+      </div>
+      <div class="page-hero-image">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cognitive Load Audit Template -->
+<div class="template-section">
+  <div class="container">
+    <div class="template-header">
+      <h2><%= pageData.templateTitle %></h2>
+    </div>
+    <p class="template-subtitle"><%= pageData.templateSubtitle %></p>
+
+    <% pageData.steps.forEach(function(step, idx) { %>
+    <div class="template-content">
+      <div class="template-text-col">
+        <div class="template-block">
+          <h3>Instructions</h3>
+          <ol>
+            <% step.instructions.forEach(function(inst) { %>
+            <li><%= inst %></li>
+            <% }) %>
+          </ol>
+        </div>
+        <div class="template-block">
+          <h3>Methodology</h3>
+          <p><%= step.methodology %></p>
+        </div>
+      </div>
+      <div class="template-diagram">
+        <img src="<%= step.diagram %>" alt="<%= step.title %>">
+      </div>
+    </div>
+    <% }) %>
+
+    <% if (pageData.importanceNote) { %>
+    <div class="template-block" style="margin-top: 32px;">
+      <p><strong>Importance:</strong> <%= pageData.importanceNote %></p>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- Build with SDK -->
+<div class="sdk-section">
+  <div class="container">
+    <div class="sdk-inner">
+      <div class="sdk-text">
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+      <div class="sdk-image">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
