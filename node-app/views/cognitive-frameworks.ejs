@@ -9,14 +9,14 @@
       <a href="/research">Research</a> <span>/</span> <a href="/research">Hax</a> <span>/</span> Cognitive Frameworks
     </div>
     <div class="page-hero-title">
-      <h1>Cognitive Frameworks</h1>
+      <h1><%= pageData.hero.title %></h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>Physical and cognitive designs are key to understanding how people and AI systems share understanding, adapt to situations, and act meaningfully together. Grounded in embodied cognition, distributed cognition, and situated action, our research bridges theory and design to shape interactions that are intuitive, contextual, and genuinely collaborative.</p>
+        <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
-        <img src="/images/research/cognitive-frameworks-hero.png" alt="Cognitive Frameworks">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
       </div>
     </div>
   </div>
@@ -26,141 +26,82 @@
 <div class="pipeline-section">
   <div class="container">
     <div class="pipeline-header">
-      <h2>Theoretical Foundations</h2>
-      <p>Grounding HAX design in established cognitive science</p>
+      <h2><%= pageData.theoreticalTitle %></h2>
+      <p><%= pageData.theoreticalDescription %></p>
     </div>
 
     <div class="pipeline-steps pipeline-steps--fullwidth">
 
+      <% pageData.steps.forEach(function(step) { %>
       <div class="pipeline-step">
         <div class="framework-content">
           <div class="framework-left">
-            <div class="step-number">01</div>
-            <div class="step-title">Distributed Cognition</div>
-            <p class="step-desc">What if intelligence isn't just in our heads? Distributed cognition argues that thinking happens across people, tools, environments, and artifacts — not in any single mind.</p>
+            <div class="step-number"><%= step.number %></div>
+            <div class="step-title"><%= step.title %></div>
+            <p class="step-desc"><%= step.description %></p>
             <div class="framework-concepts">
               <p class="framework-concepts-title">Key Concepts</p>
               <ul class="step-list" style="margin-bottom:0;">
-                <li>Cognition extends beyond individual brains</li>
-                <li>Knowledge lives in systems, tools, and social structures</li>
-                <li>Coordination happens through shared representations</li>
+                <% step.keyConcepts.forEach(function(kc) { %>
+                <li><%= kc %></li>
+                <% }) %>
               </ul>
             </div>
+            <% if (step.whyPosition === 'inside') { %>
             <div class="framework-why">
-              <p class="framework-why-title">Why this matters</p>
-              <p>In AI-augmented systems, cognition isn't just human or machine — it's distributed across both. Understanding this helps us design interfaces that support shared awareness, coordination, and collective intelligence.</p>
+              <p class="framework-why-title"><%= step.whyTitle %></p>
+              <p><%= step.whyText %></p>
             </div>
+            <% } %>
           </div>
           <div class="framework-right">
             <div class="framework-collab-box">
-              <h4 class="framework-collab-title">Framework for Human-AI Collaboration</h4>
-              <p class="framework-collab-desc">In Designing agentic systems we consider cognitive processes to be distributed across human and AI agents working within the unified system. This helps us to conceptualize experiences that allow agents to seamlessly integrate into user workflows and interfaces that act as spaces of mutual sense-making and collaboration.</p>
-              <img src="/images/research/human-ai-diagram.svg" alt="Human-AI collaboration diagram" class="framework-diagram">
-              <h5 class="framework-core-title">Core functionalities</h5>
-              <img src="/images/research/core-functionalities.svg" alt="Core functionalities: Summarizing, Remembering, Suggesting, Contextualizing" class="framework-core-svg">
+              <h4 class="framework-collab-title"><%= step.frameworkTitle %></h4>
+              <p class="framework-collab-desc"><%= step.frameworkDescription %></p>
+              <% if (step.approachCards) { %>
+              <div class="framework-approaches-cards">
+                <% step.frameworkImages.forEach(function(img, j) { %>
+                <img src="<%= img %>" alt="<%= step.frameworkImageAlts[j] || '' %>" class="framework-approach-svg">
+                <% }) %>
+              </div>
+              <% } else if (step.frameworkImages.length === 1) { %>
+              <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram">
+              <% } else { %>
+              <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram">
+              <% if (step.coreTitle) { %>
+              <h5 class="framework-core-title"><%= step.coreTitle %></h5>
+              <% } %>
+              <img src="<%= step.frameworkImages[1] %>" alt="<%= step.frameworkImageAlts[1] || '' %>" class="framework-core-svg">
+              <% } %>
             </div>
           </div>
         </div>
+        <% if (step.whyPosition === 'outside') { %>
+        <div class="framework-why">
+          <p class="framework-why-title"><%= step.whyTitle %></p>
+          <p><%= step.whyText %></p>
+        </div>
+        <% } %>
+        <% if (step.useCases && step.useCases.length) { %>
         <p class="use-cases-label">USE CASES</p>
         <div class="use-cases-grid">
+          <% step.useCases.forEach(function(uc) { %>
           <a href="#" class="use-case-card">
             <div>
-              <span class="use-case-tag">Scalability</span>
-              <h4>Sead Graph Exploration: Turning Complexity into Comprehension</h4>
-              <p class="use-case-desc">How distributed cognition principles helped transform complex graph data into intuitive, navigable interfaces.</p>
+              <span class="use-case-tag"><%= uc.tag %></span>
+              <h4><%= uc.title %></h4>
+              <p class="use-case-desc"><%= uc.description %></p>
             </div>
             <div class="use-case-footer">
               <span>Case Study</span>
               <span class="read-more">Read more &rarr;</span>
             </div>
           </a>
-          <a href="#" class="use-case-card">
-            <div>
-              <span class="use-case-tag">Security</span>
-              <h4>Cognitive Load in Security Workflows: Reducing Alert Fatigue</h4>
-              <p class="use-case-desc">Applying cognitive frameworks to simplify threat analysis and help analysts focus on what matters most.</p>
-            </div>
-            <div class="use-case-footer">
-              <span>Case Study</span>
-              <span class="read-more">Read more &rarr;</span>
-            </div>
-          </a>
-          <a href="#" class="use-case-card">
-            <div>
-              <span class="use-case-tag">Collaboration</span>
-              <h4>Multi-Agent Orchestration: Coordinating Intelligence at Scale</h4>
-              <p class="use-case-desc">How distributed cognition informs the design of collaborative multi-agent systems that work alongside human teams.</p>
-            </div>
-            <div class="use-case-footer">
-              <span>Case Study</span>
-              <span class="read-more">Read more &rarr;</span>
-            </div>
-          </a>
+          <% }) %>
         </div>
+        <% } %>
       </div>
-
-      <div class="pipeline-step">
-        <div class="framework-content">
-          <div class="framework-left">
-            <div class="step-number">02</div>
-            <div class="step-title">Situated Action</div>
-            <p class="step-desc">Cognition is shaped by context. Users rarely execute fixed plans all of the time—they adapt in real time to their surroundings, constraints, and evolving goals. Our agents are built to thrive in these fluid, unpredictable settings—sensing timing and environmental cues to provide assistance that feels natural, situationally aware, and attuned to the moment.</p>
-            <div class="framework-concepts">
-              <p class="framework-concepts-title">Key Concepts</p>
-              <ul class="step-list" style="margin-bottom:0;">
-                <li>Dynamic environmental adaptation.</li>
-                <li>Temporal awareness for timely interventions.</li>
-                <li>Cue recognition and response.</li>
-                <li>Improvisational support over rigid planning.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="framework-right">
-            <div class="framework-collab-box">
-              <h4 class="framework-collab-title">Approaches</h4>
-              <p class="framework-collab-desc">Agents that improvise and adapt based on environment, timing, and social context—not rigid plans.</p>
-              <div class="framework-approaches-cards">
-                <img src="/images/research/abstract-planning.svg" alt="Abstract Planning — Traditional approach" class="framework-approach-svg">
-                <img src="/images/research/situated-action-card.svg" alt="Situated Action — Our approach" class="framework-approach-svg">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framework-why">
-          <p class="framework-why-title">Why this matters</p>
-          <p>Intelligence emerges from ongoing interaction with dynamic contexts, not from executing predetermined plans. For designers, this means creating systems that remain open, adaptive, and responsive—shaping intelligence through interaction rather than instruction.</p>
-        </div>
-      </div>
-
-      <div class="pipeline-step">
-        <div class="framework-content">
-          <div class="framework-left">
-            <div class="step-number">03</div>
-            <div class="step-title">Embodiment</div>
-            <p class="step-desc">Thinking does not reside solely in the brain—it unfolds through movement, rhythm, and our engagement with space and tools. Cognition is embodied: it happens as we gesture, coordinate, and attune to the world around us. We design agentic systems that recognize these sensorimotor dimensions of thought—systems that seek to pick up on subtle cues of motion, rhythm, and spatial context to collaborate more intuitively with humans. Our current work explores agents capable of perceiving and responding to these embodied signals in real time, bridging the gap between mind, body, and machine.</p>
-            <div class="framework-concepts">
-              <p class="framework-concepts-title">Key Concepts</p>
-              <ul class="step-list" style="margin-bottom:0;">
-                <li>Gesture and physical movement recognition.</li>
-                <li>Rhythm and temporal patterns in interaction.</li>
-                <li>Spatial layout and environmental awareness.</li>
-                <li>Real-time sensorimotor feedback loops.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="framework-right">
-            <div class="framework-collab-box">
-              <h4 class="framework-collab-title">How the Body Shapes Thinking: An Embodied Cognition Model</h4>
-              <p class="framework-collab-desc">Thinking happens through the body—agents can respond to physical, spatial, and temporal cues.</p>
-              <img src="/images/research/embodiment-diagram.svg" alt="Embodied Cognition Model" class="framework-diagram">
-            </div>
-          </div>
-        </div>
-        <div class="framework-why">
-          <p class="framework-why-title">Why this matters</p>
-          <p>Cognition extends beyond the brain into physical gestures, spatial arrangements, and temporal rhythms of interaction. When designing agents that interact with users in the real world, we must consider how these embodied and environmental dynamics shape meaning, attention, and action—ensuring that agents respond not just to words, but to movement, rhythm, and context as part of the cognitive process itself.</p>
-        </div>
-      </div>
+      <% }) %>
 
     </div>
   </div>
@@ -171,9 +112,9 @@
   <div class="container">
     <div class="cf-banner-inner">
       <ul class="cf-banner-list">
-        <li>Situated Interaction</li>
-        <li>Auxiliary interactions</li>
-        <li>Investigating Tactile Components</li>
+        <% pageData.bannerItems.forEach(function(item) { %>
+        <li><%= item %></li>
+        <% }) %>
       </ul>
     </div>
   </div>
@@ -184,12 +125,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
       </div>
     </div>
   </div>

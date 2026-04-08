@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_simple_cards",
+  "info": {
+    "displayName": "SimpleCard",
+    "icon": "layer",
+    "description": "Card with title and description"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

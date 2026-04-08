@@ -9,19 +9,21 @@
       <a href="/research">Research</a> <span>/</span> <a href="/research">Hax</a> <span>/</span> Societal Impact
     </div>
     <div class="page-hero-title">
-      <h1>Societal Impact</h1>
+      <h1><%= pageData.hero.title %></h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>Agentic systems have profound ripple effects: they influence how we work, what knowledge is accessible, how power is distributed, and how we make decisions at scale. That's why we treat societal impact as a design responsibility, not a byproduct. We ask not just What works? but:</p>
+        <p><%= pageData.hero.description %></p>
+        <% if (pageData.heroListItems && pageData.heroListItems.length) { %>
         <ul>
-          <li>Who does this serve?</li>
-          <li>Who might it exclude or harm?</li>
-          <li>What are the long-term consequences of deploying this system at scale?</li>
+          <% pageData.heroListItems.forEach(function(item) { %>
+          <li><%= item %></li>
+          <% }) %>
         </ul>
+        <% } %>
       </div>
       <div class="page-hero-image">
-        <img src="/images/research/societal-impact/hero.png" alt="Societal Impact">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
       </div>
     </div>
   </div>
@@ -31,86 +33,33 @@
 <div class="framework-section">
   <div class="container">
     <div class="framework-section-header">
-      <h2>A Framework for Responsible Agent Design</h2>
-      <p>To support teams building agentic systems, we developed a practical, five-part framework—adaptable across roles, from UX designers to backend engineers.</p>
+      <h2><%= pageData.frameworkTitle %></h2>
+      <p><%= pageData.frameworkDescription %></p>
     </div>
 
     <div class="responsible-steps">
-
+      <% pageData.steps.forEach(function(step) { %>
       <div class="responsible-step">
         <div class="responsible-step-image">
-          <img src="/images/research/societal-impact/contextual-inquiry.png" alt="Design Begins with Understanding">
+          <img src="<%= step.image %>" alt="<%= step.imageAlt || step.title %>">
         </div>
         <div class="responsible-step-content">
-          <p class="responsible-step-label">Contextual Inquiry</p>
-          <h3>Design Begins with Understanding</h3>
+          <p class="responsible-step-label"><%= step.label %></p>
+          <h3><%- step.title %></h3>
           <ul>
-            <li>Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?</li>
-            <li>Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?</li>
-            <li>Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).</li>
+            <% step.bullets.forEach(function(b) { %>
+            <li><%= b %></li>
+            <% }) %>
           </ul>
+          <% if (step.templateLabel) { %>
           <div class="responsible-step-template">
             <strong>Templates</strong>
-            Agent Impact Map
+            <%= step.templateLabel %>
           </div>
+          <% } %>
         </div>
       </div>
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="/images/research/societal-impact/intentional-scope.png" alt="What Should This Agent Do">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Intentional Scope</p>
-          <h3>What Should This Agent Do</h3>
-          <ul>
-            <li>Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?</li>
-            <li>Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Agent Impact Map
-          </div>
-        </div>
-      </div>
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="/images/research/societal-impact/inclusive-design.png" alt="Respect Diverse Ways of Thinking & Working">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Inclusive Cognitive Design</p>
-          <h3>Respect Diverse Ways of Thinking &amp; Working</h3>
-          <ul>
-            <li>Design for neurodiversity and multilingualism.</li>
-            <li>Support different expertise levels—novices, experts, non-coders, etc.</li>
-            <li>Minimize cognitive overload: surface what's necessary, when it's needed.</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Cognitive Load Audit
-          </div>
-        </div>
-      </div>
-
-      <div class="responsible-step">
-        <div class="responsible-step-image">
-          <img src="/images/research/societal-impact/foresight.png" alt="Built for Change. Expect the Unexpected">
-        </div>
-        <div class="responsible-step-content">
-          <p class="responsible-step-label">Foresight &amp; Feedback Loops</p>
-          <h3>Built for Change. Expect the Unexpected</h3>
-          <ul>
-            <li>Use speculative scenarios to anticipate unintended consequences.</li>
-            <li>Include continuous user feedback mechanisms (not just surveys—embedded nudges, annotations, corrections).</li>
-          </ul>
-          <div class="responsible-step-template">
-            <strong>Templates</strong>
-            Foresight Canvas
-          </div>
-        </div>
-      </div>
-
+      <% }) %>
     </div>
   </div>
 </div>
@@ -120,12 +69,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
       </div>
     </div>
   </div>

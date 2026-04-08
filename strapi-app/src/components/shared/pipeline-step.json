@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_shared_pipeline_steps",
+  "info": {
+    "displayName": "PipelineStep",
+    "icon": "arrowRight",
+    "description": "Pipeline step with number, title, subtitle, description, quote, bullets, and deliverables"
+  },
+  "options": {},
+  "attributes": {
+    "stepNumber": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "quote": {
+      "type": "text"
+    },
+    "bullets": {
+      "type": "text"
+    },
+    "deliverables": {
+      "type": "text"
+    }
+  }
+}

@@ -14,6 +14,22 @@ export interface SharedArrowLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCaseStudyCard extends Struct.ComponentSchema {
+  collectionName: 'components_shared_case_study_cards';
+  info: {
+    description: 'Case study card with title, description, problem, tags, and principles';
+    displayName: 'CaseStudyCard';
+    icon: 'file';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    principles: Schema.Attribute.Text;
+    problem: Schema.Attribute.Text;
+    tags: Schema.Attribute.Component<'shared.tag', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedCtaBlock extends Struct.ComponentSchema {
   collectionName: 'components_shared_cta_blocks';
   info: {
@@ -77,6 +93,73 @@ export interface SharedNavItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedPatternPanel extends Struct.ComponentSchema {
+  collectionName: 'components_shared_pattern_panels';
+  info: {
+    description: 'Pattern panel with key, title, description, and example images';
+    displayName: 'PatternPanel';
+    icon: 'grid';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    exampleImages: Schema.Attribute.Media<'images', true>;
+    key: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedPipelineStep extends Struct.ComponentSchema {
+  collectionName: 'components_shared_pipeline_steps';
+  info: {
+    description: 'Pipeline step with number, title, subtitle, description, quote, bullets, and deliverables';
+    displayName: 'PipelineStep';
+    icon: 'arrowRight';
+  };
+  attributes: {
+    bullets: Schema.Attribute.Text;
+    deliverables: Schema.Attribute.Text;
+    description: Schema.Attribute.Text;
+    quote: Schema.Attribute.Text;
+    stepNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedResearchApproachItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_research_approach_items';
+  info: {
+    description: 'Research approach item with title, description, explore bullets, and image';
+    displayName: 'ResearchApproachItem';
+    icon: 'search';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    exploreBullets: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedResponsibleStep extends Struct.ComponentSchema {
+  collectionName: 'components_shared_responsible_steps';
+  info: {
+    description: 'Framework step with label, title, image, bullets, and template reference';
+    displayName: 'ResponsibleStep';
+    icon: 'bulletList';
+  };
+  attributes: {
+    bullets: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageAlt: Schema.Attribute.String;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    templateLabel: Schema.Attribute.String;
+    templateLink: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSectionHeader extends Struct.ComponentSchema {
   collectionName: 'components_shared_section_headers';
   info: {
@@ -109,6 +192,19 @@ export interface SharedSeoMeta extends Struct.ComponentSchema {
         maxLength: 60;
       }>;
     ogImage: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface SharedSimpleCard extends Struct.ComponentSchema {
+  collectionName: 'components_shared_simple_cards';
+  info: {
+    description: 'Card with title and description';
+    displayName: 'SimpleCard';
+    icon: 'layer';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -146,18 +242,39 @@ export interface SharedTag extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedUseCaseEntry extends Struct.ComponentSchema {
+  collectionName: 'components_shared_use_case_entries';
+  info: {
+    description: 'Use case card with title, description, and tags';
+    displayName: 'UseCaseEntry';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    tags: Schema.Attribute.Component<'shared.tag', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.arrow-link': SharedArrowLink;
+      'shared.case-study-card': SharedCaseStudyCard;
       'shared.cta-block': SharedCtaBlock;
       'shared.hero-block': SharedHeroBlock;
       'shared.media-block': SharedMediaBlock;
       'shared.nav-item': SharedNavItem;
+      'shared.pattern-panel': SharedPatternPanel;
+      'shared.pipeline-step': SharedPipelineStep;
+      'shared.research-approach-item': SharedResearchApproachItem;
+      'shared.responsible-step': SharedResponsibleStep;
       'shared.section-header': SharedSectionHeader;
       'shared.seo-meta': SharedSeoMeta;
+      'shared.simple-card': SharedSimpleCard;
       'shared.social-link': SharedSocialLink;
       'shared.tag': SharedTag;
+      'shared.use-case-entry': SharedUseCaseEntry;
     }
   }
 }

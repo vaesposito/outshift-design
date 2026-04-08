@@ -430,6 +430,44 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAgentImpactMapPageAgentImpactMapPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'agent_impact_map_pages';
+  info: {
+    description: 'Agent Impact Map research page content';
+    displayName: 'AgentImpactMapPage';
+    pluralName: 'agent-impact-map-pages';
+    singularName: 'agent-impact-map-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    diagram: Schema.Attribute.Media<'images'>;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    instructions: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::agent-impact-map-page.agent-impact-map-page'
+    > &
+      Schema.Attribute.Private;
+    methodology: Schema.Attribute.RichText;
+    publishedAt: Schema.Attribute.DateTime;
+    sdk: Schema.Attribute.Component<'shared.cta-block', false>;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
+    templateSubtitle: Schema.Attribute.Text;
+    templateTitle: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
   collectionName: 'blog_posts';
   info: {
@@ -463,6 +501,122 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     tags: Schema.Attribute.Component<'shared.tag', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCognitiveFrameworksPageCognitiveFrameworksPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'cognitive_frameworks_pages';
+  info: {
+    description: 'Cognitive Frameworks research page content';
+    displayName: 'CognitiveFrameworksPage';
+    pluralName: 'cognitive-frameworks-pages';
+    singularName: 'cognitive-frameworks-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bannerItems: Schema.Attribute.Text;
+    body: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cognitive-frameworks-page.cognitive-frameworks-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sdk: Schema.Attribute.Component<'shared.cta-block', false>;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
+    theoreticalDescription: Schema.Attribute.Text;
+    theoreticalTitle: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFoundationalPrinciplesPageFoundationalPrinciplesPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'foundational_principles_pages';
+  info: {
+    description: 'Foundational Principles research page content';
+    displayName: 'FoundationalPrinciplesPage';
+    pluralName: 'foundational-principles-pages';
+    singularName: 'foundational-principles-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    caseStudies: Schema.Attribute.Component<'shared.case-study-card', true>;
+    caseStudiesDescription: Schema.Attribute.Text;
+    caseStudiesTitle: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::foundational-principles-page.foundational-principles-page'
+    > &
+      Schema.Attribute.Private;
+    pipelineSubtitle: Schema.Attribute.Text;
+    pipelineTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sdk: Schema.Attribute.Component<'shared.cta-block', false>;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
+    steps: Schema.Attribute.Component<'shared.pipeline-step', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHaxPageHaxPage extends Struct.SingleTypeSchema {
+  collectionName: 'hax_pages';
+  info: {
+    description: 'The Human-Agent Experience page content';
+    displayName: 'HaxPage';
+    pluralName: 'hax-pages';
+    singularName: 'hax-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    heroVideo: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hax-page.hax-page'
+    > &
+      Schema.Attribute.Private;
+    patterns: Schema.Attribute.Component<'shared.pattern-panel', true>;
+    patternsDescription: Schema.Attribute.Text;
+    patternsTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    researchDescription: Schema.Attribute.Text;
+    researchImage: Schema.Attribute.Media<'images'>;
+    researchLink: Schema.Attribute.Component<'shared.arrow-link', false>;
+    researchTitle: Schema.Attribute.String;
+    sdk: Schema.Attribute.Component<'shared.cta-block', false>;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -627,6 +781,87 @@ export interface ApiResearchPageResearchPage extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     sectionHeader: Schema.Attribute.Component<'shared.section-header', false>;
     seo: Schema.Attribute.Component<'shared.seo-meta', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSecurityPrivacyPageSecurityPrivacyPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'security_privacy_pages';
+  info: {
+    description: 'Security & Privacy research page content';
+    displayName: 'SecurityPrivacyPage';
+    pluralName: 'security-privacy-pages';
+    singularName: 'security-privacy-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    keyQuestions: Schema.Attribute.Text;
+    keyQuestionsTitle: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::security-privacy-page.security-privacy-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    researchApproachDescription: Schema.Attribute.Text;
+    researchApproachTitle: Schema.Attribute.String;
+    researchItems: Schema.Attribute.Component<
+      'shared.research-approach-item',
+      true
+    >;
+    sdk: Schema.Attribute.Component<'shared.cta-block', false>;
+    secureCards: Schema.Attribute.Component<'shared.simple-card', true>;
+    secureSystemsTitle: Schema.Attribute.String;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    useCases: Schema.Attribute.Component<'shared.use-case-entry', true>;
+  };
+}
+
+export interface ApiSocietalImpactPageSocietalImpactPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'societal_impact_pages';
+  info: {
+    description: 'Societal Impact research page content';
+    displayName: 'SocietalImpactPage';
+    pluralName: 'societal-impact-pages';
+    singularName: 'societal-impact-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    frameworkDescription: Schema.Attribute.Text;
+    frameworkTitle: Schema.Attribute.String;
+    hero: Schema.Attribute.Component<'shared.hero-block', false> &
+      Schema.Attribute.Required;
+    heroListItems: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::societal-impact-page.societal-impact-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sdk: Schema.Attribute.Component<'shared.cta-block', false>;
+    seo: Schema.Attribute.Component<'shared.seo-meta', false>;
+    steps: Schema.Attribute.Component<'shared.responsible-step', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1144,11 +1379,17 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::agent-impact-map-page.agent-impact-map-page': ApiAgentImpactMapPageAgentImpactMapPage;
       'api::blog-post.blog-post': ApiBlogPostBlogPost;
+      'api::cognitive-frameworks-page.cognitive-frameworks-page': ApiCognitiveFrameworksPageCognitiveFrameworksPage;
+      'api::foundational-principles-page.foundational-principles-page': ApiFoundationalPrinciplesPageFoundationalPrinciplesPage;
+      'api::hax-page.hax-page': ApiHaxPageHaxPage;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::initiative.initiative': ApiInitiativeInitiative;
       'api::research-card.research-card': ApiResearchCardResearchCard;
       'api::research-page.research-page': ApiResearchPageResearchPage;
+      'api::security-privacy-page.security-privacy-page': ApiSecurityPrivacyPageSecurityPrivacyPage;
+      'api::societal-impact-page.societal-impact-page': ApiSocietalImpactPageSocietalImpactPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

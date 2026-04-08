@@ -9,14 +9,14 @@
       <a href="/research">Research</a> <span>/</span> <a href="/research">Hax</a> <span>/</span> Security &amp; Privacy
     </div>
     <div class="page-hero-title">
-      <h1>Building the Future of Secure, Autonomous Multi Agent Systems</h1>
+      <h1><%= pageData.hero.title %></h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.</p>
+        <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
-        <img src="/images/research/security-privacy/hero.png" alt="Security & Privacy">
+        <img src="<%= pageData.heroImage %>" alt="Security & Privacy">
       </div>
     </div>
   </div>
@@ -26,35 +26,24 @@
 <div class="secure-systems-section">
   <div class="container">
     <div class="secure-systems-header">
-      <h2>Building Secure Systems</h2>
+      <h2><%= pageData.secureSystemsTitle %></h2>
     </div>
 
     <div class="secure-cards-grid">
+      <% pageData.secureCards.forEach(function(card) { %>
       <div class="secure-card">
-        <h3>Enabling Safe Innovation</h3>
-        <p>Strong security and privacy foundations support confident experimentation with autonomous agents while maintaining safety and trust.</p>
+        <h3><%= card.title %></h3>
+        <p><%= card.description %></p>
       </div>
-      <div class="secure-card">
-        <h3>Scaling Systems Responsibly</h3>
-        <p>Adaptive protections keep pace with growing agent capabilities and increasingly complex environments.</p>
-      </div>
-      <div class="secure-card">
-        <h3>Strengthening Trust</h3>
-        <p>Clear safeguards and transparent data boundaries build confidence among users, developers, and stakeholders.</p>
-      </div>
-      <div class="secure-card">
-        <h3>Supporting Global Interoperability</h3>
-        <p>Unified, flexible frameworks help agent systems operate consistently across diverse regulatory and cultural contexts.</p>
-      </div>
+      <% }) %>
     </div>
 
     <div class="key-questions">
-      <h3>Key Questions</h3>
+      <h3><%= pageData.keyQuestionsTitle %></h3>
       <ul>
-        <li>How do we design security systems that adapt as agents become more autonomous and capable?</li>
-        <li>What privacy guarantees can we provide when agents require rich contextual information to function effectively?</li>
-        <li>What privacy guarantees can we provide when agents require rich contextual information to function effectively?</li>
-        <li>How do traditional security models need to evolve for systems that reason, plan, and act independently?</li>
+        <% pageData.keyQuestions.forEach(function(q) { %>
+        <li><%= q %></li>
+        <% }) %>
       </ul>
     </div>
   </div>
@@ -64,70 +53,53 @@
 <div class="research-approach-section">
   <div class="container">
     <div class="research-approach-header">
-      <h2>Research Approach</h2>
-      <p>We take an evidence-driven approach to understanding how security controls, privacy models, and governance frameworks must evolve for agentic architectures. Our work spans exploratory prototyping, adversarial testing, and collaborative design.</p>
+      <h2><%= pageData.researchApproachTitle %></h2>
+      <p><%= pageData.researchApproachDescription %></p>
     </div>
 
-    <div class="research-item">
+    <% pageData.researchItems.forEach(function(item, i) { %>
+    <div class="research-item<%= i % 2 === 0 ? ' reversed' : '' %>">
+      <% if (i % 2 === 0) { %>
+      <div class="research-item-image">
+        <img src="<%= item.image %>" alt="<%= item.imageAlt || item.title %>">
+      </div>
+      <% } %>
       <div class="research-item-text">
-        <h3>Adaptive Security for Autonomous Agents</h3>
-        <p>The traditional security model of "trust but verify" doesn't hold when agents can self-modify, share tools, interact with external APIs, and execute multi-step workflows.</p>
-        <p><strong>Approach:</strong> We prototype context-aware security controls that adjust based on agent behavior, interaction history, and environmental risk signals.</p>
+        <h3><%= item.title %></h3>
+        <p><%= item.description %></p>
+        <p><strong>We Explore</strong></p>
         <ul>
-          <li>Agent sandboxing and capability boundaries</li>
-          <li>Dynamic permission escalation with human-in-the-loop gates</li>
-          <li>Behavior anomaly detection across agent interactions</li>
+          <% item.exploreBullets.forEach(function(b) { %>
+          <li><%= b %></li>
+          <% }) %>
         </ul>
       </div>
+      <% if (i % 2 !== 0) { %>
       <div class="research-item-image">
-        <img src="/images/research/security-privacy/adaptive-security.png" alt="Adaptive Security for Autonomous Agents">
+        <img src="<%= item.image %>" alt="<%= item.imageAlt || item.title %>">
       </div>
+      <% } %>
     </div>
-
-    <div class="research-item reversed">
-      <div class="research-item-image">
-        <img src="/images/research/security-privacy/privacy-context.png" alt="Privacy-Preserving Context for Intelligent Agents">
-      </div>
-      <div class="research-item-text">
-        <h3>Privacy-Preserving Context for Intelligent Agents</h3>
-        <p>Agent AI systems must remember in order to be useful—but that memory needs to be bounded, secure, and privacy-respecting.</p>
-        <p><strong>Approach:</strong> We explore memory architectures that give agents enough context to be helpful while enforcing data minimization, consent boundaries, and regulatory compliance.</p>
-        <ul>
-          <li>Contextual memory with automatic expiration and redaction</li>
-          <li>Differential privacy for agent learning signals</li>
-          <li>User-controlled data scoping and consent management</li>
-        </ul>
-      </div>
-    </div>
+    <% }) %>
 
     <!-- Use Cases -->
     <div class="use-cases">
       <p class="use-cases-label">Use Cases</p>
-      <div class="use-cases-grid">
-        <div class="use-case-card">
-          <h4>Self Automation of Routine Tasks</h4>
-          <p>Agents autonomously handle repetitive workflows while maintaining secure access boundaries and audit trails.</p>
-          <div class="use-case-tags">
-            <span class="use-case-tag">Automation</span>
-            <span class="use-case-tag">Security</span>
+      <div class="blog-cards">
+        <% pageData.useCases.forEach(function(uc) { %>
+        <div class="blog-card">
+          <div>
+            <div class="blog-meta">
+              <% uc.tags.forEach(function(tag) { %>
+              <span><%= tag %></span>
+              <% }) %>
+            </div>
+            <h4><%- uc.title %></h4>
+            <p class="blog-desc"><%= uc.description %></p>
           </div>
+          <div></div>
         </div>
-        <div class="use-case-card">
-          <h4>Risk Analysis &amp; Agentic Decisions</h4>
-          <p>Multi-agent systems that assess risk factors collaboratively while preserving data isolation between organizational boundaries.</p>
-          <div class="use-case-tags">
-            <span class="use-case-tag">Risk</span>
-            <span class="use-case-tag">Multi-Agent</span>
-          </div>
-        </div>
-        <div class="use-case-card">
-          <h4>Adaptive Risk Detection</h4>
-          <p>Agents that evolve their threat detection capabilities over time using privacy-preserving learning techniques.</p>
-          <div class="use-case-tags">
-            <span class="use-case-tag">Detection</span>
-            <span class="use-case-tag">Privacy</span>
-          </div>
-        </div>
+        <% }) %>
       </div>
     </div>
 
@@ -139,12 +111,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
       </div>
     </div>
   </div>

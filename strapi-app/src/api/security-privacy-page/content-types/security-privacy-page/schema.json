@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "security_privacy_pages",
+  "info": {
+    "singularName": "security-privacy-page",
+    "pluralName": "security-privacy-pages",
+    "displayName": "SecurityPrivacyPage",
+    "description": "Security & Privacy research page content"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": { "type": "component", "repeatable": false, "component": "shared.hero-block", "required": true },
+    "secureSystemsTitle": { "type": "string" },
+    "secureCards": { "type": "component", "repeatable": true, "component": "shared.simple-card" },
+    "keyQuestionsTitle": { "type": "string" },
+    "keyQuestions": { "type": "text" },
+    "researchApproachTitle": { "type": "string" },
+    "researchApproachDescription": { "type": "text" },
+    "researchItems": { "type": "component", "repeatable": true, "component": "shared.research-approach-item" },
+    "useCases": { "type": "component", "repeatable": true, "component": "shared.use-case-entry" },
+    "sdk": { "type": "component", "repeatable": false, "component": "shared.cta-block" },
+    "seo": { "type": "component", "repeatable": false, "component": "shared.seo-meta" }
+  }
+}

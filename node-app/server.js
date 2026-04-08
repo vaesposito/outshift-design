@@ -22,6 +22,28 @@ async function fetchStrapi(endpoint) {
   }
 }
 
+function validUrl(url) {
+  return url && url !== '#' ? url : null;
+}
+
+function deepPopulate(fields) {
+  return fields.map((f) => `populate[${f}][populate]=*`).join('&');
+}
+
+/* ──────────────────────────────────────────────────────────
+   Shared SDK fallback (identical across pages)
+   ────────────────────────────────────────────────────────── */
+const sdkFallback = {
+  title: 'Build with the Hax SDK',
+  description: 'The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.',
+  buttonLabel: 'Explore the SDK',
+  buttonUrl: 'https://vaesposito.github.io/outshift-design/sdk.html#introduction',
+  image: '/images/research/sdk-hero.png',
+};
+
+/* ──────────────────────────────────────────────────────────
+   Navigation
+   ────────────────────────────────────────────────────────── */
 const fallbackData = {
   nav: [
     { label: 'Initiatives', href: '/#initiatives', hasDropdown: true, children: [
@@ -40,39 +62,12 @@ const fallbackData = {
     { label: 'Blog', href: '/blog', hasDropdown: false },
   ],
   initiatives: [
-    {
-      title: 'Designing for the Internet of Agents',
-      description: 'Hax: The Framework Guiding Human-Agent Collaboration',
-      badge: 'SDK',
-      video: '/videos/agents.mp4',
-      reversed: false,
-      href: '/hax',
-    },
-    {
-      title: 'Internet of Cognition',
-      description: 'Enabling agents and humans to scale intelligence collectively.',
-      badge: 'AI/ML',
-      video: '/videos/cognition.mp4',
-      reversed: true,
-      href: 'https://outshift.cisco.com/internet-of-cognition/explore',
-      external: true,
-    },
+    { title: 'Designing for the Internet of Agents', description: 'Hax: The Framework Guiding Human-Agent Collaboration', badge: 'SDK', video: '/videos/agents.mp4', reversed: false, href: '/hax' },
+    { title: 'Internet of Cognition', description: 'Enabling agents and humans to scale intelligence collectively.', badge: 'AI/ML', video: '/videos/cognition.mp4', reversed: true, href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
   ],
   researchCards: [
-    {
-      title: 'Hax',
-      description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
-      image: '/images/hax-research.png',
-      tags: ['AI Research', 'Design Framework', 'Ethics'],
-      href: '/research',
-    },
-    {
-      title: 'Internet of Cognition',
-      description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.',
-      image: '/images/cognition-research.png',
-      tags: ['Cognitive Systems', 'Future Research', 'Collaboration'],
-      comingSoon: true,
-    },
+    { title: 'Hax', description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.', image: '/images/hax-research.png', tags: ['AI Research', 'Design Framework', 'Ethics'], href: '/research' },
+    { title: 'Internet of Cognition', description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.', image: '/images/cognition-research.png', tags: ['Cognitive Systems', 'Future Research', 'Collaboration'], comingSoon: true },
   ],
   blogPosts: [
     { title: 'The Future of Design Systems', description: 'How we built a scalable design system that powers hundreds of products across the enterprise.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
@@ -90,35 +85,48 @@ const fallbackData = {
   homepage: null,
 };
 
+/* ──────────────────────────────────────────────────────────
+   Homepage mapping helpers
+   ────────────────────────────────────────────────────────── */
 function mapInitiatives(strapiData) {
   if (!strapiData) return fallbackData.initiatives;
+  const fbByTitle = {};
+  fallbackData.initiatives.forEach((fb) => { fbByTitle[fb.title] = fb; });
   return strapiData
     .sort((a, b) => (a.order || 0) - (b.order || 0))
-    .map((item) => ({
-      title: item.title,
-      description: item.description,
-      badge: item.badge,
-      video: item.media?.videoUrl || '/videos/agents.mp4',
-      reversed: item.reversed || false,
-      href: item.link?.url || '#',
-      external: item.link?.isExternal || false,
-    }));
+    .map((item) => {
+      const fb = fbByTitle[item.title] || {};
+      return {
+        title: item.title,
+        description: item.description,
+        badge: item.badge,
+        video: item.media?.videoUrl || fb.video || '/videos/agents.mp4',
+        reversed: item.reversed || false,
+        href: validUrl(item.link?.url) || fb.href || '#',
+        external: validUrl(item.link?.url) ? (item.link.isExternal || false) : (fb.external || false),
+      };
+    });
 }
 
 function mapResearchCards(strapiData) {
   if (!strapiData) return fallbackData.researchCards;
   const imageMap = { 'hax': '/images/hax-research.png', 'internet-of-cognition': '/images/cognition-research.png' };
+  const fbByTitle = {};
+  fallbackData.researchCards.forEach((fb) => { fbByTitle[fb.title] = fb; });
   return strapiData
     .sort((a, b) => (a.order || 0) - (b.order || 0))
-    .map((item) => ({
-      title: item.title,
-      description: item.description,
-      image: imageMap[item.slug] || '/images/hax-research.png',
-      tags: (item.tags || []).map((t) => t.label),
-      href: item.link?.url || null,
-      external: item.link?.isExternal || false,
-      comingSoon: false,
-    }));
+    .map((item) => {
+      const fb = fbByTitle[item.title] || {};
+      return {
+        title: item.title,
+        description: item.description,
+        image: imageMap[item.slug] || fb.image || '/images/hax-research.png',
+        tags: (item.tags || []).map((t) => t.label),
+        href: validUrl(item.link?.url) || fb.href || null,
+        external: validUrl(item.link?.url) ? (item.link.isExternal || false) : (fb.external || false),
+        comingSoon: fb.comingSoon || false,
+      };
+    });
 }
 
 function mapBlogPosts(strapiData) {
@@ -138,6 +146,9 @@ function mapNav() {
   return fallbackData.nav;
 }
 
+/* ──────────────────────────────────────────────────────────
+   HOMEPAGE
+   ────────────────────────────────────────────────────────── */
 app.get('/', async (_req, res) => {
   const [strapiInitiatives, strapiResearch, strapiBlog, strapiHomepage] = await Promise.all([
     fetchStrapi('initiatives?populate=*&sort=order:asc'),
@@ -160,23 +171,13 @@ app.get('/', async (_req, res) => {
   res.render('home', data);
 });
 
+/* ──────────────────────────────────────────────────────────
+   RESEARCH HUB
+   ────────────────────────────────────────────────────────── */
 const fallbackResearch = {
-  hero: {
-    title: 'Exploring the Research Behind Hax',
-    description: 'The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.',
-    image: '/images/research/hero.png',
-  },
-  sectionHeader: {
-    title: 'Advancing the Science of Human Agent Interaction',
-    subtitle: 'Investigating how humans and agents think, act, and build together',
-  },
-  cta: {
-    title: 'Build with the Hax SDK',
-    description: 'The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.',
-    buttonLabel: 'Explore the SDK',
-    buttonUrl: 'https://vaesposito.github.io/outshift-design/sdk.html#introduction',
-    image: '/images/research/sdk-hero.png',
-  },
+  hero: { title: 'Exploring the Research Behind Hax', description: 'The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.', image: '/images/research/hero.png' },
+  sectionHeader: { title: 'Advancing the Science of Human Agent Interaction', subtitle: 'Investigating how humans and agents think, act, and build together' },
+  cta: sdkFallback,
   items: [
     { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.', image: '/images/research/foundational-principles.png', href: '/research/foundational-principles' },
     { title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png', href: '/research/cognitive-frameworks' },
@@ -191,34 +192,10 @@ const fallbackResearch = {
 function mapResearchPage(strapiData) {
   if (!strapiData) return null;
   return {
-    hero: strapiData.hero ? {
-      title: strapiData.hero.title,
-      description: strapiData.hero.description,
-      image: strapiData.hero.image?.url || fallbackResearch.hero.image,
-    } : null,
-    sectionHeader: strapiData.sectionHeader ? {
-      title: strapiData.sectionHeader.title,
-      subtitle: strapiData.sectionHeader.subtitle,
-    } : null,
-    cta: strapiData.cta ? {
-      title: strapiData.cta.title,
-      description: strapiData.cta.description,
-      buttonLabel: strapiData.cta.buttonLabel,
-      buttonUrl: strapiData.cta.buttonUrl,
-      image: strapiData.cta.image?.url || fallbackResearch.cta.image,
-    } : null,
+    hero: strapiData.hero ? { title: strapiData.hero.title, description: strapiData.hero.description, image: strapiData.hero.image?.url || fallbackResearch.hero.image } : null,
+    sectionHeader: strapiData.sectionHeader ? { title: strapiData.sectionHeader.title, subtitle: strapiData.sectionHeader.subtitle } : null,
+    cta: strapiData.cta ? { title: strapiData.cta.title, description: strapiData.cta.description, buttonLabel: strapiData.cta.buttonLabel, buttonUrl: strapiData.cta.buttonUrl, image: strapiData.cta.image?.url || fallbackResearch.cta.image } : null,
   };
-}
-
-function mapResearchItems(strapiData) {
-  if (!strapiData) return fallbackResearch.items;
-  return strapiData
-    .sort((a, b) => (a.order || 0) - (b.order || 0))
-    .map((item) => ({
-      title: item.title,
-      description: item.description,
-      image: item.media?.image?.url || '/images/research/foundational-principles.png',
-    }));
 }
 
 app.get('/research', async (_req, res) => {
@@ -237,45 +214,131 @@ app.get('/research', async (_req, res) => {
   });
 });
 
-app.get('/research/foundational-principles', (_req, res) => {
-  const pageData = {
-    title: 'Foundational Principles',
-    description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high-level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.',
-    heroImage: '/images/research/foundational-principles-hero.png',
-    pipelineTitle: 'Research to Design Pipeline',
-    pipelineSubtitle: 'A collaborative design process that transforms raw research into practical design guidance and reusable patterns.',
-    steps: [
-      { title: 'Framing the inquiry', subtitle: 'Research Framing', description: 'Define the phenomenon that you want to explore, not the feature or product.', quote: '"How might X change the way people Y in a world where Z is true?"<br>"How do operators build trust in agent decisions during incident response?"', bullets: ['Capture context: who, where, when, stakes.', 'Define time horizon (e.g. 5, 10, 20, years)'], deliverables: ['Research brief (scope, goals, assumptions)', 'A short intent statement: "This inquiry explores... in order to inform design decisions about... in tomorrow\'s world."'] },
-      { title: 'Research: Mapping the Present &amp; Emerging Signals', subtitle: 'Field input / Ground truth', description: 'Build a grounded understanding of what\'s already happening and what\'s starting to happen.', bullets: ['Desk research: academic papers, industry reports, patents, standards, policy, expert interviews.', 'Foresight inputs: horizon scanning, weak signals, trends, wildcards, tensions'], deliverables: ['Evidence map:<ul><li>Current practices &amp; pain points</li><li>Emerging technologies / norms</li></ul>', 'Insight clusters: 5-8 thematic clusters (e.g., "delegated decisions," "opacity of automation," "new forms of social risk")'] },
-      { title: 'Synthesis: From Signals to Principles', subtitle: 'Conceptual modeling', description: 'Transform raw findings into conceptual frameworks and actionable design principles.', bullets: ['Identify recurring tensions and design trade-offs', 'Draft principle statements grounded in evidence', 'Map principles to interaction patterns and heuristics'], deliverables: ['Principle cards with rationale, applicability, and known limitations', 'Pattern mapping matrix (principle &rarr; pattern &rarr; component)'] },
-      { title: 'Test the Bridge: Design Heuristics &amp; applicable methods', subtitle: 'Validation', description: 'Validate each pattern through heuristic evaluation, usability testing, and expert review to ensure the bridge between research and design guidance is sound.', bullets: ['Heuristic walkthroughs against real agent workflows', 'Expert panel review with domain specialists', 'Gap analysis: does the pattern address the original insight?'], deliverables: ['Evaluation report with findings and recommendations', 'Refined patterns with annotated revisions'] },
-      { title: 'Prototype &amp; Iterate the validation', subtitle: 'Implementation testing', description: 'Patterns are implemented in interactive prototypes and tested with real users, iterating until they meet our quality bar for clarity, effectiveness, and adoptability.', bullets: ['Build interactive prototypes embodying the pattern', 'Run usability sessions with target users', 'Iterate on both design and documentation'], deliverables: ['Validated prototype with test findings', 'Final pattern specification ready for documentation'] },
-      { title: 'Update Documentation &amp; Contribute', subtitle: 'Publication', description: 'Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. The library evolves as new research emerges.', bullets: ['Write pattern documentation with rationale and examples', 'Publish to the Hax pattern library', 'Tag with relevant themes for discoverability'], deliverables: ['Published pattern with code samples and usage guidelines', 'Changelog entry and contribution record'] },
-    ],
-    caseStudies: [
-      {
-        title: 'Agent Transparency in Change Impact Assessment, Verification and Testing',
-        tags: ['Infrastructure', 'Change management'],
-        description: 'Building transparent AI systems that assess infrastructure changes, verify modifications, conduct automated testing, and manage approval workflows \u2014 all while maintaining clear visibility into agent decision-making and human oversight.',
-        problem: 'Infrastructure changes carry high risk, but manual impact assessment, testing, and approval processes create bottlenecks. Organizations struggle to balance automation speed with safety and accountability, often lacking visibility into what AI agents are actually evaluating and why certain changes get flagged.',
-        principles: ['Traceability', 'Control', 'Clarity'],
-      },
-      {
-        title: 'Designing for AI Transparency in Enterprise Agentic Composites',
-        tags: ['Multi-Agent', 'Enterprise'],
-        description: 'When multiple agents collaborate within a composite system, understanding who did what \u2014 and why \u2014 becomes critical. This case study explores transparency design patterns for multi-agent workflows in enterprise settings.',
-        problem: 'Multi-agent systems create opaque decision chains where audit trails, decision attribution, and user-facing explanations must maintain clarity without overwhelming cognitive load. Users lose trust when they can\'t trace outcomes to specific agents.',
-        principles: ['Transparency', 'Explainability', 'Audit'],
-      },
-      {
-        title: 'Multi-Agent Cascades: Guardrails for Chain Reactions',
-        tags: ['Cascades', 'Safety'],
-        description: 'When agents trigger other agents, cascading effects can quickly move beyond human oversight. This study maps the interaction patterns of multi-agent cascades and proposes design guardrails to keep humans meaningfully in the loop.',
-        problem: 'Cascading agent actions can amplify errors, create unintended consequences, and move beyond human oversight. Without circuit breakers, approval gates, and progressive disclosure, organizations risk losing control over automated workflows.',
-        principles: ['Human-in-the-Loop', 'Guardrails', 'Control'],
-      },
-    ],
+/* ──────────────────────────────────────────────────────────
+   HAX PAGE
+   ────────────────────────────────────────────────────────── */
+const fallbackHax = {
+  hero: {
+    title: 'The Human-Agent Experience',
+    description: "We're moving beyond assistants and copilots. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in more nuanced ways. Designing for this shift requires new patterns of interaction and trust.",
+  },
+  heroDescription2: 'This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.',
+  heroVideo: '/videos/hax-hero.mp4',
+  patternsTitle: 'Human-Centered AI Patterns',
+  patternsDescription: 'These 5 guiding principles emerged from studying how people interact with agentic systems. Using these patterns is the foundation for building trustworthy AI experiences that prioritize human control and agency.',
+  patterns: [
+    { key: 'control', title: 'Control', description: 'Humans guide how agents operate by setting boundaries, preferences, and intent. Control aligns autonomy with human goals.', images: ['/images/patterns/scope-boundaries.svg', '/images/patterns/permission-gates.svg', '/images/patterns/customization-autonomy.svg'], alts: ['Scope & Boundaries', 'Permission Gates', 'Customization of Autonomy'] },
+    { key: 'clarity', title: 'Clarity', description: 'Agents should make their reasoning, context, and confidence visible. Instead of acting like black boxes, they show how decisions are made so users can understand, question, or adjust them.', images: ['/images/patterns/clarity-1.svg', '/images/patterns/clarity-2.svg', '/images/patterns/clarity-3.svg', '/images/patterns/clarity-4.svg'], alts: ['Clarity pattern 1', 'Clarity pattern 2', 'Clarity pattern 3', 'Clarity pattern 4'] },
+    { key: 'recovery', title: 'Recovery', description: 'Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.', images: ['/images/patterns/recovery-1.svg', '/images/patterns/recovery-2.svg', '/images/patterns/recovery-3.svg', '/images/patterns/recovery-4.svg'], alts: ['Recovery pattern 1', 'Recovery pattern 2', 'Recovery pattern 3', 'Recovery pattern 4'] },
+    { key: 'collaboration', title: 'Collaboration', description: 'Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes. The agent contributes ideas, takes input, and improves the work in progress.', images: ['/images/patterns/collaboration-1.svg', '/images/patterns/collaboration-2.svg', '/images/patterns/collaboration-3.svg'], alts: ['Collaboration pattern 1', 'Collaboration pattern 2', 'Collaboration pattern 3'] },
+    { key: 'traceability', title: 'Traceability', description: 'Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.', images: ['/images/patterns/traceability-1.svg', '/images/patterns/traceability-2.svg', '/images/patterns/traceability-3.svg'], alts: ['Traceability pattern 1', 'Traceability pattern 2', 'Traceability pattern 3'] },
+  ],
+  researchTitle: 'Hax Research',
+  researchDescription: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
+  researchLink: { label: 'Explore the Research', url: '/research', isExternal: false },
+  researchImage: '/images/hax-research.png',
+  sdk: sdkFallback,
+};
+
+function mapHaxPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackHax.hero,
+    heroDescription2: fallbackHax.heroDescription2,
+    heroVideo: s.heroVideo || fallbackHax.heroVideo,
+    patternsTitle: s.patternsTitle || fallbackHax.patternsTitle,
+    patternsDescription: s.patternsDescription || fallbackHax.patternsDescription,
+    patterns: (s.patterns && s.patterns.length) ? s.patterns.map((p, idx) => ({
+      key: p.key || (fallbackHax.patterns[idx]?.key || ''),
+      title: p.title,
+      description: p.description,
+      images: (p.exampleImages && p.exampleImages.length) ? p.exampleImages.map((img) => img.url || img) : (fallbackHax.patterns[idx]?.images || []),
+      alts: (p.exampleImages && p.exampleImages.length) ? p.exampleImages.map((img) => img.alternativeText || img.name || p.title) : (fallbackHax.patterns[idx]?.alts || []),
+    })) : fallbackHax.patterns,
+    researchTitle: s.researchTitle || fallbackHax.researchTitle,
+    researchDescription: s.researchDescription || fallbackHax.researchDescription,
+    researchLink: s.researchLink ? { label: s.researchLink.label, url: s.researchLink.url, isExternal: s.researchLink.isExternal } : fallbackHax.researchLink,
+    researchImage: s.researchImage?.url || fallbackHax.researchImage,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
   };
+}
+
+app.get('/hax', async (_req, res) => {
+  const strapiData = await fetchStrapi(`hax-page?${deepPopulate(['hero', 'patterns', 'researchLink', 'sdk', 'seo'])}&populate[researchImage]=*`);
+  const pageData = mapHaxPage(strapiData) || fallbackHax;
+
+  res.render('hax', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design \u2014 The Human-Agent Experience',
+    pageData,
+  });
+});
+
+/* ──────────────────────────────────────────────────────────
+   FOUNDATIONAL PRINCIPLES
+   ────────────────────────────────────────────────────────── */
+const fallbackFoundational = {
+  hero: { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high-level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.' },
+  heroImage: '/images/research/foundational-principles-hero.png',
+  pipelineTitle: 'Research to Design Pipeline',
+  pipelineSubtitle: 'A collaborative design process that transforms raw research into practical design guidance and reusable patterns.',
+  steps: [
+    { stepNumber: '01', title: 'Framing the inquiry', subtitle: 'Research Framing', description: 'Define the phenomenon that you want to explore, not the feature or product.', quote: '"How might X change the way people Y in a world where Z is true?"<br>"How do operators build trust in agent decisions during incident response?"', bullets: ['Capture context: who, where, when, stakes.', 'Define time horizon (e.g. 5, 10, 20, years)'], deliverables: ['Research brief (scope, goals, assumptions)', 'A short intent statement: "This inquiry explores... in order to inform design decisions about... in tomorrow\'s world."'] },
+    { stepNumber: '02', title: 'Research: Mapping the Present &amp; Emerging Signals', subtitle: 'Field input / Ground truth', description: 'Build a grounded understanding of what\'s already happening and what\'s starting to happen.', bullets: ['Desk research: academic papers, industry reports, patents, standards, policy, expert interviews.', 'Foresight inputs: horizon scanning, weak signals, trends, wildcards, tensions'], deliverables: ['Evidence map:<ul><li>Current practices &amp; pain points</li><li>Emerging technologies / norms</li></ul>', 'Insight clusters: 5-8 thematic clusters (e.g., "delegated decisions," "opacity of automation," "new forms of social risk")'] },
+    { stepNumber: '03', title: 'Synthesis: From Signals to Principles', subtitle: 'Conceptual modeling', description: 'Transform raw findings into conceptual frameworks and actionable design principles.', bullets: ['Identify recurring tensions and design trade-offs', 'Draft principle statements grounded in evidence', 'Map principles to interaction patterns and heuristics'], deliverables: ['Principle cards with rationale, applicability, and known limitations', 'Pattern mapping matrix (principle &rarr; pattern &rarr; component)'] },
+    { stepNumber: '04', title: 'Test the Bridge: Design Heuristics &amp; applicable methods', subtitle: 'Validation', description: 'Validate each pattern through heuristic evaluation, usability testing, and expert review to ensure the bridge between research and design guidance is sound.', bullets: ['Heuristic walkthroughs against real agent workflows', 'Expert panel review with domain specialists', 'Gap analysis: does the pattern address the original insight?'], deliverables: ['Evaluation report with findings and recommendations', 'Refined patterns with annotated revisions'] },
+    { stepNumber: '05', title: 'Prototype &amp; Iterate the validation', subtitle: 'Implementation testing', description: 'Patterns are implemented in interactive prototypes and tested with real users, iterating until they meet our quality bar for clarity, effectiveness, and adoptability.', bullets: ['Build interactive prototypes embodying the pattern', 'Run usability sessions with target users', 'Iterate on both design and documentation'], deliverables: ['Validated prototype with test findings', 'Final pattern specification ready for documentation'] },
+    { stepNumber: '06', title: 'Update Documentation &amp; Contribute', subtitle: 'Publication', description: 'Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. The library evolves as new research emerges.', bullets: ['Write pattern documentation with rationale and examples', 'Publish to the Hax pattern library', 'Tag with relevant themes for discoverability'], deliverables: ['Published pattern with code samples and usage guidelines', 'Changelog entry and contribution record'] },
+  ],
+  caseStudiesTitle: 'Case Studies',
+  caseStudiesDescription: 'Real-world applications of our foundational principles in enterprise and research contexts.',
+  caseStudies: [
+    { title: 'Agent Transparency in Change Impact Assessment, Verification and Testing', tags: ['Infrastructure', 'Change management'], description: 'Building transparent AI systems that assess infrastructure changes, verify modifications, conduct automated testing, and manage approval workflows \u2014 all while maintaining clear visibility into agent decision-making and human oversight.', problem: 'Infrastructure changes carry high risk, but manual impact assessment, testing, and approval processes create bottlenecks. Organizations struggle to balance automation speed with safety and accountability, often lacking visibility into what AI agents are actually evaluating and why certain changes get flagged.', principles: ['Traceability', 'Control', 'Clarity'] },
+    { title: 'Designing for AI Transparency in Enterprise Agentic Composites', tags: ['Multi-Agent', 'Enterprise'], description: 'When multiple agents collaborate within a composite system, understanding who did what \u2014 and why \u2014 becomes critical. This case study explores transparency design patterns for multi-agent workflows in enterprise settings.', problem: 'Multi-agent systems create opaque decision chains where audit trails, decision attribution, and user-facing explanations must maintain clarity without overwhelming cognitive load. Users lose trust when they can\'t trace outcomes to specific agents.', principles: ['Transparency', 'Explainability', 'Audit'] },
+    { title: 'Multi-Agent Cascades: Guardrails for Chain Reactions', tags: ['Cascades', 'Safety'], description: 'When agents trigger other agents, cascading effects can quickly move beyond human oversight. This study maps the interaction patterns of multi-agent cascades and proposes design guardrails to keep humans meaningfully in the loop.', problem: 'Cascading agent actions can amplify errors, create unintended consequences, and move beyond human oversight. Without circuit breakers, approval gates, and progressive disclosure, organizations risk losing control over automated workflows.', principles: ['Human-in-the-Loop', 'Guardrails', 'Control'] },
+  ],
+  sdk: sdkFallback,
+};
+
+function splitNewlines(text) {
+  if (!text) return [];
+  return text.split('\n').map((s) => s.trim()).filter(Boolean);
+}
+
+function mapFoundationalPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackFoundational.hero,
+    heroImage: s.hero?.image?.url || fallbackFoundational.heroImage,
+    pipelineTitle: s.pipelineTitle || fallbackFoundational.pipelineTitle,
+    pipelineSubtitle: s.pipelineSubtitle || fallbackFoundational.pipelineSubtitle,
+    steps: (s.steps && s.steps.length) ? s.steps.map((st) => ({
+      stepNumber: st.stepNumber,
+      title: st.title,
+      subtitle: st.subtitle,
+      description: st.description,
+      quote: st.quote,
+      bullets: st.bullets ? splitNewlines(st.bullets) : [],
+      deliverables: st.deliverables ? splitNewlines(st.deliverables) : [],
+    })) : fallbackFoundational.steps,
+    caseStudiesTitle: s.caseStudiesTitle || fallbackFoundational.caseStudiesTitle,
+    caseStudiesDescription: s.caseStudiesDescription || fallbackFoundational.caseStudiesDescription,
+    caseStudies: (s.caseStudies && s.caseStudies.length) ? s.caseStudies.map((cs, idx) => ({
+      title: cs.title,
+      tags: (cs.tags && cs.tags.length) ? cs.tags.map((t) => t.label || t) : (fallbackFoundational.caseStudies[idx]?.tags || []),
+      description: cs.description,
+      problem: cs.problem,
+      principles: cs.principles ? splitNewlines(cs.principles) : (fallbackFoundational.caseStudies[idx]?.principles || []),
+    })) : fallbackFoundational.caseStudies,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/foundational-principles', async (_req, res) => {
+  const strapiData = await fetchStrapi(`foundational-principles-page?${deepPopulate(['hero', 'steps', 'caseStudies', 'sdk', 'seo'])}`);
+  const pageData = mapFoundationalPage(strapiData) || fallbackFoundational;
 
   res.render('foundational-principles', {
     title: 'Outshift Design',
@@ -286,59 +349,295 @@ app.get('/research/foundational-principles', (_req, res) => {
   });
 });
 
-app.get('/research/cognitive-frameworks', (_req, res) => {
+/* ──────────────────────────────────────────────────────────
+   COGNITIVE FRAMEWORKS
+   ────────────────────────────────────────────────────────── */
+const fallbackCognitive = {
+  hero: { title: 'Cognitive Frameworks', description: 'Physical and cognitive designs are key to understanding how people and AI systems share understanding, adapt to situations, and act meaningfully together. Grounded in embodied cognition, distributed cognition, and situated action, our research bridges theory and design to shape interactions that are intuitive, contextual, and genuinely collaborative.' },
+  heroImage: '/images/research/cognitive-frameworks-hero.png',
+  theoreticalTitle: 'Theoretical Foundations',
+  theoreticalDescription: 'Grounding HAX design in established cognitive science',
+  steps: [
+    {
+      number: '01', title: 'Distributed Cognition',
+      description: "What if intelligence isn't just in our heads? Distributed cognition argues that thinking happens across people, tools, environments, and artifacts \u2014 not in any single mind.",
+      keyConcepts: ['Cognition extends beyond individual brains', 'Knowledge lives in systems, tools, and social structures', 'Coordination happens through shared representations'],
+      frameworkTitle: 'Framework for Human-AI Collaboration',
+      frameworkDescription: 'In Designing agentic systems we consider cognitive processes to be distributed across human and AI agents working within the unified system. This helps us to conceptualize experiences that allow agents to seamlessly integrate into user workflows and interfaces that act as spaces of mutual sense-making and collaboration.',
+      frameworkImages: ['/images/research/human-ai-diagram.svg', '/images/research/core-functionalities.svg'],
+      frameworkImageAlts: ['Human-AI collaboration diagram', 'Core functionalities: Summarizing, Remembering, Suggesting, Contextualizing'],
+      coreTitle: 'Core functionalities',
+      whyTitle: 'Why this matters',
+      whyText: "In AI-augmented systems, cognition isn't just human or machine \u2014 it's distributed across both. Understanding this helps us design interfaces that support shared awareness, coordination, and collective intelligence.",
+      whyPosition: 'inside',
+      useCases: [
+        { tag: 'Scalability', title: 'Sead Graph Exploration: Turning Complexity into Comprehension', description: 'How distributed cognition principles helped transform complex graph data into intuitive, navigable interfaces.' },
+        { tag: 'Security', title: 'Cognitive Load in Security Workflows: Reducing Alert Fatigue', description: 'Applying cognitive frameworks to simplify threat analysis and help analysts focus on what matters most.' },
+        { tag: 'Collaboration', title: 'Multi-Agent Orchestration: Coordinating Intelligence at Scale', description: 'How distributed cognition informs the design of collaborative multi-agent systems that work alongside human teams.' },
+      ],
+    },
+    {
+      number: '02', title: 'Situated Action',
+      description: "Cognition is shaped by context. Users rarely execute fixed plans all of the time\u2014they adapt in real time to their surroundings, constraints, and evolving goals. Our agents are built to thrive in these fluid, unpredictable settings\u2014sensing timing and environmental cues to provide assistance that feels natural, situationally aware, and attuned to the moment.",
+      keyConcepts: ['Dynamic environmental adaptation.', 'Temporal awareness for timely interventions.', 'Cue recognition and response.', 'Improvisational support over rigid planning.'],
+      frameworkTitle: 'Approaches',
+      frameworkDescription: 'Agents that improvise and adapt based on environment, timing, and social context\u2014not rigid plans.',
+      frameworkImages: ['/images/research/abstract-planning.svg', '/images/research/situated-action-card.svg'],
+      frameworkImageAlts: ['Abstract Planning \u2014 Traditional approach', 'Situated Action \u2014 Our approach'],
+      approachCards: true,
+      whyTitle: 'Why this matters',
+      whyText: 'Intelligence emerges from ongoing interaction with dynamic contexts, not from executing predetermined plans. For designers, this means creating systems that remain open, adaptive, and responsive\u2014shaping intelligence through interaction rather than instruction.',
+      whyPosition: 'outside',
+    },
+    {
+      number: '03', title: 'Embodiment',
+      description: 'Thinking does not reside solely in the brain\u2014it unfolds through movement, rhythm, and our engagement with space and tools. Cognition is embodied: it happens as we gesture, coordinate, and attune to the world around us. We design agentic systems that recognize these sensorimotor dimensions of thought\u2014systems that seek to pick up on subtle cues of motion, rhythm, and spatial context to collaborate more intuitively with humans. Our current work explores agents capable of perceiving and responding to these embodied signals in real time, bridging the gap between mind, body, and machine.',
+      keyConcepts: ['Gesture and physical movement recognition.', 'Rhythm and temporal patterns in interaction.', 'Spatial layout and environmental awareness.', 'Real-time sensorimotor feedback loops.'],
+      frameworkTitle: 'How the Body Shapes Thinking: An Embodied Cognition Model',
+      frameworkDescription: 'Thinking happens through the body\u2014agents can respond to physical, spatial, and temporal cues.',
+      frameworkImages: ['/images/research/embodiment-diagram.svg'],
+      frameworkImageAlts: ['Embodied Cognition Model'],
+      whyTitle: 'Why this matters',
+      whyText: 'Cognition extends beyond the brain into physical gestures, spatial arrangements, and temporal rhythms of interaction. When designing agents that interact with users in the real world, we must consider how these embodied and environmental dynamics shape meaning, attention, and action\u2014ensuring that agents respond not just to words, but to movement, rhythm, and context as part of the cognitive process itself.',
+      whyPosition: 'outside',
+    },
+  ],
+  bannerItems: ['Situated Interaction', 'Auxiliary interactions', 'Investigating Tactile Components'],
+  sdk: sdkFallback,
+};
+
+function mapCognitivePage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackCognitive.hero,
+    heroImage: s.hero?.image?.url || fallbackCognitive.heroImage,
+    theoreticalTitle: s.theoreticalTitle || fallbackCognitive.theoreticalTitle,
+    theoreticalDescription: s.theoreticalDescription || fallbackCognitive.theoreticalDescription,
+    steps: fallbackCognitive.steps,
+    bannerItems: s.bannerItems ? splitNewlines(s.bannerItems) : fallbackCognitive.bannerItems,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/cognitive-frameworks', async (_req, res) => {
+  const strapiData = await fetchStrapi(`cognitive-frameworks-page?${deepPopulate(['hero', 'sdk', 'seo'])}`);
+  const pageData = mapCognitivePage(strapiData) || fallbackCognitive;
+
   res.render('cognitive-frameworks', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Cognitive Frameworks',
+    pageData,
   });
 });
 
-app.get('/research/societal-impact', (_req, res) => {
+/* ──────────────────────────────────────────────────────────
+   SOCIETAL IMPACT
+   ────────────────────────────────────────────────────────── */
+const fallbackSocietal = {
+  hero: { title: 'Societal Impact', description: "Agentic systems have profound ripple effects: they influence how we work, what knowledge is accessible, how power is distributed, and how we make decisions at scale. That's why we treat societal impact as a design responsibility, not a byproduct. We ask not just What works? but:" },
+  heroImage: '/images/research/societal-impact/hero.png',
+  heroListItems: ['Who does this serve?', 'Who might it exclude or harm?', 'What are the long-term consequences of deploying this system at scale?'],
+  frameworkTitle: 'A Framework for Responsible Agent Design',
+  frameworkDescription: 'To support teams building agentic systems, we developed a practical, five-part framework\u2014adaptable across roles, from UX designers to backend engineers.',
+  steps: [
+    { label: 'Contextual Inquiry', title: 'Design Begins with Understanding', image: '/images/research/societal-impact/contextual-inquiry.png', imageAlt: 'Design Begins with Understanding', bullets: ['Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?', 'Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?', 'Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
+    { label: 'Intentional Scope', title: 'What Should This Agent Do', image: '/images/research/societal-impact/intentional-scope.png', imageAlt: 'What Should This Agent Do', bullets: ['Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?', 'Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
+    { label: 'Inclusive Cognitive Design', title: 'Respect Diverse Ways of Thinking & Working', image: '/images/research/societal-impact/inclusive-design.png', imageAlt: 'Respect Diverse Ways of Thinking & Working', bullets: ['Design for neurodiversity and multilingualism.', 'Support different expertise levels\u2014novices, experts, non-coders, etc.', 'Minimize cognitive overload: surface what\u2019s necessary, when it\u2019s needed.'], templateLabel: 'Cognitive Load Audit', templateLink: '#' },
+    { label: 'Foresight & Feedback Loops', title: 'Built for Change. Expect the Unexpected', image: '/images/research/societal-impact/foresight.png', imageAlt: 'Built for Change. Expect the Unexpected', bullets: ['Use speculative scenarios to anticipate unintended consequences.', 'Include continuous user feedback mechanisms (not just surveys\u2014embedded nudges, annotations, corrections).'], templateLabel: 'Foresight Canvas', templateLink: '#' },
+  ],
+  sdk: sdkFallback,
+};
+
+function mapSocietalPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackSocietal.hero,
+    heroImage: s.hero?.image?.url || fallbackSocietal.heroImage,
+    heroListItems: s.heroListItems ? splitNewlines(s.heroListItems) : fallbackSocietal.heroListItems,
+    frameworkTitle: s.frameworkTitle || fallbackSocietal.frameworkTitle,
+    frameworkDescription: s.frameworkDescription || fallbackSocietal.frameworkDescription,
+    steps: (s.steps && s.steps.length) ? s.steps.map((st, idx) => ({
+      label: st.label,
+      title: st.title,
+      image: st.image?.url || (fallbackSocietal.steps[idx]?.image || ''),
+      imageAlt: st.imageAlt || st.title,
+      bullets: st.bullets ? splitNewlines(st.bullets) : (fallbackSocietal.steps[idx]?.bullets || []),
+      templateLabel: st.templateLabel || (fallbackSocietal.steps[idx]?.templateLabel || ''),
+      templateLink: st.templateLink || (fallbackSocietal.steps[idx]?.templateLink || '#'),
+    })) : fallbackSocietal.steps,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/societal-impact', async (_req, res) => {
+  const strapiData = await fetchStrapi(`societal-impact-page?${deepPopulate(['hero', 'steps', 'sdk', 'seo'])}`);
+  const pageData = mapSocietalPage(strapiData) || fallbackSocietal;
+
   res.render('societal-impact', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Societal Impact',
+    pageData,
   });
 });
 
-app.get('/research/security-privacy', (_req, res) => {
+/* ──────────────────────────────────────────────────────────
+   SECURITY & PRIVACY
+   ────────────────────────────────────────────────────────── */
+const fallbackSecurity = {
+  hero: { title: 'Security & Privacy', description: 'We\u2019re building the future of secure, autonomous multi-agent systems. As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.' },
+  heroImage: '/images/research/security-privacy/hero.png',
+  secureSystemsTitle: 'Building Secure Systems',
+  secureCards: [
+    { title: 'Enabling Safe Innovation', description: 'Strong security and privacy foundations support confident experimentation with autonomous agents while maintaining safety and trust.' },
+    { title: 'Scaling Systems Responsibly', description: 'Adaptive protections keep pace with growing agent capabilities and increasingly complex environments.' },
+    { title: 'Strengthening Trust', description: 'Clear safeguards and transparent data boundaries build confidence among users, developers, and stakeholders.' },
+    { title: 'Supporting Global Interoperability', description: 'Unified, flexible frameworks help agent systems operate consistently across diverse regulatory and cultural contexts.' },
+  ],
+  keyQuestionsTitle: 'Key Questions',
+  keyQuestions: [
+    'How do we design security systems that adapt as agents become more autonomous and capable?',
+    'What privacy guarantees can we provide when agents require rich contextual information to function effectively?',
+    'What privacy guarantees can we provide when agents require rich contextual information to function effectively?',
+    'How do traditional security models need to evolve for systems that reason, plan, and act independently?',
+  ],
+  researchApproachTitle: 'Research Approach',
+  researchApproachDescription: 'Our research focuses on defining how autonomous agents can operate safely and responsibly as they take on more decision-making and contextual reasoning. We examine two foundational dimensions \u2014 security and privacy \u2014 to develop adaptive models that evolve alongside increasing agent capability.',
+  researchItems: [
+    { title: 'Adaptive Security for Autonomous Agents', description: 'The environments agents operate in are dynamic and unpredictable, calling for security models that can respond with similar agility. We focus on creating mechanisms that adapt to context, behavioral signals, and evolving system states.', exploreBullets: ['Dynamic policies that shift based on context and risk signals.', 'Behavioral guardrails that set clear boundaries for safe operation.', 'Continuous monitoring that flags anomalies and triggers fallback actions.'], image: '/images/research/security-privacy/adaptive-security.png', imageAlt: 'Adaptive Security for Autonomous Agents' },
+    { title: 'Privacy-Preserving Context for Intelligent Agents', description: 'Agents work with a wide range of context\u2014identity signals, system state, historical patterns, and environmental cues\u2014to operate effectively. Ensuring this context is handled in a safe, responsible, and transparent way is essential for building systems that remain both capable and trustworthy.', exploreBullets: ['Scoped access that provides only the context needed for each task.', 'Privacy techniques that protect data while keeping agents functional.', 'Clear data boundaries that show what is used, how, and why.'], image: '/images/research/security-privacy/privacy-context.png', imageAlt: 'Privacy-Preserving Context for Intelligent Agents' },
+  ],
+  useCases: [
+    { title: 'Self Automation of Routine Tasks', description: 'Agents autonomously handle repetitive workflows while maintaining secure access boundaries and audit trails.', tags: ['Automation', 'Security'] },
+    { title: 'Risk Analysis & Agentic Decisions', description: 'Multi-agent systems that assess risk factors collaboratively while preserving data isolation between organizational boundaries.', tags: ['Risk', 'Multi-Agent'] },
+    { title: 'Adaptive Risk Detection', description: 'Agents that evolve their threat detection capabilities over time using privacy-preserving learning techniques.', tags: ['Detection', 'Privacy'] },
+  ],
+  sdk: sdkFallback,
+};
+
+function mapSecurityPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackSecurity.hero,
+    heroImage: s.hero?.image?.url || fallbackSecurity.heroImage,
+    secureSystemsTitle: s.secureSystemsTitle || fallbackSecurity.secureSystemsTitle,
+    secureCards: (s.secureCards && s.secureCards.length) ? s.secureCards.map((c) => ({ title: c.title, description: c.description })) : fallbackSecurity.secureCards,
+    keyQuestionsTitle: s.keyQuestionsTitle || fallbackSecurity.keyQuestionsTitle,
+    keyQuestions: s.keyQuestions ? splitNewlines(s.keyQuestions) : fallbackSecurity.keyQuestions,
+    researchApproachTitle: s.researchApproachTitle || fallbackSecurity.researchApproachTitle,
+    researchApproachDescription: s.researchApproachDescription || fallbackSecurity.researchApproachDescription,
+    researchItems: (s.researchItems && s.researchItems.length) ? s.researchItems.map((ri, idx) => ({
+      title: ri.title,
+      description: ri.description,
+      exploreBullets: ri.exploreBullets ? splitNewlines(ri.exploreBullets) : (fallbackSecurity.researchItems[idx]?.exploreBullets || []),
+      image: ri.image?.url || (fallbackSecurity.researchItems[idx]?.image || ''),
+      imageAlt: ri.imageAlt || ri.title,
+    })) : fallbackSecurity.researchItems,
+    useCases: (s.useCases && s.useCases.length) ? s.useCases.map((uc, idx) => ({
+      title: uc.title,
+      description: uc.description,
+      tags: (uc.tags && uc.tags.length) ? uc.tags.map((t) => t.label || t) : (fallbackSecurity.useCases[idx]?.tags || []),
+    })) : fallbackSecurity.useCases,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/security-privacy', async (_req, res) => {
+  const strapiData = await fetchStrapi(`security-privacy-page?${deepPopulate(['hero', 'secureCards', 'researchItems', 'useCases', 'sdk', 'seo'])}`);
+  const pageData = mapSecurityPage(strapiData) || fallbackSecurity;
+
   res.render('security-privacy', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Security & Privacy',
+    pageData,
   });
 });
 
-app.get('/research/agent-impact-map', (_req, res) => {
+/* ──────────────────────────────────────────────────────────
+   AGENT IMPACT MAP
+   ────────────────────────────────────────────────────────── */
+const fallbackImpactMap = {
+  hero: { title: 'Agent Impact Map', description: "Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one." },
+  heroImage: '/images/research/agent-impact-map/hero.png',
+  templateTitle: 'Agent Impact Map',
+  templateSubtitle: 'A mapping of the full socio-technical system of agent interactions to better understand the implications on user workflows.',
+  instructions: [
+    'Identify all human and non-human actors involved in the agent ecosystem (users, agents, databases, data sources, organizational stakeholders).',
+    'Map the interactions, data flows, and dependencies between these actors across the full workflow.',
+    'Highlight friction points, risks, and unintended consequences that may emerge within the system.',
+  ],
+  methodology: 'This methodology uses socio-technical systems mapping to analyze how human, organizational, and technical components interact across an agent-supported workflow. Designers begin by identifying all relevant actors, data flows, and contextual constraints, then visualize their interdependencies to reveal how agent behaviors shape user actions and decision points. Through these mappings, friction points, risks, and opportunities are surfaced, allowing designers to understand the broader implications of agent integration. The resulting richer priorities and shared foundation for making informed design decisions and aligning emerging agent technologies with real user needs and operational realities.',
+  diagram: '/images/research/agent-impact-map/chart.svg',
+  sdk: sdkFallback,
+};
+
+function mapImpactMapPage(s) {
+  if (!s) return null;
+  return {
+    hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackImpactMap.hero,
+    heroImage: s.hero?.image?.url || fallbackImpactMap.heroImage,
+    templateTitle: s.templateTitle || fallbackImpactMap.templateTitle,
+    templateSubtitle: s.templateSubtitle || fallbackImpactMap.templateSubtitle,
+    instructions: s.instructions ? splitNewlines(s.instructions.replace(/<[^>]+>/g, '')) : fallbackImpactMap.instructions,
+    methodology: s.methodology ? s.methodology.replace(/<[^>]+>/g, '') : fallbackImpactMap.methodology,
+    diagram: s.diagram?.url || fallbackImpactMap.diagram,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+  };
+}
+
+app.get('/research/agent-impact-map', async (_req, res) => {
+  const strapiData = await fetchStrapi(`agent-impact-map-page?${deepPopulate(['hero', 'sdk', 'seo'])}&populate[diagram]=*`);
+  const pageData = mapImpactMapPage(strapiData) || fallbackImpactMap;
+
   res.render('agent-impact-map', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Agent Impact Map',
+    pageData,
   });
 });
 
-app.get('/hax', (_req, res) => {
-  res.render('hax', {
-    title: 'Outshift Design',
-    year: new Date().getFullYear(),
-    nav: fallbackData.nav,
-    pageTitle: 'Outshift Design \u2014 The Human-Agent Experience',
-  });
-});
+/* ──────────────────────────────────────────────────────────
+   BLOG
+   ────────────────────────────────────────────────────────── */
+function mapBlogHub(strapiPosts) {
+  if (!strapiPosts || !strapiPosts.length) return fallbackData.blogHub;
+  return strapiPosts.map((item) => ({
+    title: item.title,
+    description: item.description,
+    author: item.author,
+    date: item.publishDate
+      ? new Date(item.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+      : 'March 1, 2026',
+    readTime: item.readTime || '5 min read',
+    tags: (item.tags || []).map((t) => t.label),
+    coverGradient: 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)',
+    href: `/blog/${item.slug}`,
+    slug: item.slug,
+    content: item.content || null,
+  }));
+}
 
-app.get('/blog', (_req, res) => {
+app.get('/blog', async (_req, res) => {
+  const strapiBlogPosts = await fetchStrapi('blog-posts?populate=*&sort=publishDate:desc');
+  const blogPosts = mapBlogHub(strapiBlogPosts);
+
+  const allTags = new Set();
+  blogPosts.forEach((p) => (p.tags || []).forEach((t) => allTags.add(t)));
+
   res.render('blog', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design — Blog',
-    blogPosts: fallbackData.blogHub,
-    categories: ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
+    blogPosts,
+    categories: allTags.size ? Array.from(allTags) : ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
   });
 });
 
@@ -466,35 +765,61 @@ const articleData = {
   },
 };
 
-app.get('/blog/:slug', (req, res) => {
+app.get('/blog/:slug', async (req, res) => {
   const slug = req.params.slug;
-  const post = fallbackData.blogHub.find(
-    (p) => (p.href || '').replace(/^\/blog[#/]?/, '') === slug
-  );
+
+  const strapiBlogPosts = await fetchStrapi('blog-posts?populate=*&sort=publishDate:desc');
+  const allPosts = mapBlogHub(strapiBlogPosts);
+
+  const strapiPost = strapiBlogPosts
+    ? strapiBlogPosts.find((p) => p.slug === slug)
+    : null;
+
+  let post;
+  let body;
+  let toc;
+
+  if (strapiPost) {
+    post = allPosts.find((p) => p.slug === slug);
+    body = strapiPost.content || (articleData[slug] ? articleData[slug].body : '<p>Article content coming soon.</p>');
+    toc = articleData[slug] ? articleData[slug].toc : [];
+  } else {
+    post = fallbackData.blogHub.find(
+      (p) => (p.href || '').replace(/^\/blog[#/]?/, '') === slug
+    );
+    const data = articleData[slug] || { toc: [], body: '<p>Article content coming soon.</p>' };
+    body = data.body;
+    toc = data.toc;
+  }
+
   if (!post) {
     return res.status(404).render('blog', {
       title: 'Outshift Design',
       year: new Date().getFullYear(),
       nav: fallbackData.nav,
       pageTitle: 'Outshift Design — Blog',
-      blogPosts: fallbackData.blogHub,
+      blogPosts: allPosts.length ? allPosts : fallbackData.blogHub,
       categories: ['Design Systems', 'UX/UI', 'Best Practices', 'Research', 'AI', 'Innovation', 'Accessibility', 'Design Thinking', 'Workshop', 'Collaboration', 'Development', 'Team', 'Product Design'],
     });
   }
-  const data = articleData[slug] || { toc: [], body: '<p>Article content coming soon.</p>' };
-  const relatedPosts = fallbackData.blogHub
-    .filter((p) => (p.href || '').replace(/^\/blog[#/]?/, '') !== slug)
+
+  const relatedPosts = allPosts
+    .filter((p) => p.slug !== slug && (p.href || '').replace(/^\/blog[#/]?/, '') !== slug)
     .slice(0, 2);
+
   res.render('blog-article', {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: `${post.title} — Outshift Design`,
-    post: { ...post, body: data.body, toc: data.toc },
+    post: { ...post, body, toc },
     relatedPosts,
   });
 });
 
+/* ──────────────────────────────────────────────────────────
+   STYLEGUIDE & COMPONENTS
+   ────────────────────────────────────────────────────────── */
 app.get('/styleguide', (_req, res) => {
   res.render('styleguide', {
     title: 'Outshift Design',
@@ -574,6 +899,60 @@ const strapiContentTypes = [
     { name: 'coverImage', type: 'media', required: false },
     { name: 'tags', type: 'component[]', required: false, component: 'shared.tag' },
     { name: 'seo', type: 'component', required: false, component: 'shared.seo-meta' },
+  ]},
+  { displayName: 'HaxPage', kind: 'singleType', pluralName: 'hax-page', description: 'The Human-Agent Experience page \u2014 hero, patterns, research block, and SDK CTA.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'heroVideo', type: 'string', required: false },
+    { name: 'patternsTitle', type: 'string', required: false },
+    { name: 'patternsDescription', type: 'text', required: false },
+    { name: 'patterns', type: 'component[]', required: false, component: 'shared.pattern-panel' },
+    { name: 'researchTitle', type: 'string', required: false },
+    { name: 'researchDescription', type: 'text', required: false },
+    { name: 'researchLink', type: 'component', required: false, component: 'shared.arrow-link' },
+    { name: 'sdk', type: 'component', required: false, component: 'shared.cta-block' },
+  ]},
+  { displayName: 'FoundationalPrinciplesPage', kind: 'singleType', pluralName: 'foundational-principles-page', description: 'Foundational Principles \u2014 pipeline steps, case studies, and SDK CTA.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'pipelineTitle', type: 'string', required: false },
+    { name: 'pipelineSubtitle', type: 'text', required: false },
+    { name: 'steps', type: 'component[]', required: false, component: 'shared.pipeline-step' },
+    { name: 'caseStudies', type: 'component[]', required: false, component: 'shared.case-study-card' },
+    { name: 'sdk', type: 'component', required: false, component: 'shared.cta-block' },
+  ]},
+  { displayName: 'CognitiveFrameworksPage', kind: 'singleType', pluralName: 'cognitive-frameworks-page', description: 'Cognitive Frameworks \u2014 theoretical foundations, banner items, and SDK CTA.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'theoreticalTitle', type: 'string', required: false },
+    { name: 'theoreticalDescription', type: 'text', required: false },
+    { name: 'body', type: 'richtext', required: false },
+    { name: 'bannerItems', type: 'text', required: false },
+    { name: 'sdk', type: 'component', required: false, component: 'shared.cta-block' },
+  ]},
+  { displayName: 'SocietalImpactPage', kind: 'singleType', pluralName: 'societal-impact-page', description: 'Societal Impact \u2014 framework steps and SDK CTA.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'heroListItems', type: 'text', required: false },
+    { name: 'frameworkTitle', type: 'string', required: false },
+    { name: 'frameworkDescription', type: 'text', required: false },
+    { name: 'steps', type: 'component[]', required: false, component: 'shared.responsible-step' },
+    { name: 'sdk', type: 'component', required: false, component: 'shared.cta-block' },
+  ]},
+  { displayName: 'SecurityPrivacyPage', kind: 'singleType', pluralName: 'security-privacy-page', description: 'Security & Privacy \u2014 secure system cards, research approach, use cases, and SDK CTA.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'secureSystemsTitle', type: 'string', required: false },
+    { name: 'secureCards', type: 'component[]', required: false, component: 'shared.simple-card' },
+    { name: 'keyQuestions', type: 'text', required: false },
+    { name: 'researchApproachTitle', type: 'string', required: false },
+    { name: 'researchItems', type: 'component[]', required: false, component: 'shared.research-approach-item' },
+    { name: 'useCases', type: 'component[]', required: false, component: 'shared.use-case-entry' },
+    { name: 'sdk', type: 'component', required: false, component: 'shared.cta-block' },
+  ]},
+  { displayName: 'AgentImpactMapPage', kind: 'singleType', pluralName: 'agent-impact-map-page', description: 'Agent Impact Map \u2014 template section, diagram, and SDK CTA.', fields: [
+    { name: 'hero', type: 'component', required: true, component: 'shared.hero-block' },
+    { name: 'templateTitle', type: 'string', required: false },
+    { name: 'templateSubtitle', type: 'text', required: false },
+    { name: 'instructions', type: 'richtext', required: false },
+    { name: 'methodology', type: 'richtext', required: false },
+    { name: 'diagram', type: 'media', required: false },
+    { name: 'sdk', type: 'component', required: false, component: 'shared.cta-block' },
   ]},
 ];
 

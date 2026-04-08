@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "cognitive_frameworks_pages",
+  "info": {
+    "singularName": "cognitive-frameworks-page",
+    "pluralName": "cognitive-frameworks-pages",
+    "displayName": "CognitiveFrameworksPage",
+    "description": "Cognitive Frameworks research page content"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": { "type": "component", "repeatable": false, "component": "shared.hero-block", "required": true },
+    "theoreticalTitle": { "type": "string" },
+    "theoreticalDescription": { "type": "text" },
+    "body": { "type": "richtext" },
+    "bannerItems": { "type": "text" },
+    "sdk": { "type": "component", "repeatable": false, "component": "shared.cta-block" },
+    "seo": { "type": "component", "repeatable": false, "component": "shared.seo-meta" }
+  }
+}

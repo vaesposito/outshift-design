@@ -11,14 +11,14 @@
       <a href="/research">Research</a> <span>/</span> <a href="/research">Hax</a> <span>/</span> Foundational Principles
     </div>
     <div class="page-hero-title">
-      <h1><%= pageData.title %></h1>
+      <h1><%= pageData.hero.title %></h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p><%= pageData.description %></p>
+        <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
-        <img src="<%= pageData.heroImage %>" alt="<%= pageData.title %>">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
       </div>
     </div>
   </div>
@@ -33,9 +33,9 @@
     </div>
 
     <div class="pipeline-steps">
-      <% pageData.steps.forEach(function(step, i) { %>
+      <% pageData.steps.forEach(function(step) { %>
       <div class="pipeline-step">
-        <div class="step-number">0<%= i + 1 %></div>
+        <div class="step-number"><%= step.stepNumber %></div>
         <div class="step-title"><%- step.title %></div>
         <% if (step.subtitle) { %>
         <div class="step-subtitle"><%= step.subtitle %></div>
@@ -71,8 +71,8 @@
 <div class="case-studies">
   <div class="container">
     <div class="case-studies-header">
-      <h2>Case Studies</h2>
-      <p>Real-world applications of our foundational principles in enterprise and research contexts.</p>
+      <h2><%= pageData.caseStudiesTitle %></h2>
+      <p><%= pageData.caseStudiesDescription %></p>
     </div>
 
     <% pageData.caseStudies.forEach(function(cs, i) { %>
@@ -112,12 +112,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
       </div>
     </div>
   </div>

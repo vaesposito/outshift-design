@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_pattern_panels",
+  "info": {
+    "displayName": "PatternPanel",
+    "icon": "grid",
+    "description": "Pattern panel with key, title, description, and example images"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "exampleImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    }
+  }
+}

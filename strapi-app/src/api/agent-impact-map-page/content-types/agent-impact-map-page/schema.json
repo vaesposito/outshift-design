@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "agent_impact_map_pages",
+  "info": {
+    "singularName": "agent-impact-map-page",
+    "pluralName": "agent-impact-map-pages",
+    "displayName": "AgentImpactMapPage",
+    "description": "Agent Impact Map research page content"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": { "type": "component", "repeatable": false, "component": "shared.hero-block", "required": true },
+    "templateTitle": { "type": "string" },
+    "templateSubtitle": { "type": "text" },
+    "instructions": { "type": "richtext" },
+    "methodology": { "type": "richtext" },
+    "diagram": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "sdk": { "type": "component", "repeatable": false, "component": "shared.cta-block" },
+    "seo": { "type": "component", "repeatable": false, "component": "shared.seo-meta" }
+  }
+}

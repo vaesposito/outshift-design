@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_research_approach_items",
+  "info": {
+    "displayName": "ResearchApproachItem",
+    "icon": "search",
+    "description": "Research approach item with title, description, explore bullets, and image"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "exploreBullets": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageAlt": {
+      "type": "string"
+    }
+  }
+}

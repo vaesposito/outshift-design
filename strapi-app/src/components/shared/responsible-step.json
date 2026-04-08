@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_shared_responsible_steps",
+  "info": {
+    "displayName": "ResponsibleStep",
+    "icon": "bulletList",
+    "description": "Framework step with label, title, image, bullets, and template reference"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "bullets": {
+      "type": "text",
+      "required": true
+    },
+    "templateLabel": {
+      "type": "string"
+    },
+    "templateLink": {
+      "type": "string"
+    }
+  }
+}

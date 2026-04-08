@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_use_case_entries",
+  "info": {
+    "displayName": "UseCaseEntry",
+    "icon": "apps",
+    "description": "Use case card with title, description, and tags"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.tag"
+    }
+  }
+}

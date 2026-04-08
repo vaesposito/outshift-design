@@ -9,14 +9,14 @@
       <a href="/research">Research</a> <span>/</span> <a href="/hax">Hax</a> <span>/</span> Agent Impact Map
     </div>
     <div class="page-hero-title">
-      <h1>Agent Impact Map</h1>
+      <h1><%= pageData.hero.title %></h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.</p>
+        <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
-        <img src="/images/research/agent-impact-map/hero.png" alt="Agent Impact Map">
+        <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
       </div>
     </div>
   </div>
@@ -26,27 +26,27 @@
 <div class="template-section">
   <div class="container">
     <div class="template-header">
-      <h2>Agent Impact Map</h2>
+      <h2><%= pageData.templateTitle %></h2>
     </div>
-    <p class="template-subtitle">A mapping of the full socio-technical system of agent interactions to better understand the implications on user workflows.</p>
+    <p class="template-subtitle"><%= pageData.templateSubtitle %></p>
 
     <div class="template-content">
       <div class="template-text-col">
         <div class="template-block">
           <h3>Instructions</h3>
           <ol>
-            <li>Identify all human and non-human actors involved in the agent ecosystem (users, agents, databases, data sources, organizational stakeholders).</li>
-            <li>Map the interactions, data flows, and dependencies between these actors across the full workflow.</li>
-            <li>Highlight friction points, risks, and unintended consequences that may emerge within the system.</li>
+            <% pageData.instructions.forEach(function(inst) { %>
+            <li><%= inst %></li>
+            <% }) %>
           </ol>
         </div>
         <div class="template-block">
           <h3>Methodology</h3>
-          <p>This methodology uses socio-technical systems mapping to analyze how human, organizational, and technical components interact across an agent-supported workflow. Designers begin by identifying all relevant actors, data flows, and contextual constraints, then visualize their interdependencies to reveal how agent behaviors shape user actions and decision points. Through these mappings, friction points, risks, and opportunities are surfaced, allowing designers to understand the broader implications of agent integration. The resulting richer priorities and shared foundation for making informed design decisions and aligning emerging agent technologies with real user needs and operational realities.</p>
+          <p><%= pageData.methodology %></p>
         </div>
       </div>
       <div class="template-diagram">
-        <img src="/images/research/agent-impact-map/chart.svg" alt="Agent Impact Map Diagram">
+        <img src="<%= pageData.diagram %>" alt="Agent Impact Map Diagram">
       </div>
     </div>
   </div>
@@ -57,12 +57,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
       </div>
     </div>
   </div>

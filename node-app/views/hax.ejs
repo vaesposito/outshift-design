@@ -9,16 +9,18 @@
       <a href="/#initiatives">Initiatives</a> <span>/</span> Hax
     </div>
     <div class="page-hero-title">
-      <h1>The Human-Agent Experience</h1>
+      <h1><%= pageData.hero.title %></h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>We're moving beyond assistants and copilots. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in more nuanced ways. Designing for this shift requires new patterns of interaction and trust.</p>
-        <p>This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.</p>
+        <p><%= pageData.hero.description %></p>
+        <% if (pageData.heroDescription2) { %>
+        <p><%= pageData.heroDescription2 %></p>
+        <% } %>
       </div>
       <div class="page-hero-image">
         <video autoplay muted loop playsinline>
-          <source src="/videos/hax-hero.mp4" type="video/mp4">
+          <source src="<%= pageData.heroVideo %>" type="video/mp4">
         </video>
       </div>
     </div>
@@ -29,79 +31,29 @@
 <div class="patterns-section">
   <div class="container">
     <div class="patterns-header">
-      <h2>Human-Centered AI Patterns</h2>
-      <p>These 5 guiding principles emerged from studying how people interact with agentic systems. Using these patterns is the foundation for building trustworthy AI experiences that prioritize human control and agency.</p>
+      <h2><%= pageData.patternsTitle %></h2>
+      <p><%= pageData.patternsDescription %></p>
     </div>
 
     <div class="patterns-filters">
-      <button class="pattern-filter is-active" data-pattern="control">Control</button>
-      <button class="pattern-filter" data-pattern="clarity">Clarity</button>
-      <button class="pattern-filter" data-pattern="recovery">Recovery</button>
-      <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
-      <button class="pattern-filter" data-pattern="traceability">Traceability</button>
+      <% pageData.patterns.forEach(function(p, i) { %>
+      <button class="pattern-filter<%= i === 0 ? ' is-active' : '' %>" data-pattern="<%= p.key %>"><%= p.title %></button>
+      <% }) %>
     </div>
 
-    <div class="pattern-panel is-active" data-panel="control">
-      <h3 class="pattern-title">Control</h3>
-      <p class="pattern-desc">Humans guide how agents operate by setting boundaries, preferences, and intent. Control aligns autonomy with human goals.</p>
+    <% pageData.patterns.forEach(function(p, i) { %>
+    <div class="pattern-panel<%= i === 0 ? ' is-active' : '' %>" data-panel="<%= p.key %>">
+      <h3 class="pattern-title"><%= p.title %></h3>
+      <p class="pattern-desc"><%= p.description %></p>
       <div class="pattern-divider"></div>
       <h4 class="pattern-examples-label">Examples</h4>
       <div class="pattern-visuals">
-        <img src="/images/patterns/scope-boundaries.svg" alt="Scope &amp; Boundaries">
-        <img src="/images/patterns/permission-gates.svg" alt="Permission Gates">
-        <img src="/images/patterns/customization-autonomy.svg" alt="Customization of Autonomy">
+        <% p.images.forEach(function(img, j) { %>
+        <img src="<%= img %>" alt="<%= (p.alts && p.alts[j]) ? p.alts[j] : p.title + ' pattern ' + (j+1) %>">
+        <% }) %>
       </div>
     </div>
-
-    <div class="pattern-panel" data-panel="clarity">
-      <h3 class="pattern-title">Clarity</h3>
-      <p class="pattern-desc">Agents should make their reasoning, context, and confidence visible. Instead of acting like black boxes, they show how decisions are made so users can understand, question, or adjust them.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img src="/images/patterns/clarity-1.svg" alt="Clarity pattern 1">
-        <img src="/images/patterns/clarity-2.svg" alt="Clarity pattern 2">
-        <img src="/images/patterns/clarity-3.svg" alt="Clarity pattern 3">
-        <img src="/images/patterns/clarity-4.svg" alt="Clarity pattern 4">
-      </div>
-    </div>
-
-    <div class="pattern-panel" data-panel="recovery">
-      <h3 class="pattern-title">Recovery</h3>
-      <p class="pattern-desc">Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img src="/images/patterns/recovery-1.svg" alt="Recovery pattern 1">
-        <img src="/images/patterns/recovery-2.svg" alt="Recovery pattern 2">
-        <img src="/images/patterns/recovery-3.svg" alt="Recovery pattern 3">
-        <img src="/images/patterns/recovery-4.svg" alt="Recovery pattern 4">
-      </div>
-    </div>
-
-    <div class="pattern-panel" data-panel="collaboration">
-      <h3 class="pattern-title">Collaboration</h3>
-      <p class="pattern-desc">Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes. The agent contributes ideas, takes input, and improves the work in progress.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img src="/images/patterns/collaboration-1.svg" alt="Collaboration pattern 1">
-        <img src="/images/patterns/collaboration-2.svg" alt="Collaboration pattern 2">
-        <img src="/images/patterns/collaboration-3.svg" alt="Collaboration pattern 3">
-      </div>
-    </div>
-
-    <div class="pattern-panel" data-panel="traceability">
-      <h3 class="pattern-title">Traceability</h3>
-      <p class="pattern-desc">Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img src="/images/patterns/traceability-1.svg" alt="Traceability pattern 1">
-        <img src="/images/patterns/traceability-2.svg" alt="Traceability pattern 2">
-        <img src="/images/patterns/traceability-3.svg" alt="Traceability pattern 3">
-      </div>
-    </div>
+    <% }) %>
   </div>
 </div>
 
@@ -110,12 +62,12 @@
   <div class="container">
     <div class="hax-research-inner">
       <div class="hax-research-image">
-        <img src="/images/hax-research.png" alt="Hax research visualization">
+        <img src="<%= pageData.researchImage %>" alt="Hax research visualization">
       </div>
       <div class="hax-research-text">
-        <h2>Hax Research</h2>
-        <p>A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.</p>
-        <a href="/research" class="sdk-cta">Explore the Research</a>
+        <h2><%= pageData.researchTitle %></h2>
+        <p><%= pageData.researchDescription %></p>
+        <a href="<%= pageData.researchLink.url %>" class="sdk-cta"<% if (pageData.researchLink.isExternal) { %> target="_blank" rel="noopener noreferrer"<% } %>><%= pageData.researchLink.label %></a>
       </div>
     </div>
   </div>
@@ -126,12 +78,12 @@
   <div class="container">
     <div class="sdk-inner">
       <div class="sdk-text">
-        <h2>Build with the Hax SDK</h2>
-        <p>The HAX SDK gives developers everything they need to integrate agents into their apps, without losing clarity, structure, or control. Use structured schemas, prebuilt components, and clear boundaries to keep agent behavior collaborative and predictable.</p>
-        <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <h2><%= pageData.sdk.title %></h2>
+        <p><%= pageData.sdk.description %></p>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="/images/research/sdk-hero.png" alt="Hax SDK">
+        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
       </div>
     </div>
   </div>

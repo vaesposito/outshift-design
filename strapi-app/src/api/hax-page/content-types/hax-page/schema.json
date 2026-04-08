@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "hax_pages",
+  "info": {
+    "singularName": "hax-page",
+    "pluralName": "hax-pages",
+    "displayName": "HaxPage",
+    "description": "The Human-Agent Experience page content"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": { "type": "component", "repeatable": false, "component": "shared.hero-block", "required": true },
+    "heroVideo": { "type": "string" },
+    "patternsTitle": { "type": "string" },
+    "patternsDescription": { "type": "text" },
+    "patterns": { "type": "component", "repeatable": true, "component": "shared.pattern-panel" },
+    "researchTitle": { "type": "string" },
+    "researchDescription": { "type": "text" },
+    "researchLink": { "type": "component", "repeatable": false, "component": "shared.arrow-link" },
+    "researchImage": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "sdk": { "type": "component", "repeatable": false, "component": "shared.cta-block" },
+    "seo": { "type": "component", "repeatable": false, "component": "shared.seo-meta" }
+  }
+}
