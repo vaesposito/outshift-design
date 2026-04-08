@@ -32,6 +32,9 @@
     --color-accent-hover: #187ADC;
     --color-hamburger: #293247;
     --color-shadow: rgba(41, 50, 71, 0.08);
+    --color-tag-bg: rgba(0, 188, 235, 0.1);
+    --color-tag-border: rgba(0, 188, 235, 0.2);
+    --color-tag-text: #187ADC;
 }
 @supports (font-variation-settings: normal) {
   :root {
@@ -52,6 +55,9 @@
     --color-accent-hover: #00BCEB;
     --color-hamburger: #e0e4ec;
     --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-tag-bg: rgba(0, 188, 235, 0.12);
+    --color-tag-border: rgba(0, 188, 235, 0.25);
+    --color-tag-text: #3fc6ee;
 }
 [data-theme="dark"] .logo-light,
 [data-theme="dark"] .footer-logo .logo-light { display: none; }
@@ -497,6 +503,113 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     display: block;
 }
 
+/* ── Hax Research Section ── */
+.hax-research-section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 0 60px;
+}
+.hax-research-section .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.hax-research-section .section-header h6 {
+    color: var(--color-text-subtle);
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 8px;
+}
+.hax-research-section .section-header h3 {
+    color: var(--color-text);
+    font-size: 3em;
+    font-weight: 200;
+    margin: 8px 0 12px;
+}
+.hax-research-section .section-header p {
+    color: var(--color-text-muted);
+    font-size: 1.05em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.research-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+.research-card {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s;
+    display: block;
+}
+.research-card:hover {
+    transform: translateY(-4px);
+}
+.research-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+}
+.research-card-body {
+    padding: 24px 12px 12px;
+}
+.research-card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.research-card-title-row h3 {
+    color: var(--color-text);
+    font-size: 1.8em;
+    font-weight: 500;
+    margin: 0;
+}
+.research-card-title-row .card-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-medium);
+    color: var(--color-text);
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.research-card-title-row .card-arrow:hover {
+    background: var(--color-hover);
+}
+.research-card-title-row .card-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+.research-card-body p {
+    color: var(--color-text-muted);
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+.research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.research-tags span {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--color-tag-bg);
+    border: 1px solid var(--color-tag-border);
+    color: var(--color-tag-text);
+    font-size: 0.85em;
+}
+
 /* ── SDK Section ── */
 .sdk-section {
     position: relative;
@@ -651,6 +764,8 @@ footer {
     .patterns-header h2 { font-size: 1.8em; }
     .patterns-filters { gap: 8px; }
     .pattern-filter { padding: 8px 16px; font-size: 0.85em; }
+
+    .research-cards { grid-template-columns: 1fr; }
 
     .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
@@ -822,6 +937,57 @@ footer {
         <img src="images/patterns/traceability-2.svg" alt="Traceability pattern 2">
         <img src="images/patterns/traceability-3.svg" alt="Traceability pattern 3">
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hax Research -->
+<div class="hax-research-section">
+  <div class="container">
+    <div class="section-header">
+      <h6>Research</h6>
+      <h3>Hax Research</h3>
+      <p>Explore our research foundations across cognitive science, design frameworks, and human-AI collaboration.</p>
+    </div>
+    <div class="research-cards">
+      <a href="foundational-principles.html" class="research-card">
+        <img src="images/research/foundational-principles.png" alt="Foundational Principles">
+        <div class="research-card-body">
+          <div class="research-card-title-row">
+            <h3>Foundational Principles</h3>
+            <span class="card-arrow">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12L12 4M12 4H5M12 4V11"/>
+              </svg>
+            </span>
+          </div>
+          <p>Design principles and frameworks for AI-human interaction, translating insights into practical patterns that prioritize user control, clarity, and collaboration.</p>
+          <div class="research-tags">
+            <span>AI Research</span>
+            <span>Design Framework</span>
+            <span>Ethics</span>
+          </div>
+        </div>
+      </a>
+      <a href="cognitive-frameworks.html" class="research-card">
+        <img src="images/research/cognitive-framework.png" alt="Cognitive Frameworks">
+        <div class="research-card-body">
+          <div class="research-card-title-row">
+            <h3>Cognitive Frameworks</h3>
+            <span class="card-arrow">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12L12 4M12 4H5M12 4V11"/>
+              </svg>
+            </span>
+          </div>
+          <p>Theoretical models explaining how humans and AI agents process information, exploring cognitive load, mental models, and collaborative reasoning.</p>
+          <div class="research-tags">
+            <span>Cognitive Science</span>
+            <span>Mental Models</span>
+            <span>Collaboration</span>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
