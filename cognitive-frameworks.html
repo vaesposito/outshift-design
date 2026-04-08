@@ -727,113 +727,6 @@ footer {
 .menu-toggle.active span:nth-child(2) { opacity: 0; }
 .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.framework-approaches-cards {
-    display: flex;
-    gap: 16px;
-}
-.framework-approach-svg {
-    flex: 1;
-    width: 0;
-    height: auto;
-}
-
-/* ── Responsive ── */
-@media (max-width: 1024px) {
-    .page-hero-title h1 { font-size: 2.8em; }
-    .page-hero-image img { height: 400px; }
-    .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
-    .pipeline-step { width: 100%; padding: 40px 0; }
-    .step-number { font-size: 4.5em; }
-    .sdk-text h2 { font-size: 2em; }
-    .sdk-inner { gap: 40px; }
-    .use-cases-grid { grid-template-columns: repeat(2, 1fr); }
-    .use-case-card { padding: 28px; height: auto; min-height: 260px; }
-    .use-case-card h4 { font-size: 20px; }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    nav {
-        position: fixed;
-        top: 0; right: -100%;
-        width: 280px; height: 100vh;
-        background: var(--color-surface);
-        padding: 80px 30px 30px;
-        transition: right 0.3s ease;
-        z-index: 5;
-        box-shadow: -2px 0 20px var(--color-shadow);
-    }
-    nav.open { right: 0; }
-    nav ul { flex-direction: column; gap: 20px; padding: 0; }
-    .nav-dropdown {
-        position: static; transform: scaleY(1); opacity: 1; visibility: visible;
-        min-width: 0; background: none; border: none; border-radius: 0;
-        box-shadow: none; padding: 4px 0 0 16px; overflow: visible;
-    }
-    .nav-dropdown li a { padding: 8px 0; font-size: 0.95em; }
-    .nav-dropdown li a:hover { background: none; }
-    .nav-dropdown-label { padding: 8px 0 4px; font-size: 1em; }
-    .nav-dropdown-label::after { display: none; }
-    .nav-dropdown-sub { margin: 0 0 0 8px; border-left: 2px solid var(--color-border); }
-    .nav-dropdown-sub li a { padding: 6px 0 6px 12px; font-size: 0.9em; }
-    .nav-dropdown-sub li a:hover { background: none; }
-
-    .page-hero-inner { flex-direction: column; gap: 32px; }
-    .page-hero-text { padding-right: 0; }
-    .page-hero-title h1 { font-size: 2em; }
-    .page-hero-image img { height: 320px; max-width: 100%; }
-
-    .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
-    .pipeline-step { width: 100%; padding: 32px 0; }
-    .pipeline-step:nth-child(odd),
-    .pipeline-step:nth-child(even) { align-self: center; }
-    .step-number { font-size: 3.5em; }
-
-    .framework-content { grid-template-columns: 1fr; gap: 24px; }
-    .framework-right { gap: 16px; }
-    .framework-collab-box { gap: 16px; }
-    .framework-collab-title { font-size: 1em; }
-    .framework-collab-desc { font-size: 0.88em; }
-    .framework-approaches-cards { flex-direction: column; gap: 12px; }
-    .framework-approach-svg { flex: none; width: 100%; }
-    .framework-diagram { max-width: 100%; }
-    .framework-core-svg { max-width: 100%; }
-    .framework-why { padding: 16px 20px; }
-    .framework-why-title { font-size: 0.9em; }
-    .framework-why p { font-size: 0.88em; }
-    .step-desc { font-size: 0.92em; }
-    .use-cases-grid { grid-template-columns: 1fr; gap: 20px; }
-    .use-case-card { height: auto; padding: 28px; }
-    .cognitive-metrics { flex-wrap: wrap; }
-
-    .sdk-inner { flex-direction: column; gap: 32px; }
-    .sdk-text h2 { font-size: 1.8em; }
-    .sdk-image { justify-content: center; }
-    .sdk-image img { max-width: 100%; }
-
-    .footer-top { flex-direction: column; gap: 32px; }
-}
-
-@media (max-width: 480px) {
-    .page-hero-title h1 { font-size: 1.6em; }
-    .page-hero-image img { height: 240px; }
-    .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
-    .pipeline-step { padding: 24px 0; }
-    .step-number { font-size: 3em; }
-    .step-title { font-size: 1.2em; }
-    .step-desc { font-size: 0.88em; }
-    .framework-content { gap: 20px; }
-    .framework-collab-title { font-size: 0.95em; }
-    .framework-why { padding: 14px 16px; margin-top: 16px; }
-    .framework-concepts { margin: 14px 0; }
-    .step-list li { font-size: 0.88em; }
-    .sdk-text h2 { font-size: 1.5em; }
-    .use-case-card { padding: 24px; }
-    .use-case-card h4 { font-size: 18px; margin-bottom: 12px; }
-    footer { padding: 40px 0 0; }
-    .footer-logo img { height: 48px; }
-}
-
 /* ── Framework Two-Column Layout ── */
 .framework-content {
     display: grid;
@@ -880,6 +773,15 @@ footer {
 }
 .framework-core-svg {
     width: 100%;
+}
+.framework-approaches-cards {
+    display: flex;
+    gap: 16px;
+}
+.framework-approach-svg {
+    flex: 1;
+    width: 0;
+    height: auto;
 }
 .framework-concepts {
     margin: 20px 0;
@@ -1025,6 +927,103 @@ a.use-case-card { color: inherit; text-decoration: none; }
 }
 [data-theme="dark"] .use-case-tag {
     background: linear-gradient(to right, rgba(210, 194, 255, 0.15) 26%, rgba(255, 255, 255, 0) 88%), rgba(255, 255, 255, 0.06);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .page-hero-title h1 { font-size: 2.8em; }
+    .page-hero-image img { height: 400px; }
+    .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
+    .pipeline-step { width: 100%; padding: 40px 0; }
+    .step-number { font-size: 4.5em; }
+    .sdk-text h2 { font-size: 2em; }
+    .sdk-inner { gap: 40px; }
+    .use-cases-grid { grid-template-columns: repeat(2, 1fr); }
+    .use-case-card { padding: 28px; height: auto; min-height: 260px; }
+    .use-case-card h4 { font-size: 20px; }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 280px; height: 100vh;
+        background: var(--color-surface);
+        padding: 80px 30px 30px;
+        transition: right 0.3s ease;
+        z-index: 5;
+        box-shadow: -2px 0 20px var(--color-shadow);
+    }
+    nav.open { right: 0; }
+    nav ul { flex-direction: column; gap: 20px; padding: 0; }
+    .nav-dropdown {
+        position: static; transform: scaleY(1); opacity: 1; visibility: visible;
+        min-width: 0; background: none; border: none; border-radius: 0;
+        box-shadow: none; padding: 4px 0 0 16px; overflow: visible;
+    }
+    .nav-dropdown li a { padding: 8px 0; font-size: 0.95em; }
+    .nav-dropdown li a:hover { background: none; }
+    .nav-dropdown-label { padding: 8px 0 4px; font-size: 1em; }
+    .nav-dropdown-label::after { display: none; }
+    .nav-dropdown-sub { margin: 0 0 0 8px; border-left: 2px solid var(--color-border); }
+    .nav-dropdown-sub li a { padding: 6px 0 6px 12px; font-size: 0.9em; }
+    .nav-dropdown-sub li a:hover { background: none; }
+
+    .page-hero-inner { flex-direction: column; gap: 32px; }
+    .page-hero-text { padding-right: 0; }
+    .page-hero-title h1 { font-size: 2em; }
+    .page-hero-image img { height: 320px; max-width: 100%; }
+
+    .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
+    .pipeline-step { width: 100%; padding: 32px 0; }
+    .pipeline-step:nth-child(odd),
+    .pipeline-step:nth-child(even) { align-self: center; }
+    .step-number { font-size: 3.5em; }
+
+    .framework-content { grid-template-columns: 1fr; gap: 24px; }
+    .framework-right { gap: 16px; }
+    .framework-collab-box { gap: 16px; }
+    .framework-collab-title { font-size: 1em; }
+    .framework-collab-desc { font-size: 0.88em; }
+    .framework-approaches-cards { flex-direction: column; gap: 12px; }
+    .framework-approach-svg { flex: none; width: 100%; }
+    .framework-diagram { max-width: 100%; }
+    .framework-core-svg { max-width: 100%; }
+    .framework-why { padding: 16px 20px; }
+    .framework-why-title { font-size: 0.9em; }
+    .framework-why p { font-size: 0.88em; }
+    .step-desc { font-size: 0.92em; }
+    .use-cases-grid { grid-template-columns: 1fr; gap: 20px; }
+    .use-case-card { height: auto; padding: 28px; }
+    .cognitive-metrics { flex-wrap: wrap; }
+
+    .sdk-inner { flex-direction: column; gap: 32px; }
+    .sdk-text h2 { font-size: 1.8em; }
+    .sdk-image { justify-content: center; }
+    .sdk-image img { max-width: 100%; }
+
+    .footer-top { flex-direction: column; gap: 32px; }
+}
+
+@media (max-width: 480px) {
+    .page-hero-title h1 { font-size: 1.6em; }
+    .page-hero-image img { height: 240px; }
+    .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
+    .pipeline-step { padding: 24px 0; }
+    .step-number { font-size: 3em; }
+    .step-title { font-size: 1.2em; }
+    .step-desc { font-size: 0.88em; }
+    .framework-content { gap: 20px; }
+    .framework-collab-title { font-size: 0.95em; }
+    .framework-why { padding: 14px 16px; margin-top: 16px; }
+    .framework-concepts { margin: 14px 0; }
+    .step-list li { font-size: 0.88em; }
+    .sdk-text h2 { font-size: 1.5em; }
+    .use-case-card { padding: 24px; }
+    .use-case-card h4 { font-size: 18px; margin-bottom: 12px; }
+    footer { padding: 40px 0 0; }
+    .footer-logo img { height: 48px; }
 }
 
 /* ── CF Banner ── */
