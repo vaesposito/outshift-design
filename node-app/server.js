@@ -50,7 +50,7 @@ const fallbackData = {
       { label: 'The Human-Agent Experience', href: '/hax' },
       { label: 'Internet of Cognition', href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
     ]},
-    { label: 'About us', href: '/#about', hasDropdown: true },
+    // { label: 'About us', href: '/#about', hasDropdown: true },
     { label: 'Research', href: '/research', hasDropdown: true, children: [
       { group: 'Hax', groupHref: '/research', items: [
         { label: 'Foundational Principles', href: '/research/foundational-principles' },
