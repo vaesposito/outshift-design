@@ -71,6 +71,9 @@
 [data-theme="dark"] .initiative-card.reversed {
     background-image: url('/images/section-inverted-darkmode.svg');
 }
+.video-dark { display: none; }
+[data-theme="dark"] .video-light { display: none; }
+[data-theme="dark"] .video-dark { display: block; }
 .theme-toggle {
     display: inline-flex;
     padding: 6px;
