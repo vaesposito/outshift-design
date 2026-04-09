@@ -945,18 +945,18 @@ a.use-case-card { color: inherit; text-decoration: none; }
 
 @media (max-width: 768px) {
     .menu-toggle { display: block; }
-    nav {
-        position: fixed;
-        top: 0; right: -100%;
-        width: 280px; height: 100vh;
-        background: var(--color-surface);
-        padding: 80px 30px 30px;
-        transition: right 0.3s ease;
-        z-index: 5;
-        box-shadow: -2px 0 20px var(--color-shadow);
+    header nav {
+        position: fixed; top: 0; right: -100%;
+        width: 70%; max-width: 320px; height: 100vh;
+        background: var(--color-surface); backdrop-filter: blur(20px);
+        z-index: 9; transition: right 0.35s ease;
+        padding: 80px 32px 32px;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
     }
-    nav.open { right: 0; }
-    nav ul { flex-direction: column; gap: 20px; padding: 0; }
+    header nav.open { right: 0; }
+    header nav ul { flex-direction: column; gap: 0; padding: 0; margin: 0; }
+    header nav ul li { padding: 16px 0; border-bottom: 1px solid var(--color-border); }
+    header nav ul li a { font-size: 1.1em; }
     .nav-dropdown {
         position: static; transform: scaleY(1); opacity: 1; visibility: visible;
         min-width: 0; background: none; border: none; border-radius: 0;

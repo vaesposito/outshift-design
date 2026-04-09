@@ -37,10 +37,6 @@
 
 <!-- Article Content -->
 <div class="article-layout">
-  <div class="article-body">
-    <%- post.body %>
-  </div>
-
   <aside class="article-sidebar">
     <nav class="article-toc">
       <% (post.toc || []).forEach(function(item) { %>
@@ -48,6 +44,10 @@
       <% }); %>
     </nav>
   </aside>
+
+  <div class="article-body">
+    <%- post.body %>
+  </div>
 </div>
 
 <!-- Author Card -->

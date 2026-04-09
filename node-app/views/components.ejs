@@ -4,71 +4,572 @@
 <div class="components-page">
   <div class="container">
 
-    <!-- Page Header -->
     <div class="comp-header">
       <p class="comp-label">Strapi CMS</p>
       <h1>Component Library</h1>
-      <p class="comp-desc">All reusable Strapi components and content types available in the Outshift Design CMS. Each component maps to a schema that powers the front-end through the REST API.</p>
+      <p class="comp-desc">Visual reference of every Strapi component. Each preview shows the actual rendered look &amp; feel, followed by its schema.</p>
+      <div class="comp-jump-nav">
+        <a href="#comp-hero-block">HeroBlock</a>
+        <a href="#comp-cta-block">CtaBlock</a>
+        <a href="#comp-section-header">SectionHeader</a>
+        <a href="#comp-simple-card">SimpleCard</a>
+        <a href="#comp-pipeline-step">PipelineStep</a>
+        <a href="#comp-case-study-card">CaseStudyCard</a>
+        <a href="#comp-research-approach-item">ResearchApproachItem</a>
+        <a href="#comp-use-case-entry">UseCaseEntry</a>
+        <a href="#comp-pattern-panel">PatternPanel</a>
+        <a href="#comp-responsible-step">ResponsibleStep</a>
+        <a href="#comp-media-block">MediaBlock</a>
+        <a href="#comp-tag">Tag</a>
+        <a href="#comp-nav-item">NavItem</a>
+        <a href="#comp-arrow-link">ArrowLink</a>
+        <a href="#comp-social-link">SocialLink</a>
+        <a href="#comp-seo-meta">SeoMeta</a>
+      </div>
     </div>
 
-    <!-- Shared Components -->
-    <section class="comp-section">
-      <h2 class="comp-section-title">Shared Components</h2>
-      <p class="comp-section-desc">Reusable components that can be embedded in any content type.</p>
-
-      <div class="comp-grid">
-        <% components.forEach(c => { %>
-        <div class="comp-card">
-          <div class="comp-card-header">
-            <span class="comp-icon"><%= c.icon %></span>
-            <h3><%= c.displayName %></h3>
+    <!-- ═══════════════════════════════════ -->
+    <!-- HeroBlock                           -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-hero-block">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">HeroBlock</span>
+        <span class="comp-showcase-usage">Used by: all research pages</span>
+      </div>
+      <div class="comp-preview">
+        <div class="page-hero" style="padding:40px 0 20px;">
+          <div class="page-hero-title" style="margin-bottom:24px;">
+            <h1 style="font-size:2.2em;">Page Title Goes Here</h1>
           </div>
-          <p class="comp-card-desc"><%= c.description %></p>
-          <div class="comp-card-fields">
-            <p class="comp-fields-label">Fields</p>
-            <% c.fields.forEach(f => { %>
-            <div class="comp-field">
-              <span class="comp-field-name"><%= f.name %></span>
-              <span class="comp-field-type"><%= f.type %></span>
-              <% if (f.required) { %><span class="comp-field-req">required</span><% } %>
+          <div class="page-hero-inner">
+            <div class="page-hero-text" style="flex:5;padding-right:40px;">
+              <p style="font-size:16px;font-weight:300;color:var(--color-text-muted);line-height:1.7;margin:0;">A paragraph describing the page content. This text is stored in the <code>description</code> field and rendered below the hero title.</p>
             </div>
-            <% }) %>
+            <div class="page-hero-image" style="flex:7;">
+              <img src="/images/research/sdk-hero.png" alt="Hero image" style="width:100%;height:200px;border-radius:16px;object-fit:cover;display:block;">
+            </div>
           </div>
         </div>
-        <% }) %>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>image</code></td><td>media (images)</td><td></td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- Content Types -->
-    <section class="comp-section">
-      <h2 class="comp-section-title">Content Types</h2>
-      <p class="comp-section-desc">Top-level content types that define the CMS data model. Each content type has its own API endpoint.</p>
-
-      <div class="comp-grid">
-        <% contentTypes.forEach(ct => { %>
-        <div class="comp-card comp-card--content-type">
-          <div class="comp-card-header">
-            <span class="comp-kind-badge"><%= ct.kind %></span>
-            <h3><%= ct.displayName %></h3>
+    <!-- ═══════════════════════════════════ -->
+    <!-- CtaBlock (SDK Section)              -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-cta-block">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">CtaBlock</span>
+        <span class="comp-showcase-usage">Used as the "Build with SDK" section on all research pages</span>
+      </div>
+      <div class="comp-preview" style="background:linear-gradient(132deg, rgba(210,194,255,0.15) 26%, rgba(255,255,255,0) 88%);border:1px solid rgba(77,99,128,0.21);border-radius:16px;">
+        <div style="display:flex;align-items:center;gap:40px;padding:40px;">
+          <div style="flex:1;">
+            <h2 style="font-size:1.8em;font-weight:200;margin:0 0 12px;">Build with the Hax SDK</h2>
+            <p style="font-size:0.95em;color:var(--color-text-muted);line-height:1.7;margin:0 0 20px;">The HAX SDK gives developers everything they need to integrate agents into their apps.</p>
+            <span class="sdk-cta" style="font-size:0.9em;padding:10px 20px;">Explore the SDK <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
           </div>
-          <p class="comp-card-desc"><%= ct.description %></p>
-          <div class="comp-card-endpoint">
-            <span class="comp-endpoint-label">API</span>
-            <code>/api/<%= ct.pluralName %></code>
-          </div>
-          <div class="comp-card-fields">
-            <p class="comp-fields-label">Fields</p>
-            <% ct.fields.forEach(f => { %>
-            <div class="comp-field">
-              <span class="comp-field-name"><%= f.name %></span>
-              <span class="comp-field-type"><%= f.type %></span>
-              <% if (f.required) { %><span class="comp-field-req">required</span><% } %>
-              <% if (f.component) { %><span class="comp-field-component"><%= f.component %></span><% } %>
-            </div>
-            <% }) %>
+          <div style="flex:1;">
+            <img src="/images/research/sdk-hero.png" alt="SDK" style="width:100%;height:160px;border-radius:16px;object-fit:cover;display:block;">
           </div>
         </div>
-        <% }) %>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>buttonLabel</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>buttonUrl</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>image</code></td><td>media (images)</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- SectionHeader                       -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-section-header">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">SectionHeader</span>
+        <span class="comp-showcase-usage">Used by: ResearchPage</span>
+      </div>
+      <div class="comp-preview" style="text-align:center;padding:40px;">
+        <h2 style="font-size:2.2em;font-weight:200;margin:0 0 12px;">Section Title</h2>
+        <p style="font-size:1em;color:var(--color-text-muted);margin:0 auto;line-height:1.6;max-width:500px;">An optional subtitle that provides additional context below the section heading.</p>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>subtitle</code></td><td>string</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- SimpleCard                          -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-simple-card">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">SimpleCard</span>
+        <span class="comp-showcase-usage">Used by: SecurityPrivacyPage ("Building Secure Systems" cards)</span>
+      </div>
+      <div class="comp-preview">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="secure-card">
+            <h3>Enabling Safe Innovation</h3>
+            <p>Our security research ensures that as agents become more capable, they remain trustworthy and aligned with user intentions.</p>
+          </div>
+          <div class="secure-card">
+            <h3>Protecting User Privacy</h3>
+            <p>We investigate privacy-preserving architectures that keep sensitive data secure while enabling powerful agent capabilities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- PipelineStep                        -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-pipeline-step">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">PipelineStep</span>
+        <span class="comp-showcase-usage">Used by: FoundationalPrinciplesPage</span>
+      </div>
+      <div class="comp-preview">
+        <div class="pipeline-step" style="width:100%;position:relative;">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Step Title</h3>
+          <p class="step-subtitle">An optional italic subtitle</p>
+          <p class="step-desc">A description paragraph explaining the purpose and methodology of this pipeline step.</p>
+          <div class="step-quote">A notable quote or key insight displayed in a bordered box.</div>
+          <ul class="step-list">
+            <li>First bullet point</li>
+            <li>Second bullet point</li>
+          </ul>
+          <div class="step-deliverable">
+            <p class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg> Deliverables</p>
+            <ul class="step-list">
+              <li>Deliverable item</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>stepNumber</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>subtitle</code></td><td>string</td><td></td></tr>
+            <tr><td><code>description</code></td><td>text</td><td></td></tr>
+            <tr><td><code>quote</code></td><td>text</td><td></td></tr>
+            <tr><td><code>bullets</code></td><td>text</td><td></td></tr>
+            <tr><td><code>deliverables</code></td><td>text</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- CaseStudyCard                       -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-case-study-card">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">CaseStudyCard</span>
+        <span class="comp-showcase-usage">Used by: FoundationalPrinciplesPage</span>
+      </div>
+      <div class="comp-preview">
+        <div class="case-study-card" style="margin-bottom:0;">
+          <p class="case-study-label">Case Study</p>
+          <h3>Smart Home Energy Management</h3>
+          <div class="case-study-tags">
+            <span>IoT</span>
+            <span>Sustainability</span>
+          </div>
+          <p class="case-study-desc">An AI-powered home energy system that learns usage patterns and automatically optimizes consumption while maintaining comfort levels.</p>
+          <div class="case-study-problem">
+            <p class="case-study-problem-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Problem</p>
+            <p>Homeowners struggle to reduce energy costs without sacrificing comfort or convenience.</p>
+          </div>
+          <p class="case-study-principles-label">Applied Principles</p>
+          <div class="case-study-themes">
+            <span>Transparency</span>
+            <span>User Control</span>
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>problem</code></td><td>text</td><td></td></tr>
+            <tr><td><code>tags</code></td><td>Tag[] (component)</td><td></td></tr>
+            <tr><td><code>principles</code></td><td>text</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- ResearchApproachItem                -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-research-approach-item">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">ResearchApproachItem</span>
+        <span class="comp-showcase-usage">Used by: SecurityPrivacyPage (alternating image/text rows)</span>
+      </div>
+      <div class="comp-preview">
+        <div class="research-item" style="padding:24px 0;border-bottom:none;">
+          <div class="research-item-text">
+            <h3 style="font-size:1.3em;">Adaptive Security Policies</h3>
+            <p>How agents dynamically adjust their security posture based on context, risk assessment, and user behavior patterns.</p>
+            <ul>
+              <li>Dynamic policy adjustment</li>
+              <li>Context-aware guardrails</li>
+              <li>Real-time monitoring</li>
+            </ul>
+          </div>
+          <div class="research-item-image">
+            <img src="/images/research/sdk-hero.png" alt="Research image" style="height:180px;">
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>exploreBullets</code></td><td>text (newline-separated)</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>image</code></td><td>media (images)</td><td></td></tr>
+            <tr><td><code>imageAlt</code></td><td>string</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- UseCaseEntry                        -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-use-case-entry">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">UseCaseEntry</span>
+        <span class="comp-showcase-usage">Used by: SecurityPrivacyPage (rendered as blog-card style)</span>
+      </div>
+      <div class="comp-preview">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="blog-card" style="height:auto;min-height:200px;">
+            <div>
+              <h4 style="font-size:20px;font-weight:500;margin:0 0 12px;">Healthcare Data Agent</h4>
+              <p class="blog-desc" style="font-size:0.88em;">An agent that processes patient data while maintaining HIPAA compliance and data minimization principles.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="use-case-tag">Privacy</span>
+              <span class="use-case-tag">Healthcare</span>
+            </div>
+          </div>
+          <div class="blog-card" style="height:auto;min-height:200px;">
+            <div>
+              <h4 style="font-size:20px;font-weight:500;margin:0 0 12px;">Financial Advisory Agent</h4>
+              <p class="blog-desc" style="font-size:0.88em;">An autonomous agent providing personalized financial advice while ensuring transparency in its reasoning.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="use-case-tag">Trust</span>
+              <span class="use-case-tag">Finance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>tags</code></td><td>Tag[] (component)</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- PatternPanel                        -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-pattern-panel">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">PatternPanel</span>
+        <span class="comp-showcase-usage">Used by: HaxPage (interaction pattern tabs)</span>
+      </div>
+      <div class="comp-preview" style="text-align:center;padding:32px;">
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;">
+          <button class="pattern-filter is-active" style="font-size:0.85em;padding:8px 18px;">Delegation</button>
+          <button class="pattern-filter" style="font-size:0.85em;padding:8px 18px;">Transparency</button>
+          <button class="pattern-filter" style="font-size:0.85em;padding:8px 18px;">Feedback</button>
+        </div>
+        <h3 class="pattern-title" style="font-size:1.5em;">Delegation</h3>
+        <p class="pattern-desc" style="margin:0 auto 24px;max-width:480px;font-size:0.95em;">How users hand off tasks to agents and maintain appropriate levels of control and oversight.</p>
+        <p class="pattern-examples-label" style="font-size:1.2em;margin:0 0 16px;">Examples</p>
+        <div style="display:flex;gap:16px;">
+          <div style="flex:1;height:100px;background:var(--color-hover);border-radius:12px;border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);font-size:0.85em;">Example image 1</div>
+          <div style="flex:1;height:100px;background:var(--color-hover);border-radius:12px;border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);font-size:0.85em;">Example image 2</div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>key</code></td><td>string (filter button id)</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>description</code></td><td>text</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>exampleImages</code></td><td>media[] (multiple)</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- ResponsibleStep                     -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-responsible-step">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">ResponsibleStep</span>
+        <span class="comp-showcase-usage">Used by: SocietalImpactPage (framework steps)</span>
+      </div>
+      <div class="comp-preview">
+        <div class="responsible-step" style="padding:24px 0;border-bottom:none;">
+          <div class="responsible-step-image">
+            <div style="width:140px;height:140px;background:var(--color-hover);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);font-size:0.75em;">Image</div>
+          </div>
+          <div class="responsible-step-content">
+            <p class="responsible-step-label">Step 1</p>
+            <h3 style="font-size:1.3em;">Stakeholder Mapping</h3>
+            <ul>
+              <li>Identify all affected parties</li>
+              <li>Map power dynamics and dependencies</li>
+              <li>Assess vulnerability of each group</li>
+            </ul>
+            <div class="responsible-step-template">
+              <strong>Template:</strong>
+              <a href="#" style="color:var(--color-accent);">Agent Impact Map &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>title</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>image</code></td><td>media (images)</td><td></td></tr>
+            <tr><td><code>imageAlt</code></td><td>string</td><td></td></tr>
+            <tr><td><code>bullets</code></td><td>text (newline-separated)</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>templateLabel</code></td><td>string</td><td></td></tr>
+            <tr><td><code>templateLink</code></td><td>string</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- MediaBlock                          -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-media-block">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">MediaBlock</span>
+        <span class="comp-showcase-usage">Used by: ResearchCard, Initiative</span>
+      </div>
+      <div class="comp-preview">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div>
+            <p style="font-size:0.75em;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--color-text-subtle);margin:0 0 8px;">Image type</p>
+            <div style="height:160px;border-radius:12px;overflow:hidden;">
+              <img src="/images/research/sdk-hero.png" alt="Image media" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <p style="font-size:0.8em;color:var(--color-text-muted);margin:8px 0 0;">Caption text appears here</p>
+          </div>
+          <div>
+            <p style="font-size:0.75em;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--color-text-subtle);margin:0 0 8px;">Video type</p>
+            <div style="height:160px;border-radius:12px;background:var(--color-hover);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--color-text-muted)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <p style="font-size:0.8em;color:var(--color-text-muted);margin:8px 0 0;">Video loaded via URL</p>
+          </div>
+        </div>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>mediaType</code></td><td>enum (image | video)</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>image</code></td><td>media (images)</td><td></td></tr>
+            <tr><td><code>videoUrl</code></td><td>string</td><td></td></tr>
+            <tr><td><code>altText</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>caption</code></td><td>string</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- Tag                                 -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-tag">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">Tag</span>
+        <span class="comp-showcase-usage">Used by: CaseStudyCard, UseCaseEntry, BlogPost, ResearchCard</span>
+      </div>
+      <div class="comp-preview" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <span class="innovation-tags"><a style="pointer-events:none;">Default Tag</a></span>
+        <span class="use-case-tag">Category Tag</span>
+        <span class="case-study-tags" style="margin:0;"><span>Research Tag</span></span>
+        <span class="blog-hub-tag">Blog Tag</span>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>url</code></td><td>string</td><td></td></tr>
+            <tr><td><code>color</code></td><td>enum (cyan | violet | green | orange | default)</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- NavItem                             -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-nav-item">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">NavItem</span>
+        <span class="comp-showcase-usage">Used by: Homepage (navigation)</span>
+      </div>
+      <div class="comp-preview" style="display:flex;gap:24px;align-items:center;font-size:0.95em;">
+        <span style="color:var(--color-text);font-weight:500;">Initiatives <img src="/images/keyboard-arrow-down-icon.svg" alt="" style="width:12px;vertical-align:middle;margin-left:4px;opacity:0.5;"></span>
+        <span style="color:var(--color-text);font-weight:500;">Research <img src="/images/keyboard-arrow-down-icon.svg" alt="" style="width:12px;vertical-align:middle;margin-left:4px;opacity:0.5;"></span>
+        <span style="color:var(--color-text);font-weight:500;">Blog</span>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>href</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>hasDropdown</code></td><td>boolean</td><td></td></tr>
+            <tr><td><code>order</code></td><td>integer</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- ArrowLink                           -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-arrow-link">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">ArrowLink</span>
+        <span class="comp-showcase-usage">Used by: Homepage, ResearchCard, HaxPage</span>
+      </div>
+      <div class="comp-preview" style="display:flex;gap:24px;align-items:center;">
+        <a class="arrow-link" href="#" onclick="return false;" aria-label="Arrow link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <span class="read-more" style="cursor:default;">Explore &rarr;</span>
+        <span style="font-size:0.85em;color:var(--color-text-muted);">Rendered as arrow button or text link depending on context</span>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>url</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>isExternal</code></td><td>boolean</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- SocialLink                          -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-social-link">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">SocialLink</span>
+        <span class="comp-showcase-usage">Used by: Homepage (footer)</span>
+      </div>
+      <div class="comp-preview">
+        <div class="footer-social-icons">
+          <a href="#" onclick="return false;" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" onclick="return false;" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" onclick="return false;" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <p style="font-size:0.82em;color:var(--color-text-muted);margin:12px 0 0;">Platforms: x, linkedin, youtube, github, dribbble</p>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>platform</code></td><td>enum (x | linkedin | youtube | github | dribbble)</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>url</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>ariaLabel</code></td><td>string</td><td class="comp-field-req">required</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ -->
+    <!-- SeoMeta                             -->
+    <!-- ═══════════════════════════════════ -->
+    <section class="comp-showcase" id="comp-seo-meta">
+      <div class="comp-showcase-label">
+        <span class="comp-showcase-name">SeoMeta</span>
+        <span class="comp-showcase-usage">Used by: all content types (no visual output &mdash; populates &lt;head&gt;)</span>
+      </div>
+      <div class="comp-preview" style="font-family:'SF Mono','Fira Code',monospace;font-size:0.82em;color:var(--color-text-muted);line-height:1.8;">
+        <span style="color:var(--color-text-subtle);">&lt;head&gt;</span><br>
+        &nbsp;&nbsp;&lt;title&gt;<span style="color:var(--color-text);">Page Title (max 60 chars)</span>&lt;/title&gt;<br>
+        &nbsp;&nbsp;&lt;meta name="description" content="<span style="color:var(--color-text);">Description (max 160 chars)</span>"&gt;<br>
+        &nbsp;&nbsp;&lt;meta property="og:image" content="<span style="color:var(--color-accent);">image-url</span>"&gt;<br>
+        &nbsp;&nbsp;&lt;link rel="canonical" href="<span style="color:var(--color-accent);">canonical-url</span>"&gt;<br>
+        <span style="color:var(--color-text-subtle);">&lt;/head&gt;</span>
+      </div>
+      <div class="comp-schema">
+        <table class="comp-schema-table">
+          <thead><tr><th>Field</th><th>Type</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><code>metaTitle</code></td><td>string (max 60)</td><td class="comp-field-req">required</td></tr>
+            <tr><td><code>metaDescription</code></td><td>text (max 160)</td><td></td></tr>
+            <tr><td><code>ogImage</code></td><td>media (images)</td><td></td></tr>
+            <tr><td><code>canonicalUrl</code></td><td>string</td><td></td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 

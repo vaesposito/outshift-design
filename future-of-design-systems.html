@@ -100,9 +100,12 @@ nav > ul > li { position: relative; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
 /* ── Menu Toggle ── */
-.menu-toggle { display: none; flex-direction: column; gap: 5px; padding: 10px; background: none; border: none; cursor: pointer; z-index: 11; }
+.menu-toggle { display: none; background: none; border: none; padding: 8px; cursor: pointer; z-index: 10; position: relative; }
 .menu-toggle::before { content: none; }
-.menu-toggle span { width: 24px; height: 2px; background: var(--color-hamburger); transition: transform 0.3s, opacity 0.3s; }
+.menu-toggle span { display: block; width: 22px; height: 2px; background: var(--color-hamburger); margin: 5px 0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── Blobs ── */
 .blob { position: absolute; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; opacity: 1; }
@@ -204,6 +207,8 @@ nav > ul > li { position: relative; }
 
 /* ── Article Body ── */
 .article-body {
+    grid-column: 1;
+    grid-row: 1;
     padding-top: 40px;
 }
 .article-body h2 {
@@ -250,6 +255,8 @@ nav > ul > li { position: relative; }
 
 /* ── Sidebar TOC ── */
 .article-sidebar {
+    grid-column: 2;
+    grid-row: 1;
     padding-top: 40px;
     position: sticky;
     top: 40px;
@@ -389,11 +396,24 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-    .menu-toggle { display: flex; }
-    nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--color-bg); z-index: 10; flex-direction: column; justify-content: center; align-items: center; }
-    nav.open { display: flex; }
-    nav ul { flex-direction: column; text-align: center; gap: 24px; font-size: 1.3em; }
-    .nav-dropdown { position: static; transform: scaleY(1); opacity: 1; visibility: visible; min-width: 0; background: none; border: none; border-radius: 0; box-shadow: none; padding: 4px 0 0 0; overflow: visible; }
+    .menu-toggle { display: block; }
+    header nav {
+        position: fixed; top: 0; right: -100%;
+        width: 70%; max-width: 320px; height: 100vh;
+        background: var(--color-surface); backdrop-filter: blur(20px);
+        z-index: 9; transition: right 0.35s ease;
+        padding: 80px 32px 32px;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+    }
+    header nav.open { right: 0; }
+    header nav ul { flex-direction: column; gap: 0; padding: 0; margin: 0; }
+    header nav ul li { padding: 16px 0; border-bottom: 1px solid var(--color-border); }
+    header nav ul li a { font-size: 1.1em; }
+    .nav-dropdown {
+        position: static; transform: scaleY(1); opacity: 1; visibility: visible;
+        min-width: 0; background: none; border: none; border-radius: 0;
+        box-shadow: none; padding: 4px 0 0 16px; overflow: visible;
+    }
     .nav-dropdown li a { padding: 8px 0; font-size: 0.95em; }
     .nav-dropdown li a:hover { background: none; }
     .nav-dropdown-label { padding: 8px 0 4px; font-size: 1em; }
@@ -405,15 +425,33 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     .article-cover { height: 300px; }
     .article-title { font-size: 1.6em; }
     .article-layout { grid-template-columns: 1fr; gap: 0; }
-    .article-sidebar { position: static; padding-top: 0; }
-    .article-toc { margin-bottom: 32px; }
+    .article-body { grid-column: auto; grid-row: auto; }
+    .article-sidebar { display: none; }
+    .article-meta { gap: 12px; }
+    .article-body img { max-width: 100%; height: auto; }
+    .article-body pre { font-size: 0.85em; }
     .more-articles-grid { grid-template-columns: 1fr; }
-    .footer-top { flex-direction: column; gap: 32px; }
+    .more-articles { padding: 40px 0 48px; }
+    .footer-top { flex-direction: column; gap: 32px; align-items: flex-start; }
 }
 @media (max-width: 480px) {
+    .container { padding: 0 5%; }
+    .design { font-size: 1.4em; }
+    .article-cover-wrap { padding: 24px 16px 0; }
     .article-cover { height: 200px; }
+    .article-header { padding: 24px 16px 0; }
     .article-title { font-size: 1.3em; }
-    .article-body { font-size: 0.95em; }
+    .article-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .article-layout { padding: 0 16px; }
+    .article-body { padding-top: 24px; font-size: 0.95em; }
+    .article-body h2 { font-size: 1.3em; margin: 28px 0 12px; }
+    .article-body h3 { font-size: 1.1em; }
+    .article-body blockquote { padding: 14px 16px; }
+    .article-author { padding: 32px 16px 0; }
+    .article-author-card { flex-direction: column; text-align: center; padding: 20px; }
+    .more-articles-inner { padding: 0 16px; }
+    .more-articles h2 { font-size: 1.2em; }
+    .more-article-card { padding: 20px; }
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
 }
@@ -507,6 +545,16 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
 
 <!-- Article Content -->
 <div class="article-layout">
+  <aside class="article-sidebar">
+    <nav class="article-toc">
+      <a href="#starting-with-foundations">Starting with Foundations</a>
+      <a href="#component-architecture">Component Architecture</a>
+      <a href="#scaling-across-teams">Scaling Across Teams</a>
+      <a href="#measuring-success">Measuring Success</a>
+      <a href="#conclusion">Conclusion</a>
+    </nav>
+  </aside>
+
   <div class="article-body">
 
     <p>Building a design system that scales across hundreds of products is no small feat. It requires careful planning, collaboration, and a deep understanding of both design principles and technical implementation. In this article, we share our journey and the lessons we learned along the way.</p>
@@ -528,16 +576,6 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     <p>Building a design system is an ongoing journey, not a destination. As our products evolve and new technologies emerge, our design system must evolve with them. The key is maintaining a balance between consistency and flexibility, always keeping the end user experience at the center of every decision.</p>
 
   </div>
-
-  <aside class="article-sidebar">
-    <nav class="article-toc">
-      <a href="#starting-with-foundations">Starting with Foundations</a>
-      <a href="#component-architecture">Component Architecture</a>
-      <a href="#scaling-across-teams">Scaling Across Teams</a>
-      <a href="#measuring-success">Measuring Success</a>
-      <a href="#conclusion">Conclusion</a>
-    </nav>
-  </aside>
 </div>
 
 <!-- Author Card -->
