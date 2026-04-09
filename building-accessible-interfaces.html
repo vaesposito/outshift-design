@@ -419,16 +419,22 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     }
     header nav ul {
         flex-direction: column;
+        align-items: flex-start;
         gap: 0;
         padding: 0;
         margin: 0;
+        width: 100%;
     }
     header nav ul li {
+        width: 100%;
         padding: 12px 0;
         border-bottom: 1px solid var(--color-border);
     }
     header nav ul li a {
         font-size: 0.95em;
+        text-align: left;
+        display: block;
+        width: 100%;
     }
     .has-dropdown > a .icon { transition: transform 0.25s; }
     .has-dropdown.is-active > a .icon { transform: rotate(180deg); }
@@ -681,6 +687,7 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     });
     nav.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
+            if (link.closest('.has-dropdown') && link.parentElement.classList.contains('has-dropdown')) return;
             toggle.classList.remove('active');
             nav.classList.remove('open');
         });

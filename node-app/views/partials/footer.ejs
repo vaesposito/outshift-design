@@ -40,6 +40,7 @@
     });
     nav.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
+            if (link.closest('.has-dropdown') && link.parentElement.classList.contains('has-dropdown')) return;
             toggle.classList.remove('active');
             nav.classList.remove('open');
         });
