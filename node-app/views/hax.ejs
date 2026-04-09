@@ -19,9 +19,14 @@
         <% } %>
       </div>
       <div class="page-hero-image">
-        <video autoplay muted loop playsinline>
+        <video class="video-light" autoplay muted loop playsinline>
           <source src="<%= pageData.heroVideo %>" type="video/mp4">
         </video>
+        <% if (pageData.heroDarkVideo) { %>
+        <video class="video-dark" autoplay muted loop playsinline>
+          <source src="<%= pageData.heroDarkVideo %>" type="video/mp4">
+        </video>
+        <% } %>
       </div>
     </div>
   </div>

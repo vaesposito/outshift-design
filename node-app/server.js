@@ -228,6 +228,7 @@ const fallbackHax = {
   },
   heroDescription2: 'This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.',
   heroVideo: '/videos/hax-hero.mp4',
+  heroDarkVideo: '/videos/hax-hero-dark.mp4',
   patternsTitle: 'Human-Centered AI Patterns',
   patternsDescription: 'These 5 guiding principles emerged from studying how people interact with agentic systems. Using these patterns is the foundation for building trustworthy AI experiences that prioritize human control and agency.',
   patterns: [
@@ -250,6 +251,7 @@ function mapHaxPage(s) {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackHax.hero,
     heroDescription2: fallbackHax.heroDescription2,
     heroVideo: s.heroVideo || fallbackHax.heroVideo,
+    heroDarkVideo: fallbackHax.heroDarkVideo,
     patternsTitle: s.patternsTitle || fallbackHax.patternsTitle,
     patternsDescription: s.patternsDescription || fallbackHax.patternsDescription,
     patterns: (s.patterns && s.patterns.length) ? s.patterns.map((p, idx) => ({
