@@ -945,14 +945,15 @@ footer {
         top: 0;
         right: -100%;
         width: 70%;
-        max-width: 320px;
+        max-width: 300px;
         height: 100vh;
         background: var(--color-surface);
         backdrop-filter: blur(20px);
         z-index: 9;
         transition: right 0.35s ease;
-        padding: 80px 32px 32px;
+        padding: 72px 20px 32px;
         box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
     }
     header nav.open {
         right: 0;
@@ -964,31 +965,35 @@ footer {
         margin: 0;
     }
     header nav ul li {
-        padding: 16px 0;
+        padding: 12px 0;
         border-bottom: 1px solid var(--color-border);
     }
     header nav ul li a {
-        font-size: 1.1em;
+        font-size: 0.95em;
     }
+    .has-dropdown > a .icon { transition: transform 0.25s; }
+    .has-dropdown.is-active > a .icon { transform: rotate(180deg); }
     .nav-dropdown {
         position: static;
         transform: scaleY(1);
         opacity: 1;
         visibility: visible;
+        display: none;
         min-width: 0;
         background: none;
         border: none;
         border-radius: 0;
         box-shadow: none;
-        padding: 4px 0 0 16px;
+        padding: 4px 0 0 12px;
         overflow: visible;
     }
-    .nav-dropdown li a { padding: 8px 0; font-size: 0.95em; }
+    .has-dropdown.is-active > .nav-dropdown { display: block; }
+    .nav-dropdown li a { padding: 6px 0; font-size: 0.88em; }
     .nav-dropdown li a:hover { background: none; }
-    .nav-dropdown-label { padding: 8px 0 4px; font-size: 1em; }
+    .nav-dropdown-label { padding: 6px 0 4px; font-size: 0.92em; }
     .nav-dropdown-label::after { display: none; }
     .nav-dropdown-sub { margin: 0 0 0 8px; border-left: 2px solid var(--color-border); }
-    .nav-dropdown-sub li a { padding: 6px 0 6px 12px; font-size: 0.9em; }
+    .nav-dropdown-sub li a { padding: 4px 0 4px 12px; font-size: 0.85em; }
     .nav-dropdown-sub li a:hover { background: none; }
 
     h1 { font-size: 2.4em; }
