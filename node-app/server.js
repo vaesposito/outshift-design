@@ -634,6 +634,7 @@ app.get('/research/agent-impact-map', async (_req, res) => {
 const fallbackCognitiveLoadAudit = {
   hero: { title: 'Cognitive Load Audit', description: "Evaluating the agent\u2019s impact on a user\u2019s mental effort to ensure its design is intuitive, clear, and respects diverse cognitive styles." },
   heroImage: '/images/research/cognitive-load-audit/hero.png',
+  heroDarkImage: '/images/research/cognitive-load-audit/hero-dark.png',
   templateTitle: 'Cognitive Load Audit',
   templateSubtitle: 'Auditing the total mental effort (Cognitive Load) your agent demands is paramount to ensure diverse ways of thinking and acting are respected.',
   steps: [
@@ -648,6 +649,7 @@ const fallbackCognitiveLoadAudit = {
       ],
       methodology: "This methodology profiles how cognitive load auditing reveals the real cost of the agent\u2019s UX. It helps designers characterize how the agent\u2019s information architecture, conversational patterns, and decision-making demands affect a user\u2019s ability to think clearly, act confidently, and maintain an appropriate level of control. Identifying when, the agent overloads users with choices, context switches, ambiguous cues, or high-frequency interactions leads to a cognitive overhead or low readability of the interface and its ability to support efficient and intuitive user performance.",
       diagram: '/images/research/cognitive-load-audit/step1.svg',
+      diagramDark: '/images/research/cognitive-load-audit/step1-dark.svg',
     },
     {
       title: 'Second Step: Plot',
@@ -660,6 +662,7 @@ const fallbackCognitiveLoadAudit = {
       ],
       methodology: "This step moves from the cognitive load inventory to a strategic prioritization. After cataloging the information the user processes, the matrix maps each item by its nature (primary vs. secondary) and its role in the workflow (mandatory vs. optional). Plotting items into these quadrants lets designers visually identify what is essential to the core experience, what supports efficiency, and what may be safely deferred, hidden, or removed. The goal is to build an information architecture that reduces cognitive friction by surfacing only what matters most at each moment, respecting the user\u2019s limited cognitive bandwidth and ensuring that the agent\u2019s design does not overwhelm but instead supports efficient and intuitive user performance.",
       diagram: '/images/research/cognitive-load-audit/step2.svg',
+      diagramDark: '/images/research/cognitive-load-audit/step2-dark.svg',
     },
   ],
   importanceNote: 'How essential the information is in accomplishing task or decision? Impact: how information affects overall user workflows?',
@@ -671,6 +674,7 @@ function mapCognitiveLoadAuditPage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackCognitiveLoadAudit.hero,
     heroImage: s.hero?.image?.url || fallbackCognitiveLoadAudit.heroImage,
+    heroDarkImage: fallbackCognitiveLoadAudit.heroDarkImage,
     templateTitle: s.templateTitle || fallbackCognitiveLoadAudit.templateTitle,
     templateSubtitle: s.templateSubtitle || fallbackCognitiveLoadAudit.templateSubtitle,
     steps: fallbackCognitiveLoadAudit.steps,
