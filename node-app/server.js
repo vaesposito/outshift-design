@@ -365,6 +365,7 @@ app.get('/research/foundational-principles', async (_req, res) => {
 const fallbackCognitive = {
   hero: { title: 'Cognitive Frameworks', description: 'Physical and cognitive designs are key to understanding how people and AI systems share understanding, adapt to situations, and act meaningfully together. Grounded in embodied cognition, distributed cognition, and situated action, our research bridges theory and design to shape interactions that are intuitive, contextual, and genuinely collaborative.' },
   heroImage: '/images/research/cognitive-frameworks-hero.png',
+  heroDarkImage: '/images/research/cognitive-frameworks-hero-dark.png',
   theoreticalTitle: 'Theoretical Foundations',
   theoreticalDescription: 'Grounding HAX design in established cognitive science',
   steps: [
@@ -375,6 +376,7 @@ const fallbackCognitive = {
       frameworkTitle: 'Framework for Human-AI Collaboration',
       frameworkDescription: 'In Designing agentic systems we consider cognitive processes to be distributed across human and AI agents working within the unified system. This helps us to conceptualize experiences that allow agents to seamlessly integrate into user workflows and interfaces that act as spaces of mutual sense-making and collaboration.',
       frameworkImages: ['/images/research/human-ai-diagram.svg', '/images/research/core-functionalities.svg'],
+      frameworkDarkImages: ['/images/research/human-ai-diagram-dark.svg', '/images/research/core-functionalities-dark.svg'],
       frameworkImageAlts: ['Human-AI collaboration diagram', 'Core functionalities: Summarizing, Remembering, Suggesting, Contextualizing'],
       coreTitle: 'Core functionalities',
       whyTitle: 'Why this matters',
@@ -406,6 +408,7 @@ const fallbackCognitive = {
       frameworkTitle: 'How the Body Shapes Thinking: An Embodied Cognition Model',
       frameworkDescription: 'Thinking happens through the body\u2014agents can respond to physical, spatial, and temporal cues.',
       frameworkImages: ['/images/research/embodiment-diagram.svg'],
+      frameworkDarkImages: ['/images/research/embodiment-diagram-dark.svg'],
       frameworkImageAlts: ['Embodied Cognition Model'],
       whyTitle: 'Why this matters',
       whyText: 'Cognition extends beyond the brain into physical gestures, spatial arrangements, and temporal rhythms of interaction. When designing agents that interact with users in the real world, we must consider how these embodied and environmental dynamics shape meaning, attention, and action\u2014ensuring that agents respond not just to words, but to movement, rhythm, and context as part of the cognitive process itself.',
@@ -421,6 +424,7 @@ function mapCognitivePage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackCognitive.hero,
     heroImage: s.hero?.image?.url || fallbackCognitive.heroImage,
+    heroDarkImage: fallbackCognitive.heroDarkImage,
     theoreticalTitle: s.theoreticalTitle || fallbackCognitive.theoreticalTitle,
     theoreticalDescription: s.theoreticalDescription || fallbackCognitive.theoreticalDescription,
     steps: fallbackCognitive.steps,

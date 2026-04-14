@@ -16,7 +16,12 @@
         <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
+        <% if (pageData.heroDarkImage) { %>
+        <img class="img-light" src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+        <img class="img-dark" src="<%= pageData.heroDarkImage %>" alt="<%= pageData.hero.title %>">
+        <% } else { %>
         <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+        <% } %>
       </div>
     </div>
   </div>
@@ -65,13 +70,28 @@
                 <% }) %>
               </div>
               <% } else if (step.frameworkImages.length === 1) { %>
-              <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram">
+              <% if (step.frameworkDarkImages && step.frameworkDarkImages[0]) { %>
+              <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram img-light">
+              <img src="<%= step.frameworkDarkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram img-dark">
               <% } else { %>
               <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram">
+              <% } %>
+              <% } else { %>
+              <% if (step.frameworkDarkImages && step.frameworkDarkImages[0]) { %>
+              <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram img-light">
+              <img src="<%= step.frameworkDarkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram img-dark">
+              <% } else { %>
+              <img src="<%= step.frameworkImages[0] %>" alt="<%= step.frameworkImageAlts[0] || '' %>" class="framework-diagram">
+              <% } %>
               <% if (step.coreTitle) { %>
               <h5 class="framework-core-title"><%= step.coreTitle %></h5>
               <% } %>
+              <% if (step.frameworkDarkImages && step.frameworkDarkImages[1]) { %>
+              <img src="<%= step.frameworkImages[1] %>" alt="<%= step.frameworkImageAlts[1] || '' %>" class="framework-core-svg img-light">
+              <img src="<%= step.frameworkDarkImages[1] %>" alt="<%= step.frameworkImageAlts[1] || '' %>" class="framework-core-svg img-dark">
+              <% } else { %>
               <img src="<%= step.frameworkImages[1] %>" alt="<%= step.frameworkImageAlts[1] || '' %>" class="framework-core-svg">
+              <% } %>
               <% } %>
             </div>
           </div>
