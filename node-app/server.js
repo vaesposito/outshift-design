@@ -508,6 +508,7 @@ app.get('/research/societal-impact', async (_req, res) => {
 const fallbackSecurity = {
   hero: { title: 'Security & Privacy', description: 'We\u2019re building the future of secure, autonomous multi-agent systems. As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.' },
   heroImage: '/images/research/security-privacy/hero.png',
+  heroDarkImage: '/images/research/security-privacy/hero-dark.png',
   secureSystemsTitle: 'Building Secure Systems',
   secureCards: [
     { title: 'Enabling Safe Innovation', description: 'Strong security and privacy foundations support confident experimentation with autonomous agents while maintaining safety and trust.' },
@@ -525,8 +526,8 @@ const fallbackSecurity = {
   researchApproachTitle: 'Research Approach',
   researchApproachDescription: 'Our research focuses on defining how autonomous agents can operate safely and responsibly as they take on more decision-making and contextual reasoning. We examine two foundational dimensions \u2014 security and privacy \u2014 to develop adaptive models that evolve alongside increasing agent capability.',
   researchItems: [
-    { title: 'Adaptive Security for Autonomous Agents', description: 'The environments agents operate in are dynamic and unpredictable, calling for security models that can respond with similar agility. We focus on creating mechanisms that adapt to context, behavioral signals, and evolving system states.', exploreBullets: ['Dynamic policies that shift based on context and risk signals.', 'Behavioral guardrails that set clear boundaries for safe operation.', 'Continuous monitoring that flags anomalies and triggers fallback actions.'], image: '/images/research/security-privacy/adaptive-security.png', imageAlt: 'Adaptive Security for Autonomous Agents' },
-    { title: 'Privacy-Preserving Context for Intelligent Agents', description: 'Agents work with a wide range of context\u2014identity signals, system state, historical patterns, and environmental cues\u2014to operate effectively. Ensuring this context is handled in a safe, responsible, and transparent way is essential for building systems that remain both capable and trustworthy.', exploreBullets: ['Scoped access that provides only the context needed for each task.', 'Privacy techniques that protect data while keeping agents functional.', 'Clear data boundaries that show what is used, how, and why.'], image: '/images/research/security-privacy/privacy-context.png', imageAlt: 'Privacy-Preserving Context for Intelligent Agents' },
+    { title: 'Adaptive Security for Autonomous Agents', description: 'The environments agents operate in are dynamic and unpredictable, calling for security models that can respond with similar agility. We focus on creating mechanisms that adapt to context, behavioral signals, and evolving system states.', exploreBullets: ['Dynamic policies that shift based on context and risk signals.', 'Behavioral guardrails that set clear boundaries for safe operation.', 'Continuous monitoring that flags anomalies and triggers fallback actions.'], image: '/images/research/security-privacy/adaptive-security.png', darkImage: '/images/research/security-privacy/adaptive-security-dark.png', imageAlt: 'Adaptive Security for Autonomous Agents' },
+    { title: 'Privacy-Preserving Context for Intelligent Agents', description: 'Agents work with a wide range of context\u2014identity signals, system state, historical patterns, and environmental cues\u2014to operate effectively. Ensuring this context is handled in a safe, responsible, and transparent way is essential for building systems that remain both capable and trustworthy.', exploreBullets: ['Scoped access that provides only the context needed for each task.', 'Privacy techniques that protect data while keeping agents functional.', 'Clear data boundaries that show what is used, how, and why.'], image: '/images/research/security-privacy/privacy-context.png', darkImage: '/images/research/security-privacy/privacy-context-dark.png', imageAlt: 'Privacy-Preserving Context for Intelligent Agents' },
   ],
   useCases: [
     { title: 'Self Automation of Routine Tasks', description: 'Agents autonomously handle repetitive workflows while maintaining secure access boundaries and audit trails.', tags: ['Automation', 'Security'] },
@@ -541,6 +542,7 @@ function mapSecurityPage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackSecurity.hero,
     heroImage: s.hero?.image?.url || fallbackSecurity.heroImage,
+    heroDarkImage: fallbackSecurity.heroDarkImage,
     secureSystemsTitle: s.secureSystemsTitle || fallbackSecurity.secureSystemsTitle,
     secureCards: (s.secureCards && s.secureCards.length) ? s.secureCards.map((c) => ({ title: c.title, description: c.description })) : fallbackSecurity.secureCards,
     keyQuestionsTitle: s.keyQuestionsTitle || fallbackSecurity.keyQuestionsTitle,
@@ -552,6 +554,7 @@ function mapSecurityPage(s) {
       description: ri.description,
       exploreBullets: ri.exploreBullets ? splitNewlines(ri.exploreBullets) : (fallbackSecurity.researchItems[idx]?.exploreBullets || []),
       image: ri.image?.url || (fallbackSecurity.researchItems[idx]?.image || ''),
+      darkImage: fallbackSecurity.researchItems[idx]?.darkImage || null,
       imageAlt: ri.imageAlt || ri.title,
     })) : fallbackSecurity.researchItems,
     useCases: (s.useCases && s.useCases.length) ? s.useCases.map((uc, idx) => ({

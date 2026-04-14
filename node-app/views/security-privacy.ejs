@@ -16,7 +16,12 @@
         <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
-        <img src="<%= pageData.heroImage %>" alt="Security & Privacy">
+        <% if (pageData.heroDarkImage) { %>
+        <img class="img-light" src="<%= pageData.heroImage %>" alt="Security &amp; Privacy">
+        <img class="img-dark" src="<%= pageData.heroDarkImage %>" alt="Security &amp; Privacy">
+        <% } else { %>
+        <img src="<%= pageData.heroImage %>" alt="Security &amp; Privacy">
+        <% } %>
       </div>
     </div>
   </div>
@@ -61,7 +66,12 @@
     <div class="research-item<%= i % 2 === 0 ? ' reversed' : '' %>">
       <% if (i % 2 === 0) { %>
       <div class="research-item-image">
+        <% if (item.darkImage) { %>
+        <img class="img-light" src="<%= item.image %>" alt="<%= item.imageAlt || item.title %>">
+        <img class="img-dark" src="<%= item.darkImage %>" alt="<%= item.imageAlt || item.title %>">
+        <% } else { %>
         <img src="<%= item.image %>" alt="<%= item.imageAlt || item.title %>">
+        <% } %>
       </div>
       <% } %>
       <div class="research-item-text">
@@ -76,7 +86,12 @@
       </div>
       <% if (i % 2 !== 0) { %>
       <div class="research-item-image">
+        <% if (item.darkImage) { %>
+        <img class="img-light" src="<%= item.image %>" alt="<%= item.imageAlt || item.title %>">
+        <img class="img-dark" src="<%= item.darkImage %>" alt="<%= item.imageAlt || item.title %>">
+        <% } else { %>
         <img src="<%= item.image %>" alt="<%= item.imageAlt || item.title %>">
+        <% } %>
       </div>
       <% } %>
     </div>
