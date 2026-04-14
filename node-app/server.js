@@ -453,14 +453,15 @@ app.get('/research/cognitive-frameworks', async (_req, res) => {
 const fallbackSocietal = {
   hero: { title: 'Societal Impact', description: "Agentic systems have profound ripple effects: they influence how we work, what knowledge is accessible, how power is distributed, and how we make decisions at scale. That's why we treat societal impact as a design responsibility, not a byproduct. We ask not just What works? but:" },
   heroImage: '/images/research/societal-impact/hero.png',
+  heroDarkImage: '/images/research/societal-impact/hero-dark.png',
   heroListItems: ['Who does this serve?', 'Who might it exclude or harm?', 'What are the long-term consequences of deploying this system at scale?'],
   frameworkTitle: 'A Framework for Responsible Agent Design',
   frameworkDescription: 'To support teams building agentic systems, we developed a practical, five-part framework\u2014adaptable across roles, from UX designers to backend engineers.',
   steps: [
-    { label: 'Contextual Inquiry', title: 'Design Begins with Understanding', image: '/images/research/societal-impact/contextual-inquiry.png', imageAlt: 'Design Begins with Understanding', bullets: ['Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?', 'Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?', 'Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
-    { label: 'Intentional Scope', title: 'What Should This Agent Do', image: '/images/research/societal-impact/intentional-scope.png', imageAlt: 'What Should This Agent Do', bullets: ['Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?', 'Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
-    { label: 'Inclusive Cognitive Design', title: 'Respect Diverse Ways of Thinking & Working', image: '/images/research/societal-impact/inclusive-design.png', imageAlt: 'Respect Diverse Ways of Thinking & Working', bullets: ['Design for neurodiversity and multilingualism.', 'Support different expertise levels\u2014novices, experts, non-coders, etc.', 'Minimize cognitive overload: surface what\u2019s necessary, when it\u2019s needed.'], templateLabel: 'Cognitive Load Audit', templateLink: '/research/cognitive-load-audit' },
-    { label: 'Foresight & Feedback Loops', title: 'Built for Change. Expect the Unexpected', image: '/images/research/societal-impact/foresight.png', imageAlt: 'Built for Change. Expect the Unexpected', bullets: ['Use speculative scenarios to anticipate unintended consequences.', 'Include continuous user feedback mechanisms (not just surveys\u2014embedded nudges, annotations, corrections).'], templateLabel: 'Foresight Canvas', templateLink: '/research/foresight-canvas' },
+    { label: 'Contextual Inquiry', title: 'Design Begins with Understanding', image: '/images/research/societal-impact/contextual-inquiry.png', darkImage: '/images/research/societal-impact/contextual-inquiry-dark.png', imageAlt: 'Design Begins with Understanding', bullets: ['Map the full socio-technical system: who are the stakeholders, what are the workflows, where does agency shift?', 'Identify power dynamics: What decisions is the AI making or influencing? Who has override authority?', 'Conduct interviews, not just with users, but with those impacted by system outcomes (e.g., moderators, QA testers, policy teams).'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
+    { label: 'Intentional Scope', title: 'What Should This Agent Do', image: '/images/research/societal-impact/intentional-scope.png', darkImage: '/images/research/societal-impact/intentional-scope-dark.png', imageAlt: 'What Should This Agent Do', bullets: ['Define clear boundaries: Where should the agent intervene, suggest, defer, or stay silent?', 'Prioritize augmentation over automation: Ask how the agent can make users more capable, not redundant.'], templateLabel: 'Agent Impact Map', templateLink: '/research/agent-impact-map' },
+    { label: 'Inclusive Cognitive Design', title: 'Respect Diverse Ways of Thinking & Working', image: '/images/research/societal-impact/inclusive-design.png', darkImage: '/images/research/societal-impact/inclusive-design-dark.png', imageAlt: 'Respect Diverse Ways of Thinking & Working', bullets: ['Design for neurodiversity and multilingualism.', 'Support different expertise levels\u2014novices, experts, non-coders, etc.', 'Minimize cognitive overload: surface what\u2019s necessary, when it\u2019s needed.'], templateLabel: 'Cognitive Load Audit', templateLink: '/research/cognitive-load-audit' },
+    { label: 'Foresight & Feedback Loops', title: 'Built for Change. Expect the Unexpected', image: '/images/research/societal-impact/foresight.png', darkImage: '/images/research/societal-impact/foresight-dark.png', imageAlt: 'Built for Change. Expect the Unexpected', bullets: ['Use speculative scenarios to anticipate unintended consequences.', 'Include continuous user feedback mechanisms (not just surveys\u2014embedded nudges, annotations, corrections).'], templateLabel: 'Foresight Canvas', templateLink: '/research/foresight-canvas' },
   ],
   sdk: sdkFallback,
 };
@@ -470,6 +471,7 @@ function mapSocietalPage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackSocietal.hero,
     heroImage: s.hero?.image?.url || fallbackSocietal.heroImage,
+    heroDarkImage: fallbackSocietal.heroDarkImage,
     heroListItems: s.heroListItems ? splitNewlines(s.heroListItems) : fallbackSocietal.heroListItems,
     frameworkTitle: s.frameworkTitle || fallbackSocietal.frameworkTitle,
     frameworkDescription: s.frameworkDescription || fallbackSocietal.frameworkDescription,
@@ -477,6 +479,7 @@ function mapSocietalPage(s) {
       label: st.label,
       title: st.title,
       image: st.image?.url || (fallbackSocietal.steps[idx]?.image || ''),
+      darkImage: fallbackSocietal.steps[idx]?.darkImage || null,
       imageAlt: st.imageAlt || st.title,
       bullets: st.bullets ? splitNewlines(st.bullets) : (fallbackSocietal.steps[idx]?.bullets || []),
       templateLabel: st.templateLabel || (fallbackSocietal.steps[idx]?.templateLabel || ''),

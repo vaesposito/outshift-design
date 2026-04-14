@@ -23,7 +23,12 @@
         <% } %>
       </div>
       <div class="page-hero-image">
+        <% if (pageData.heroDarkImage) { %>
+        <img class="img-light" src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+        <img class="img-dark" src="<%= pageData.heroDarkImage %>" alt="<%= pageData.hero.title %>">
+        <% } else { %>
         <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+        <% } %>
       </div>
     </div>
   </div>
@@ -41,7 +46,12 @@
       <% pageData.steps.forEach(function(step) { %>
       <div class="responsible-step">
         <div class="responsible-step-image">
+          <% if (step.darkImage) { %>
+          <img class="img-light" src="<%= step.image %>" alt="<%= step.imageAlt || step.title %>">
+          <img class="img-dark" src="<%= step.darkImage %>" alt="<%= step.imageAlt || step.title %>">
+          <% } else { %>
           <img src="<%= step.image %>" alt="<%= step.imageAlt || step.title %>">
+          <% } %>
         </div>
         <div class="responsible-step-content">
           <p class="responsible-step-label"><%= step.label %></p>
