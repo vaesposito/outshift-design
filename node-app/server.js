@@ -290,6 +290,7 @@ app.get('/hax', async (_req, res) => {
 const fallbackFoundational = {
   hero: { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high-level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.' },
   heroImage: '/images/research/foundational-principles-hero.png',
+  heroDarkImage: '/images/research/foundational-principles-hero-dark.png',
   pipelineTitle: 'Research to Design Pipeline',
   pipelineSubtitle: 'A collaborative design process that transforms raw research into practical design guidance and reusable patterns.',
   steps: [
@@ -320,6 +321,7 @@ function mapFoundationalPage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackFoundational.hero,
     heroImage: s.hero?.image?.url || fallbackFoundational.heroImage,
+    heroDarkImage: fallbackFoundational.heroDarkImage,
     pipelineTitle: s.pipelineTitle || fallbackFoundational.pipelineTitle,
     pipelineSubtitle: s.pipelineSubtitle || fallbackFoundational.pipelineSubtitle,
     steps: (s.steps && s.steps.length) ? s.steps.map((st) => ({
