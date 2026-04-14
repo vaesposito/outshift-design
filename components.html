@@ -76,6 +76,9 @@
 [data-theme="dark"] .footer-logo .logo-dark { display: block; }
 .logo-dark,
 .footer-logo .logo-dark { display: none; }
+img.img-dark { display: none !important; }
+[data-theme="dark"] img.img-light { display: none !important; }
+[data-theme="dark"] img.img-dark { display: block !important; }
 
 .theme-toggle {
     display: inline-flex;
@@ -777,7 +780,8 @@ footer {
             <span class="sdk-cta" style="font-size:0.9em;padding:10px 20px;">Explore the SDK <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span>
           </div>
           <div style="flex:1;">
-            <img src="images/research/sdk-hero.png" alt="SDK" style="width:100%;height:160px;border-radius:16px;object-fit:cover;display:block;">
+            <img class="img-light" src="images/research/sdk-hero.png" alt="Hax SDK" style="width:100%;height:160px;border-radius:16px;object-fit:cover;display:block;">
+            <img class="img-dark" src="images/research/sdk-hero-dark.png" alt="Hax SDK" style="width:100%;height:160px;border-radius:16px;object-fit:cover;display:block;">
           </div>
         </div>
       </div>

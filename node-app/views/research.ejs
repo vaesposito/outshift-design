@@ -74,7 +74,12 @@
         <a href="<%= cta.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= cta.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
+        <% if (cta.darkImage) { %>
+        <img class="img-light" src="<%= cta.image %>" alt="<%= cta.title %>">
+        <img class="img-dark" src="<%= cta.darkImage %>" alt="<%= cta.title %>">
+        <% } else { %>
         <img src="<%= cta.image %>" alt="<%= cta.title %>">
+        <% } %>
       </div>
     </div>
   </div>

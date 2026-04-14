@@ -39,6 +39,7 @@ const sdkFallback = {
   buttonLabel: 'Explore the SDK',
   buttonUrl: 'https://vaesposito.github.io/outshift-design/sdk.html#introduction',
   image: '/images/research/sdk-hero.png',
+  darkImage: '/images/research/sdk-hero-dark.png',
 };
 
 /* ──────────────────────────────────────────────────────────
@@ -266,7 +267,7 @@ function mapHaxPage(s) {
     researchDescription: s.researchDescription || fallbackHax.researchDescription,
     researchLink: s.researchLink ? { label: s.researchLink.label, url: s.researchLink.url, isExternal: s.researchLink.isExternal } : fallbackHax.researchLink,
     researchImage: s.researchImage?.url || fallbackHax.researchImage,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -339,7 +340,7 @@ function mapFoundationalPage(s) {
       problem: cs.problem,
       principles: cs.principles ? splitNewlines(cs.principles) : (fallbackFoundational.caseStudies[idx]?.principles || []),
     })) : fallbackFoundational.caseStudies,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -422,7 +423,7 @@ function mapCognitivePage(s) {
     theoreticalDescription: s.theoreticalDescription || fallbackCognitive.theoreticalDescription,
     steps: fallbackCognitive.steps,
     bannerItems: s.bannerItems ? splitNewlines(s.bannerItems) : fallbackCognitive.bannerItems,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -474,7 +475,7 @@ function mapSocietalPage(s) {
       templateLabel: st.templateLabel || (fallbackSocietal.steps[idx]?.templateLabel || ''),
       templateLink: st.templateLink || (fallbackSocietal.steps[idx]?.templateLink || '#'),
     })) : fallbackSocietal.steps,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -548,7 +549,7 @@ function mapSecurityPage(s) {
       description: uc.description,
       tags: (uc.tags && uc.tags.length) ? uc.tags.map((t) => t.label || t) : (fallbackSecurity.useCases[idx]?.tags || []),
     })) : fallbackSecurity.useCases,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -593,7 +594,7 @@ function mapImpactMapPage(s) {
     instructions: s.instructions ? splitNewlines(s.instructions.replace(/<[^>]+>/g, '')) : fallbackImpactMap.instructions,
     methodology: s.methodology ? s.methodology.replace(/<[^>]+>/g, '') : fallbackImpactMap.methodology,
     diagram: s.diagram?.url || fallbackImpactMap.diagram,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -657,7 +658,7 @@ function mapCognitiveLoadAuditPage(s) {
     templateSubtitle: s.templateSubtitle || fallbackCognitiveLoadAudit.templateSubtitle,
     steps: fallbackCognitiveLoadAudit.steps,
     importanceNote: s.importanceNote || fallbackCognitiveLoadAudit.importanceNote,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 
@@ -720,7 +721,7 @@ function mapForesightCanvasPage(s) {
     templateTitle: s.templateTitle || fallbackForesightCanvas.templateTitle,
     templateSubtitle: s.templateSubtitle || fallbackForesightCanvas.templateSubtitle,
     steps: fallbackForesightCanvas.steps,
-    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image } : sdkFallback,
+    sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
 

@@ -64,6 +64,9 @@
 [data-theme="dark"] .footer-logo .logo-dark { display: block; }
 .logo-dark,
 .footer-logo .logo-dark { display: none; }
+img.img-dark { display: none !important; }
+[data-theme="dark"] img.img-light { display: none !important; }
+[data-theme="dark"] img.img-dark { display: block !important; }
 
 .theme-toggle {
     display: inline-flex;
@@ -1349,7 +1352,8 @@ a.use-case-card { color: inherit; text-decoration: none; }
         <a href="https://vaesposito.github.io/outshift-design/sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="sdk-cta">Explore the SDK <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
       </div>
       <div class="sdk-image">
-        <img src="images/research/sdk-hero.png" alt="Hax SDK">
+        <img class="img-light" src="images/research/sdk-hero.png" alt="Hax SDK">
+        <img class="img-dark" src="images/research/sdk-hero-dark.png" alt="Hax SDK">
       </div>
     </div>
   </div>
