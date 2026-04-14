@@ -16,7 +16,12 @@
         <p><%= pageData.hero.description %></p>
       </div>
       <div class="page-hero-image">
+        <% if (pageData.heroDarkImage) { %>
+        <img class="img-light" src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+        <img class="img-dark" src="<%= pageData.heroDarkImage %>" alt="<%= pageData.hero.title %>">
+        <% } else { %>
         <img src="<%= pageData.heroImage %>" alt="<%= pageData.hero.title %>">
+        <% } %>
       </div>
     </div>
   </div>
@@ -46,7 +51,12 @@
         </div>
       </div>
       <div class="template-diagram">
+        <% if (pageData.diagramDark) { %>
+        <img class="img-light" src="<%= pageData.diagram %>" alt="Agent Impact Map Diagram">
+        <img class="img-dark" src="<%= pageData.diagramDark %>" alt="Agent Impact Map Diagram">
+        <% } else { %>
         <img src="<%= pageData.diagram %>" alt="Agent Impact Map Diagram">
+        <% } %>
       </div>
     </div>
   </div>

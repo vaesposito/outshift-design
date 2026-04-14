@@ -585,6 +585,7 @@ app.get('/research/security-privacy', async (_req, res) => {
 const fallbackImpactMap = {
   hero: { title: 'Agent Impact Map', description: "Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one." },
   heroImage: '/images/research/agent-impact-map/hero.png',
+  heroDarkImage: '/images/research/agent-impact-map/hero-dark.png',
   templateTitle: 'Agent Impact Map',
   templateSubtitle: 'A mapping of the full socio-technical system of agent interactions to better understand the implications on user workflows.',
   instructions: [
@@ -594,6 +595,7 @@ const fallbackImpactMap = {
   ],
   methodology: 'This methodology uses socio-technical systems mapping to analyze how human, organizational, and technical components interact across an agent-supported workflow. Designers begin by identifying all relevant actors, data flows, and contextual constraints, then visualize their interdependencies to reveal how agent behaviors shape user actions and decision points. Through these mappings, friction points, risks, and opportunities are surfaced, allowing designers to understand the broader implications of agent integration. The resulting richer priorities and shared foundation for making informed design decisions and aligning emerging agent technologies with real user needs and operational realities.',
   diagram: '/images/research/agent-impact-map/chart.svg',
+  diagramDark: '/images/research/agent-impact-map/chart-dark.svg',
   sdk: sdkFallback,
 };
 
@@ -602,11 +604,13 @@ function mapImpactMapPage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackImpactMap.hero,
     heroImage: s.hero?.image?.url || fallbackImpactMap.heroImage,
+    heroDarkImage: fallbackImpactMap.heroDarkImage,
     templateTitle: s.templateTitle || fallbackImpactMap.templateTitle,
     templateSubtitle: s.templateSubtitle || fallbackImpactMap.templateSubtitle,
     instructions: s.instructions ? splitNewlines(s.instructions.replace(/<[^>]+>/g, '')) : fallbackImpactMap.instructions,
     methodology: s.methodology ? s.methodology.replace(/<[^>]+>/g, '') : fallbackImpactMap.methodology,
     diagram: s.diagram?.url || fallbackImpactMap.diagram,
+    diagramDark: fallbackImpactMap.diagramDark,
     sdk: s.sdk ? { title: s.sdk.title, description: s.sdk.description, buttonLabel: s.sdk.buttonLabel, buttonUrl: s.sdk.buttonUrl, image: s.sdk.image?.url || sdkFallback.image, darkImage: sdkFallback.darkImage } : sdkFallback,
   };
 }
