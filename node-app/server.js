@@ -414,9 +414,12 @@ const fallbackCognitive = {
       whyTitle: 'Why this matters',
       whyText: 'Cognition extends beyond the brain into physical gestures, spatial arrangements, and temporal rhythms of interaction. When designing agents that interact with users in the real world, we must consider how these embodied and environmental dynamics shape meaning, attention, and action\u2014ensuring that agents respond not just to words, but to movement, rhythm, and context as part of the cognitive process itself.',
       whyPosition: 'outside',
+      useCases: [
+        { tag: 'Research', title: 'Beyond Visual and Auditory Interaction: Investigating Tactile Perception', description: 'TMEET is a research initiative aiming to develop a framework for embodied digital communication.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
+      ],
     },
   ],
-  bannerItems: ['Situated Interaction', 'Auxiliary interactions', 'Investigating Tactile Components'],
+  bannerItems: [],
   sdk: sdkFallback,
 };
 

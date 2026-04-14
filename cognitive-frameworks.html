@@ -917,6 +917,17 @@ a.use-case-card { color: inherit; text-decoration: none; }
 .use-case-footer .read-more:hover {
     color: var(--color-accent-hover);
 }
+.use-case-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82em;
+    color: var(--color-text-subtle);
+    margin-top: 12px;
+}
+.use-case-meta svg {
+    vertical-align: -2px;
+}
 .use-case-tag {
     display: inline-block;
     padding: 4px 12px;
@@ -1329,21 +1340,25 @@ a.use-case-card { color: inherit; text-decoration: none; }
           <p class="framework-why-title">Why this matters</p>
           <p>Cognition extends beyond the brain into physical gestures, spatial arrangements, and temporal rhythms of interaction. When designing agents that interact with users in the real world, we must consider how these embodied and environmental dynamics shape meaning, attention, and action—ensuring that agents respond not just to words, but to movement, rhythm, and context as part of the cognitive process itself.</p>
         </div>
+        <p class="use-cases-label">Use cases</p>
+        <div class="use-cases-grid">
+          <a href="#" class="use-case-card">
+            <div>
+              <span class="use-case-tag">Research</span>
+              <h4>Beyond Visual and Auditory Interaction: Investigating Tactile Perception</h4>
+              <p class="use-case-desc">TMEET is a research initiative aiming to develop a framework for embodied digital communication.</p>
+            </div>
+            <div class="use-case-meta">
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sarah Chen&nbsp;&nbsp;&nbsp;<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> March 1, 2026</span>
+            </div>
+            <div class="use-case-footer">
+              <span>5 min read</span>
+              <span class="read-more">Read more &rarr;</span>
+            </div>
+          </a>
+        </div>
       </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- Framework applications banner -->
-<div class="cf-banner">
-  <div class="container">
-    <div class="cf-banner-inner">
-      <ul class="cf-banner-list">
-        <li>Situated Interaction</li>
-        <li>Auxiliary interactions</li>
-        <li>Investigating Tactile Components</li>
-      </ul>
     </div>
   </div>
 </div>

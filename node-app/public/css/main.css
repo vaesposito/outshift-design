@@ -723,6 +723,8 @@ a.use-case-card { color: inherit; text-decoration: none; }
 .use-case-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.85em; color: var(--color-text-subtle); margin-top: 20px; }
 .use-case-footer .read-more { color: var(--color-accent); font-weight: 600; font-size: 0.9em; display: inline-flex; align-items: center; gap: 4px; }
 .use-case-footer .read-more:hover { color: var(--color-accent-hover); }
+.use-case-meta { display: flex; align-items: center; gap: 6px; font-size: 0.82em; color: var(--color-text-subtle); margin-top: 12px; }
+.use-case-meta svg { vertical-align: -2px; }
 .use-case-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78em; font-weight: 500; border: 1px solid var(--color-border-medium, var(--color-border)); color: var(--color-text); background: linear-gradient(to right, rgba(210, 194, 255, 0.15) 26%, rgba(255, 255, 255, 0) 88%), rgba(255, 255, 255, 0.40); }
 [data-theme="dark"] .use-case-tag { background: linear-gradient(to right, rgba(210, 194, 255, 0.15) 26%, rgba(255, 255, 255, 0) 88%), rgba(255, 255, 255, 0.06); }
 .cf-banner { position: relative; z-index: 1; background: linear-gradient(135deg, #0a3d5c 0%, #1a6e5c 50%, #0a3d5c 100%); padding: 60px 0; margin: 40px 0 0; }
