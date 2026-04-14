@@ -69,8 +69,8 @@ const fallbackData = {
     { title: 'Internet of Cognition', description: 'Enabling agents and humans to scale intelligence collectively.', badge: 'AI/ML', video: '/videos/cognition.mp4', darkVideo: '/videos/cognition-2.mp4', reversed: true, href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
   ],
   researchCards: [
-    { title: 'Hax', description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.', image: '/images/hax-research.png', tags: ['AI Research', 'Design Framework', 'Ethics'], href: '/research' },
-    { title: 'Internet of Cognition', description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.', image: '/images/cognition-research.png', tags: ['Cognitive Systems', 'Future Research', 'Collaboration'], comingSoon: true },
+    { title: 'Hax', description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.', image: '/images/hax-research.png', darkImage: '/images/hax-research-dark.png', tags: ['AI Research', 'Design Framework', 'Ethics'], href: '/research' },
+    { title: 'Internet of Cognition', description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.', image: '/images/cognition-research.png', darkImage: '/images/cognition-research-dark.png', tags: ['Cognitive Systems', 'Future Research', 'Collaboration'], comingSoon: true },
   ],
   blogPosts: [
     { title: 'The Future of Design Systems', description: 'How we built a scalable design system that powers hundreds of products across the enterprise.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
@@ -125,6 +125,7 @@ function mapResearchCards(strapiData) {
         title: item.title,
         description: item.description,
         image: imageMap[item.slug] || fb.image || '/images/hax-research.png',
+        darkImage: fb.darkImage || null,
         tags: (item.tags || []).map((t) => t.label),
         href: validUrl(item.link?.url) || fb.href || null,
         external: validUrl(item.link?.url) ? (item.link.isExternal || false) : (fb.external || false),

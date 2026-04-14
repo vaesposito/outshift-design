@@ -65,7 +65,14 @@
     <div class="innovation-cards">
       <% researchCards.forEach(card => { %>
       <div class="innovation-card">
-        <% if (card.href && !card.comingSoon) { %><a href="<%= card.href %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %>><% } %><img src="<%= card.image %>" alt="<%= card.title %> research visualization"><% if (card.href && !card.comingSoon) { %></a><% } %>
+        <% if (card.href && !card.comingSoon) { %><a href="<%= card.href %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %>><% } %>
+        <% if (card.darkImage) { %>
+        <img class="img-light" src="<%= card.image %>" alt="<%= card.title %> research visualization">
+        <img class="img-dark" src="<%= card.darkImage %>" alt="<%= card.title %> research visualization">
+        <% } else { %>
+        <img src="<%= card.image %>" alt="<%= card.title %> research visualization">
+        <% } %>
+        <% if (card.href && !card.comingSoon) { %></a><% } %>
         <div class="innovation-card-body">
           <div class="innovation-card-title-row">
             <h3><% if (card.href && !card.comingSoon) { %><a href="<%= card.href %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %> style="color:inherit;text-decoration:none;"><% } %><%= card.title %><% if (card.href && !card.comingSoon) { %></a><% } %></h3>

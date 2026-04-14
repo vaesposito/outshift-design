@@ -71,9 +71,9 @@
 [data-theme="dark"] .initiative-card.reversed {
     background-image: url('/images/section-inverted-darkmode.svg');
 }
-video.video-dark { display: none !important; }
-[data-theme="dark"] video.video-light { display: none !important; }
-[data-theme="dark"] video.video-dark { display: block !important; }
+video.video-dark, img.img-dark { display: none !important; }
+[data-theme="dark"] video.video-light, [data-theme="dark"] img.img-light { display: none !important; }
+[data-theme="dark"] video.video-dark, [data-theme="dark"] img.img-dark { display: block !important; }
 .theme-toggle {
     display: inline-flex;
     padding: 6px;
