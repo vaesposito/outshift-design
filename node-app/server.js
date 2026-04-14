@@ -395,6 +395,7 @@ const fallbackCognitive = {
       frameworkTitle: 'Approaches',
       frameworkDescription: 'Agents that improvise and adapt based on environment, timing, and social context\u2014not rigid plans.',
       frameworkImages: ['/images/research/abstract-planning.svg', '/images/research/situated-action-card.svg'],
+      frameworkDarkImages: ['/images/research/abstract-planning-dark.svg', '/images/research/situated-action-card-dark.svg'],
       frameworkImageAlts: ['Abstract Planning \u2014 Traditional approach', 'Situated Action \u2014 Our approach'],
       approachCards: true,
       whyTitle: 'Why this matters',

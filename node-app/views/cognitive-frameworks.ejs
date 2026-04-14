@@ -66,7 +66,12 @@
               <% if (step.approachCards) { %>
               <div class="framework-approaches-cards">
                 <% step.frameworkImages.forEach(function(img, j) { %>
+                <% if (step.frameworkDarkImages && step.frameworkDarkImages[j]) { %>
+                <img src="<%= img %>" alt="<%= step.frameworkImageAlts[j] || '' %>" class="framework-approach-svg img-light">
+                <img src="<%= step.frameworkDarkImages[j] %>" alt="<%= step.frameworkImageAlts[j] || '' %>" class="framework-approach-svg img-dark">
+                <% } else { %>
                 <img src="<%= img %>" alt="<%= step.frameworkImageAlts[j] || '' %>" class="framework-approach-svg">
+                <% } %>
                 <% }) %>
               </div>
               <% } else if (step.frameworkImages.length === 1) { %>
