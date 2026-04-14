@@ -702,6 +702,7 @@ app.get('/research/cognitive-load-audit', async (_req, res) => {
 const fallbackForesightCanvas = {
   hero: { title: 'Foresight Canvas', description: "A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks." },
   heroImage: '/images/research/foresight-canvas/hero.png',
+  heroDarkImage: '/images/research/foresight-canvas/hero-dark.png',
   templateTitle: 'Foresight Canvas',
   templateSubtitle: 'Applying the Foresight & Feedback Loop to your agent helps to stress-test against future scenarios, surface unintended consequences, and ensure long-term viability and trust in an evolving world.',
   steps: [
@@ -717,6 +718,7 @@ const fallbackForesightCanvas = {
       ],
       methodology: "The Futures Wheel is a structured brainstorming tool originally developed by Jerome Glenn. It starts with a central event or change and maps outward in concentric rings of consequences. In the context of agent design, it helps teams move beyond immediate functionality to explore the broader systemic effects of deploying autonomous agents. By systematically tracing cause-and-effect chains, designers can surface hidden risks, anticipate unintended behaviors, and identify opportunities for proactive safeguards. This method is especially valuable in speculative design settings where the goal is to stress-test agent capabilities against plausible future scenarios before they reach production.\n\nResult: A Futures Wheel artifact documenting all orders of consequences related to the agent\u2019s core innovation, usable as a living reference for design decisions, risk assessments, and stakeholder communication.",
       diagram: '/images/research/foresight-canvas/step1.svg',
+      diagramDark: '/images/research/foresight-canvas/step1-dark.svg',
     },
     {
       title: 'Futures Types',
@@ -729,6 +731,7 @@ const fallbackForesightCanvas = {
       ],
       methodology: "The Futures Types framework draws on established futures studies methodology, particularly the work of Jim Dator and Sohail Inayatullah. It categorizes possible futures into archetypes, helping designers move from abstract speculation to actionable design priorities. By placing agent-related scenarios into Positive, Negative, Plausible, and Dystopian quadrants, teams gain a structured way to evaluate not just what could happen, but how desirable or dangerous each outcome might be. This approach bridges the gap between speculative foresight and practical design decisions, ensuring that autonomous systems are built with resilience, accountability, and ethical awareness from the start.\n\nResult: A Futures Types map that classifies agent-related scenarios into four quadrants, providing a clear framework for prioritizing design interventions and embedding safeguards against the most impactful negative outcomes.",
       diagram: '/images/research/foresight-canvas/step2.svg',
+      diagramDark: '/images/research/foresight-canvas/step2-dark.svg',
     },
   ],
   sdk: sdkFallback,
@@ -739,6 +742,7 @@ function mapForesightCanvasPage(s) {
   return {
     hero: s.hero ? { title: s.hero.title, description: s.hero.description } : fallbackForesightCanvas.hero,
     heroImage: s.hero?.image?.url || fallbackForesightCanvas.heroImage,
+    heroDarkImage: fallbackForesightCanvas.heroDarkImage,
     templateTitle: s.templateTitle || fallbackForesightCanvas.templateTitle,
     templateSubtitle: s.templateSubtitle || fallbackForesightCanvas.templateSubtitle,
     steps: fallbackForesightCanvas.steps,
