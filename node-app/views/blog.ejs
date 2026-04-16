@@ -25,7 +25,7 @@
 <div class="container">
   <div class="blog-hub-grid">
     <% blogPosts.forEach(function(post) { %>
-      <a href="<%= post.href || '/blog' %>" class="blog-hub-card" data-tags="<%= (post.tags || []).map(function(t){ return t.toLowerCase().replace(/[\s\/]+/g, '-'); }).join(',') %>">
+      <a href="<%= post.href || '/blog' %>"<% if (post.external) { %> target="_blank" rel="noopener noreferrer"<% } %> class="blog-hub-card" data-tags="<%= (post.tags || []).map(function(t){ return t.toLowerCase().replace(/[\s\/]+/g, '-'); }).join(',') %>">
         <div class="blog-hub-cover" style="background:<%= post.coverGradient || 'linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)' %>;">
           <% if (post.coverImage) { %>
             <img src="<%= post.coverImage %>" alt="<%= post.title %>">
