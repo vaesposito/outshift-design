@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-<title>Outshift Design — The Human-Agent Experience</title>
+<title>Outshift Design — Guiding principles</title>
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <script>
@@ -751,6 +751,14 @@ footer {
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
 }
+
+.page-hero--sub { padding: 32px 0 20px; }
+.page-hero--sub .page-hero-title { margin-bottom: 20px; }
+.page-hero--sub .page-hero-title h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+.page-hero--sub .page-hero-inner { flex-direction: column; align-items: center; }
+.page-hero--sub .page-hero-text { text-align: center; padding-right: 0; max-width: 640px; margin: 0 auto; }
+.page-hero--sub .page-hero-text p { margin-bottom: 12px; }
+.page-hero--sub .page-hero-text p:last-child { margin-bottom: 0; }
 </style>
 </head>
 
@@ -808,39 +816,132 @@ footer {
 </div>
 
 <!-- Page Hero -->
-<div class="page-hero">
+<div class="page-hero page-hero--sub">
   <div class="container">
     <div class="breadcrumb">
-      <a href="index.html#initiatives">Initiatives</a> <span>/</span> Hax
+      <a href="index.html#initiatives">Initiatives</a> <span>/</span> <a href="hax.html">Hax</a> <span>/</span> Guiding principles
     </div>
     <div class="page-hero-title">
-      <h1>The Human-Agent Experience</h1>
+      <h1>Guiding principles</h1>
     </div>
     <div class="page-hero-inner">
       <div class="page-hero-text">
-        <p>We're moving beyond assistants and copilots. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in more nuanced ways. Designing for this shift requires new patterns of interaction and trust.</p>
-        <p>This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.</p>
-      </div>
-      <div class="page-hero-image">
-        <video class="video-light" autoplay muted loop playsinline>
-          <source src="videos/hax-hero.mp4" type="video/mp4">
-        </video>
-        <video class="video-dark" autoplay muted loop playsinline>
-          <source src="videos/hax-hero-dark.mp4" type="video/mp4">
-        </video>
+        <p>These five ideas anchor how we design for autonomous agents alongside people. Use the tabs below to read each principle in depth and browse illustrated pattern examples.</p>
+        <p><a href="human-centered-ai-patterns.html" style="color:var(--color-accent);">← Human-Centered AI Patterns overview</a></p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Guiding principles (overview + links to pattern pages) -->
+<!-- Pattern detail -->
 <div class="patterns-section">
   <div class="container">
     <div class="patterns-header">
-      <h2>Guiding principles</h2>
-      <p>Five ideas for trustworthy agent experiences that prioritize human control and agency. See a concise overview on Human-Centered AI Patterns, then detailed examples on Guiding principles.</p>
-      <p style="margin-top:20px;"><a href="human-centered-ai-patterns.html" class="sdk-cta">Human-Centered AI Patterns</a></p>
-      <p style="margin-top:12px;"><a href="guiding-principles.html" class="sdk-cta">Guiding principles in depth</a></p>
+      <h2>Examples by principle</h2>
+      <p>Select a principle to see how it translates into concrete interaction patterns.</p>
+    </div>
+
+    <div class="patterns-filters">
+      <button class="pattern-filter is-active" data-pattern="control">Control</button>
+      <button class="pattern-filter" data-pattern="clarity">Clarity</button>
+      <button class="pattern-filter" data-pattern="recovery">Recovery</button>
+      <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
+      <button class="pattern-filter" data-pattern="traceability">Traceability</button>
+    </div>
+
+    <div class="pattern-panel is-active" data-panel="control">
+      <h3 class="pattern-title">Control</h3>
+      <p class="pattern-desc">Humans guide how agents operate by setting boundaries, preferences, and intent. Control aligns autonomy with human goals.</p>
+      <div class="pattern-divider"></div>
+      <h4 class="pattern-examples-label">Examples</h4>
+      <div class="pattern-visuals">
+        <img class="img-light" src="images/patterns/scope-boundaries.svg" alt="Scope &amp; Boundaries">
+        <img class="img-dark" src="images/patterns/scope-boundaries-dark.svg" alt="Scope &amp; Boundaries">
+        <img class="img-light" src="images/patterns/permission-gates.svg" alt="Permission Gates">
+        <img class="img-dark" src="images/patterns/permission-gates-dark.svg" alt="Permission Gates">
+        <img class="img-light" src="images/patterns/customization-autonomy.svg" alt="Customization of Autonomy">
+        <img class="img-dark" src="images/patterns/customization-autonomy-dark.svg" alt="Customization of Autonomy">
+      </div>
+    </div>
+
+    <div class="pattern-panel" data-panel="clarity">
+      <h3 class="pattern-title">Clarity</h3>
+      <p class="pattern-desc">Agents should make their reasoning, context, and confidence visible. Instead of acting like black boxes, they show how decisions are made so users can understand, question, or adjust them.</p>
+      <div class="pattern-divider"></div>
+      <h4 class="pattern-examples-label">Examples</h4>
+      <div class="pattern-visuals">
+        <img class="img-light" src="images/patterns/clarity-1.svg" alt="Clarity pattern 1">
+        <img class="img-dark" src="images/patterns/clarity-1-dark.svg" alt="Clarity pattern 1">
+        <img class="img-light" src="images/patterns/clarity-2.svg" alt="Clarity pattern 2">
+        <img class="img-dark" src="images/patterns/clarity-2-dark.svg" alt="Clarity pattern 2">
+        <img class="img-light" src="images/patterns/clarity-3.svg" alt="Clarity pattern 3">
+        <img class="img-dark" src="images/patterns/clarity-3-dark.svg" alt="Clarity pattern 3">
+        <img class="img-light" src="images/patterns/clarity-4.svg" alt="Clarity pattern 4">
+        <img class="img-dark" src="images/patterns/clarity-4-dark.svg" alt="Clarity pattern 4">
+      </div>
+    </div>
+
+    <div class="pattern-panel" data-panel="recovery">
+      <h3 class="pattern-title">Recovery</h3>
+      <p class="pattern-desc">Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
+      <div class="pattern-divider"></div>
+      <h4 class="pattern-examples-label">Examples</h4>
+      <div class="pattern-visuals">
+        <img class="img-light" src="images/patterns/recovery-1.svg" alt="Recovery pattern 1">
+        <img class="img-dark" src="images/patterns/recovery-1-dark.svg" alt="Recovery pattern 1">
+        <img class="img-light" src="images/patterns/recovery-2.svg" alt="Recovery pattern 2">
+        <img class="img-dark" src="images/patterns/recovery-2-dark.svg" alt="Recovery pattern 2">
+        <img class="img-light" src="images/patterns/recovery-3.svg" alt="Recovery pattern 3">
+        <img class="img-dark" src="images/patterns/recovery-3-dark.svg" alt="Recovery pattern 3">
+        <img class="img-light" src="images/patterns/recovery-4.svg" alt="Recovery pattern 4">
+        <img class="img-dark" src="images/patterns/recovery-4-dark.svg" alt="Recovery pattern 4">
+      </div>
+    </div>
+
+    <div class="pattern-panel" data-panel="collaboration">
+      <h3 class="pattern-title">Collaboration</h3>
+      <p class="pattern-desc">Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes. The agent contributes ideas, takes input, and improves the work in progress.</p>
+      <div class="pattern-divider"></div>
+      <h4 class="pattern-examples-label">Examples</h4>
+      <div class="pattern-visuals">
+        <img class="img-light" src="images/patterns/collaboration-1.svg" alt="Collaboration pattern 1">
+        <img class="img-dark" src="images/patterns/collaboration-1-dark.svg" alt="Collaboration pattern 1">
+        <img class="img-light" src="images/patterns/collaboration-2.svg" alt="Collaboration pattern 2">
+        <img class="img-dark" src="images/patterns/collaboration-2-dark.svg" alt="Collaboration pattern 2">
+        <img class="img-light" src="images/patterns/collaboration-3.svg" alt="Collaboration pattern 3">
+        <img class="img-dark" src="images/patterns/collaboration-3-dark.svg" alt="Collaboration pattern 3">
+      </div>
+    </div>
+
+    <div class="pattern-panel" data-panel="traceability">
+      <h3 class="pattern-title">Traceability</h3>
+      <p class="pattern-desc">Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.</p>
+      <div class="pattern-divider"></div>
+      <h4 class="pattern-examples-label">Examples</h4>
+      <div class="pattern-visuals">
+        <img class="img-light" src="images/patterns/traceability-1.svg" alt="Traceability pattern 1">
+        <img class="img-dark" src="images/patterns/traceability-1-dark.svg" alt="Traceability pattern 1">
+        <img class="img-light" src="images/patterns/traceability-2.svg" alt="Traceability pattern 2">
+        <img class="img-dark" src="images/patterns/traceability-2-dark.svg" alt="Traceability pattern 2">
+        <img class="img-light" src="images/patterns/traceability-3.svg" alt="Traceability pattern 3">
+        <img class="img-dark" src="images/patterns/traceability-3-dark.svg" alt="Traceability pattern 3">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hax Research -->
+<div class="hax-research-section">
+  <div class="container">
+    <div class="hax-research-inner">
+      <div class="hax-research-image">
+        <img src="images/hax-research.png" alt="The Outshift Design Research Laboratory">
+      </div>
+      <div class="hax-research-text">
+        <h2>The Outshift Design Research Laboratory</h2>
+        <p>A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.</p>
+        <a href="research.html" class="sdk-cta">Explore the Research</a>
+      </div>
     </div>
   </div>
 </div>
@@ -944,6 +1045,19 @@ footer {
         if (!e.target.closest('.has-dropdown')) {
             document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         }
+    });
+
+    document.querySelectorAll('.pattern-filter').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.pattern-filter.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+            var target = btn.getAttribute('data-pattern');
+            document.querySelectorAll('.pattern-panel').forEach(function (panel) {
+                panel.classList.remove('is-active');
+            });
+            var activePanel = document.querySelector('.pattern-panel[data-panel="' + target + '"]');
+            if (activePanel) activePanel.classList.add('is-active');
+        });
     });
 
     if (window.matchMedia('(pointer: fine)').matches) {

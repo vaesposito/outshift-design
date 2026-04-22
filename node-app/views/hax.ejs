@@ -32,55 +32,14 @@
   </div>
 </div>
 
-<!-- Human-Centered AI Patterns -->
+<!-- Guiding principles (overview + links to pattern pages) -->
 <div class="patterns-section">
   <div class="container">
     <div class="patterns-header">
-      <h2><%= pageData.patternsTitle %></h2>
-      <p><%= pageData.patternsDescription %></p>
-    </div>
-
-    <div class="patterns-filters">
-      <% pageData.patterns.forEach(function(p, i) { %>
-      <button class="pattern-filter<%= i === 0 ? ' is-active' : '' %>" data-pattern="<%= p.key %>"><%= p.title %></button>
-      <% }) %>
-    </div>
-
-    <% pageData.patterns.forEach(function(p, i) { %>
-    <div class="pattern-panel<%= i === 0 ? ' is-active' : '' %>" data-panel="<%= p.key %>">
-      <h3 class="pattern-title"><%= p.title %></h3>
-      <p class="pattern-desc"><%= p.description %></p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <% p.images.forEach(function(img, j) { %>
-        <% var alt = (p.alts && p.alts[j]) ? p.alts[j] : p.title + ' pattern ' + (j+1); %>
-        <% var darkImg = (p.darkImages && p.darkImages[j]) ? p.darkImages[j] : null; %>
-        <% if (darkImg) { %>
-        <img class="img-light" src="<%= img %>" alt="<%= alt %>">
-        <img class="img-dark" src="<%= darkImg %>" alt="<%= alt %>">
-        <% } else { %>
-        <img src="<%= img %>" alt="<%= alt %>">
-        <% } %>
-        <% }) %>
-      </div>
-    </div>
-    <% }) %>
-  </div>
-</div>
-
-<!-- Hax Research -->
-<div class="hax-research-section">
-  <div class="container">
-    <div class="hax-research-inner">
-      <div class="hax-research-image">
-        <img src="<%= pageData.researchImage %>" alt="The Outshift Design Research Laboratory">
-      </div>
-      <div class="hax-research-text">
-        <h2><%= pageData.researchTitle %></h2>
-        <p><%= pageData.researchDescription %></p>
-        <a href="<%= pageData.researchLink.url %>" class="sdk-cta"<% if (pageData.researchLink.isExternal) { %> target="_blank" rel="noopener noreferrer"<% } %>><%= pageData.researchLink.label %></a>
-      </div>
+      <h2>Guiding principles</h2>
+      <p>Five ideas for trustworthy agent experiences that prioritize human control and agency. See a concise overview on Human-Centered AI Patterns, then detailed examples on Guiding principles.</p>
+      <p style="margin-top:20px;"><a href="/human-centered-ai-patterns" class="sdk-cta">Human-Centered AI Patterns</a></p>
+      <p style="margin-top:12px;"><a href="/guiding-principles" class="sdk-cta">Guiding principles in depth</a></p>
     </div>
   </div>
 </div>
@@ -105,20 +64,5 @@
     </div>
   </div>
 </div>
-
-<script>
-document.querySelectorAll('.pattern-filter').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-        document.querySelectorAll('.pattern-filter.is-active').forEach(function (el) { el.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-        var target = btn.getAttribute('data-pattern');
-        document.querySelectorAll('.pattern-panel').forEach(function (panel) {
-            panel.classList.remove('is-active');
-        });
-        var activePanel = document.querySelector('.pattern-panel[data-panel="' + target + '"]');
-        if (activePanel) activePanel.classList.add('is-active');
-    });
-});
-</script>
 
 <%- include('partials/footer') %>

@@ -52,16 +52,16 @@ const fallbackData = {
       { label: 'Internet of Cognition', href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
     ]},
     // { label: 'About us', href: '/#about', hasDropdown: true },
-    { label: 'Research', href: '/research', hasDropdown: true, children: [
-      { group: 'Hax', groupHref: '/research', items: [
-        { label: 'Foundational Principles', href: '/research/foundational-principles' },
-        { label: 'Cognitive Frameworks', href: '/research/cognitive-frameworks' },
-        { label: 'Societal Impact', href: '/research/societal-impact' },
-        { label: 'Security & Privacy', href: '/research/security-privacy' },
-        { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
-        { label: 'Cognitive Load Audit', href: '/research/cognitive-load-audit' },
-        { label: 'Foresight Canvas', href: '/research/foresight-canvas' },
-      ]},
+    { label: 'Research', href: '/research', hasDropdown: true, hubDropdown: true, children: [
+      { label: 'Human-Centered AI Patterns', href: '/human-centered-ai-patterns' },
+      { label: 'Guiding principles', href: '/guiding-principles' },
+      { label: 'Foundational Principles', href: '/research/foundational-principles' },
+      { label: 'Cognitive Frameworks', href: '/research/cognitive-frameworks' },
+      { label: 'Societal Impact', href: '/research/societal-impact' },
+      { label: 'Security & Privacy', href: '/research/security-privacy' },
+      { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
+      { label: 'Cognitive Load Audit', href: '/research/cognitive-load-audit' },
+      { label: 'Foresight Canvas', href: '/research/foresight-canvas' },
     ]},
     { label: 'Blog', href: '/blog', hasDropdown: false },
   ],
@@ -192,7 +192,6 @@ app.get('/', async (_req, res) => {
 const fallbackResearch = {
   hero: { title: 'Research at Outshift', description: 'This is the home for Outshift product design research—where we explore design, AI, and human-centered technology together. A major part of our work is Hax (Human–Agent Experience): principles, methods, and studies that help teams build trustworthy, collaborative human–agent experiences for the emerging Internet of Agents. Use the topics below to go deeper.', image: '/images/research/hero.png', darkImage: '/images/research/hero-dark.png' },
   sectionHeader: { title: 'Research topics', subtitle: 'Frameworks and deep dives from our lab—human–agent interaction, cognition, ethics, security, and long-term impact.' },
-  cta: sdkFallback,
   items: [
     { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.', image: '/images/research/foundational-principles.png', darkImage: '/images/research/foundational-principles-dark.png', href: '/research/foundational-principles' },
     { title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png', darkImage: '/images/research/cognitive-framework-dark.png', href: '/research/cognitive-frameworks' },
@@ -209,7 +208,6 @@ function mapResearchPage(strapiData) {
   return {
     hero: strapiData.hero ? { title: strapiData.hero.title, description: strapiData.hero.description, image: strapiData.hero.image?.url || fallbackResearch.hero.image, darkImage: fallbackResearch.hero.darkImage } : null,
     sectionHeader: strapiData.sectionHeader ? { title: strapiData.sectionHeader.title, subtitle: strapiData.sectionHeader.subtitle } : null,
-    cta: strapiData.cta ? { title: strapiData.cta.title, description: strapiData.cta.description, buttonLabel: strapiData.cta.buttonLabel, buttonUrl: strapiData.cta.buttonUrl, image: strapiData.cta.image?.url || fallbackResearch.cta.image } : null,
   };
 }
 
@@ -225,7 +223,6 @@ app.get('/research', async (_req, res) => {
     researchItems: fallbackResearch.items,
     hero: page.hero || fallbackResearch.hero,
     sectionHeader: page.sectionHeader || fallbackResearch.sectionHeader,
-    cta: page.cta || fallbackResearch.cta,
   });
 });
 
@@ -290,6 +287,27 @@ app.get('/hax', async (_req, res) => {
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
     pageTitle: 'Outshift Design \u2014 The Human-Agent Experience',
+    pageData,
+  });
+});
+
+app.get('/human-centered-ai-patterns', (_req, res) => {
+  res.render('human-centered-ai-patterns', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design \u2014 Human-Centered AI Patterns',
+  });
+});
+
+app.get('/guiding-principles', async (_req, res) => {
+  const strapiData = await fetchStrapi(`hax-page?${deepPopulate(['hero', 'patterns', 'researchLink', 'sdk', 'seo'])}&populate[researchImage]=*`);
+  const pageData = mapHaxPage(strapiData) || fallbackHax;
+  res.render('guiding-principles', {
+    title: 'Outshift Design',
+    year: new Date().getFullYear(),
+    nav: fallbackData.nav,
+    pageTitle: 'Outshift Design \u2014 Guiding principles',
     pageData,
   });
 });
