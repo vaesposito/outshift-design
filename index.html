@@ -518,6 +518,25 @@ button::before, .cta-button::before {
     width: 16px;
     height: 16px;
 }
+.initiative-card .card-text-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+.arrow-link.arrow-link--labeled {
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    padding: 0 14px 0 16px;
+    gap: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.arrow-link.arrow-link--labeled span {
+    line-height: 1.2;
+}
 
 /* ── Innovation & Research ── */
 .innovation-section {
@@ -1257,11 +1276,19 @@ footer {
     <div class="card-text">
       <h3>Designing for the Internet of Agents</h3>
       <p>Hax: The Framework Guiding Human-Agent Collaboration</p>
-      <a href="hax.html" class="arrow-link" aria-label="Learn more">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 12L12 4M12 4H5M12 4V11"/>
-        </svg>
-      </a>
+      <div class="card-text-actions">
+        <a href="hax.html" class="arrow-link" aria-label="Learn more about Hax">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+        <a href="sdk.html#introduction" class="arrow-link arrow-link--labeled" aria-label="Explore the SDK documentation">
+          <span>Explore the SDK</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+      </div>
     </div>
     <div class="card-image">
       <span class="card-badge">SDK</span>

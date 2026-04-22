@@ -31,9 +31,21 @@
     <div class="card-text">
       <h3><%= card.title %></h3>
       <p><%= card.description %></p>
+      <% if (card.docHref) { %>
+      <div class="card-text-actions">
+        <a href="<%= card.href || '#' %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %> class="arrow-link" aria-label="Learn more">
+          <%- include('partials/arrow-icon') %>
+        </a>
+        <a href="<%= card.docHref %>" class="arrow-link arrow-link--labeled" aria-label="<%= card.docLabel || 'Documentation' %>">
+          <span><%= card.docLabel %></span>
+          <%- include('partials/arrow-icon') %>
+        </a>
+      </div>
+      <% } else { %>
       <a href="<%= card.href || '#' %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %> class="arrow-link" aria-label="Learn more">
         <%- include('partials/arrow-icon') %>
       </a>
+      <% } %>
     </div>
     <div class="card-image">
       <span class="card-badge"><%= card.badge %></span>

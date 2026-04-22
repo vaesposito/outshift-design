@@ -428,6 +428,23 @@ button::before, .cta-button::before {
 }
 .arrow-link:hover { background: var(--color-hover); }
 .arrow-link svg { width: 16px; height: 16px; }
+.initiative-card .card-text-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+.arrow-link.arrow-link--labeled {
+    width: auto;
+    height: auto;
+    min-height: 40px;
+    padding: 0 14px 0 16px;
+    gap: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.arrow-link.arrow-link--labeled span { line-height: 1.2; }
 
 /* Innovation & Research */
 .innovation-section {
