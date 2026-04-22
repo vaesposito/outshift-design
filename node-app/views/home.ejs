@@ -19,15 +19,21 @@
 <!-- Featured Initiatives -->
 <div class="initiatives-section" id="initiatives">
   <div class="content">
-    <h6>Initiatives</h6>
-    <h3><%= hp.initiativesSectionTitle || 'Featured Initiatives' %></h3>
-    <h4><%= hp.initiativesSectionSubtitle || "Explore our recent projects and see how we're shaping the future of enterprise software." %></h4>
+    <div class="section-header">
+      <h6>Initiatives</h6>
+      <h3><%= hp.initiativesSectionTitle || 'Featured Initiatives' %></h3>
+      <p><%= hp.initiativesSectionSubtitle || "Explore our recent projects and see how we're shaping the future of enterprise software." %></p>
+    </div>
   </div>
 </div>
 
 <div class="timeline">
   <% initiatives.forEach(card => { %>
-  <div class="initiative-card<%= card.reversed ? ' reversed' : '' %>">
+  <% var hasInitiativeLink = card.href && card.href !== '#'; %>
+  <div class="initiative-card<%= card.reversed ? ' reversed' : '' %><%= hasInitiativeLink ? ' initiative-card--linked' : '' %>">
+    <% if (hasInitiativeLink) { %>
+    <a href="<%= card.href %>" class="initiative-card-link" aria-label="View initiative: <%= card.title %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %>></a>
+    <% } %>
     <div class="card-text">
       <h3><%= card.title %></h3>
       <p><%= card.description %></p>
@@ -48,7 +54,6 @@
       <% } %>
     </div>
     <div class="card-image">
-      <span class="card-badge"><%= card.badge %></span>
       <% if (card.darkVideo) { %>
       <video class="video-light" autoplay muted loop playsinline>
         <source src="<%= card.video %>" type="video/mp4">

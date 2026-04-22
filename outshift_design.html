@@ -201,6 +201,26 @@ h5 {
     width: 100%;
     margin: 0 auto;
 }
+.initiatives-section .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.initiatives-section .section-header h6 {
+    color: #59616B;
+}
+.initiatives-section .section-header h3 {
+    color: #293247;
+    font-size: 3em;
+    font-weight: 200;
+    margin: 8px 0 12px;
+}
+.initiatives-section .section-header p {
+    color: #67707F;
+    font-size: 1.05em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
 
 .timeline {
     position: relative;
@@ -369,9 +389,11 @@ background-image: url("initiative-bg.svg");
 </div>
   <div class="initiatives-section">
     <div class="content">
-      <h6>Initiatives</h6>
-      <h3>Featured Initiatives</h3>
-      <h4>Explore our recent projects and see how we're shaping the future of enterprise software.</h4>
+      <div class="section-header">
+        <h6>Initiatives</h6>
+        <h3>Featured Initiatives</h3>
+        <p>Explore our recent projects and see how we're shaping the future of enterprise software.</p>
+      </div>
     </div>
   </div>
 
@@ -387,7 +409,6 @@ background-image: url("initiative-bg.svg");
         </a>
       </div>
       <div class="card-image">
-        <span class="card-badge">SDK</span>
         <video autoplay muted loop playsinline>
           <source src="videos/agents.mp4" type="video/mp4">
         </video>
@@ -405,7 +426,6 @@ background-image: url("initiative-bg.svg");
         </a>
       </div>
       <div class="card-image">
-        <span class="card-badge">AI/ML</span>
         <video autoplay muted loop playsinline>
           <source src="videos/cognition.mp4" type="video/mp4">
         </video>
