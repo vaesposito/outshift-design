@@ -23,6 +23,11 @@
       "type": "media",
       "multiple": true,
       "allowedTypes": ["images"]
+    },
+    "exampleDarkImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
     }
   }
 }

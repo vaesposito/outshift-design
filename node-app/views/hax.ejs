@@ -54,7 +54,14 @@
       <h4 class="pattern-examples-label">Examples</h4>
       <div class="pattern-visuals">
         <% p.images.forEach(function(img, j) { %>
-        <img src="<%= img %>" alt="<%= (p.alts && p.alts[j]) ? p.alts[j] : p.title + ' pattern ' + (j+1) %>">
+        <% var alt = (p.alts && p.alts[j]) ? p.alts[j] : p.title + ' pattern ' + (j+1); %>
+        <% var darkImg = (p.darkImages && p.darkImages[j]) ? p.darkImages[j] : null; %>
+        <% if (darkImg) { %>
+        <img class="img-light" src="<%= img %>" alt="<%= alt %>">
+        <img class="img-dark" src="<%= darkImg %>" alt="<%= alt %>">
+        <% } else { %>
+        <img src="<%= img %>" alt="<%= alt %>">
+        <% } %>
         <% }) %>
       </div>
     </div>
