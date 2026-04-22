@@ -108,7 +108,7 @@ async function seedContent(strapi: Core.Strapi) {
     description:
       'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
     slug: 'hax',
-    media: { mediaType: 'image', altText: 'Hax research visual' },
+    media: { mediaType: 'image', altText: 'The Outshift Design Research Laboratory' },
     tags: [
       { label: 'AI Research', color: 'cyan' },
       { label: 'Design Framework', color: 'cyan' },
@@ -226,7 +226,7 @@ async function seedPages(strapi: Core.Strapi) {
       { key: 'collaboration', title: 'Collaboration', description: 'Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes.' },
       { key: 'traceability', title: 'Traceability', description: 'Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows.' },
     ],
-    researchTitle: 'Hax Research',
+    researchTitle: 'The Outshift Design Research Laboratory',
     researchDescription: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
     researchLink: { label: 'Explore the Research', url: '/research', isExternal: false },
     sdk: sdkBlock,

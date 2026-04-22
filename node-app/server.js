@@ -245,7 +245,7 @@ const fallbackHax = {
     { key: 'collaboration', title: 'Collaboration', description: 'Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes. The agent contributes ideas, takes input, and improves the work in progress.', images: ['/images/patterns/collaboration-1.svg', '/images/patterns/collaboration-2.svg', '/images/patterns/collaboration-3.svg'], darkImages: ['/images/patterns/collaboration-1-dark.svg', '/images/patterns/collaboration-2-dark.svg', '/images/patterns/collaboration-3-dark.svg'], alts: ['Collaboration pattern 1', 'Collaboration pattern 2', 'Collaboration pattern 3'] },
     { key: 'traceability', title: 'Traceability', description: 'Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.', images: ['/images/patterns/traceability-1.svg', '/images/patterns/traceability-2.svg', '/images/patterns/traceability-3.svg'], darkImages: ['/images/patterns/traceability-1-dark.svg', '/images/patterns/traceability-2-dark.svg', '/images/patterns/traceability-3-dark.svg'], alts: ['Traceability pattern 1', 'Traceability pattern 2', 'Traceability pattern 3'] },
   ],
-  researchTitle: 'Hax Research',
+  researchTitle: 'The Outshift Design Research Laboratory',
   researchDescription: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
   researchLink: { label: 'Explore the Research', url: '/research', isExternal: false },
   researchImage: '/images/hax-research.png',
