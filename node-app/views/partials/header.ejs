@@ -15,7 +15,7 @@
     <nav>
       <ul>
         <% nav.forEach(item => { %>
-        <li<% if (item.children && item.children.length) { %> class="has-dropdown"<% } %>>
+        <li<% if (item.children && item.children.length) { %> class="has-dropdown<% if (item.hubDropdown) { %> has-dropdown--hub<% } %>"<% } %>>
           <a href="<%= item.href %>">
             <span class="text"><%= item.label %></span>
             <% if (item.hasDropdown) { %>

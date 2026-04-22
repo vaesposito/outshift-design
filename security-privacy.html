@@ -817,20 +817,17 @@ footer {
           </ul>
         </li>
         <!-- <li><a href="index.html#about"><span class="text">About us</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a></li> -->
-        <li class="has-dropdown"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
+        <li class="has-dropdown has-dropdown--hub"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
           <ul class="nav-dropdown nav-dropdown--research">
-            <li class="nav-dropdown-group">
-              <a href="research.html" class="nav-dropdown-label">Hax</a>
-              <ul class="nav-dropdown-sub">
-                <li><a href="foundational-principles.html">Foundational Principles</a></li>
-                <li><a href="cognitive-frameworks.html">Cognitive Frameworks</a></li>
-                <li><a href="societal-impact.html">Societal Impact</a></li>
-                <li><a href="security-privacy.html">Security &amp; Privacy</a></li>
-                <li><a href="agent-impact-map.html">Agent Impact Map</a></li>
-                <li><a href="cognitive-load-audit.html">Cognitive Load Audit</a></li>
-                <li><a href="foresight-canvas.html">Foresight Canvas</a></li>
-              </ul>
-            </li>
+            <li><a href="human-centered-ai-patterns.html">Human-Centered AI Patterns</a></li>
+            <li><a href="guiding-principles.html">Guiding principles</a></li>
+            <li><a href="foundational-principles.html">Foundational Principles</a></li>
+            <li><a href="cognitive-frameworks.html">Cognitive Frameworks</a></li>
+            <li><a href="societal-impact.html">Societal Impact</a></li>
+            <li><a href="security-privacy.html">Security &amp; Privacy</a></li>
+            <li><a href="agent-impact-map.html">Agent Impact Map</a></li>
+            <li><a href="cognitive-load-audit.html">Cognitive Load Audit</a></li>
+            <li><a href="foresight-canvas.html">Foresight Canvas</a></li>
           </ul>
         </li>
         <li><a href="blog.html"><span class="text">Blog</span></a></li>
@@ -1069,6 +1066,9 @@ footer {
 
     document.querySelectorAll('.has-dropdown > a').forEach(function (trigger) {
         trigger.addEventListener('click', function (e) {
+            if (trigger.closest('.has-dropdown--hub') && !e.target.closest('.icon')) {
+                return;
+            }
             e.preventDefault();
             var parent = trigger.parentElement;
             var wasActive = parent.classList.contains('is-active');

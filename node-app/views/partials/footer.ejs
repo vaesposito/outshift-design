@@ -63,6 +63,9 @@
 
     document.querySelectorAll('.has-dropdown > a').forEach(function (trigger) {
         trigger.addEventListener('click', function (e) {
+            if (trigger.closest('.has-dropdown--hub') && !e.target.closest('.icon')) {
+                return;
+            }
             e.preventDefault();
             var parent = trigger.parentElement;
             var wasActive = parent.classList.contains('is-active');
