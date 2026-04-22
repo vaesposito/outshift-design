@@ -186,8 +186,8 @@ app.get('/', async (_req, res) => {
    RESEARCH HUB
    ────────────────────────────────────────────────────────── */
 const fallbackResearch = {
-  hero: { title: 'Exploring the Research Behind Hax', description: 'The HAX Research Laboratory is a design research initiative focused on exploring the foundational principles of Human-Agent Collaboration. We provide essential empirical and conceptual understanding, insights, and frameworks to help designers and innovators shape intuitive and effective Human-Agent interactions for the emerging Internet of Agents.', image: '/images/research/hero.png', darkImage: '/images/research/hero-dark.png' },
-  sectionHeader: { title: 'Advancing the Science of Human Agent Interaction', subtitle: 'Investigating how humans and agents think, act, and build together' },
+  hero: { title: 'Research at Outshift', description: 'This is the home for Outshift product design research—where we explore design, AI, and human-centered technology together. A major part of our work is Hax (Human–Agent Experience): principles, methods, and studies that help teams build trustworthy, collaborative human–agent experiences for the emerging Internet of Agents. Use the topics below to go deeper.', image: '/images/research/hero.png', darkImage: '/images/research/hero-dark.png' },
+  sectionHeader: { title: 'Research topics', subtitle: 'Frameworks and deep dives from our lab—human–agent interaction, cognition, ethics, security, and long-term impact.' },
   cta: sdkFallback,
   items: [
     { title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.', image: '/images/research/foundational-principles.png', darkImage: '/images/research/foundational-principles-dark.png', href: '/research/foundational-principles' },
@@ -217,7 +217,7 @@ app.get('/research', async (_req, res) => {
     title: 'Outshift Design',
     year: new Date().getFullYear(),
     nav: fallbackData.nav,
-    pageTitle: 'Outshift Design — Research Behind Hax',
+    pageTitle: 'Outshift Design — Research',
     researchItems: fallbackResearch.items,
     hero: page.hero || fallbackResearch.hero,
     sectionHeader: page.sectionHeader || fallbackResearch.sectionHeader,
