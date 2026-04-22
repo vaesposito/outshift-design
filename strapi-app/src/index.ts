@@ -74,8 +74,8 @@ async function seedContent(strapi: Core.Strapi) {
   strapi.log.info('Seeding initial content...');
 
   await createAndPublish(strapi, 'api::initiative.initiative', {
-    title: 'Designing for the Internet of Agents',
-    description: 'Hax: The Framework Guiding Human-Agent Collaboration',
+    title: 'HAX, The Human-Agent Experience',
+    description: 'Designing for the Internet of Agents',
     slug: 'internet-of-agents',
     badge: 'SDK',
     media: {

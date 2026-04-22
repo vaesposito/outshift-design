@@ -66,7 +66,7 @@ const fallbackData = {
     { label: 'Blog', href: '/blog', hasDropdown: false },
   ],
   initiatives: [
-    { title: 'Designing for the Internet of Agents', description: 'Hax: The Framework Guiding Human-Agent Collaboration', badge: 'SDK', video: '/videos/agents.mp4', darkVideo: '/videos/agents-dark.mp4', reversed: false, href: '/hax', docHref: '/sdk#introduction', docLabel: 'Explore the SDK' },
+    { title: 'HAX, The Human-Agent Experience', description: 'Designing for the Internet of Agents', badge: 'SDK', video: '/videos/agents.mp4', darkVideo: '/videos/agents-dark.mp4', reversed: false, href: '/hax', docHref: '/sdk#introduction', docLabel: 'Explore the SDK' },
     { title: 'Internet of Cognition', description: 'Enabling agents and humans to scale intelligence collectively.', badge: 'AI/ML', video: '/videos/cognition.mp4', darkVideo: '/videos/cognition-2.mp4', reversed: true, href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
   ],
   researchCards: [
@@ -95,11 +95,15 @@ const fallbackData = {
 function mapInitiatives(strapiData) {
   if (!strapiData) return fallbackData.initiatives;
   const fbByTitle = {};
+  const haxInitiativeFb = fallbackData.initiatives[0];
   fallbackData.initiatives.forEach((fb) => { fbByTitle[fb.title] = fb; });
+  fbByTitle['Designing for the Internet of Agents'] = haxInitiativeFb;
   return strapiData
     .sort((a, b) => (a.order || 0) - (b.order || 0))
     .map((item) => {
-      const fb = fbByTitle[item.title] || {};
+      const linkUrl = item.link?.url ? String(item.link.url) : '';
+      const isHaxInitiative = item.slug === 'internet-of-agents' || linkUrl.includes('/hax');
+      const fb = fbByTitle[item.title] || (isHaxInitiative ? haxInitiativeFb : {});
       return {
         title: item.title,
         description: item.description,
