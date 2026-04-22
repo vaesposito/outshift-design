@@ -162,6 +162,12 @@ nav > ul > li { position: relative; }
     visibility: visible;
     transform: scaleY(1);
 }
+.nav-dropdown.nav-dropdown--research {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+}
+
 .nav-dropdown-group { padding: 0; }
 .nav-dropdown-label {
     display: flex;
@@ -774,7 +780,7 @@ footer {
         </li>
         <!-- <li><a href="index.html#about"><span class="text">About us</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a></li> -->
         <li class="has-dropdown"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
-          <ul class="nav-dropdown">
+          <ul class="nav-dropdown nav-dropdown--research">
             <li class="nav-dropdown-group">
               <a href="research.html" class="nav-dropdown-label">Hax</a>
               <ul class="nav-dropdown-sub">
@@ -1015,7 +1021,9 @@ footer {
         document.querySelectorAll('.video-dark').forEach(function (v) { isDark ? v.play() : v.pause(); });
     }
     syncThemeVideos();
-    document.querySelector('.theme-toggle').addEventListener('click', function () {
+    document.querySelector('.theme-toggle').addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         var next = isDark ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);

@@ -76,6 +76,12 @@ nav > ul > li { position: relative; }
 .has-dropdown { position: relative; }
 .nav-dropdown { position: absolute; top: calc(100% + 0.5rem); left: 0; z-index: 20; min-width: 200px; overflow: hidden; opacity: 0; visibility: hidden; transform: scaleY(0); transform-origin: top; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; box-shadow: 0 6px 24px var(--color-shadow); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
 .has-dropdown.is-active > .nav-dropdown { opacity: 1; visibility: visible; transform: scaleY(1); }
+.nav-dropdown.nav-dropdown--research {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+}
+
 .nav-dropdown > li { display: block; width: 100%; }
 .nav-dropdown > li > a { display: block; width: 100%; text-align: left; padding: 10px 20px; color: var(--color-text-muted); font-size: 0.9em; white-space: nowrap; transition: background 0.2s; }
 .nav-dropdown > li > a:hover { background: var(--color-hover); color: var(--color-text) !important; }
@@ -524,7 +530,7 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
         </li>
         <!-- <li><a href="index.html#about"><span class="text">About us</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a></li> -->
         <li class="has-dropdown"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
-          <ul class="nav-dropdown">
+          <ul class="nav-dropdown nav-dropdown--research">
             <li class="nav-dropdown-group">
               <a href="research.html" class="nav-dropdown-label">Hax</a>
               <ul class="nav-dropdown-sub">
@@ -696,7 +702,9 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     var saved = localStorage.getItem('theme');
     if (saved) document.documentElement.setAttribute('data-theme', saved);
     else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
-    document.querySelector('.theme-toggle').addEventListener('click', function () {
+    document.querySelector('.theme-toggle').addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         var next = isDark ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);

@@ -162,6 +162,11 @@ nav ul {
     visibility: visible;
     transform: scaleY(1);
 }
+.nav-dropdown.nav-dropdown--research {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+}
 .nav-dropdown > li {
     display: block;
     width: 100%;

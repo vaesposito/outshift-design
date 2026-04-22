@@ -23,7 +23,7 @@
             <% } %>
           </a>
           <% if (item.children && item.children.length) { %>
-          <ul class="nav-dropdown">
+          <ul class="nav-dropdown<% if (item.label === 'Research') { %> nav-dropdown--research<% } %>">
             <% item.children.forEach(child => { %>
               <% if (child.group) { %>
               <li class="nav-dropdown-group">
