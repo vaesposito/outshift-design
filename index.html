@@ -572,6 +572,11 @@ button::before, .cta-button::before {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
 }
+.innovation-cards:has(> .innovation-card:only-child) {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto;
+}
 .innovation-card {
     transition: transform 0.3s;
 }
@@ -1334,12 +1339,12 @@ footer {
     <div class="innovation-cards">
       <div class="innovation-card">
         <a href="research.html">
-          <img class="img-light" src="images/hax-research.png" alt="Hax research visualization">
-          <img class="img-dark" src="images/hax-research-dark.png" alt="Hax research visualization">
+          <img class="img-light" src="images/hax-research.png" alt="Outshift research visualization">
+          <img class="img-dark" src="images/hax-research-dark.png" alt="Outshift research visualization">
         </a>
         <div class="innovation-card-body">
           <div class="innovation-card-title-row">
-            <h3><a href="research.html" style="color:inherit;text-decoration:none;">Hax</a></h3>
+            <h3><a href="research.html" style="color:inherit;text-decoration:none;">Outshift research</a></h3>
             <a href="research.html" class="card-arrow" aria-label="Learn more">
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 12L12 4M12 4H5M12 4V11"/>
@@ -1351,22 +1356,6 @@ footer {
             <a href="#">AI Research</a>
             <a href="#">Design Framework</a>
             <a href="#">Ethics</a>
-          </div>
-        </div>
-      </div>
-      <div class="innovation-card">
-        <img class="img-light" src="images/cognition-research.png" alt="Internet of Cognition research visualization">
-        <img class="img-dark" src="images/cognition-research-dark.png" alt="Internet of Cognition research visualization">
-        <div class="innovation-card-body">
-          <div class="innovation-card-title-row">
-            <h3>Internet of Cognition</h3>
-            <span class="coming-soon-badge">Coming soon</span>
-          </div>
-          <p>Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.</p>
-          <div class="innovation-tags">
-            <span>Cognitive Systems</span>
-            <span>Future Research</span>
-            <span>Collaboration</span>
           </div>
         </div>
       </div>

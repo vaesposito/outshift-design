@@ -460,6 +460,11 @@ button::before, .cta-button::before {
 .innovation-section .section-header h3 { color: var(--color-text); font-size: 3em; font-weight: 200; margin: 8px 0 12px; }
 .innovation-section .section-header p { color: var(--color-text-muted); font-size: 1.05em; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 .innovation-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.innovation-cards:has(> .innovation-card:only-child) {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto;
+}
 .innovation-card {
     transition: transform 0.3s;
 }

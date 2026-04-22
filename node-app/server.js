@@ -70,8 +70,7 @@ const fallbackData = {
     { title: 'Internet of Cognition', description: 'Enabling agents and humans to scale intelligence collectively.', badge: 'AI/ML', video: '/videos/cognition.mp4', darkVideo: '/videos/cognition-2.mp4', reversed: true, href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
   ],
   researchCards: [
-    { title: 'Hax', description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.', image: '/images/hax-research.png', darkImage: '/images/hax-research-dark.png', tags: ['AI Research', 'Design Framework', 'Ethics'], href: '/research' },
-    { title: 'Internet of Cognition', description: 'Exploring the future of interconnected cognitive systems and their impact on human decision making and collaboration.', image: '/images/cognition-research.png', darkImage: '/images/cognition-research-dark.png', tags: ['Cognitive Systems', 'Future Research', 'Collaboration'], comingSoon: true },
+    { title: 'Outshift research', description: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.', image: '/images/hax-research.png', darkImage: '/images/hax-research-dark.png', tags: ['AI Research', 'Design Framework', 'Ethics'], href: '/research' },
   ],
   blogPosts: [
     { title: 'The Future of Design Systems', description: 'How we built a scalable design system that powers hundreds of products across the enterprise.', author: 'Sarah Chen', date: 'March 1, 2026', readTime: '5 min read' },
@@ -118,15 +117,17 @@ function mapInitiatives(strapiData) {
 
 function mapResearchCards(strapiData) {
   if (!strapiData) return fallbackData.researchCards;
-  const imageMap = { 'hax': '/images/hax-research.png', 'internet-of-cognition': '/images/cognition-research.png' };
+  const imageMap = { hax: '/images/hax-research.png', 'internet-of-cognition': '/images/cognition-research.png' };
   const fbByTitle = {};
   fallbackData.researchCards.forEach((fb) => { fbByTitle[fb.title] = fb; });
-  return strapiData
+  const primaryResearchFb = fallbackData.researchCards[0] || {};
+  const mapped = strapiData
+    .filter((item) => item.slug !== 'internet-of-cognition' && item.title !== 'Internet of Cognition')
     .sort((a, b) => (a.order || 0) - (b.order || 0))
     .map((item) => {
-      const fb = fbByTitle[item.title] || {};
+      const fb = fbByTitle[item.title] || (item.slug === 'hax' ? primaryResearchFb : {});
       return {
-        title: item.title,
+        title: item.slug === 'hax' ? 'Outshift research' : item.title,
         description: item.description,
         image: imageMap[item.slug] || fb.image || '/images/hax-research.png',
         darkImage: fb.darkImage || null,
@@ -136,6 +137,7 @@ function mapResearchCards(strapiData) {
         comingSoon: fb.comingSoon || false,
       };
     });
+  return mapped.length ? mapped : fallbackData.researchCards;
 }
 
 function mapBlogPosts(strapiData) {
