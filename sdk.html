@@ -217,6 +217,13 @@ a:link, a:visited, a:hover, a:active {
     transition: background 0.2s ease;
 }
 .sdk-github-btn:hover { background: var(--color-accent-hover); }
+/* Bright cyan + white fails WCAG in dark mode; use ink on accent instead */
+[data-theme="dark"] .sdk-github-btn {
+    color: #0a1016 !important;
+}
+[data-theme="dark"] .sdk-github-btn:hover {
+    color: #0a1016 !important;
+}
 
 .sdk-main h2 {
     font-size: 1.8em;
