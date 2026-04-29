@@ -472,10 +472,11 @@ button::before, .cta-button::before {
     position: relative;
     z-index: 1;
     background: var(--color-innovation-bg);
-    padding: 80px 0 60px;
+    padding: 80px 5% 60px;
     margin-top: 40px;
     border: 1px solid rgba(77, 99, 128, 0.21);
 }
+.innovation-section > .container { padding: 0; }
 .innovation-section .section-header,
 .initiatives-section .section-header { text-align: center; margin-bottom: 48px; }
 .innovation-section .section-header h6,
@@ -487,8 +488,6 @@ button::before, .cta-button::before {
 .innovation-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .innovation-cards:has(> .innovation-card:only-child) {
     grid-template-columns: 1fr;
-    max-width: 640px;
-    margin: 0 auto;
 }
 .innovation-card {
     transition: transform 0.3s;
