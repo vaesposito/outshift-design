@@ -71,47 +71,29 @@
 </div>
 
 <!-- Innovation & Research -->
+<% if (researchCards && researchCards.length) { var rc = researchCards[0]; %>
 <div class="innovation-section" id="about">
   <div class="container">
-    <div class="section-header">
-      <h6>Research</h6>
-      <h3><%= hp.researchSectionTitle || 'Innovation & Research' %></h3>
-      <p><%= hp.researchSectionDescription || 'Discover our research explorations across the intersection of design, AI, and human-centered technology.' %></p>
-    </div>
-    <div class="innovation-cards">
-      <% researchCards.forEach(card => { %>
-      <div class="innovation-card">
-        <% if (card.href && !card.comingSoon) { %><a href="<%= card.href %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %>><% } %>
-        <% if (card.darkImage) { %>
-        <img class="img-light" src="<%= card.image %>" alt="<%= card.title %> research visualization">
-        <img class="img-dark" src="<%= card.darkImage %>" alt="<%= card.title %> research visualization">
-        <% } else { %>
-        <img src="<%= card.image %>" alt="<%= card.title %> research visualization">
+    <div class="innovation-inner">
+      <div class="innovation-text">
+        <h2><%= hp.researchSectionTitle || 'Innovation & Research' %></h2>
+        <p><%= hp.researchSectionDescription || 'Discover our research explorations across the intersection of design, AI, and human-centered technology.' %></p>
+        <% if (rc.href && !rc.comingSoon) { %>
+        <a href="<%= rc.href %>"<% if (rc.external) { %> target="_blank" rel="noopener noreferrer"<% } %> class="innovation-cta">Explore the research <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
         <% } %>
-        <% if (card.href && !card.comingSoon) { %></a><% } %>
-        <div class="innovation-card-body">
-          <div class="innovation-card-title-row">
-            <h3><% if (card.href && !card.comingSoon) { %><a href="<%= card.href %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %> style="color:inherit;text-decoration:none;"><% } %><%= card.title %><% if (card.href && !card.comingSoon) { %></a><% } %></h3>
-            <% if (card.comingSoon) { %>
-            <span class="coming-soon-badge">Coming soon</span>
-            <% } else { %>
-            <a href="<%= card.href || '#' %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %> class="card-arrow" aria-label="Learn more">
-              <%- include('partials/arrow-icon') %>
-            </a>
-            <% } %>
-          </div>
-          <p><%= card.description %></p>
-          <div class="innovation-tags">
-            <% card.tags.forEach(tag => { %>
-            <span><%= tag %></span>
-            <% }) %>
-          </div>
-        </div>
       </div>
-      <% }) %>
+      <div class="innovation-image">
+        <% if (rc.darkImage) { %>
+        <img class="img-light" src="<%= rc.image %>" alt="<%= rc.title %> research visualization">
+        <img class="img-dark" src="<%= rc.darkImage %>" alt="<%= rc.title %> research visualization">
+        <% } else { %>
+        <img src="<%= rc.image %>" alt="<%= rc.title %> research visualization">
+        <% } %>
+      </div>
     </div>
   </div>
 </div>
+<% } %>
 
 <!-- Latest from Our Blog -->
 <div class="blog-section" id="blog">

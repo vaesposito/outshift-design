@@ -560,101 +560,91 @@ button::before, .cta-button::before {
 .innovation-section {
     position: relative;
     z-index: 1;
-    background: var(--color-innovation-bg);
-    padding: 80px 5% 60px;
-    margin-top: 40px;
-    border: 1px solid rgba(77, 99, 128, 0.21);
+    padding: 80px 0;
+    border-top: 1px solid var(--color-border);
 }
-.innovation-section > .container {
-    padding: 0;
+.innovation-inner {
+    display: flex;
+    align-items: center;
+    gap: 60px;
 }
-.innovation-section .section-header,
+.innovation-text { flex: 1; }
+.innovation-text h6 {
+    color: var(--color-text-subtle);
+    margin: 0 0 8px;
+}
+.innovation-text h2 {
+    color: var(--color-text);
+    font-size: 2.4em;
+    font-weight: 600;
+    margin: 0 0 16px;
+}
+.innovation-text p {
+    color: var(--color-text-muted);
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin: 0 0 32px;
+}
+.innovation-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--color-text);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    position: relative;
+    z-index: 0;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+.innovation-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    padding: 1.5px;
+    background: conic-gradient(
+        from 180deg,
+        #ff6b6b, #a855f7, #6366f1, #3b82f6, #00bceb, #10b981, #eab308, #ff6b6b
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.innovation-cta:hover { transform: scale(1.03); }
+.innovation-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+.innovation-image { flex: 1; display: flex; justify-content: center; }
+.innovation-image img {
+    width: 100%;
+    height: 360px;
+    border-radius: 16px;
+    display: block;
+    object-fit: cover;
+}
+
 .initiatives-section .section-header {
     text-align: center;
     margin-bottom: 48px;
 }
-.innovation-section .section-header h6,
 .initiatives-section .section-header h6 {
     color: var(--color-text-subtle);
 }
-.innovation-section .section-header h3,
 .initiatives-section .section-header h3 {
     color: var(--color-text);
     font-size: 3em;
     font-weight: 200;
     margin: 8px 0 12px;
 }
-.innovation-section .section-header p {
-    color: var(--color-text-muted);
-    font-size: 1.05em;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
 .initiatives-section .section-header p {
     color: var(--color-text-muted);
     font-size: 1.05em;
     margin: 0 auto;
     line-height: 1.6;
-}
-.innovation-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-}
-.innovation-cards:has(> .innovation-card:only-child) {
-    grid-template-columns: 1fr;
-}
-.innovation-card {
-    transition: transform 0.3s;
-}
-.innovation-card:hover {
-    transform: translateY(-4px);
-}
-.innovation-card video,
-.innovation-card img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 14px;
-}
-.innovation-card img.img-light,
-.innovation-card video {
-    display: block;
-}
-.innovation-card-body {
-    padding: 24px 12px 12px;
-}
-.innovation-card-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-.innovation-card-title-row h3 {
-    color: var(--color-text);
-    font-size: 1.8em;
-    font-weight: 500;
-    margin: 0;
-}
-.innovation-card-title-row .card-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border-medium);
-    color: var(--color-text);
-    transition: background 0.2s;
-    flex-shrink: 0;
-}
-.innovation-card-title-row .card-arrow:hover {
-    background: var(--color-hover);
-}
-.innovation-card-title-row .card-arrow svg {
-    width: 16px;
-    height: 16px;
 }
 .coming-soon-badge {
     display: inline-block;
@@ -975,17 +965,12 @@ footer {
         font-size: 2.4em;
     }
 
-    .innovation-section .section-header h3,
     .initiatives-section .section-header h3 {
         font-size: 2.4em;
     }
-    .innovation-card video,
-    .innovation-card img {
-        height: 220px;
-    }
-    .innovation-card-title-row h3 {
-        font-size: 1.5em;
-    }
+    .innovation-text h2 { font-size: 2em; }
+    .innovation-inner { gap: 40px; }
+    .innovation-image img { height: 320px; }
 
     .blog-section .section-header h3 {
         font-size: 2.4em;
@@ -1109,20 +1094,18 @@ footer {
         padding-bottom: 0;
     }
 
-    .innovation-cards {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
     .innovation-section {
         padding: 60px 0 40px;
     }
-    .innovation-section .section-header h3,
+    .innovation-inner {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+    .innovation-text h2 { font-size: 2em; }
+    .innovation-image img { height: 240px; }
     .initiatives-section .section-header h3 {
         font-size: 2em;
-    }
-    .innovation-card video,
-    .innovation-card img {
-        height: 200px;
     }
 
     .blog-cards {
@@ -1190,20 +1173,11 @@ footer {
         aspect-ratio: 16 / 10;
     }
 
-    .innovation-section .section-header h3,
     .initiatives-section .section-header h3 {
         font-size: 1.6em;
     }
-    .innovation-card-title-row h3 {
-        font-size: 1.3em;
-    }
-    .innovation-card video,
-    .innovation-card img {
-        height: 180px;
-    }
-    .innovation-card-body {
-        padding: 16px 4px 8px;
-    }
+    .innovation-text h2 { font-size: 1.6em; }
+    .innovation-image img { height: 200px; }
 
     .blog-section .section-header h3 {
         font-size: 1.6em;
@@ -1368,33 +1342,15 @@ footer {
 <!-- Innovation & Research -->
 <div class="innovation-section" id="about">
   <div class="container">
-    <div class="section-header">
-      <h6>Research</h6>
-      <h3>Innovation &amp; Research</h3>
-      <p>Discover our research explorations across the intersection of design, AI, and human-centered technology.</p>
-    </div>
-    <div class="innovation-cards">
-      <div class="innovation-card">
-        <a href="research.html">
-          <img class="img-light" src="images/hax-research.png" alt="Outshift research visualization">
-          <img class="img-dark" src="images/hax-research-dark.png" alt="Outshift research visualization">
-        </a>
-        <div class="innovation-card-body">
-          <div class="innovation-card-title-row">
-            <h3><a href="research.html" style="color:inherit;text-decoration:none;">Outshift research</a></h3>
-            <a href="research.html" class="card-arrow" aria-label="Learn more">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 12L12 4M12 4H5M12 4V11"/>
-              </svg>
-            </a>
-          </div>
-          <p>A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.</p>
-          <div class="innovation-tags">
-            <a href="#">AI Research</a>
-            <a href="#">Design Framework</a>
-            <a href="#">Ethics</a>
-          </div>
-        </div>
+    <div class="innovation-inner">
+      <div class="innovation-text">
+        <h2>Innovation &amp; Research</h2>
+        <p>Discover our research explorations across the intersection of design, AI, and human-centered technology.</p>
+        <a href="research.html" class="innovation-cta">Explore the research <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+      <div class="innovation-image">
+        <img class="img-light" src="images/hax-research.png" alt="Outshift research visualization">
+        <img class="img-dark" src="images/hax-research-dark.png" alt="Outshift research visualization">
       </div>
     </div>
   </div>
