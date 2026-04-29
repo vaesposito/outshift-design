@@ -253,7 +253,7 @@ a:link, a:visited, a:hover, a:active {
 .page-hero {
     position: relative;
     z-index: 1;
-    padding: 24px 0;
+    padding: 24px 0 64px;
 }
 .page-hero .breadcrumb {
     font-size: 0.85em;
@@ -320,7 +320,8 @@ a:link, a:visited, a:hover, a:active {
     -webkit-backdrop-filter: blur(32.96px);
 }
 .framework-section-header {
-    margin-bottom: 64px;
+    margin-bottom: 48px;
+    text-align: center;
 }
 .framework-section-header h2 {
     font-size: 2.8em;
@@ -332,6 +333,54 @@ a:link, a:visited, a:hover, a:active {
     color: var(--color-text-muted);
     max-width: 700px;
     line-height: 1.7;
+    margin: 0 auto;
+}
+
+/* ── Framework recap (jump links to subsections) ── */
+.framework-recap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 0 0 64px;
+}
+.framework-recap-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    position: relative;
+}
+.framework-recap-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    background: var(--color-hover);
+}
+.framework-recap-num {
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    font-feature-settings: 'tnum';
+}
+.framework-recap-label {
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+}
+.framework-recap-title {
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+    color: var(--color-text);
 }
 
 .responsible-step-template a {
@@ -602,6 +651,7 @@ footer {
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
     .responsible-step-image { width: 140px; }
+    .framework-recap { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -677,6 +727,7 @@ footer {
     .framework-section-header h2 { font-size: 1.8em; }
     .responsible-step { flex-direction: column; gap: 24px; }
     .responsible-step-image { width: 120px; }
+    .framework-recap { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
     .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
     .footer-top { flex-direction: column; gap: 32px; }
@@ -789,6 +840,29 @@ footer {
       <h2>A Framework for Responsible Agent Design</h2>
       <p>To support teams building agentic systems, we developed a practical, five-part framework—adaptable across roles, from UX designers to backend engineers.</p>
     </div>
+
+    <nav class="framework-recap" aria-label="Framework subsections">
+      <a class="framework-recap-card" href="#contextual-inquiry">
+        <span class="framework-recap-num">01</span>
+        <span class="framework-recap-label">Contextual Inquiry</span>
+        <p class="framework-recap-title">Design Begins with Understanding</p>
+      </a>
+      <a class="framework-recap-card" href="#intentional-scope">
+        <span class="framework-recap-num">02</span>
+        <span class="framework-recap-label">Intentional Scope</span>
+        <p class="framework-recap-title">What Should This Agent Do</p>
+      </a>
+      <a class="framework-recap-card" href="#inclusive-cognitive-design">
+        <span class="framework-recap-num">03</span>
+        <span class="framework-recap-label">Inclusive Cognitive Design</span>
+        <p class="framework-recap-title">Respect Diverse Ways of Thinking &amp; Working</p>
+      </a>
+      <a class="framework-recap-card" href="#foresight-feedback-loops">
+        <span class="framework-recap-num">04</span>
+        <span class="framework-recap-label">Foresight &amp; Feedback Loops</span>
+        <p class="framework-recap-title">Built for Change. Expect the Unexpected</p>
+      </a>
+    </nav>
 
     <div class="responsible-steps">
 

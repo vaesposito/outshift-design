@@ -42,6 +42,18 @@
       <p><%= pageData.frameworkDescription %></p>
     </div>
 
+    <% if (pageData.steps && pageData.steps.length) { %>
+    <nav class="framework-recap" aria-label="Framework subsections">
+      <% pageData.steps.forEach(function(step, i) { %>
+      <a class="framework-recap-card" href="#<%= step.slug %>">
+        <span class="framework-recap-num"><%= String(i + 1).padStart(2, '0') %></span>
+        <span class="framework-recap-label"><%= step.label %></span>
+        <p class="framework-recap-title"><%- step.title %></p>
+      </a>
+      <% }) %>
+    </nav>
+    <% } %>
+
     <div class="responsible-steps">
       <% pageData.steps.forEach(function(step) { %>
       <div class="responsible-step" id="<%= step.slug %>">
