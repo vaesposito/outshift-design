@@ -48,20 +48,22 @@ const sdkFallback = {
 const fallbackData = {
   nav: [
     { label: 'Initiatives', href: '/#initiatives', hasDropdown: true, children: [
-      { label: 'The Human-Agent Experience', href: '/hax' },
+      { group: 'The Human-Agent Experience', groupHref: '/hax', items: [
+        { label: 'Human-Centered AI Patterns', href: '/human-centered-ai-patterns' },
+        { label: 'Guiding principles', href: '/guiding-principles' },
+      ]},
       { label: 'Internet of Cognition', href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
     ]},
     // { label: 'About us', href: '/#about', hasDropdown: true },
     { label: 'Research', href: '/research', hasDropdown: true, hubDropdown: true, children: [
-      { label: 'Human-Centered AI Patterns', href: '/human-centered-ai-patterns' },
-      { label: 'Guiding principles', href: '/guiding-principles' },
       { label: 'Foundational Principles', href: '/research/foundational-principles' },
       { label: 'Cognitive Frameworks', href: '/research/cognitive-frameworks' },
-      { label: 'Societal Impact', href: '/research/societal-impact' },
+      { group: 'Societal Impact', groupHref: '/research/societal-impact', items: [
+        { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
+        { label: 'Cognitive Load Audit', href: '/research/cognitive-load-audit' },
+        { label: 'Foresight Canvas', href: '/research/foresight-canvas' },
+      ]},
       { label: 'Security & Privacy', href: '/research/security-privacy' },
-      { label: 'Agent Impact Map', href: '/research/agent-impact-map' },
-      { label: 'Cognitive Load Audit', href: '/research/cognitive-load-audit' },
-      { label: 'Foresight Canvas', href: '/research/foresight-canvas' },
     ]},
     { label: 'Blog', href: '/blog', hasDropdown: false },
   ],
