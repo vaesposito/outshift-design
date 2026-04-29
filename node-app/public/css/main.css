@@ -910,7 +910,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .blog-card h4 { font-size: 20px; }
     .blog-hub-grid { grid-template-columns: repeat(2, 1fr); }
     .research-hero-title h1 { font-size: 2.8em; }
-    .research-hero-image img { height: 400px; }
+    .research-hero-image img { height: 340px; }
     .research-section-header h2 { font-size: 2.2em; }
     .research-card { width: 70%; padding: 28px; }
     .research-card-image { flex: 0 0 160px; }
@@ -918,7 +918,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
     .page-hero-title h1 { font-size: 2.8em; }
-    .page-hero-image img, .page-hero-image video { height: 400px; }
+    .page-hero-image img, .page-hero-image video { height: 340px; }
     .pipeline-header h2, .case-studies-header h2, .framework-section-header h2 { font-size: 2.2em; }
     .secure-systems-header h2, .research-approach-header h2 { font-size: 2.2em; }
     .template-header h2 { font-size: 2.2em; }
@@ -1001,7 +1001,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .research-hero-inner { flex-direction: column; gap: 32px; }
     .research-hero-text { padding-right: 0; }
     .research-hero-title h1 { font-size: 2em; }
-    .research-hero-image img { height: 320px; max-width: 100%; }
+    .research-hero-image img { height: 280px; max-width: 100%; }
     .research-section-header h2 { font-size: 1.8em; }
     .research-card { width: 100%; flex-direction: column !important; gap: 24px; padding: 28px; margin-bottom: 24px; }
     .research-card.research-card--right { margin-left: 0; }
@@ -1021,7 +1021,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .page-hero-inner { flex-direction: column; gap: 32px; }
     .page-hero-text { padding-right: 0; }
     .page-hero-title h1 { font-size: 2em; }
-    .page-hero-image img, .page-hero-image video { height: 320px; max-width: 100%; }
+    .page-hero-image img, .page-hero-image video { height: 280px; max-width: 100%; }
     .pipeline-header h2, .case-studies-header h2, .framework-section-header h2 { font-size: 1.8em; }
     .secure-systems-header h2, .research-approach-header h2 { font-size: 1.8em; }
     .template-header h2 { font-size: 1.8em; }
@@ -1066,13 +1066,13 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     .footer-logo img { height: 48px; }
 
     .research-hero-title h1 { font-size: 1.6em; }
-    .research-hero-image img { height: 240px; }
+    .research-hero-image img { height: 220px; }
     .research-section-header h2 { font-size: 1.5em; }
     .research-card-image img { width: 160px; height: 160px; }
     .hax-research-text h2 { font-size: 1.28rem; }
     .sdk-text h2 { font-size: 1.5em; }
     .page-hero-title h1 { font-size: 1.6em; }
-    .page-hero-image img, .page-hero-image video { height: 240px; }
+    .page-hero-image img, .page-hero-image video { height: 220px; }
     .pipeline-header h2, .case-studies-header h2, .framework-section-header h2 { font-size: 1.5em; }
     .secure-systems-header h2, .research-approach-header h2 { font-size: 1.5em; }
     .template-header h2 { font-size: 1.5em; }
@@ -1150,7 +1150,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 }
 .research-hero-image img {
     width: 100%;
-    height: 525px;
+    height: 380px;
     border-radius: 16px;
     object-fit: cover;
     display: block;
@@ -1355,7 +1355,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 .page-hero {
     position: relative;
     z-index: 1;
-    padding: 40px 0;
+    padding: 24px 0;
 }
 .page-hero .breadcrumb {
     font-size: 0.85em;
@@ -1371,10 +1371,10 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 }
 .page-hero-title {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 .page-hero-title h1 {
-    font-size: 3.5em;
+    font-size: 2.8em;
     font-weight: 600;
     margin: 0;
     line-height: 1.15;
@@ -1404,7 +1404,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
 .page-hero-image img,
 .page-hero-image video {
     width: 100%;
-    height: 525px;
+    height: 380px;
     border-radius: 16px;
     object-fit: cover;
     display: block;
