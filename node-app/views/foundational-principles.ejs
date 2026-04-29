@@ -112,25 +112,5 @@
   </div>
 </div>
 
-<!-- Build with SDK -->
-<div class="sdk-section">
-  <div class="container">
-    <div class="sdk-inner">
-      <div class="sdk-text">
-        <h2><%= pageData.sdk.title %></h2>
-        <p><%= pageData.sdk.description %></p>
-        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
-      </div>
-      <div class="sdk-image">
-        <% if (pageData.sdk.darkImage) { %>
-        <img class="img-light" src="<%= pageData.sdk.image %>" alt="Hax SDK">
-        <img class="img-dark" src="<%= pageData.sdk.darkImage %>" alt="Hax SDK">
-        <% } else { %>
-        <img src="<%= pageData.sdk.image %>" alt="Hax SDK">
-        <% } %>
-      </div>
-    </div>
-  </div>
-</div>
 
 <%- include('partials/footer') %>
