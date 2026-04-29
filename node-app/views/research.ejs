@@ -60,26 +60,6 @@
         <span class="read-more">Read more &rarr;</span>
       </div>
     </a>
-    <% if (item.subtopics && item.subtopics.length) { %>
-    <div class="research-subcards" aria-label="<%= item.title %> subtopics">
-      <% item.subtopics.forEach(function(sub) { %>
-      <a class="research-subcard" href="<%= sub.href || '#' %>">
-        <div class="research-subcard-image">
-          <% if (sub.darkImage) { %>
-          <img class="img-light" src="<%= sub.image %>" alt="<%= sub.title %>">
-          <img class="img-dark" src="<%= sub.darkImage %>" alt="<%= sub.title %>">
-          <% } else { %>
-          <img src="<%= sub.image %>" alt="<%= sub.title %>">
-          <% } %>
-        </div>
-        <div class="research-subcard-text">
-          <h4><%= sub.title %></h4>
-          <p><%= sub.shortDescription || sub.description %></p>
-        </div>
-      </a>
-      <% }) %>
-    </div>
-    <% } %>
     <% }) %>
   </div>
 </div>

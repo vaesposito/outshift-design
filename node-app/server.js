@@ -197,16 +197,7 @@ const fallbackResearch = {
   items: [
     { key: 'foundational-principles', title: 'Foundational Principles', description: 'We build foundational design principles and frameworks for AI-human interaction. Our research lab translates high level insights into practical patterns and solutions that prioritize user control, clarity, and effective collaboration between humans and AI agents.', image: '/images/research/foundational-principles.png', darkImage: '/images/research/foundational-principles-dark.png', href: '/research/foundational-principles' },
     { key: 'cognitive-frameworks', title: 'Cognitive Frameworks', description: 'Our research relies on and develops theoretical models that explain how humans and AI agents process information and make decisions together. We explore cognitive load, mental models, and collaborative reasoning to create frameworks that inform better system design.', image: '/images/research/cognitive-framework.png', darkImage: '/images/research/cognitive-framework-dark.png', href: '/research/cognitive-frameworks' },
-    {
-      key: 'societal-impact', title: 'Societal Impact',
-      description: "Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?",
-      image: '/images/research/societal-impact.png', darkImage: '/images/research/societal-impact-dark.png', href: '/research/societal-impact',
-      subtopics: [
-        { title: 'Agent Impact Map', shortDescription: "Map the agent's stakeholders, decisions, and boundaries.", image: '/images/research/agent-impact.png', darkImage: '/images/research/agent-impact-dark.png', href: '/research/agent-impact-map' },
-        { title: 'Cognitive Load Audit', shortDescription: "Evaluate the agent's effect on user mental effort.", image: '/images/research/cognitive-load-audit.png', darkImage: '/images/research/cognitive-load-audit-dark.png', href: '/research/cognitive-load-audit' },
-        { title: 'Foresight Canvas', shortDescription: 'Anticipate second-order effects and systemic risks.', image: '/images/research/foresight-canvas.png', darkImage: '/images/research/foresight-canvas-dark.png', href: '/research/foresight-canvas' },
-      ],
-    },
+    { key: 'societal-impact', title: 'Societal Impact', description: "Agentic systems reshape how we work, access knowledge, and distribute power. Because these systems fundamentally alter society, impact is a design responsibility, not an afterthought. We must look beyond 'what works' to ask: Who does this serve? Who is excluded? What are the long term consequences of scaling?", image: '/images/research/societal-impact.png', darkImage: '/images/research/societal-impact-dark.png', href: '/research/societal-impact' },
     { key: 'security-privacy', title: 'Security & Privacy', description: 'As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.', image: '/images/research/security-privacy.png', darkImage: '/images/research/security-privacy-dark.png', href: '/research/security-privacy' },
   ],
 };
