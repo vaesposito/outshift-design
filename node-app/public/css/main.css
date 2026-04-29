@@ -361,7 +361,6 @@ button::before, .cta-button::before {
     margin-top: 40px;
     border: 1px solid rgba(77, 99, 128, 0.21);
 }
-.initiatives-section .content { width: 100%; margin: 0 auto; }
 .timeline { position: relative; padding: 0; z-index: 1; }
 .initiative-card {
     display: flex;
