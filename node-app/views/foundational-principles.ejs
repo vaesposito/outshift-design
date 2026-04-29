@@ -37,9 +37,18 @@
       <p><%= pageData.pipelineSubtitle %></p>
     </div>
 
+    <% var stepIds = pageData.steps.map(function(s){ return 'pipeline-step-' + String(s.stepNumber).replace(/[^0-9]/g, ''); }); %>
+    <nav class="pipeline-stepper" aria-label="Pipeline steps">
+      <ol>
+        <% pageData.steps.forEach(function(step, i) { %>
+        <li><a href="#<%= stepIds[i] %>"><span class="pipeline-stepper-num"><%= step.stepNumber %></span> <%- step.subtitle || step.title %></a></li>
+        <% }) %>
+      </ol>
+    </nav>
+
     <div class="pipeline-steps">
-      <% pageData.steps.forEach(function(step) { %>
-      <div class="pipeline-step">
+      <% pageData.steps.forEach(function(step, i) { %>
+      <div class="pipeline-step" id="<%= stepIds[i] %>">
         <div class="step-number"><%= step.stepNumber %></div>
         <div class="step-title"><%- step.title %></div>
         <% if (step.subtitle) { %>
@@ -113,4 +122,45 @@
 </div>
 
 
+<script>
+(function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.pipeline-stepper a[href^="#pipeline-step-"]'));
+    if (!links.length) return;
+    var idToLink = {};
+    var targets = [];
+    links.forEach(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) { idToLink[id] = link; targets.push(el); }
+    });
+    if (!targets.length) return;
+    function setActive(id) {
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var active = idToLink[id];
+        if (active) {
+            active.classList.add('is-active');
+            try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+        }
+    }
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) setActive(entry.target.id);
+            });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+        targets.forEach(function (t) { observer.observe(t); });
+    }
+    links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var id = link.getAttribute('href').slice(1);
+            var el = document.getElementById(id);
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+            setActive(id);
+        });
+    });
+})();
+</script>
 <%- include('partials/footer') %>
