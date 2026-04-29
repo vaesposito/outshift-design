@@ -35,10 +35,18 @@
       <p><%= pageData.theoreticalDescription %></p>
     </div>
 
+    <nav class="pipeline-stepper" aria-label="Theoretical foundations">
+      <ol>
+        <% pageData.steps.forEach(function(step) { %>
+        <li><a href="#cf-step-<%= step.number %>"><span class="pipeline-stepper-num"><%= step.number %></span> <%= step.title %></a></li>
+        <% }) %>
+      </ol>
+    </nav>
+
     <div class="pipeline-steps pipeline-steps--fullwidth">
 
       <% pageData.steps.forEach(function(step) { %>
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="cf-step-<%= step.number %>">
         <div class="framework-content">
           <div class="framework-left">
             <div class="step-number"><%= step.number %></div>
@@ -153,4 +161,49 @@
 <% } %>
 
 
+<script>
+// ── Pipeline stepper: scroll-spy + smooth-scroll on click ──
+(function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.pipeline-stepper a[href^="#cf-step-"]'));
+    if (!links.length) return;
+    var idToLink = {};
+    var targets = [];
+    links.forEach(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) { idToLink[id] = link; targets.push(el); }
+    });
+    if (!targets.length) return;
+
+    function setActive(id) {
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var active = idToLink[id];
+        if (active) {
+            active.classList.add('is-active');
+            try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+        }
+    }
+
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) setActive(entry.target.id);
+            });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+        targets.forEach(function (t) { observer.observe(t); });
+    }
+
+    links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var id = link.getAttribute('href').slice(1);
+            var el = document.getElementById(id);
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+            setActive(id);
+        });
+    });
+})();
+</script>
 <%- include('partials/footer') %>

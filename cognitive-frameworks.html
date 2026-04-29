@@ -278,7 +278,7 @@ a:link, a:visited, a:hover, a:active {
 .page-hero {
     position: relative;
     z-index: 1;
-    padding: 24px 0;
+    padding: 24px 0 64px;
 }
 .page-hero .breadcrumb {
     font-size: 0.85em;
@@ -371,16 +371,63 @@ a:link, a:visited, a:hover, a:active {
     position: relative;
     width: 100%;
     padding: 48px 0;
-}
-.pipeline-step:nth-child(even) {
     border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    width: 100vw;
-    padding-left: calc(50vw - 50%);
-    padding-right: calc(50vw - 50%);
+    scroll-margin-top: 96px;
 }
+.pipeline-step:first-child {
+    border-top: none;
+    padding-top: 24px;
+}
+
+/* ── Pipeline Sticky Stepper ── */
+.pipeline-stepper {
+    position: sticky;
+    top: 16px;
+    z-index: 5;
+    margin: 0 auto 40px;
+    max-width: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 6px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 16px var(--color-shadow);
+}
+.pipeline-stepper ol {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: center;
+}
+.pipeline-stepper ol::-webkit-scrollbar { display: none; }
+.pipeline-stepper li { margin: 0; flex: 0 0 auto; }
+.pipeline-stepper a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.85em;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+}
+.pipeline-stepper a:hover { background: var(--color-hover); color: var(--color-text); }
+.pipeline-stepper a.is-active { background: var(--color-accent); color: #fff; }
+.pipeline-stepper-num {
+    font-weight: 700;
+    font-feature-settings: 'tnum';
+    opacity: 0.95;
+}
+.pipeline-stepper a.is-active .pipeline-stepper-num { opacity: 1; }
 .step-number {
     font-size: 5.5em;
     font-weight: 800;
@@ -958,6 +1005,7 @@ a.use-case-card { color: inherit; text-decoration: none; }
     .page-hero-image img { height: 340px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
     .pipeline-step { width: 100%; padding: 40px 0; }
+    .pipeline-stepper a { padding: 6px 12px; font-size: 0.82em; }
     .step-number { font-size: 4.5em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
@@ -1039,8 +1087,9 @@ a.use-case-card { color: inherit; text-decoration: none; }
 
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
     .pipeline-step { width: 100%; padding: 32px 0; }
-    .pipeline-step:nth-child(odd),
-    .pipeline-step:nth-child(even) { align-self: center; }
+    .pipeline-stepper { padding: 4px; }
+    .pipeline-stepper ol { justify-content: flex-start; }
+    .pipeline-stepper a { padding: 6px 10px; font-size: 0.78em; }
     .step-number { font-size: 3.5em; }
 
     .framework-content { grid-template-columns: 1fr; gap: 24px; }
@@ -1219,9 +1268,17 @@ a.use-case-card { color: inherit; text-decoration: none; }
       <p>Grounding HAX design in established cognitive science</p>
     </div>
 
+    <nav class="pipeline-stepper" aria-label="Theoretical foundations">
+      <ol>
+        <li><a href="#cf-step-1"><span class="pipeline-stepper-num">01</span> Distributed Cognition</a></li>
+        <li><a href="#cf-step-2"><span class="pipeline-stepper-num">02</span> Situated Action</a></li>
+        <li><a href="#cf-step-3"><span class="pipeline-stepper-num">03</span> Embodiment</a></li>
+      </ol>
+    </nav>
+
     <div class="pipeline-steps">
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="cf-step-1">
         <div class="framework-content">
           <div class="framework-left">
             <div class="step-number">01</div>
@@ -1290,7 +1347,7 @@ a.use-case-card { color: inherit; text-decoration: none; }
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="cf-step-2">
         <div class="framework-content">
           <div class="framework-left">
             <div class="step-number">02</div>
@@ -1325,7 +1382,7 @@ a.use-case-card { color: inherit; text-decoration: none; }
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="cf-step-3">
         <div class="framework-content">
           <div class="framework-left">
             <div class="step-number">03</div>
@@ -1474,6 +1531,50 @@ a.use-case-card { color: inherit; text-decoration: none; }
             document.documentElement.style.setProperty('--cursor-scale', 0);
         });
     }
+})();
+
+// ── Pipeline stepper: scroll-spy + smooth-scroll on click ──
+(function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.pipeline-stepper a[href^="#cf-step-"]'));
+    if (!links.length) return;
+    var idToLink = {};
+    var targets = [];
+    links.forEach(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) { idToLink[id] = link; targets.push(el); }
+    });
+    if (!targets.length) return;
+
+    function setActive(id) {
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var active = idToLink[id];
+        if (active) {
+            active.classList.add('is-active');
+            try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+        }
+    }
+
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) setActive(entry.target.id);
+            });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+        targets.forEach(function (t) { observer.observe(t); });
+    }
+
+    links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var id = link.getAttribute('href').slice(1);
+            var el = document.getElementById(id);
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+            setActive(id);
+        });
+    });
 })();
 </script>
 </body>
