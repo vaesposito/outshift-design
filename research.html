@@ -451,7 +451,7 @@ button::before {
     mask-composite: exclude;
     pointer-events: none;
 }
-.research-card:nth-child(even) {
+.research-card.research-card--right {
     margin-left: auto;
 }
 .research-card-image {
@@ -491,6 +491,74 @@ button::before {
 }
 .read-more:hover {
     color: var(--color-accent-hover) !important;
+}
+
+/* ── Research Subcards (children of a parent topic) ── */
+.research-subcards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 58.333%;
+    margin: -16px 0 40px;
+    position: relative;
+    z-index: 0;
+}
+.research-subcard {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    background: var(--color-bg);
+    position: relative;
+    transition: transform 0.2s ease;
+}
+.research-subcard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    padding: 1px;
+    background: linear-gradient(to right, rgba(77, 99, 128, 0.21), #2268BE);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.research-subcard:hover {
+    transform: translateY(-2px);
+}
+.research-subcard-image {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.research-subcard-image img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    display: block;
+}
+.research-subcard-text {
+    flex: 1;
+    min-width: 0;
+}
+.research-subcard-text h4 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+.research-subcard-text p {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
 }
 
 /* ── Footer ── */
@@ -717,8 +785,14 @@ footer {
         padding: 28px;
         margin-bottom: 24px;
     }
-    .research-card:nth-child(even) {
+    .research-card.research-card--right {
         margin-left: 0;
+    }
+    .research-subcards {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: -8px 0 24px;
     }
     .research-card-image {
         flex: none;
@@ -859,7 +933,7 @@ footer {
       </div>
     </a>
 
-    <a href="cognitive-frameworks.html" class="research-card">
+    <a href="cognitive-frameworks.html" class="research-card research-card--right">
       <div class="research-card-image">
         <img class="img-light" src="images/research/cognitive-framework.png" alt="Cognitive Frameworks">
         <img class="img-dark" src="images/research/cognitive-framework-dark.png" alt="Cognitive Frameworks">
@@ -883,7 +957,40 @@ footer {
       </div>
     </a>
 
-    <a href="security-privacy.html" class="research-card">
+    <div class="research-subcards" aria-label="Societal Impact subtopics">
+      <a class="research-subcard" href="agent-impact-map.html">
+        <div class="research-subcard-image">
+          <img class="img-light" src="images/research/agent-impact.png" alt="Agent Impact Map">
+          <img class="img-dark" src="images/research/agent-impact-dark.png" alt="Agent Impact Map">
+        </div>
+        <div class="research-subcard-text">
+          <h4>Agent Impact Map</h4>
+          <p>Map the agent's stakeholders, decisions, and boundaries.</p>
+        </div>
+      </a>
+      <a class="research-subcard" href="cognitive-load-audit.html">
+        <div class="research-subcard-image">
+          <img class="img-light" src="images/research/cognitive-load-audit.png" alt="Cognitive Load Audit">
+          <img class="img-dark" src="images/research/cognitive-load-audit-dark.png" alt="Cognitive Load Audit">
+        </div>
+        <div class="research-subcard-text">
+          <h4>Cognitive Load Audit</h4>
+          <p>Evaluate the agent's effect on user mental effort.</p>
+        </div>
+      </a>
+      <a class="research-subcard" href="foresight-canvas.html">
+        <div class="research-subcard-image">
+          <img class="img-light" src="images/research/foresight-canvas.png" alt="Foresight Canvas">
+          <img class="img-dark" src="images/research/foresight-canvas-dark.png" alt="Foresight Canvas">
+        </div>
+        <div class="research-subcard-text">
+          <h4>Foresight Canvas</h4>
+          <p>Anticipate second-order effects and systemic risks.</p>
+        </div>
+      </a>
+    </div>
+
+    <a href="security-privacy.html" class="research-card research-card--right">
       <div class="research-card-image">
         <img class="img-light" src="images/research/security-privacy.png" alt="Security &amp; Privacy">
         <img class="img-dark" src="images/research/security-privacy-dark.png" alt="Security &amp; Privacy">
@@ -891,42 +998,6 @@ footer {
       <div class="research-card-text">
         <h3>Security & Privacy</h3>
         <p>As AI agents grow more capable and autonomous, they open the door to new ways of working and building. This progress also gives us a chance to evolve our security and privacy models to support safer, more resilient agent ecosystems.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
-
-    <a href="agent-impact-map.html" class="research-card">
-      <div class="research-card-image">
-        <img class="img-light" src="images/research/agent-impact.png" alt="Agent Impact Map">
-        <img class="img-dark" src="images/research/agent-impact-dark.png" alt="Agent Impact Map">
-      </div>
-      <div class="research-card-text">
-        <h3>Agent Impact Map</h3>
-        <p>Mapping the agent's complete socio-technical context, from stakeholders and decision-making roles to intentional boundaries, to ensure a responsible design from day one.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
-
-    <a href="cognitive-load-audit.html" class="research-card">
-      <div class="research-card-image">
-        <img class="img-light" src="images/research/cognitive-load-audit.png" alt="Cognitive Load Audit">
-        <img class="img-dark" src="images/research/cognitive-load-audit-dark.png" alt="Cognitive Load Audit">
-      </div>
-      <div class="research-card-text">
-        <h3>Cognitive Load Audit</h3>
-        <p>Evaluating the agent's impact on a user's mental effort to ensure its design is intuitive, clear and respects diverse cognitive styles.</p>
-        <span class="read-more">Read more &rarr;</span>
-      </div>
-    </a>
-
-    <a href="foresight-canvas.html" class="research-card">
-      <div class="research-card-image">
-        <img class="img-light" src="images/research/foresight-canvas.png" alt="Foresight Canvas">
-        <img class="img-dark" src="images/research/foresight-canvas-dark.png" alt="Foresight Canvas">
-      </div>
-      <div class="research-card-text">
-        <h3>Foresight Canvas</h3>
-        <p>A speculative design process to anticipate the long-term, unintended consequences of our agent. This audit focuses on identifying second-order effects, potential for misuse, and systemic risks.</p>
         <span class="read-more">Read more &rarr;</span>
       </div>
     </a>
