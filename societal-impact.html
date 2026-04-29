@@ -334,6 +334,64 @@ a:link, a:visited, a:hover, a:active {
     line-height: 1.7;
 }
 
+/* ── Framework TOC ── */
+.framework-toc {
+    margin: -24px 0 56px;
+}
+.framework-toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+.framework-toc li { margin: 0; }
+.framework-toc a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 0.95em;
+    font-weight: 500;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.framework-toc a:hover {
+    border-color: var(--color-accent);
+    background: var(--color-hover);
+    transform: translateY(-1px);
+}
+.framework-toc-num {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.5px;
+}
+.responsible-step-template a {
+    color: var(--color-accent);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.responsible-step-template a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+.responsible-step[id] {
+    scroll-margin-top: 96px;
+}
+@media (max-width: 1024px) {
+    .framework-toc ol { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .framework-toc ol { grid-template-columns: 1fr; }
+}
+
 /* ── Responsible Agent Steps ── */
 .responsible-steps {
     display: flex;
@@ -777,9 +835,18 @@ footer {
       <p>To support teams building agentic systems, we developed a practical, five-part framework—adaptable across roles, from UX designers to backend engineers.</p>
     </div>
 
+    <nav class="framework-toc" aria-label="Framework sections">
+      <ol>
+        <li><a href="#contextual-inquiry"><span class="framework-toc-num">01</span> Contextual Inquiry</a></li>
+        <li><a href="#intentional-scope"><span class="framework-toc-num">02</span> Intentional Scope</a></li>
+        <li><a href="#inclusive-cognitive-design"><span class="framework-toc-num">03</span> Inclusive Cognitive Design</a></li>
+        <li><a href="#foresight-feedback-loops"><span class="framework-toc-num">04</span> Foresight &amp; Feedback Loops</a></li>
+      </ol>
+    </nav>
+
     <div class="responsible-steps">
 
-      <div class="responsible-step">
+      <div class="responsible-step" id="contextual-inquiry">
         <div class="responsible-step-image">
           <img class="img-light" src="images/research/societal-impact/contextual-inquiry.png" alt="Design Begins with Understanding">
           <img class="img-dark" src="images/research/societal-impact/contextual-inquiry-dark.png" alt="Design Begins with Understanding">
@@ -794,12 +861,12 @@ footer {
           </ul>
           <div class="responsible-step-template">
             <strong>Templates</strong>
-            Agent Impact Map
+            <a href="agent-impact-map.html">Agent Impact Map</a>
           </div>
         </div>
       </div>
 
-      <div class="responsible-step">
+      <div class="responsible-step" id="intentional-scope">
         <div class="responsible-step-image">
           <img class="img-light" src="images/research/societal-impact/intentional-scope.png" alt="What Should This Agent Do">
           <img class="img-dark" src="images/research/societal-impact/intentional-scope-dark.png" alt="What Should This Agent Do">
@@ -813,12 +880,12 @@ footer {
           </ul>
           <div class="responsible-step-template">
             <strong>Templates</strong>
-            Agent Impact Map
+            <a href="agent-impact-map.html">Agent Impact Map</a>
           </div>
         </div>
       </div>
 
-      <div class="responsible-step">
+      <div class="responsible-step" id="inclusive-cognitive-design">
         <div class="responsible-step-image">
           <img class="img-light" src="images/research/societal-impact/inclusive-design.png" alt="Respect Diverse Ways of Thinking &amp; Working">
           <img class="img-dark" src="images/research/societal-impact/inclusive-design-dark.png" alt="Respect Diverse Ways of Thinking &amp; Working">
@@ -838,7 +905,7 @@ footer {
         </div>
       </div>
 
-      <div class="responsible-step">
+      <div class="responsible-step" id="foresight-feedback-loops">
         <div class="responsible-step-image">
           <img class="img-light" src="images/research/societal-impact/foresight.png" alt="Built for Change. Expect the Unexpected">
           <img class="img-dark" src="images/research/societal-impact/foresight-dark.png" alt="Built for Change. Expect the Unexpected">

@@ -702,6 +702,53 @@ a.more-article-card { color: inherit; text-decoration: none; }
 .responsible-step-content ul li { margin-bottom: 2px; }
 .responsible-step-template { font-size: 0.88em; color: var(--color-text-muted); }
 .responsible-step-template strong { display: block; color: var(--color-text); font-weight: 600; margin-bottom: 2px; }
+.responsible-step-template a { color: var(--color-accent); font-weight: 500; transition: color 0.2s; }
+.responsible-step-template a:hover { color: var(--color-accent-hover); text-decoration: underline; }
+.responsible-step[id] { scroll-margin-top: 96px; }
+
+/* Framework TOC */
+.framework-toc { margin: -24px 0 56px; }
+.framework-toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+.framework-toc li { margin: 0; }
+.framework-toc a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 0.95em;
+    font-weight: 500;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.framework-toc a:hover {
+    border-color: var(--color-accent);
+    background: var(--color-hover);
+    transform: translateY(-1px);
+}
+.framework-toc-num {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.5px;
+}
+@media (max-width: 1024px) {
+    .framework-toc ol { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .framework-toc ol { grid-template-columns: 1fr; }
+}
 .page-hero-text ul { padding-left: 20px; margin: 16px 0 0; line-height: 1.8; font-size: 18px; font-weight: 300; color: #363E4A; }
 [data-theme="dark"] .page-hero-text ul { color: var(--color-text-muted); }
 

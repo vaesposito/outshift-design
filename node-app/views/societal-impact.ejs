@@ -42,9 +42,17 @@
       <p><%= pageData.frameworkDescription %></p>
     </div>
 
+    <nav class="framework-toc" aria-label="Framework sections">
+      <ol>
+        <% pageData.steps.forEach(function(step, i) { %>
+        <li><a href="#<%= step.slug %>"><span class="framework-toc-num"><%= String(i + 1).padStart(2, '0') %></span> <%= step.label %></a></li>
+        <% }) %>
+      </ol>
+    </nav>
+
     <div class="responsible-steps">
       <% pageData.steps.forEach(function(step) { %>
-      <div class="responsible-step">
+      <div class="responsible-step" id="<%= step.slug %>">
         <div class="responsible-step-image">
           <% if (step.darkImage) { %>
           <img class="img-light" src="<%= step.image %>" alt="<%= step.imageAlt || step.title %>">
@@ -64,7 +72,11 @@
           <% if (step.templateLabel) { %>
           <div class="responsible-step-template">
             <strong>Templates</strong>
+            <% if (step.templateLink && step.templateLink !== '#') { %>
+            <a href="<%= step.templateLink %>"><%= step.templateLabel %></a>
+            <% } else { %>
             <%= step.templateLabel %>
+            <% } %>
           </div>
           <% } %>
         </div>
