@@ -278,7 +278,7 @@ a:link, a:visited, a:hover, a:active {
 .page-hero {
     position: relative;
     z-index: 1;
-    padding: 24px 0;
+    padding: 24px 0 64px;
 }
 .page-hero .breadcrumb {
     font-size: 0.85em;
@@ -369,7 +369,8 @@ a:link, a:visited, a:hover, a:active {
 }
 .pipeline-step {
     position: relative;
-    width: 75%;
+    width: 80%;
+    align-self: center;
     padding: 48px;
     border: 1px solid rgba(77, 99, 128, 0.21);
     border-radius: 16px;
@@ -377,13 +378,63 @@ a:link, a:visited, a:hover, a:active {
     box-shadow: 0 6.593px 10.548px 0 rgba(0, 0, 0, 0.00), 0 15.823px 52.742px 0 rgba(0, 0, 0, 0.00), 0 34.282px 105.484px 0 rgba(0, 0, 0, 0.00);
     backdrop-filter: blur(32.96px);
     -webkit-backdrop-filter: blur(32.96px);
+    scroll-margin-top: 96px;
 }
-.pipeline-step:nth-child(odd) {
-    align-self: flex-start;
+
+/* ── Pipeline Sticky Stepper ── */
+.pipeline-stepper {
+    position: sticky;
+    top: 16px;
+    z-index: 5;
+    margin: 0 auto 40px;
+    max-width: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 6px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 16px var(--color-shadow);
 }
-.pipeline-step:nth-child(even) {
-    align-self: flex-end;
+.pipeline-stepper ol {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+.pipeline-stepper ol::-webkit-scrollbar { display: none; }
+.pipeline-stepper li { margin: 0; flex: 0 0 auto; }
+.pipeline-stepper a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.85em;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+}
+.pipeline-stepper a:hover {
+    background: var(--color-hover);
+    color: var(--color-text);
+}
+.pipeline-stepper a.is-active {
+    background: var(--color-accent);
+    color: #fff;
+}
+.pipeline-stepper-num {
+    font-weight: 700;
+    font-feature-settings: 'tnum';
+    opacity: 0.95;
+}
+.pipeline-stepper a.is-active .pipeline-stepper-num { opacity: 1; }
 .step-number {
     font-size: 5.5em;
     font-weight: 800;
@@ -744,7 +795,7 @@ footer {
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 340px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
-    .pipeline-step { width: 85%; padding: 40px; }
+    .pipeline-step { width: 90%; padding: 40px; }
     .step-number { font-size: 4.5em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
@@ -823,8 +874,7 @@ footer {
 
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
     .pipeline-step { width: 100%; padding: 32px; }
-    .pipeline-step:nth-child(odd),
-    .pipeline-step:nth-child(even) { align-self: center; }
+    .pipeline-stepper a { padding: 6px 12px; font-size: 0.78em; }
     .step-number { font-size: 3.5em; }
 
     .sdk-inner { flex-direction: column; gap: 32px; }
@@ -944,9 +994,20 @@ footer {
       <p>A collaborative design process that transforms raw research into practical design guidance and reusable patterns.</p>
     </div>
 
+    <nav class="pipeline-stepper" aria-label="Pipeline steps">
+      <ol>
+        <li><a href="#pipeline-step-1"><span class="pipeline-stepper-num">01</span> Framing the inquiry</a></li>
+        <li><a href="#pipeline-step-2"><span class="pipeline-stepper-num">02</span> Mapping signals</a></li>
+        <li><a href="#pipeline-step-3"><span class="pipeline-stepper-num">03</span> Synthesis</a></li>
+        <li><a href="#pipeline-step-4"><span class="pipeline-stepper-num">04</span> Test the bridge</a></li>
+        <li><a href="#pipeline-step-5"><span class="pipeline-stepper-num">05</span> Prototype &amp; iterate</a></li>
+        <li><a href="#pipeline-step-6"><span class="pipeline-stepper-num">06</span> Document &amp; contribute</a></li>
+      </ol>
+    </nav>
+
     <div class="pipeline-steps">
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="pipeline-step-1">
         <div class="step-number">01</div>
         <div class="step-title">Framing the inquiry</div>
         <div class="step-subtitle">Research Framing</div>
@@ -968,7 +1029,7 @@ footer {
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="pipeline-step-2">
         <div class="step-number">02</div>
         <div class="step-title">Research: Mapping the Present &amp; Emerging Signals</div>
         <div class="step-subtitle">Field input / Ground truth</div>
@@ -991,7 +1052,7 @@ footer {
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="pipeline-step-3">
         <div class="step-number">03</div>
         <div class="step-title">Synthesis: From Signals to Principles</div>
         <div class="step-subtitle">Conceptual modeling</div>
@@ -1010,7 +1071,7 @@ footer {
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="pipeline-step-4">
         <div class="step-number">04</div>
         <div class="step-title">Test the Bridge: Design Heuristics &amp; applicable methods</div>
         <div class="step-subtitle">Validation</div>
@@ -1029,7 +1090,7 @@ footer {
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="pipeline-step-5">
         <div class="step-number">05</div>
         <div class="step-title">Prototype &amp; Iterate the validation</div>
         <div class="step-subtitle">Implementation testing</div>
@@ -1048,7 +1109,7 @@ footer {
         </div>
       </div>
 
-      <div class="pipeline-step">
+      <div class="pipeline-step" id="pipeline-step-6">
         <div class="step-number">06</div>
         <div class="step-title">Update Documentation &amp; Contribute</div>
         <div class="step-subtitle">Publication</div>
@@ -1239,6 +1300,52 @@ footer {
             document.documentElement.style.setProperty('--cursor-scale', 0);
         });
     }
+})();
+
+// ── Pipeline stepper: scroll-spy + smooth-scroll on click ──
+(function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.pipeline-stepper a[href^="#pipeline-step-"]'));
+    if (!links.length) return;
+    var idToLink = {};
+    var targets = [];
+    links.forEach(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) { idToLink[id] = link; targets.push(el); }
+    });
+    if (!targets.length) return;
+
+    function setActive(id) {
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var active = idToLink[id];
+        if (active) {
+            active.classList.add('is-active');
+            // Keep the active pill visible inside the horizontally scrolling stepper
+            try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
+        }
+    }
+
+    if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) setActive(entry.target.id);
+            });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+        targets.forEach(function (t) { observer.observe(t); });
+    }
+
+    // Smooth scroll for older browsers; modern ones honor scroll-margin-top.
+    links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var id = link.getAttribute('href').slice(1);
+            var el = document.getElementById(id);
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + id);
+            setActive(id);
+        });
+    });
 })();
 </script>
 </body>
