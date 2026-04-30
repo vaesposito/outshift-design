@@ -360,17 +360,6 @@ a:link, a:visited, a:hover, a:active {
     line-height: 1.6;
 }
 
-/* ── Pipeline Layout (sidebar stepper + timeline) ── */
-.pipeline-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 48px;
-}
-.pipeline-layout > .pipeline-steps {
-    flex: 1;
-    min-width: 0;
-}
-
 /* ── Pipeline Steps ── */
 .pipeline-steps {
     display: flex;
@@ -434,40 +423,44 @@ a:link, a:visited, a:hover, a:active {
     z-index: 2;
 }
 
-/* ── Pipeline Sticky Stepper (vertical) ── */
+/* ── Pipeline Sticky Stepper ── */
 .pipeline-stepper {
     position: sticky;
-    top: 96px;
+    top: 16px;
     z-index: 5;
-    align-self: flex-start;
-    width: 240px;
+    margin: 0 auto 40px;
+    max-width: 100%;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: 12px;
+    border-radius: 999px;
+    padding: 6px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 4px 16px var(--color-shadow);
 }
 .pipeline-stepper ol {
     display: flex;
-    flex-direction: column;
+    overflow-x: auto;
     gap: 4px;
     list-style: none;
     margin: 0;
     padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-.pipeline-stepper li { margin: 0; }
+.pipeline-stepper ol::-webkit-scrollbar { display: none; }
+.pipeline-stepper li { margin: 0; flex: 0 0 auto; }
 .pipeline-stepper a {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: 10px;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
     text-decoration: none;
     color: var(--color-text-muted);
-    font-size: 0.88em;
+    font-size: 0.85em;
     font-weight: 500;
+    white-space: nowrap;
     transition: background 0.2s, color 0.2s;
 }
 .pipeline-stepper a:hover {
@@ -844,9 +837,7 @@ footer {
     .page-hero-title h1 { font-size: 2.8em; }
     .page-hero-image img { height: 340px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
-    .pipeline-step { width: 100%; padding: 28px 32px; }
-    .pipeline-layout { gap: 32px; }
-    .pipeline-stepper { width: 220px; }
+    .pipeline-step { width: 90%; padding: 28px 32px; }
     .pipeline-steps--timeline { padding-left: 32px; }
     .pipeline-steps--timeline .pipeline-step::before { left: -40px; }
     .step-number { font-size: 4.5em; }
@@ -927,10 +918,7 @@ footer {
 
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
     .pipeline-step { width: 100%; padding: 24px 24px 24px 28px; }
-    .pipeline-layout { flex-direction: column; gap: 24px; }
-    .pipeline-stepper { position: static; width: 100%; padding: 8px; }
-    .pipeline-stepper ol { flex-direction: row; flex-wrap: wrap; gap: 4px; }
-    .pipeline-stepper a { padding: 8px 12px; font-size: 0.82em; border-radius: 999px; }
+    .pipeline-stepper a { padding: 6px 12px; font-size: 0.78em; }
     .pipeline-steps--timeline { width: 100%; padding-left: 28px; gap: 40px; }
     .pipeline-steps--timeline::before { top: 20px; bottom: 20px; }
     .pipeline-steps--timeline .pipeline-step::before { left: -36px; top: 28px; width: 14px; height: 14px; }
@@ -1055,7 +1043,6 @@ footer {
       <p>A collaborative design process that transforms raw research into practical design guidance and reusable patterns.</p>
     </div>
 
-    <div class="pipeline-layout">
     <nav class="pipeline-stepper" aria-label="Pipeline steps">
       <ol>
         <li><a href="#pipeline-step-1"><span class="pipeline-stepper-num">01</span> Framing the inquiry</a></li>
@@ -1190,7 +1177,6 @@ footer {
         </div>
       </div>
 
-    </div>
     </div>
   </div>
 </div>

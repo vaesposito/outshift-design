@@ -38,7 +38,6 @@
     </div>
 
     <% var stepIds = pageData.steps.map(function(s){ return 'pipeline-step-' + String(s.stepNumber).replace(/[^0-9]/g, ''); }); %>
-    <div class="pipeline-layout">
     <nav class="pipeline-stepper" aria-label="Pipeline steps">
       <ol>
         <% pageData.steps.forEach(function(step, i) { %>
@@ -78,7 +77,6 @@
         <% } %>
       </div>
       <% }) %>
-    </div>
     </div>
   </div>
 </div>
