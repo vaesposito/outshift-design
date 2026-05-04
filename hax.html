@@ -578,7 +578,15 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     display: flex;
     align-items: center;
     gap: 0;
-    pointer-events: none;
+    cursor: pointer;
+    z-index: 20;
+}
+.scope-callout .sc-num {
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.scope-callout:hover .sc-num {
+    transform: scale(1.1);
+    box-shadow: 0 2px 10px rgba(245,166,35,0.4);
 }
 .sc-num {
     width: 26px;
@@ -599,6 +607,53 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     width: 28px;
     height: 1px;
     border-top: 2px dashed rgba(245,166,35,0.5);
+}
+.sc-popover {
+    display: none;
+    position: absolute;
+    left: 58px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 32px var(--color-shadow);
+    z-index: 100;
+}
+.sc-popover::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: var(--color-border-medium);
+    border-left: none;
+}
+.sc-popover::after {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-right-color: var(--color-bg);
+    border-left: none;
+}
+.scope-callout.sc-open .sc-popover { display: block; }
+.sc-popover-title {
+    font-size: 0.88em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 6px;
+}
+.sc-popover-desc {
+    font-size: 0.82em;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
 }
 .scope-demo {
     width: 100%;
@@ -792,38 +847,6 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     background: var(--color-hover);
 }
 .sc-qa-select svg { width: 14px; height: 14px; }
-/* Callout legend */
-.scope-legend {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 4px;
-}
-.scope-legend-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-}
-.scope-legend-item .sc-num {
-    margin-top: 2px;
-    flex-shrink: 0;
-}
-.scope-legend-title {
-    font-size: 0.95em;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0 0 4px;
-}
-.scope-legend-desc {
-    font-size: 0.88em;
-    color: var(--color-text-muted);
-    line-height: 1.6;
-    margin: 0;
-}
-@media (max-width: 640px) {
-    .scope-legend { grid-template-columns: 1fr; }
-}
 .pattern-visuals img {
     width: 100%;
     border-radius: 16px;
@@ -1197,12 +1220,20 @@ footer {
         <!-- Interactive: Scope & Boundaries -->
         <div class="scope-demo-wrapper">
           <!-- Callout 1 → tab bar -->
-          <div class="scope-callout" style="--ct: 28px;">
+          <div class="scope-callout" style="--ct: 28px;" data-callout="1">
             <span class="sc-num">1</span><span class="sc-line"></span>
+            <div class="sc-popover">
+              <p class="sc-popover-title">Instruction mode</p>
+              <p class="sc-popover-desc">Users define interaction boundaries by selecting input modes, guiding the agent to operate safely within intended, user-controlled scopes.</p>
+            </div>
           </div>
           <!-- Callout 2 → content area -->
-          <div class="scope-callout" style="--ct: 160px;">
+          <div class="scope-callout" style="--ct: 160px;" data-callout="2">
             <span class="sc-num">2</span><span class="sc-line"></span>
+            <div class="sc-popover">
+              <p class="sc-popover-title">Task specific boundaries</p>
+              <p class="sc-popover-desc">Specific checkboxes define what the AI is allowed to change (e.g., title edits) and what it must avoid. These help define clear behavioral constraints.</p>
+            </div>
           </div>
 
           <div class="scope-demo">
@@ -1330,24 +1361,6 @@ footer {
                 </div>
               </div>
 
-            </div>
-          </div>
-        </div>
-
-        <!-- Callout legend -->
-        <div class="scope-legend">
-          <div class="scope-legend-item">
-            <span class="sc-num">1</span>
-            <div>
-              <p class="scope-legend-title">Instruction mode</p>
-              <p class="scope-legend-desc">Users define interaction boundaries by selecting input modes, guiding the agent to operate safely within intended, user-controlled scopes.</p>
-            </div>
-          </div>
-          <div class="scope-legend-item">
-            <span class="sc-num">2</span>
-            <div>
-              <p class="scope-legend-title">Task specific boundaries</p>
-              <p class="scope-legend-desc">Specific checkboxes define what the AI is allowed to change (e.g., title edits) and what it must avoid. These help define clear behavioral constraints.</p>
             </div>
           </div>
         </div>
@@ -1556,6 +1569,17 @@ footer {
 })();
 </script>
 <script>
+document.querySelectorAll('.scope-callout').forEach(function(callout) {
+    callout.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = callout.classList.contains('sc-open');
+        document.querySelectorAll('.scope-callout').forEach(function(c) { c.classList.remove('sc-open'); });
+        if (!isOpen) callout.classList.add('sc-open');
+    });
+});
+document.addEventListener('click', function() {
+    document.querySelectorAll('.scope-callout').forEach(function(c) { c.classList.remove('sc-open'); });
+});
 document.querySelectorAll('.scope-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
         var demo = tab.closest('.scope-demo');
