@@ -888,6 +888,138 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     background: var(--color-hover);
 }
 .sc-qa-select svg { width: 14px; height: 14px; }
+
+/* ── Customization of Autonomy interactive demo ── */
+.authority-callouts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    padding: 0 2px;
+}
+.auth-callout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    cursor: pointer;
+    position: relative;
+}
+.auth-vline {
+    display: block;
+    width: 1px;
+    height: 16px;
+    border-left: 2px dashed rgba(245,166,35,0.5);
+}
+.auth-callout .sc-num { transition: transform 0.15s, box-shadow 0.15s; }
+.auth-callout:hover .sc-num { transform: scale(1.1); box-shadow: 0 2px 10px rgba(245,166,35,0.4); }
+.sc-popover--up {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    bottom: calc(100% + 8px);
+    top: auto;
+    transform: translateX(-50%);
+    left: 50%;
+    transition: opacity 0.15s;
+}
+.auth-callout:first-child .sc-popover--up { left: 0; transform: none; }
+.auth-callout:last-child .sc-popover--up { left: auto; right: 0; transform: none; }
+.sc-popover--up::before {
+    top: auto; bottom: -7px; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--color-border-medium);
+    border-bottom: none; border-right: none; border-left: none;
+}
+.sc-popover--up::after {
+    top: auto; bottom: -5px; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--color-bg);
+    border-bottom: none; border-right: none; border-left: none;
+}
+.authority-demo {
+    width: 100%;
+    background: var(--color-bg);
+    border-radius: 16px;
+    border: 1px solid var(--color-border-medium);
+    box-shadow: 0 4px 24px var(--color-shadow);
+    overflow: hidden;
+}
+.authority-top-label {
+    font-size: 0.82em;
+    color: var(--color-text-muted);
+    padding: 16px 24px 0;
+    margin: 0;
+}
+.authority-tabs {
+    display: flex;
+    gap: 0;
+    padding: 8px 24px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.auth-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--color-text-muted);
+    font-size: 0.88em;
+    font-weight: 500;
+    padding: 8px 16px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
+    white-space: nowrap;
+}
+.auth-tab:hover { color: var(--color-text); }
+.auth-tab.active { color: var(--color-text); border-bottom-color: var(--color-accent); font-weight: 600; }
+.authority-body {
+    padding: 24px 24px 28px;
+}
+.authority-scope-label {
+    font-size: 0.95em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 20px;
+}
+.authority-slider-wrap { position: relative; }
+.authority-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-border-medium);
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) var(--val, 0%), var(--color-border-medium) var(--val, 0%), var(--color-border-medium) 100%);
+}
+.authority-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 2px solid var(--color-border-medium);
+    box-shadow: 0 2px 8px var(--color-shadow);
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+}
+.authority-slider::-webkit-slider-thumb:hover { box-shadow: 0 2px 16px var(--color-shadow); }
+.authority-slider::-moz-range-thumb {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 2px solid var(--color-border-medium);
+    cursor: pointer;
+}
+.authority-track-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+}
 .pattern-visuals img {
     width: 100%;
     border-radius: 16px;
@@ -1413,8 +1545,62 @@ footer {
           <p class="pattern-related-tag">Related pattern: <span>Authority Sliders</span></p>
         </div>
 
-        <img class="img-light" src="images/patterns/customization-autonomy.svg" alt="Customization of Autonomy">
-        <img class="img-dark" src="images/patterns/customization-autonomy-dark.svg" alt="Customization of Autonomy">
+        <p class="pattern-component-label">Component example: Authority Sliders</p>
+
+        <!-- Interactive: Customization of Autonomy -->
+        <div class="authority-demo">
+          <p class="authority-top-label">Agent Control Panel</p>
+          <div class="authority-tabs">
+            <button class="auth-tab active" data-agent="0">Monitoring Agent</button>
+            <button class="auth-tab" data-agent="65">Traffic Control Agent</button>
+            <button class="auth-tab" data-agent="35">Alerts Agent</button>
+            <button class="auth-tab" data-agent="90">Simulation Agent</button>
+          </div>
+
+          <div class="scope-hint">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v7M5 7l3 3 3-3"/></svg>
+            Click tabs or drag the slider to explore
+          </div>
+
+          <div class="authority-body">
+            <p class="authority-scope-label">Scope of Authority</p>
+            <div class="authority-slider-wrap">
+              <input type="range" class="authority-slider" min="0" max="100" value="0" id="authoritySlider">
+              <div class="authority-track-labels">
+                <span>Monitoring</span>
+                <span>Guided</span>
+                <span>Full Control</span>
+              </div>
+              <!-- Callouts positioned below the track labels -->
+              <div class="authority-callouts">
+                <div class="auth-callout" data-n="1">
+                  <span class="auth-vline"></span>
+                  <span class="sc-num">1</span>
+                  <div class="sc-popover sc-popover--up">
+                    <p class="sc-popover-title">Monitoring</p>
+                    <p class="sc-popover-desc">Agent observes and reports but takes no autonomous action. Full human oversight.</p>
+                  </div>
+                </div>
+                <div class="auth-callout" data-n="2">
+                  <span class="auth-vline"></span>
+                  <span class="sc-num">2</span>
+                  <div class="sc-popover sc-popover--up">
+                    <p class="sc-popover-title">Guided</p>
+                    <p class="sc-popover-desc">Agent suggests actions and awaits human approval before executing. Collaborative control.</p>
+                  </div>
+                </div>
+                <div class="auth-callout" data-n="3">
+                  <span class="auth-vline"></span>
+                  <span class="sc-num">3</span>
+                  <div class="sc-popover sc-popover--up">
+                    <p class="sc-popover-title">Full Control</p>
+                    <p class="sc-popover-desc">Agent acts autonomously within defined boundaries, optimizing for outcomes without step-by-step approval.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1625,6 +1811,50 @@ document.querySelectorAll('.scope-tab').forEach(function(tab) {
         if (target) target.classList.add('active');
     });
 });
+</script>
+<script>
+(function() {
+    var slider = document.getElementById('authoritySlider');
+    if (!slider) return;
+
+    function updateSlider(val) {
+        slider.value = val;
+        slider.style.setProperty('--val', val + '%');
+    }
+
+    // Init
+    updateSlider(0);
+
+    // Tab switching
+    document.querySelectorAll('.auth-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+            var target = parseInt(tab.dataset.agent, 10);
+            // Animate to value
+            var current = parseInt(slider.value, 10);
+            var step = target > current ? 1 : -1;
+            var interval = setInterval(function() {
+                current += step;
+                updateSlider(current);
+                if (current === target) clearInterval(interval);
+            }, 8);
+        });
+    });
+
+    // Live drag update
+    slider.addEventListener('input', function() {
+        updateSlider(slider.value);
+    });
+
+    // Hover callouts
+    document.querySelectorAll('.auth-callout').forEach(function(callout) {
+        var popover = callout.querySelector('.sc-popover');
+        if (!popover) return;
+        callout.addEventListener('mouseenter', function() { popover.style.opacity = '1'; popover.style.pointerEvents = 'auto'; });
+        callout.addEventListener('mouseleave', function() { popover.style.opacity = '0'; popover.style.pointerEvents = 'none'; });
+    });
+})();
 </script>
 </body>
 </html>
