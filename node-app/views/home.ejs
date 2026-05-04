@@ -41,7 +41,7 @@
         <a href="<%= card.href || '#' %>"<% if (card.external) { %> target="_blank" rel="noopener noreferrer"<% } %> class="arrow-link" aria-label="Learn more">
           <%- include('partials/arrow-icon') %>
         </a>
-        <a href="<%= card.docHref %>" class="arrow-link arrow-link--labeled" aria-label="<%= card.docLabel || 'Documentation' %>">
+        <a href="<%= card.docHref %>" target="_blank" rel="noopener noreferrer" class="arrow-link arrow-link--labeled" aria-label="<%= card.docLabel || 'Documentation' %>">
           <span><%= card.docLabel %></span>
           <%- include('partials/arrow-icon') %>
         </a>
