@@ -576,6 +576,7 @@ a.blog-card { color: inherit; text-decoration: none; }
 .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--color-shadow); }
 .blog-card h4 { font-size: 24px; font-weight: 500; color: var(--color-text); margin: 0 0 20px; line-height: 1.3; }
 .blog-card .blog-desc { font-size: 0.92em; color: var(--color-text-subtle); line-height: 1.6; margin: 0; }
+.use-cases .blog-card .blog-desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .blog-meta { display: flex; align-items: center; gap: 16px; font-size: 0.82em; color: var(--color-text-subtle); margin-bottom: 20px; }
 .blog-meta span { display: inline-flex; align-items: center; gap: 5px; }
 .blog-meta svg { width: 14px; height: 14px; }
