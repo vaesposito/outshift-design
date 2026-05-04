@@ -38,13 +38,14 @@
     </div>
 
     <% var stepIds = pageData.steps.map(function(s){ return 'pipeline-step-' + String(s.stepNumber).replace(/[^0-9]/g, ''); }); %>
-    <nav class="pipeline-stepper" aria-label="Pipeline steps">
-      <ol>
-        <% pageData.steps.forEach(function(step, i) { %>
-        <li><a href="#<%= stepIds[i] %>"><span class="pipeline-stepper-num"><%= step.stepNumber %></span> <%- step.subtitle || step.title %></a></li>
-        <% }) %>
-      </ol>
-    </nav>
+    <div class="pipeline-body">
+      <nav class="pipeline-stepper" aria-label="Pipeline steps">
+        <ol>
+          <% pageData.steps.forEach(function(step, i) { %>
+          <li><a href="#<%= stepIds[i] %>"><span class="pipeline-stepper-num"><%= step.stepNumber %></span> <%- step.subtitle || step.title %></a></li>
+          <% }) %>
+        </ol>
+      </nav>
 
     <div class="pipeline-steps pipeline-steps--timeline">
       <% pageData.steps.forEach(function(step, i) { %>
@@ -77,7 +78,8 @@
         <% } %>
       </div>
       <% }) %>
-    </div>
+    </div><!-- /.pipeline-steps -->
+    </div><!-- /.pipeline-body -->
   </div>
 </div>
 
