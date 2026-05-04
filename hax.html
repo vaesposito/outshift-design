@@ -275,6 +275,33 @@ nav > ul > li { position: relative; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
+/* ── Demo cards always render as light-mode UI mockups ── */
+[data-theme="dark"] .scope-demo,
+[data-theme="dark"] .authority-demo {
+    --color-bg: #fff;
+    --color-text: #293247;
+    --color-text-muted: #67707F;
+    --color-text-subtle: #59616B;
+    --color-border: rgba(41, 50, 71, 0.08);
+    --color-border-medium: rgba(41, 50, 71, 0.15);
+    --color-hover: rgba(41, 50, 71, 0.04);
+    --color-shadow: rgba(41, 50, 71, 0.08);
+    --color-accent: #00BCEB;
+    background: #fff;
+    color: #293247;
+}
+[data-theme="dark"] .sc-popover {
+    background: #fff;
+    border-color: rgba(41, 50, 71, 0.15);
+    box-shadow: 0 8px 32px rgba(41, 50, 71, 0.12);
+}
+[data-theme="dark"] .sc-popover::before { border-right-color: rgba(41, 50, 71, 0.15); }
+[data-theme="dark"] .sc-popover::after { border-right-color: #fff; }
+[data-theme="dark"] .sc-popover--up::before { border-top-color: rgba(41, 50, 71, 0.15); }
+[data-theme="dark"] .sc-popover--up::after { border-top-color: #fff; }
+[data-theme="dark"] .sc-popover-title { color: #293247; }
+[data-theme="dark"] .sc-popover-desc { color: #67707F; }
+
 button, .cta-button {
     background: var(--color-text);
     color: var(--color-bg);
@@ -418,7 +445,8 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .patterns-header p {
     font-size: 1.05em;
     color: var(--color-text-muted);
-    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
     line-height: 1.6;
 }
 .patterns-layout {
@@ -1516,9 +1544,6 @@ footer {
           </div>
         </div>
 
-        <img class="img-light" src="images/patterns/permission-gates.svg" alt="Permission Gates">
-        <img class="img-dark" src="images/patterns/permission-gates-dark.svg" alt="Permission Gates">
-
         <div class="pattern-related-intro">
           <p class="pattern-related-intro-name">Customization of Autonomy</p>
           <p class="pattern-related-intro-desc">Users control the spectrum of autonomy, from passive suggestions to full automation based on their comfort and context.</p>
@@ -1587,65 +1612,21 @@ footer {
     <div class="pattern-panel" data-panel="clarity">
       <h3 class="pattern-title">Clarity</h3>
       <p class="pattern-desc">Agents should make their reasoning, context, and confidence visible. Instead of acting like black boxes, they show how decisions are made so users can understand, question, or adjust them.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img class="img-light" src="images/patterns/clarity-1.svg" alt="Clarity pattern 1">
-        <img class="img-dark" src="images/patterns/clarity-1-dark.svg" alt="Clarity pattern 1">
-        <img class="img-light" src="images/patterns/clarity-2.svg" alt="Clarity pattern 2">
-        <img class="img-dark" src="images/patterns/clarity-2-dark.svg" alt="Clarity pattern 2">
-        <img class="img-light" src="images/patterns/clarity-3.svg" alt="Clarity pattern 3">
-        <img class="img-dark" src="images/patterns/clarity-3-dark.svg" alt="Clarity pattern 3">
-        <img class="img-light" src="images/patterns/clarity-4.svg" alt="Clarity pattern 4">
-        <img class="img-dark" src="images/patterns/clarity-4-dark.svg" alt="Clarity pattern 4">
-      </div>
     </div>
 
     <div class="pattern-panel" data-panel="recovery">
       <h3 class="pattern-title">Recovery</h3>
       <p class="pattern-desc">Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img class="img-light" src="images/patterns/recovery-1.svg" alt="Recovery pattern 1">
-        <img class="img-dark" src="images/patterns/recovery-1-dark.svg" alt="Recovery pattern 1">
-        <img class="img-light" src="images/patterns/recovery-2.svg" alt="Recovery pattern 2">
-        <img class="img-dark" src="images/patterns/recovery-2-dark.svg" alt="Recovery pattern 2">
-        <img class="img-light" src="images/patterns/recovery-3.svg" alt="Recovery pattern 3">
-        <img class="img-dark" src="images/patterns/recovery-3-dark.svg" alt="Recovery pattern 3">
-        <img class="img-light" src="images/patterns/recovery-4.svg" alt="Recovery pattern 4">
-        <img class="img-dark" src="images/patterns/recovery-4-dark.svg" alt="Recovery pattern 4">
-      </div>
     </div>
 
     <div class="pattern-panel" data-panel="collaboration">
       <h3 class="pattern-title">Collaboration</h3>
       <p class="pattern-desc">Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes. The agent contributes ideas, takes input, and improves the work in progress.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img class="img-light" src="images/patterns/collaboration-1.svg" alt="Collaboration pattern 1">
-        <img class="img-dark" src="images/patterns/collaboration-1-dark.svg" alt="Collaboration pattern 1">
-        <img class="img-light" src="images/patterns/collaboration-2.svg" alt="Collaboration pattern 2">
-        <img class="img-dark" src="images/patterns/collaboration-2-dark.svg" alt="Collaboration pattern 2">
-        <img class="img-light" src="images/patterns/collaboration-3.svg" alt="Collaboration pattern 3">
-        <img class="img-dark" src="images/patterns/collaboration-3-dark.svg" alt="Collaboration pattern 3">
-      </div>
     </div>
 
     <div class="pattern-panel" data-panel="traceability">
       <h3 class="pattern-title">Traceability</h3>
       <p class="pattern-desc">Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.</p>
-      <div class="pattern-divider"></div>
-      <h4 class="pattern-examples-label">Examples</h4>
-      <div class="pattern-visuals">
-        <img class="img-light" src="images/patterns/traceability-1.svg" alt="Traceability pattern 1">
-        <img class="img-dark" src="images/patterns/traceability-1-dark.svg" alt="Traceability pattern 1">
-        <img class="img-light" src="images/patterns/traceability-2.svg" alt="Traceability pattern 2">
-        <img class="img-dark" src="images/patterns/traceability-2-dark.svg" alt="Traceability pattern 2">
-        <img class="img-light" src="images/patterns/traceability-3.svg" alt="Traceability pattern 3">
-        <img class="img-dark" src="images/patterns/traceability-3-dark.svg" alt="Traceability pattern 3">
-      </div>
     </div><!-- /.pattern-panel traceability -->
       </div><!-- /.patterns-content -->
     </div><!-- /.patterns-layout -->
