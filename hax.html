@@ -402,37 +402,13 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     backdrop-filter: blur(32.96px);
     -webkit-backdrop-filter: blur(32.96px);
 }
-.patterns-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 48px 0 32px;
-    background: linear-gradient(132deg, rgba(210, 194, 255, 0.15) 26.47%, rgba(255, 255, 255, 0) 88.42%), var(--color-bg);
-}
-[data-theme="dark"] .patterns-sticky {
-    background: linear-gradient(132deg, rgba(147, 69, 225, 0.1) 26.47%, rgba(15, 17, 23, 0) 88.42%), var(--color-bg);
-}
 .patterns-section > .container {
-    overflow-y: auto;
-    max-height: 72vh;
-    padding-top: 48px;
-    padding-bottom: 64px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border-medium) transparent;
-}
-.patterns-section > .container::-webkit-scrollbar {
-    width: 6px;
-}
-.patterns-section > .container::-webkit-scrollbar-track {
-    background: transparent;
-}
-.patterns-section > .container::-webkit-scrollbar-thumb {
-    background: var(--color-border-medium);
-    border-radius: 3px;
+    padding-top: 0;
+    padding-bottom: 96px;
 }
 .patterns-header {
     text-align: center;
-    padding: 0 0 32px;
+    padding: 64px 0 0;
 }
 .patterns-header h2 {
     font-size: 2.8em;
@@ -445,41 +421,45 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     margin: 0;
     line-height: 1.6;
 }
-.patterns-filters {
+.patterns-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+    margin-top: 56px;
+}
+.patterns-nav {
     display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 0;
-    padding-bottom: 32px;
+    flex-direction: column;
+    gap: 4px;
+    position: sticky;
+    top: 32px;
 }
 .pattern-filter {
-    display: inline-flex;
-    padding: 10px 24px;
-    border-radius: 40px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+    border-radius: 8px;
     font-size: 0.95em;
     font-weight: 500;
     font-family: inherit;
     background: transparent;
     color: var(--color-text-muted);
-    border: 1px solid var(--color-border-medium);
+    border: 1px solid transparent;
     cursor: pointer;
-    transition: all 0.25s ease;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
+    transition: all 0.2s ease;
 }
 .pattern-filter::before { content: none; }
 .pattern-filter:hover {
     color: var(--color-text);
-    border-color: var(--color-text);
     background: var(--color-hover);
 }
 .pattern-filter.is-active {
-    background: var(--color-text);
-    color: var(--color-bg);
-    border-color: var(--color-text);
+    background: var(--color-hover);
+    color: var(--color-text);
+    border-color: var(--color-border-medium);
+    font-weight: 600;
 }
 .pattern-panel {
     display: none;
@@ -1237,8 +1217,9 @@ footer {
     .page-hero-image img, .page-hero-image video { height: 280px; max-width: 100%; }
 
     .patterns-header h2 { font-size: 1.8em; }
-    .patterns-filters { gap: 8px; }
-    .pattern-filter { padding: 8px 16px; font-size: 0.85em; }
+    .patterns-layout { grid-template-columns: 1fr; }
+    .patterns-nav { flex-direction: row; flex-wrap: wrap; gap: 8px; position: static; }
+    .pattern-filter { width: auto; padding: 8px 16px; font-size: 0.85em; border-radius: 40px; border-color: var(--color-border-medium); }
 
 
     .hax-research-inner { flex-direction: column; gap: 32px; }
@@ -1351,22 +1332,20 @@ footer {
 
 <!-- Guiding principles -->
 <div class="patterns-section">
-  <div class="patterns-sticky">
-    <div class="container">
-      <div class="patterns-header">
-        <h2>Guiding principles</h2>
-        <p>Five ideas for trustworthy agent experiences that prioritize human control and agency.</p>
-      </div>
-      <div class="patterns-filters">
+  <div class="container">
+    <div class="patterns-header">
+      <h2>Guiding principles</h2>
+      <p>Five ideas for trustworthy agent experiences that prioritize human control and agency.</p>
+    </div>
+    <div class="patterns-layout">
+      <nav class="patterns-nav">
         <button class="pattern-filter is-active" data-pattern="control">Control</button>
         <button class="pattern-filter" data-pattern="clarity">Clarity</button>
         <button class="pattern-filter" data-pattern="recovery">Recovery</button>
         <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
         <button class="pattern-filter" data-pattern="traceability">Traceability</button>
-      </div>
-    </div>
-  </div>
-  <div class="container">
+      </nav>
+      <div class="patterns-content">
 
     <div class="pattern-panel is-active" data-panel="control">
       <h3 class="pattern-title">Control</h3>
@@ -1666,10 +1645,11 @@ footer {
         <img class="img-light" src="images/patterns/traceability-3.svg" alt="Traceability pattern 3">
         <img class="img-dark" src="images/patterns/traceability-3-dark.svg" alt="Traceability pattern 3">
       </div>
-    </div>
-  </div>
-</div>
-</div>
+    </div><!-- /.pattern-panel traceability -->
+      </div><!-- /.patterns-content -->
+    </div><!-- /.patterns-layout -->
+  </div><!-- /.container -->
+</div><!-- /.patterns-section -->
 
 <!-- Build with SDK -->
 <div class="sdk-section">
