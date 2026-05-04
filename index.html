@@ -484,23 +484,25 @@ button::before, .cta-button::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border-medium);
-    background: transparent;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: 0 2px 8px var(--color-shadow);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
     font-size: 1em;
     color: var(--color-text);
     text-decoration: none;
 }
 .arrow-link:hover {
-    background: var(--color-hover);
+    box-shadow: 0 4px 16px var(--color-shadow);
+    transform: scale(1.05);
 }
 .arrow-link svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
 .initiative-card .card-text-actions {
     display: flex;
@@ -533,9 +535,9 @@ button::before, .cta-button::before {
 .arrow-link.arrow-link--labeled {
     width: auto;
     height: auto;
-    min-height: 40px;
-    padding: 0 14px 0 16px;
-    gap: 8px;
+    min-height: 52px;
+    padding: 0 18px 0 20px;
+    gap: 10px;
     font-size: 0.95em;
     font-weight: 500;
     white-space: nowrap;
