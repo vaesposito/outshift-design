@@ -1469,7 +1469,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     align-self: flex-start;
     width: 220px;
     flex-shrink: 0;
-    height: calc(100vh - 96px);
+    height: 60vh;
     background: transparent;
     border: none;
     border-radius: 0;
