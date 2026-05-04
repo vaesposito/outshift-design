@@ -49,39 +49,34 @@
 
     <div class="pipeline-steps pipeline-steps--timeline">
       <% pageData.steps.forEach(function(step, i) { %>
-      <details class="pipeline-step" id="<%= stepIds[i] %>"<%= i === 0 ? ' open' : '' %>>
-        <summary class="step-header">
-          <span class="step-num-label"><%= step.stepNumber %></span>
-          <div class="step-header-text">
-            <div class="step-title"><%- step.title %></div>
-            <% if (step.subtitle) { %><div class="step-subtitle"><%= step.subtitle %></div><% } %>
-          </div>
-          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </summary>
-        <div class="step-body">
-          <p class="step-desc"><%= step.description %></p>
-          <% if (step.quote) { %>
-          <div class="step-quote"><%- step.quote %></div>
-          <% } %>
-          <% if (step.bullets && step.bullets.length) { %>
+      <div class="pipeline-step" id="<%= stepIds[i] %>">
+        <div class="step-number"><%= step.stepNumber %></div>
+        <div class="step-title"><%- step.title %></div>
+        <% if (step.subtitle) { %>
+        <div class="step-subtitle"><%= step.subtitle %></div>
+        <% } %>
+        <p class="step-desc"><%= step.description %></p>
+        <% if (step.quote) { %>
+        <div class="step-quote"><%- step.quote %></div>
+        <% } %>
+        <% if (step.bullets && step.bullets.length) { %>
+        <ul class="step-list">
+          <% step.bullets.forEach(function(b) { %>
+          <li><%- b %></li>
+          <% }) %>
+        </ul>
+        <% } %>
+        <% if (step.deliverables && step.deliverables.length) { %>
+        <div class="step-deliverable">
+          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
           <ul class="step-list">
-            <% step.bullets.forEach(function(b) { %>
-            <li><%- b %></li>
+            <% step.deliverables.forEach(function(d) { %>
+            <li><%- d %></li>
             <% }) %>
           </ul>
-          <% } %>
-          <% if (step.deliverables && step.deliverables.length) { %>
-          <div class="step-deliverable">
-            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
-            <ul class="step-list">
-              <% step.deliverables.forEach(function(d) { %>
-              <li><%- d %></li>
-              <% }) %>
-            </ul>
-          </div>
-          <% } %>
         </div>
-      </details>
+        <% } %>
+      </div>
       <% }) %>
     </div><!-- /.pipeline-steps -->
     </div><!-- /.pipeline-body -->
