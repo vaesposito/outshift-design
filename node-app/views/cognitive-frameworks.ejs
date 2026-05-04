@@ -35,13 +35,6 @@
       <p><%= pageData.theoreticalDescription %></p>
     </div>
 
-    <nav class="pipeline-stepper" aria-label="Theoretical foundations">
-      <ol>
-        <% pageData.steps.forEach(function(step) { %>
-        <li><a href="#cf-step-<%= step.number %>"><span class="pipeline-stepper-num"><%= step.number %></span> <%= step.title %></a></li>
-        <% }) %>
-      </ol>
-    </nav>
 
     <div class="pipeline-steps pipeline-steps--fullwidth">
 
