@@ -1087,5 +1087,12 @@ footer {
     }
 })();
 </script>
+<script>
+document.querySelectorAll('.use-cases .blog-card h4').forEach(function(el) {
+    if (el.scrollHeight > el.clientHeight) {
+        el.title = el.textContent.trim();
+    }
+});
+</script>
 </body>
 </html>
