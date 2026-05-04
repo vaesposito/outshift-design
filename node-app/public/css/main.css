@@ -230,6 +230,12 @@ nav ul {
     vertical-align: middle;
     opacity: 0.5;
 }
+.initiative-card h3 .external-link-icon {
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    opacity: 0.6;
+}
 .text, .icon {
     display: inline-block;
     vertical-align: middle;
