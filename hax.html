@@ -537,6 +537,34 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     color: var(--color-accent);
     font-weight: 500;
 }
+.pitfalls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto 48px;
+}
+.pitfall-card {
+    background: var(--color-hover);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px 22px;
+}
+.pitfall-card-title {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 6px;
+}
+.pitfall-card-desc {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+}
+@media (max-width: 640px) {
+    .pitfalls-grid { grid-template-columns: 1fr; }
+}
 .pattern-info-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1856,6 +1884,27 @@ footer {
       <li>Show what rules are active and how they're working</li>
       <li>Make it easy to change and adjust settings</li>
     </ul>
+
+    <div class="pattern-divider"></div>
+    <h4 class="pattern-examples-label">Common pitfalls</h4>
+    <div class="pitfalls-grid">
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Over-reliance on implicit controls</p>
+        <p class="pitfall-card-desc">Assuming users understand what the agent is doing without clear communication</p>
+      </div>
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Boundary creep</p>
+        <p class="pitfall-card-desc">Agents gradually take on more than intended without safeguards or oversight</p>
+      </div>
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Ambiguous authority</p>
+        <p class="pitfall-card-desc">It is unclear if the agent or the human is responsible for the task, especially in case of failure states</p>
+      </div>
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Hidden behavior</p>
+        <p class="pitfall-card-desc">The agent performs actions without surfacing intent or outcomes to the user</p>
+      </div>
+    </div>
 
     </div><!-- /.pattern-panel control -->
 
