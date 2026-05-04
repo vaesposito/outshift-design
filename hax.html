@@ -409,8 +409,22 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     padding: 48px 0 32px;
 }
 .patterns-section > .container {
-    padding-top: 56px;
-    padding-bottom: 80px;
+    overflow-y: auto;
+    max-height: 72vh;
+    padding-top: 48px;
+    padding-bottom: 64px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-medium) transparent;
+}
+.patterns-section > .container::-webkit-scrollbar {
+    width: 6px;
+}
+.patterns-section > .container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.patterns-section > .container::-webkit-scrollbar-thumb {
+    background: var(--color-border-medium);
+    border-radius: 3px;
 }
 .patterns-header {
     text-align: center;
