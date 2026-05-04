@@ -405,20 +405,19 @@ button::before, .cta-button::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    box-shadow: 0 2px 8px var(--color-shadow);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-medium);
+    background: transparent;
     cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: background 0.2s;
     font-size: 1em;
     color: var(--color-text);
     text-decoration: none;
 }
-.arrow-link:hover { box-shadow: 0 4px 16px var(--color-shadow); transform: scale(1.05); }
-.arrow-link svg { width: 20px; height: 20px; }
+.arrow-link:hover { background: var(--color-hover); }
+.arrow-link svg { width: 16px; height: 16px; }
 .initiative-card .card-text-actions {
     display: flex;
     flex-wrap: wrap;
@@ -447,12 +446,16 @@ button::before, .cta-button::before {
     outline: 2px solid var(--color-accent);
     outline-offset: -6px;
 }
+.initiative-card-link:hover ~ .card-text h3 {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
 .arrow-link.arrow-link--labeled {
     width: auto;
     height: auto;
-    min-height: 52px;
-    padding: 0 18px 0 20px;
-    gap: 10px;
+    min-height: 40px;
+    padding: 0 14px 0 16px;
+    gap: 8px;
     font-size: 0.95em;
     font-weight: 500;
     white-space: nowrap;
