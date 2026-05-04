@@ -492,6 +492,62 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     text-align: center;
     margin: 0 auto 48px;
 }
+.pattern-info {
+    max-width: 720px;
+    margin: 0 auto 40px;
+}
+.pattern-info-title {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 12px;
+}
+.pattern-info p {
+    font-size: 1em;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+.pattern-why {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    border-left: 3px solid var(--color-accent);
+    background: rgba(0, 188, 235, 0.04);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+}
+[data-theme="dark"] .pattern-why {
+    background: rgba(0, 188, 235, 0.06);
+}
+.pattern-related {
+    max-width: 720px;
+    margin: 0 auto 48px;
+}
+.pattern-related-title {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 16px;
+}
+.pattern-related-entry {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    background: var(--color-hover);
+}
+.pattern-related-entry h5 {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 6px;
+}
+.pattern-related-entry p {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
 .pattern-visuals {
     display: flex;
     flex-direction: column;
@@ -845,7 +901,26 @@ footer {
 
     <div class="pattern-panel is-active" data-panel="control">
       <h3 class="pattern-title">Control</h3>
-      <p class="pattern-desc">Humans guide how agents operate by setting boundaries, preferences, and intent. Control aligns autonomy with human goals.</p>
+      <p class="pattern-desc">Let the Human Set the Rules</p>
+
+      <div class="pattern-info">
+        <p class="pattern-info-title">What it means</p>
+        <p>Humans guide how agents operate by setting boundaries, preferences, and intent. Rather than making assumptions, agents respond to this direction with flexibility. Control doesn't mean limiting autonomy, it means aligning it with human goals.</p>
+      </div>
+
+      <div class="pattern-why">
+        <p class="pattern-info-title">Why this matters</p>
+        <p>People are more likely to trust and engage with agents when they understand how decisions are made, and can shape them. Giving users control over behaviors, permissions, and preferences makes the system feel collaborative and intentional, rather than unpredictable.</p>
+      </div>
+
+      <div class="pattern-related">
+        <p class="pattern-related-title">Related Patterns</p>
+        <div class="pattern-related-entry">
+          <h5>Scope &amp; Boundaries</h5>
+          <p>Users define operational limits for AI behavior. The agent operates within these boundaries, avoiding unintended actions.</p>
+        </div>
+      </div>
+
       <div class="pattern-divider"></div>
       <h4 class="pattern-examples-label">Examples</h4>
       <div class="pattern-visuals">
