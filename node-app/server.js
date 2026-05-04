@@ -48,10 +48,7 @@ const sdkFallback = {
 const fallbackData = {
   nav: [
     { label: 'Initiatives', href: '/#initiatives', hasDropdown: true, children: [
-      { group: 'The Human-Agent Experience', groupHref: '/hax', items: [
-        { label: 'Human-Centered AI Patterns', href: '/human-centered-ai-patterns' },
-        { label: 'Guiding principles', href: '/guiding-principles' },
-      ]},
+      { group: 'The Human-Agent Experience', groupHref: '/hax', items: [] },
       { label: 'Internet of Cognition', href: 'https://outshift.cisco.com/internet-of-cognition/explore', external: true },
     ]},
     // { label: 'About us', href: '/#about', hasDropdown: true },
