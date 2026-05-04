@@ -796,6 +796,38 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     background: var(--color-hover);
 }
 .sc-qa-select svg { width: 14px; height: 14px; }
+/* Callout legend */
+.scope-legend {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+}
+.scope-legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+.scope-legend-item .sc-num {
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+.scope-legend-title {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 4px;
+}
+.scope-legend-desc {
+    font-size: 0.88em;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+@media (max-width: 640px) {
+    .scope-legend { grid-template-columns: 1fr; }
+}
 .pattern-visuals img {
     width: 100%;
     border-radius: 16px;
@@ -1302,6 +1334,24 @@ footer {
                 </div>
               </div>
 
+            </div>
+          </div>
+        </div>
+
+        <!-- Callout legend -->
+        <div class="scope-legend">
+          <div class="scope-legend-item">
+            <span class="sc-num">1</span>
+            <div>
+              <p class="scope-legend-title">Instruction mode</p>
+              <p class="scope-legend-desc">Users define interaction boundaries by selecting input modes, guiding the agent to operate safely within intended, user-controlled scopes.</p>
+            </div>
+          </div>
+          <div class="scope-legend-item">
+            <span class="sc-num">2</span>
+            <div>
+              <p class="scope-legend-title">Task specific boundaries</p>
+              <p class="scope-legend-desc">Specific checkboxes define what the AI is allowed to change (e.g., title edits) and what it must avoid. These help define clear behavioral constraints.</p>
             </div>
           </div>
         </div>
