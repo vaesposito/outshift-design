@@ -484,25 +484,23 @@ button::before, .cta-button::before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
-    box-shadow: 0 2px 8px var(--color-shadow);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-medium);
+    background: transparent;
     cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: background 0.2s;
     font-size: 1em;
     color: var(--color-text);
     text-decoration: none;
 }
 .arrow-link:hover {
-    box-shadow: 0 4px 16px var(--color-shadow);
-    transform: scale(1.05);
+    background: var(--color-hover);
 }
 .arrow-link svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
 }
 .initiative-card .card-text-actions {
     display: flex;
@@ -535,9 +533,9 @@ button::before, .cta-button::before {
 .arrow-link.arrow-link--labeled {
     width: auto;
     height: auto;
-    min-height: 52px;
-    padding: 0 18px 0 20px;
-    gap: 10px;
+    min-height: 40px;
+    padding: 0 14px 0 16px;
+    gap: 8px;
     font-size: 0.95em;
     font-weight: 500;
     white-space: nowrap;
@@ -1279,11 +1277,6 @@ footer {
       <h3>HAX, The Human-Agent Experience</h3>
       <p>Designing for the Internet of Agents</p>
       <div class="card-text-actions">
-        <a href="hax.html" class="arrow-link" aria-label="Learn more about Hax">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12L12 4M12 4H5M12 4V11"/>
-          </svg>
-        </a>
         <a href="sdk.html#introduction" target="_blank" rel="noopener noreferrer" class="arrow-link arrow-link--labeled" aria-label="Explore the SDK documentation">
           <span>Explore the SDK</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
