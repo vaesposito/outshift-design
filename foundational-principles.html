@@ -411,6 +411,7 @@ a:link, a:visited, a:hover, a:active {
     align-self: flex-start;
     width: 220px;
     flex-shrink: 0;
+    height: calc(100vh - 96px);
     background: transparent;
     border: none;
     border-radius: 0;
@@ -420,11 +421,13 @@ a:link, a:visited, a:hover, a:active {
 .pipeline-stepper ol {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 0;
     list-style: none;
     margin: 0;
     padding: 0;
     position: relative;
+    height: 100%;
 }
 /* Vertical spine */
 .pipeline-stepper ol::before {
@@ -936,7 +939,7 @@ footer {
 
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.8em; }
     .pipeline-body { flex-direction: column; gap: 32px; }
-    .pipeline-stepper { position: static; width: 100%; }
+    .pipeline-stepper { position: static; width: 100%; height: auto; }
     .pipeline-stepper ol { flex-direction: row; flex-wrap: wrap; gap: 4px; }
     .pipeline-stepper ol::before { display: none; }
     .pipeline-stepper a { padding: 6px 10px 6px 10px; font-size: 0.78em; border: 1px solid var(--color-border); border-radius: 999px; }
