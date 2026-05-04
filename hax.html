@@ -554,6 +554,137 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     gap: 32px;
     align-items: center;
 }
+
+/* ── Scope & Boundaries interactive demo ── */
+.scope-demo {
+    width: 100%;
+    background: #0f1420;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    font-family: inherit;
+}
+.scope-demo-topbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: wrap;
+}
+.scope-demo-via {
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+}
+.scope-demo-tabs {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+}
+.scope-tab {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.88em;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+}
+.scope-tab:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
+.scope-tab.active { background: #3b6bf7; color: #fff; }
+.scope-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82em;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: color 0.15s;
+}
+.scope-reset:hover { color: rgba(255,255,255,0.85); }
+.scope-reset svg { width: 14px; height: 14px; }
+.scope-demo-body {
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.scope-item {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+}
+.scope-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+}
+.scope-item-header:hover { background: rgba(255,255,255,0.04); }
+.scope-parent-check {
+    width: 16px;
+    height: 16px;
+    accent-color: #3b6bf7;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.scope-item-num {
+    font-size: 0.78em;
+    color: rgba(255,255,255,0.35);
+    white-space: nowrap;
+}
+.scope-item-name {
+    font-size: 0.92em;
+    font-weight: 600;
+    color: #fff;
+    flex: 1;
+}
+.scope-chevron {
+    width: 16px;
+    height: 16px;
+    color: rgba(255,255,255,0.4);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+.scope-item.expanded .scope-chevron { transform: rotate(180deg); }
+.scope-item-body {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 16px 14px;
+}
+.scope-item.expanded .scope-item-body { display: flex; }
+.scope-sub {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88em;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 7px;
+    padding: 10px 14px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.02);
+    transition: background 0.15s;
+}
+.scope-sub:hover { background: rgba(255,255,255,0.05); }
+.scope-sub input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #3b6bf7;
+    flex-shrink: 0;
+    cursor: pointer;
+}
 .pattern-visuals img {
     width: 100%;
     border-radius: 16px;
@@ -920,8 +1051,62 @@ footer {
         <p class="pattern-related-intro-desc">Users define operational limits for AI behavior. The agent operates within these boundaries, avoiding unintended actions.</p>
       </div>
       <div class="pattern-visuals">
-        <img class="img-light" src="images/patterns/scope-boundaries.svg" alt="Scope &amp; Boundaries">
-        <img class="img-dark" src="images/patterns/scope-boundaries-dark.svg" alt="Scope &amp; Boundaries">
+
+        <!-- Interactive: Scope & Boundaries -->
+        <div class="scope-demo">
+          <div class="scope-demo-topbar">
+            <span class="scope-demo-via">Instructions via</span>
+            <div class="scope-demo-tabs">
+              <button class="scope-tab active" data-tab="settings">Settings</button>
+              <button class="scope-tab" data-tab="chat">Chat</button>
+              <button class="scope-tab" data-tab="file">File</button>
+              <button class="scope-tab" data-tab="qa">Q&amp;A</button>
+            </div>
+            <button class="scope-reset">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4a7 7 0 1 1 0 12"/><polyline points="1 4 4 4 4 7"/></svg>
+              Reset basic configuration
+            </button>
+          </div>
+          <div class="scope-demo-body">
+            <div class="scope-item expanded" id="scope-item-1">
+              <div class="scope-item-header" onclick="toggleScopeItem(this)">
+                <input type="checkbox" class="scope-parent-check" checked onclick="event.stopPropagation(); syncChildren(this)">
+                <span class="scope-item-num">1 of 3</span>
+                <span class="scope-item-name">Scope &amp; Boundaries</span>
+                <svg class="scope-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+              </div>
+              <div class="scope-item-body">
+                <label class="scope-sub"><input type="checkbox" checked onchange="syncParent(this)"> Update the item label if it doesn't match the defined scope</label>
+                <label class="scope-sub"><input type="checkbox" checked onchange="syncParent(this)"> Extend the description to clarify boundaries without altering original intent</label>
+              </div>
+            </div>
+            <div class="scope-item" id="scope-item-2">
+              <div class="scope-item-header" onclick="toggleScopeItem(this)">
+                <input type="checkbox" class="scope-parent-check" onclick="event.stopPropagation(); syncChildren(this)">
+                <span class="scope-item-num">2 of 3</span>
+                <span class="scope-item-name">Another Setting</span>
+                <svg class="scope-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+              </div>
+              <div class="scope-item-body">
+                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Update the item label if it doesn't match the defined scope</label>
+                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Extend the description to clarify boundaries without altering original intent</label>
+              </div>
+            </div>
+            <div class="scope-item" id="scope-item-3">
+              <div class="scope-item-header" onclick="toggleScopeItem(this)">
+                <input type="checkbox" class="scope-parent-check" onclick="event.stopPropagation(); syncChildren(this)">
+                <span class="scope-item-num">3 of 3</span>
+                <span class="scope-item-name">Behavioral Limits</span>
+                <svg class="scope-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+              </div>
+              <div class="scope-item-body">
+                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Restrict agent to read-only actions in sensitive contexts</label>
+                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Require confirmation before executing irreversible operations</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <img class="img-light" src="images/patterns/permission-gates.svg" alt="Permission Gates">
         <img class="img-dark" src="images/patterns/permission-gates-dark.svg" alt="Permission Gates">
         <img class="img-light" src="images/patterns/customization-autonomy.svg" alt="Customization of Autonomy">
@@ -1123,6 +1308,36 @@ footer {
         });
     });
 })();
+</script>
+<script>
+function toggleScopeItem(header) {
+    header.closest('.scope-item').classList.toggle('expanded');
+}
+function syncChildren(parentCb) {
+    var item = parentCb.closest('.scope-item');
+    item.querySelectorAll('.scope-sub input[type="checkbox"]').forEach(function(cb) {
+        cb.checked = parentCb.checked;
+    });
+}
+function syncParent(childCb) {
+    var item = childCb.closest('.scope-item');
+    var children = item.querySelectorAll('.scope-sub input[type="checkbox"]');
+    var allChecked = Array.from(children).every(function(cb) { return cb.checked; });
+    item.querySelector('.scope-parent-check').checked = allChecked;
+}
+document.querySelectorAll('.scope-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        tab.closest('.scope-demo-tabs').querySelectorAll('.scope-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+    });
+});
+document.querySelector('.scope-reset') && document.querySelector('.scope-reset').addEventListener('click', function() {
+    document.querySelectorAll('.scope-item').forEach(function(item, i) {
+        item.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = i === 0; });
+        if (i === 0) item.classList.add('expanded'); else item.classList.remove('expanded');
+    });
+    document.querySelectorAll('.scope-tab').forEach(function(t, i) { t.classList.toggle('active', i === 0); });
+});
 </script>
 </body>
 </html>
