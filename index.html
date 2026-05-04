@@ -530,9 +530,15 @@ button::before, .cta-button::before {
     outline: 2px solid var(--color-accent);
     outline-offset: -6px;
 }
-.initiative-card-link:hover ~ .card-text h3 {
+.initiative-card--linked .card-text h3 {
+    pointer-events: auto;
+    cursor: pointer;
+    display: inline;
+}
+.initiative-card--linked .card-text h3:hover {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 }
 .arrow-link.arrow-link--labeled {
     width: auto;
