@@ -1037,6 +1037,166 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     display: block;
 }
 
+/* ── Permission Gates Demo ── */
+.pgates-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding-left: 56px;
+}
+.pgates-demo {
+    width: 100%;
+    background: #141929;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    font-family: inherit;
+    color: #e0e4ec;
+}
+.pgates-header {
+    padding: 20px 24px 0;
+    font-size: 0.92em;
+    font-weight: 600;
+    color: #e0e4ec;
+    margin: 0;
+}
+.pgates-tabs {
+    display: flex;
+    gap: 0;
+    padding: 10px 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.pgates-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    color: rgba(224,228,236,0.45);
+    font-size: 0.85em;
+    font-weight: 500;
+    padding: 8px 14px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
+    white-space: nowrap;
+}
+.pgates-tab:hover { color: rgba(224,228,236,0.8); }
+.pgates-tab.active { color: #e0e4ec; border-bottom-color: #22c55e; font-weight: 600; }
+.pgates-body {
+    padding: 16px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.pgates-card {
+    background: #1e2846;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 14px 18px;
+}
+.pgates-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.88em;
+    color: #e0e4ec;
+}
+.pgates-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.pgates-toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+.pgates-toggle-track {
+    display: block;
+    width: 36px;
+    height: 20px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 10px;
+    transition: background 0.2s;
+    position: relative;
+    flex-shrink: 0;
+}
+.pgates-toggle-input:checked + .pgates-toggle-track { background: #00BCEB; }
+.pgates-toggle-thumb {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    transition: left 0.2s;
+    pointer-events: none;
+}
+.pgates-toggle-input:checked + .pgates-toggle-track .pgates-toggle-thumb { left: 19px; }
+.pgates-section-title {
+    font-size: 0.88em;
+    font-weight: 700;
+    color: #e0e4ec;
+    margin: 0 0 12px;
+}
+.pgates-check-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.84em;
+    color: rgba(224,228,236,0.8);
+    margin-bottom: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+.pgates-check {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    background: transparent;
+    transition: background 0.15s, border-color 0.15s;
+}
+.pgates-check.checked {
+    background: #2563EB;
+    border-color: #2563EB;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+}
+.pgates-field { margin: 2px 0 10px; }
+.pgates-field-label {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #e0e4ec;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.pgates-required { color: #ef4444; }
+.pgates-input-mock {
+    display: inline-block;
+    background: #141929;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 0.85em;
+    color: rgba(224,228,236,0.5);
+    min-width: 100px;
+}
+.pgates-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 10px 0 0;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -1603,10 +1763,81 @@ footer {
                 </div>
               </div>
             </div>
+      </div>
+    <div class="pattern-divider"></div>
+
+    <div class="pattern-related-intro">
+      <p class="pattern-related-intro-name">Permission &amp; Confirmation Gates</p>
+      <p class="pattern-related-intro-desc">Explicit checkpoints require human approval before proceeding. Safeguards critical operations through shared decision-making.</p>
+    </div>
+
+    <p class="pattern-component-label">Component example: Kill switch and preview modes</p>
+
+    <!-- Interactive: Permission & Confirmation Gates -->
+    <div class="pgates-demo-wrapper">
+      <!-- Callout 1 → toggle -->
+      <div class="scope-callout" style="--ct: 88px;" data-callout="pg1">
+        <span class="sc-num">1</span><span class="sc-line"></span>
+        <div class="sc-popover">
+          <p class="sc-popover-title">Immediate agent shutdown</p>
+          <p class="sc-popover-desc">A prominent "Disable Agent" toggle gives users a fast, irreversible way to halt all agent activity. This supports emergency intervention and restores user authority instantly.</p>
+        </div>
+      </div>
+      <!-- Callout 2 → current activities -->
+      <div class="scope-callout" style="--ct: 190px;" data-callout="pg2">
+        <span class="sc-num">2</span><span class="sc-line"></span>
+        <div class="sc-popover">
+          <p class="sc-popover-title">Visible control settings</p>
+          <p class="sc-popover-desc">The system shows settings upfront allowing the user to assess whether to make decisions based on risks and live situations.</p>
+        </div>
+      </div>
+
+      <div class="pgates-demo">
+        <p class="pgates-header">Agent Control Panel</p>
+        <div class="pgates-tabs">
+          <button class="pgates-tab active">Traffic Control Agent</button>
+          <button class="pgates-tab">Alerts Agent</button>
+          <button class="pgates-tab">Simulation Agent</button>
+        </div>
+        <div class="pgates-body">
+          <!-- Toggle card -->
+          <div class="pgates-card">
+            <div class="pgates-toggle-row">
+              <label class="pgates-toggle">
+                <input type="checkbox" class="pgates-toggle-input">
+                <span class="pgates-toggle-track">
+                  <span class="pgates-toggle-thumb"></span>
+                </span>
+              </label>
+              <span>Disable Agent</span>
+            </div>
+          </div>
+          <!-- Current Activities card -->
+          <div class="pgates-card">
+            <p class="pgates-section-title">Current Activities</p>
+            <label class="pgates-check-row">
+              <span class="pgates-check checked"></span>
+              Require approval before proceeding
+            </label>
+            <div class="pgates-field">
+              <p class="pgates-field-label">Approval Load <span class="pgates-required">*</span></p>
+              <div class="pgates-input-mock">75%</div>
+            </div>
+            <label class="pgates-check-row">
+              <span class="pgates-check"></span>
+              Ask user to confirm finalizing
+            </label>
+            <label class="pgates-check-row" style="margin-bottom:0">
+              <span class="pgates-check"></span>
+              Log every action performed
+            </label>
+            <hr class="pgates-divider">
           </div>
         </div>
       </div>
     </div>
+
+    </div><!-- /.pattern-panel control -->
 
     <div class="pattern-panel" data-panel="clarity">
       <h3 class="pattern-title">Clarity</h3>
@@ -1816,6 +2047,22 @@ document.querySelectorAll('.scope-tab').forEach(function(tab) {
         callout.addEventListener('mouseleave', function() { popover.style.opacity = '0'; popover.style.pointerEvents = 'none'; });
     });
 })();
+</script>
+<script>
+// Pgates tabs
+document.querySelectorAll('.pgates-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        tab.closest('.pgates-tabs').querySelectorAll('.pgates-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+    });
+});
+// Pgates checkboxes
+document.querySelectorAll('.pgates-check-row').forEach(function(row) {
+    row.addEventListener('click', function() {
+        var check = row.querySelector('.pgates-check');
+        if (check) check.classList.toggle('checked');
+    });
+});
 </script>
 </body>
 </html>
