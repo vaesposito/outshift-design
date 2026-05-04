@@ -572,25 +572,60 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 
 /* ── Scope & Boundaries interactive demo ── */
+.scope-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding-left: 56px;
+}
+.scope-callout {
+    position: absolute;
+    left: 0;
+    top: var(--ct);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    pointer-events: none;
+}
+.sc-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #F5A623;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+}
+.sc-line {
+    display: block;
+    width: 28px;
+    height: 1px;
+    border-top: 2px dashed rgba(245,166,35,0.5);
+}
 .scope-demo {
     width: 100%;
-    background: #0f1420;
+    background: var(--color-bg);
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--color-border-medium);
+    box-shadow: 0 4px 24px var(--color-shadow);
     font-family: inherit;
 }
 .scope-demo-topbar {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 16px 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--color-border);
     flex-wrap: wrap;
 }
 .scope-demo-via {
-    font-size: 0.85em;
-    color: rgba(255,255,255,0.5);
+    font-size: 0.82em;
+    color: var(--color-text-muted);
     white-space: nowrap;
 }
 .scope-demo-tabs {
@@ -600,107 +635,169 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 .scope-tab {
     background: transparent;
-    border: none;
-    color: rgba(255,255,255,0.5);
+    border: 1px solid transparent;
+    color: var(--color-text-muted);
     font-size: 0.88em;
     padding: 6px 16px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
     font-family: inherit;
 }
-.scope-tab:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
-.scope-tab.active { background: #3b6bf7; color: #fff; }
+.scope-tab:hover {
+    background: var(--color-hover);
+    color: var(--color-text);
+    border-color: var(--color-border);
+}
+.scope-tab.active {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+}
 .scope-reset {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: transparent;
     border: none;
-    color: rgba(255,255,255,0.5);
+    color: var(--color-text-muted);
     font-size: 0.82em;
-    cursor: pointer;
+    cursor: default;
     font-family: inherit;
     white-space: nowrap;
-    transition: color 0.15s;
 }
-.scope-reset:hover { color: rgba(255,255,255,0.85); }
 .scope-reset svg { width: 14px; height: 14px; }
-.scope-demo-body {
-    padding: 16px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.scope-item {
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    overflow: hidden;
-    background: rgba(255,255,255,0.03);
-}
-.scope-item-header {
+.scope-hint {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    cursor: pointer;
-    user-select: none;
-}
-.scope-item-header:hover { background: rgba(255,255,255,0.04); }
-.scope-parent-check {
-    width: 16px;
-    height: 16px;
-    accent-color: #3b6bf7;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-.scope-item-num {
-    font-size: 0.78em;
-    color: rgba(255,255,255,0.35);
-    white-space: nowrap;
-}
-.scope-item-name {
-    font-size: 0.92em;
-    font-weight: 600;
-    color: #fff;
-    flex: 1;
-}
-.scope-chevron {
-    width: 16px;
-    height: 16px;
-    color: rgba(255,255,255,0.4);
-    transition: transform 0.2s;
-    flex-shrink: 0;
-}
-.scope-item.expanded .scope-chevron { transform: rotate(180deg); }
-.scope-item-body {
-    display: none;
-    flex-direction: column;
+    justify-content: center;
     gap: 6px;
-    padding: 0 16px 14px;
+    padding: 8px 20px;
+    font-size: 0.78em;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(0,188,235,0.04);
 }
-.scope-item.expanded .scope-item-body { display: flex; }
-.scope-sub {
+.scope-hint svg { width: 14px; height: 14px; }
+.scope-panels { padding: 20px; }
+.scope-panel { display: none; }
+.scope-panel.active { display: block; }
+/* Settings tab */
+.sc-acc-item {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    background: var(--color-hover);
+}
+.sc-acc-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.88em;
-    color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 7px;
-    padding: 10px 14px;
-    cursor: pointer;
-    background: rgba(255,255,255,0.02);
-    transition: background 0.15s;
+    padding: 12px 16px;
 }
-.scope-sub:hover { background: rgba(255,255,255,0.05); }
-.scope-sub input[type="checkbox"] {
+.sc-check {
     width: 15px;
     height: 15px;
-    accent-color: #3b6bf7;
+    border-radius: 3px;
+    border: 1.5px solid var(--color-border-medium);
     flex-shrink: 0;
-    cursor: pointer;
+    display: inline-block;
+    background: transparent;
 }
+.sc-check.sc-checked {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+}
+.sc-num-label { font-size: 0.75em; color: var(--color-text-muted); white-space: nowrap; }
+.sc-acc-name { font-size: 0.9em; font-weight: 600; color: var(--color-text); flex: 1; }
+.sc-chevron { width: 14px; height: 14px; color: var(--color-text-muted); flex-shrink: 0; transition: transform 0.2s; }
+.sc-expanded .sc-chevron { transform: rotate(180deg); }
+.sc-acc-body { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 6px; }
+.sc-sub-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    padding: 9px 12px;
+    background: var(--color-bg);
+}
+/* Chat tab */
+.sc-chat { display: flex; flex-direction: column; gap: 14px; }
+.sc-msg { display: flex; align-items: flex-start; gap: 10px; }
+.sc-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+.sc-user-av { background: var(--color-border-medium); color: var(--color-text); }
+.sc-agent-av { background: rgba(0,188,235,0.12); color: var(--color-accent); }
+.sc-agent-av svg { width: 16px; height: 16px; }
+.sc-bubble {
+    background: var(--color-hover);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 0.88em;
+    color: var(--color-text);
+    line-height: 1.5;
+    max-width: 85%;
+}
+.sc-with-opts { display: flex; flex-direction: column; gap: 10px; }
+.sc-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+.sc-opt {
+    padding: 5px 12px;
+    border: 1px solid var(--color-accent);
+    border-radius: 20px;
+    font-size: 0.82em;
+    color: var(--color-accent);
+    background: rgba(0,188,235,0.06);
+}
+/* File tab */
+.sc-file { font-size: 0.88em; color: var(--color-text); line-height: 1.6; }
+.sc-file-h { font-weight: 700; margin: 16px 0 6px; color: var(--color-text); }
+.sc-file-h:first-child { margin-top: 0; }
+.sc-file-p { color: var(--color-text-muted); margin: 0 0 4px; }
+.sc-file-ul { color: var(--color-text-muted); margin: 0; padding-left: 20px; }
+.sc-file-ul li { margin-bottom: 4px; }
+.sc-link { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; cursor: default; }
+/* Q&A tab */
+.sc-qa { display: flex; flex-direction: column; gap: 16px; }
+.sc-qa-q { font-size: 0.9em; font-weight: 600; color: var(--color-text); margin: 0 0 8px; }
+.sc-qa-a {
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: var(--color-hover);
+    line-height: 1.55;
+}
+.sc-qa-select {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    background: var(--color-hover);
+}
+.sc-qa-select svg { width: 14px; height: 14px; }
 .pattern-visuals img {
     width: 100%;
     border-radius: 16px;
@@ -1072,56 +1169,141 @@ footer {
       <div class="pattern-visuals">
 
         <!-- Interactive: Scope & Boundaries -->
-        <div class="scope-demo">
-          <div class="scope-demo-topbar">
-            <span class="scope-demo-via">Instructions via</span>
-            <div class="scope-demo-tabs">
-              <button class="scope-tab active" data-tab="settings">Settings</button>
-              <button class="scope-tab" data-tab="chat">Chat</button>
-              <button class="scope-tab" data-tab="file">File</button>
-              <button class="scope-tab" data-tab="qa">Q&amp;A</button>
-            </div>
-            <button class="scope-reset">
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4a7 7 0 1 1 0 12"/><polyline points="1 4 4 4 4 7"/></svg>
-              Reset basic configuration
-            </button>
+        <div class="scope-demo-wrapper">
+          <!-- Callout 1 → tab bar -->
+          <div class="scope-callout" style="--ct: 28px;">
+            <span class="sc-num">1</span><span class="sc-line"></span>
           </div>
-          <div class="scope-demo-body">
-            <div class="scope-item expanded" id="scope-item-1">
-              <div class="scope-item-header" onclick="toggleScopeItem(this)">
-                <input type="checkbox" class="scope-parent-check" checked onclick="event.stopPropagation(); syncChildren(this)">
-                <span class="scope-item-num">1 of 3</span>
-                <span class="scope-item-name">Scope &amp; Boundaries</span>
-                <svg class="scope-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+          <!-- Callout 2 → content area -->
+          <div class="scope-callout" style="--ct: 160px;">
+            <span class="sc-num">2</span><span class="sc-line"></span>
+          </div>
+
+          <div class="scope-demo">
+            <!-- Tab bar -->
+            <div class="scope-demo-topbar">
+              <span class="scope-demo-via">Instructions via</span>
+              <div class="scope-demo-tabs">
+                <button class="scope-tab active" data-tab="settings">Settings</button>
+                <button class="scope-tab" data-tab="chat">Chat</button>
+                <button class="scope-tab" data-tab="file">File</button>
+                <button class="scope-tab" data-tab="qa">Q&amp;A</button>
               </div>
-              <div class="scope-item-body">
-                <label class="scope-sub"><input type="checkbox" checked onchange="syncParent(this)"> Update the item label if it doesn't match the defined scope</label>
-                <label class="scope-sub"><input type="checkbox" checked onchange="syncParent(this)"> Extend the description to clarify boundaries without altering original intent</label>
-              </div>
+              <button class="scope-reset">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4a7 7 0 1 1 0 12"/><polyline points="1 4 4 4 4 7"/></svg>
+                Reset basic configuration
+              </button>
             </div>
-            <div class="scope-item" id="scope-item-2">
-              <div class="scope-item-header" onclick="toggleScopeItem(this)">
-                <input type="checkbox" class="scope-parent-check" onclick="event.stopPropagation(); syncChildren(this)">
-                <span class="scope-item-num">2 of 3</span>
-                <span class="scope-item-name">Another Setting</span>
-                <svg class="scope-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
-              </div>
-              <div class="scope-item-body">
-                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Update the item label if it doesn't match the defined scope</label>
-                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Extend the description to clarify boundaries without altering original intent</label>
-              </div>
+
+            <!-- Hint -->
+            <div class="scope-hint">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v7M5 7l3 3 3-3"/></svg>
+              Click the tabs above to explore
             </div>
-            <div class="scope-item" id="scope-item-3">
-              <div class="scope-item-header" onclick="toggleScopeItem(this)">
-                <input type="checkbox" class="scope-parent-check" onclick="event.stopPropagation(); syncChildren(this)">
-                <span class="scope-item-num">3 of 3</span>
-                <span class="scope-item-name">Behavioral Limits</span>
-                <svg class="scope-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+
+            <!-- Panels -->
+            <div class="scope-panels">
+
+              <!-- Settings -->
+              <div class="scope-panel active" data-panel="settings">
+                <div class="sc-acc-item sc-expanded">
+                  <div class="sc-acc-header">
+                    <span class="sc-check sc-checked"></span>
+                    <span class="sc-num-label">1 of 3</span>
+                    <span class="sc-acc-name">Scope &amp; Boundaries</span>
+                    <svg class="sc-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                  </div>
+                  <div class="sc-acc-body">
+                    <div class="sc-sub-row"><span class="sc-check sc-checked"></span> Update the item label if it doesn't match the defined scope</div>
+                    <div class="sc-sub-row"><span class="sc-check sc-checked"></span> Extend the description to clarify boundaries without altering original intent</div>
+                  </div>
+                </div>
+                <div class="sc-acc-item">
+                  <div class="sc-acc-header">
+                    <span class="sc-check"></span>
+                    <span class="sc-num-label">2 of 3</span>
+                    <span class="sc-acc-name">Another Setting</span>
+                    <svg class="sc-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                  </div>
+                </div>
+                <div class="sc-acc-item">
+                  <div class="sc-acc-header">
+                    <span class="sc-check"></span>
+                    <span class="sc-num-label">3 of 3</span>
+                    <span class="sc-acc-name">Behavioral Limits</span>
+                    <svg class="sc-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                  </div>
+                </div>
               </div>
-              <div class="scope-item-body">
-                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Restrict agent to read-only actions in sensitive contexts</label>
-                <label class="scope-sub"><input type="checkbox" onchange="syncParent(this)"> Require confirmation before executing irreversible operations</label>
+
+              <!-- Chat -->
+              <div class="scope-panel" data-panel="chat">
+                <div class="sc-chat">
+                  <div class="sc-msg sc-user">
+                    <div class="sc-avatar sc-user-av">U</div>
+                    <div class="sc-bubble">Turn off auto-updates for this app</div>
+                  </div>
+                  <div class="sc-msg sc-agent">
+                    <div class="sc-avatar sc-agent-av"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 0 1 .894.553l1.618 3.278 3.618.526a1 1 0 0 1 .554 1.706l-2.618 2.552.618 3.603a1 1 0 0 1-1.451 1.054L10 13.347l-3.233 1.925a1 1 0 0 1-1.451-1.054l.618-3.603L3.316 8.063a1 1 0 0 1 .554-1.706l3.618-.526L9.106 2.553A1 1 0 0 1 10 2z"/></svg></div>
+                    <div class="sc-bubble">Do you want to turn off auto-updates for all apps or just this one?</div>
+                  </div>
+                  <div class="sc-msg sc-user">
+                    <div class="sc-avatar sc-user-av">U</div>
+                    <div class="sc-bubble">Yeah, show me the options</div>
+                  </div>
+                  <div class="sc-msg sc-agent">
+                    <div class="sc-avatar sc-agent-av"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 0 1 .894.553l1.618 3.278 3.618.526a1 1 0 0 1 .554 1.706l-2.618 2.552.618 3.603a1 1 0 0 1-1.451 1.054L10 13.347l-3.233 1.925a1 1 0 0 1-1.451-1.054l.618-3.603L3.316 8.063a1 1 0 0 1 .554-1.706l3.618-.526L9.106 2.553A1 1 0 0 1 10 2z"/></svg></div>
+                    <div class="sc-bubble sc-with-opts">
+                      Which would you like?
+                      <div class="sc-opts">
+                        <span class="sc-opt">Option 1</span>
+                        <span class="sc-opt">Option 2</span>
+                        <span class="sc-opt">Option 3</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+              <!-- File -->
+              <div class="scope-panel" data-panel="file">
+                <div class="sc-file">
+                  <p class="sc-file-h">Overview</p>
+                  <p class="sc-file-p">This configuration file defines preferences and settings for automated review and analysis of changes, with a focus on new settings. It supports automation, best practice recommendations, and change assessments.</p>
+                  <p class="sc-file-h">Title and Description Guidelines</p>
+                  <ul class="sc-file-ul">
+                    <li><strong>Title:</strong>
+                      <ul><li>Update titles as needed to reflect the content of the changes.</li></ul>
+                    </li>
+                    <li><strong>Description:</strong>
+                      <ul>
+                        <li>Add relevant context or detail to the PR description directly; do not leave suggestions as comments.</li>
+                        <li>Reference: <span class="sc-link">How to write a good request description</span></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p class="sc-file-h">Summary of Changes</p>
+                </div>
+              </div>
+
+              <!-- Q&A -->
+              <div class="scope-panel" data-panel="qa">
+                <div class="sc-qa">
+                  <div class="sc-qa-item">
+                    <p class="sc-qa-q">1. What is the Instruction / Scope pattern in this context?</p>
+                    <div class="sc-qa-a">It's when the user gives a one-time instruction — such as changing a system setting — and the scope of the change is defined either in the file content or in the action of uploading the file itself.</div>
+                  </div>
+                  <div class="sc-qa-item">
+                    <p class="sc-qa-q">2. What does a typical user action look like?</p>
+                    <div class="sc-qa-a">The user uploads a file (e.g., config.json, settings.yaml, or a .docx template) that contains configuration data or preferences</div>
+                  </div>
+                  <div class="sc-qa-item">
+                    <p class="sc-qa-q">3. What does the system (agent) do upon receiving the file?</p>
+                    <div class="sc-qa-select">Validates the file (format, schema, safety) <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -1330,33 +1512,15 @@ footer {
 })();
 </script>
 <script>
-function toggleScopeItem(header) {
-    header.closest('.scope-item').classList.toggle('expanded');
-}
-function syncChildren(parentCb) {
-    var item = parentCb.closest('.scope-item');
-    item.querySelectorAll('.scope-sub input[type="checkbox"]').forEach(function(cb) {
-        cb.checked = parentCb.checked;
-    });
-}
-function syncParent(childCb) {
-    var item = childCb.closest('.scope-item');
-    var children = item.querySelectorAll('.scope-sub input[type="checkbox"]');
-    var allChecked = Array.from(children).every(function(cb) { return cb.checked; });
-    item.querySelector('.scope-parent-check').checked = allChecked;
-}
 document.querySelectorAll('.scope-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
-        tab.closest('.scope-demo-tabs').querySelectorAll('.scope-tab').forEach(function(t) { t.classList.remove('active'); });
+        var demo = tab.closest('.scope-demo');
+        demo.querySelectorAll('.scope-tab').forEach(function(t) { t.classList.remove('active'); });
+        demo.querySelectorAll('.scope-panel').forEach(function(p) { p.classList.remove('active'); });
         tab.classList.add('active');
+        var target = demo.querySelector('.scope-panel[data-panel="' + tab.dataset.tab + '"]');
+        if (target) target.classList.add('active');
     });
-});
-document.querySelector('.scope-reset') && document.querySelector('.scope-reset').addEventListener('click', function() {
-    document.querySelectorAll('.scope-item').forEach(function(item, i) {
-        item.querySelectorAll('input[type="checkbox"]').forEach(function(cb) { cb.checked = i === 0; });
-        if (i === 0) item.classList.add('expanded'); else item.classList.remove('expanded');
-    });
-    document.querySelectorAll('.scope-tab').forEach(function(t, i) { t.classList.toggle('active', i === 0); });
 });
 </script>
 </body>
