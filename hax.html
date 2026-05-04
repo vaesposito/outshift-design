@@ -492,8 +492,14 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     text-align: center;
     margin: 0 auto 48px;
 }
-.pattern-info {
+.pattern-info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
     margin: 0 0 40px;
+}
+.pattern-info {
+    margin: 0;
 }
 .pattern-info-title {
     font-size: 1.25em;
@@ -508,7 +514,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     margin: 0;
 }
 .pattern-why {
-    margin: 0 0 40px;
+    margin: 0;
     border-left: 3px solid var(--color-accent);
     background: rgba(0, 188, 235, 0.04);
     border-radius: 0 8px 8px 0;
@@ -516,6 +522,9 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 [data-theme="dark"] .pattern-why {
     background: rgba(0, 188, 235, 0.06);
+}
+@media (max-width: 768px) {
+    .pattern-info-row { grid-template-columns: 1fr; }
 }
 .pattern-related {
     margin: 0 0 48px;
@@ -901,14 +910,15 @@ footer {
       <h3 class="pattern-title">Control</h3>
       <p class="pattern-desc">Let the Human Set the Rules</p>
 
-      <div class="pattern-info">
-        <p class="pattern-info-title">What it means</p>
-        <p>Humans guide how agents operate by setting boundaries, preferences, and intent. Rather than making assumptions, agents respond to this direction with flexibility. Control doesn't mean limiting autonomy, it means aligning it with human goals.</p>
-      </div>
-
-      <div class="pattern-why">
-        <p class="pattern-info-title">Why this matters</p>
-        <p>People are more likely to trust and engage with agents when they understand how decisions are made, and can shape them. Giving users control over behaviors, permissions, and preferences makes the system feel collaborative and intentional, rather than unpredictable.</p>
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <p class="pattern-info-title">What it means</p>
+          <p>Humans guide how agents operate by setting boundaries, preferences, and intent. Rather than making assumptions, agents respond to this direction with flexibility. Control doesn't mean limiting autonomy, it means aligning it with human goals.</p>
+        </div>
+        <div class="pattern-why">
+          <p class="pattern-info-title">Why this matters</p>
+          <p>People are more likely to trust and engage with agents when they understand how decisions are made, and can shape them. Giving users control over behaviors, permissions, and preferences makes the system feel collaborative and intentional, rather than unpredictable.</p>
+        </div>
       </div>
 
       <div class="pattern-related">
