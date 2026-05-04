@@ -585,6 +585,17 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     color: var(--color-text);
     margin: 0 0 12px;
 }
+.pattern-info-symbol {
+    font-size: 5.5em;
+    font-weight: 800;
+    line-height: 0.85;
+    margin: 0 0 -16px;
+    display: block;
+    background: linear-gradient(to bottom, #46AACE, rgba(70, 170, 206, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 .pattern-info p:not(.pattern-info-title),
 .pattern-why p:not(.pattern-info-title) {
     font-size: 1em;
@@ -1625,10 +1636,12 @@ footer {
 
       <div class="pattern-info-row">
         <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
           <p class="pattern-info-title">What it means</p>
           <p>Humans guide how agents operate by setting boundaries, preferences, and intent. Rather than making assumptions, agents respond to this direction with flexibility. Control doesn't mean limiting autonomy, it means aligning it with human goals.</p>
         </div>
         <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
           <p class="pattern-info-title">Why this matters</p>
           <p>People are more likely to trust and engage with agents when they understand how decisions are made, and can shape them. Giving users control over behaviors, permissions, and preferences makes the system feel collaborative and intentional, rather than unpredictable.</p>
         </div>
