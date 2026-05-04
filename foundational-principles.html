@@ -371,40 +371,87 @@ a:link, a:visited, a:hover, a:active {
 .pipeline-steps {
     display: flex;
     flex-direction: column;
-    gap: 48px;
-    align-items: center;
+}
+
+/* ── Accordion Timeline variant ── */
+.pipeline-steps--timeline {
+    flex: 1;
+    min-width: 0;
 }
 .pipeline-step {
     position: relative;
-    width: 80%;
-    align-self: center;
-    padding: 32px 40px;
-    border: 1px solid rgba(77, 99, 128, 0.21);
-    border-radius: 16px;
-    background: linear-gradient(132deg, rgba(210, 194, 255, 0.06) 26.47%, rgba(255, 255, 255, 0.00) 88.42%);
-    box-shadow: 0 6.593px 10.548px 0 rgba(0, 0, 0, 0.00), 0 15.823px 52.742px 0 rgba(0, 0, 0, 0.00), 0 34.282px 105.484px 0 rgba(0, 0, 0, 0.00);
-    backdrop-filter: blur(32.96px);
-    -webkit-backdrop-filter: blur(32.96px);
+    border-bottom: 1px solid var(--color-border);
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
     scroll-margin-top: 96px;
 }
+.pipeline-step:first-of-type { border-top: 1px solid var(--color-border); }
 
-/* Timeline modifier */
-.pipeline-steps--timeline {
-    position: relative;
-    align-items: stretch;
-    gap: 56px;
+/* Accordion trigger row */
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.step-header::-webkit-details-marker,
+.step-header::marker { display: none; content: ''; }
+
+.step-num-label {
+    font-size: 1.5em;
+    font-weight: 800;
+    font-feature-settings: 'tnum';
+    line-height: 1;
+    color: var(--color-accent);
+    opacity: 0.35;
+    min-width: 36px;
+    transition: opacity 0.25s;
+}
+.pipeline-step[open] .step-num-label { opacity: 1; }
+
+.step-header-text {
     flex: 1;
     min-width: 0;
+}
+.step-title {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 2px;
+    transition: color 0.2s;
+}
+.pipeline-step[open] .step-title { color: var(--color-accent); }
+.step-subtitle {
+    font-size: 0.8em;
+    color: var(--color-text-muted);
     margin: 0;
-    padding-left: 0;
+    font-weight: 400;
 }
-.pipeline-steps--timeline::before { display: none; }
-.pipeline-steps--timeline .pipeline-step {
-    width: 100%;
-    align-self: stretch;
+
+/* Chevron icon */
+.step-chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 0.3s ease, color 0.2s;
 }
-/* Spine dot marker removed */
-.pipeline-steps--timeline .pipeline-step::before { display: none; }
+.pipeline-step[open] .step-chevron {
+    transform: rotate(180deg);
+    color: var(--color-accent);
+}
+
+/* Expandable body */
+.step-body {
+    padding: 0 0 28px 56px;
+}
+.step-number { display: none; } /* Hide old big watermark number */
 
 /* ── Pipeline Sticky Stepper – vertical timeline nav ── */
 .pipeline-stepper {
@@ -859,10 +906,6 @@ footer {
     .pipeline-header h2, .case-studies-header h2 { font-size: 2.2em; }
     .pipeline-body { gap: 28px; }
     .pipeline-stepper { width: 180px; }
-    .pipeline-step { width: 100%; padding: 28px 32px; }
-    .pipeline-steps--timeline { padding-left: 32px; }
-    .pipeline-steps--timeline .pipeline-step::before { left: -36px; }
-    .step-number { font-size: 4.5em; }
     .sdk-text h2 { font-size: 2em; }
     .sdk-inner { gap: 40px; }
 }
@@ -945,11 +988,8 @@ footer {
     .pipeline-stepper ol::before { display: none; }
     .pipeline-stepper a { padding: 6px 10px 6px 10px; font-size: 0.78em; border: 1px solid var(--color-border); border-radius: 999px; }
     .pipeline-stepper a::before { display: none; }
-    .pipeline-step { width: 100%; padding: 24px 24px 24px 28px; }
-    .pipeline-steps--timeline { width: 100%; padding-left: 28px; gap: 40px; }
-    .pipeline-steps--timeline::before { top: 20px; bottom: 20px; }
-    .pipeline-steps--timeline .pipeline-step::before { left: -32px; top: 28px; width: 10px; height: 10px; }
-    .step-number { font-size: 3.5em; }
+    .step-body { padding-left: 36px; }
+    .step-num-label { font-size: 1.2em; min-width: 28px; }
 
     .sdk-inner { flex-direction: column; gap: 32px; }
     .sdk-text h2 { font-size: 1.8em; }
@@ -966,12 +1006,9 @@ footer {
     .page-hero-title h1 { font-size: 1.6em; }
     .page-hero-image img { height: 220px; }
     .pipeline-header h2, .case-studies-header h2 { font-size: 1.5em; }
-    .pipeline-step { padding: 20px; }
-    .pipeline-steps--timeline { padding-left: 24px; gap: 32px; }
-    .pipeline-steps--timeline .pipeline-step::before { left: -28px; width: 10px; height: 10px; }
+    .step-body { padding-left: 24px; }
+    .step-num-label { font-size: 1.1em; min-width: 24px; }
     .pipeline-stepper a { font-size: 0.74em; padding: 5px 9px; }
-    .step-number { font-size: 3em; }
-    .step-title { font-size: 1.2em; }
     .sdk-text h2 { font-size: 1.5em; }
     .case-study-card { padding: 24px; }
     .case-study-card h3 { font-size: 1.15em; }
@@ -1085,126 +1122,168 @@ footer {
 
     <div class="pipeline-steps pipeline-steps--timeline">
 
-      <div class="pipeline-step" id="pipeline-step-1">
-        <div class="step-number">01</div>
-        <div class="step-title">Framing the inquiry</div>
-        <div class="step-subtitle">Research Framing</div>
-        <p class="step-desc">Define the phenomenon that you want to explore, not the feature or product.</p>
-        <div class="step-quote">
-          "How might X change the way people Y in a world where Z is true?"<br>
-          "How do operators build trust in agent decisions during incident response?"
-        </div>
-        <ul class="step-list">
-          <li>Capture context: who, where, when, stakes.</li>
-          <li>Define time horizon (e.g. 5, 10, 20, years)</li>
-        </ul>
-        <div class="step-deliverable">
-          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+      <details class="pipeline-step" id="pipeline-step-1" open>
+        <summary class="step-header">
+          <span class="step-num-label">01</span>
+          <div class="step-header-text">
+            <div class="step-title">Framing the inquiry</div>
+            <div class="step-subtitle">Research Framing</div>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="step-body">
+          <p class="step-desc">Define the phenomenon that you want to explore, not the feature or product.</p>
+          <div class="step-quote">
+            "How might X change the way people Y in a world where Z is true?"<br>
+            "How do operators build trust in agent decisions during incident response?"
+          </div>
           <ul class="step-list">
-            <li>Research brief (scope, goals, assumptions)</li>
-            <li>A short intent statement: "This inquiry explores... in order to inform design decisions about... in tomorrow's world."</li>
+            <li>Capture context: who, where, when, stakes.</li>
+            <li>Define time horizon (e.g. 5, 10, 20, years)</li>
           </ul>
+          <div class="step-deliverable">
+            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+            <ul class="step-list">
+              <li>Research brief (scope, goals, assumptions)</li>
+              <li>A short intent statement: "This inquiry explores... in order to inform design decisions about... in tomorrow's world."</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </details>
 
-      <div class="pipeline-step" id="pipeline-step-2">
-        <div class="step-number">02</div>
-        <div class="step-title">Research: Mapping the Present &amp; Emerging Signals</div>
-        <div class="step-subtitle">Field input / Ground truth</div>
-        <p class="step-desc">Build a grounded understanding of what's already happening and what's starting to happen.</p>
-        <ul class="step-list">
-          <li>Desk research: academic papers, industry reports, patents, standards, policy, expert interviews.</li>
-          <li>Foresight inputs: horizon scanning, weak signals, trends, wildcards, tensions</li>
-        </ul>
-        <div class="step-deliverable">
-          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+      <details class="pipeline-step" id="pipeline-step-2">
+        <summary class="step-header">
+          <span class="step-num-label">02</span>
+          <div class="step-header-text">
+            <div class="step-title">Research: Mapping the Present &amp; Emerging Signals</div>
+            <div class="step-subtitle">Field input / Ground truth</div>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="step-body">
+          <p class="step-desc">Build a grounded understanding of what's already happening and what's starting to happen.</p>
           <ul class="step-list">
-            <li>Evidence map:
-              <ul>
-                <li>Current practices &amp; pain points</li>
-                <li>Emerging technologies / norms</li>
-              </ul>
-            </li>
-            <li>Insight clusters: 5-8 thematic clusters (e.g., "delegated decisions," "opacity of automation," "new forms of social risk")</li>
+            <li>Desk research: academic papers, industry reports, patents, standards, policy, expert interviews.</li>
+            <li>Foresight inputs: horizon scanning, weak signals, trends, wildcards, tensions</li>
           </ul>
+          <div class="step-deliverable">
+            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+            <ul class="step-list">
+              <li>Evidence map:
+                <ul>
+                  <li>Current practices &amp; pain points</li>
+                  <li>Emerging technologies / norms</li>
+                </ul>
+              </li>
+              <li>Insight clusters: 5-8 thematic clusters (e.g., "delegated decisions," "opacity of automation," "new forms of social risk")</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </details>
 
-      <div class="pipeline-step" id="pipeline-step-3">
-        <div class="step-number">03</div>
-        <div class="step-title">Synthesis: From Signals to Principles</div>
-        <div class="step-subtitle">Conceptual modeling</div>
-        <p class="step-desc">Transform raw findings into conceptual frameworks and actionable design principles.</p>
-        <ul class="step-list">
-          <li>Identify recurring tensions and design trade-offs</li>
-          <li>Draft principle statements grounded in evidence</li>
-          <li>Map principles to interaction patterns and heuristics</li>
-        </ul>
-        <div class="step-deliverable">
-          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+      <details class="pipeline-step" id="pipeline-step-3">
+        <summary class="step-header">
+          <span class="step-num-label">03</span>
+          <div class="step-header-text">
+            <div class="step-title">Synthesis: From Signals to Principles</div>
+            <div class="step-subtitle">Conceptual modeling</div>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="step-body">
+          <p class="step-desc">Transform raw findings into conceptual frameworks and actionable design principles.</p>
           <ul class="step-list">
-            <li>Principle cards with rationale, applicability, and known limitations</li>
-            <li>Pattern mapping matrix (principle &rarr; pattern &rarr; component)</li>
+            <li>Identify recurring tensions and design trade-offs</li>
+            <li>Draft principle statements grounded in evidence</li>
+            <li>Map principles to interaction patterns and heuristics</li>
           </ul>
+          <div class="step-deliverable">
+            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+            <ul class="step-list">
+              <li>Principle cards with rationale, applicability, and known limitations</li>
+              <li>Pattern mapping matrix (principle &rarr; pattern &rarr; component)</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </details>
 
-      <div class="pipeline-step" id="pipeline-step-4">
-        <div class="step-number">04</div>
-        <div class="step-title">Test the Bridge: Design Heuristics &amp; applicable methods</div>
-        <div class="step-subtitle">Validation</div>
-        <p class="step-desc">Validate each pattern through heuristic evaluation, usability testing, and expert review to ensure the bridge between research and design guidance is sound.</p>
-        <ul class="step-list">
-          <li>Heuristic walkthroughs against real agent workflows</li>
-          <li>Expert panel review with domain specialists</li>
-          <li>Gap analysis: does the pattern address the original insight?</li>
-        </ul>
-        <div class="step-deliverable">
-          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+      <details class="pipeline-step" id="pipeline-step-4">
+        <summary class="step-header">
+          <span class="step-num-label">04</span>
+          <div class="step-header-text">
+            <div class="step-title">Test the Bridge: Design Heuristics &amp; applicable methods</div>
+            <div class="step-subtitle">Validation</div>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="step-body">
+          <p class="step-desc">Validate each pattern through heuristic evaluation, usability testing, and expert review to ensure the bridge between research and design guidance is sound.</p>
           <ul class="step-list">
-            <li>Evaluation report with findings and recommendations</li>
-            <li>Refined patterns with annotated revisions</li>
+            <li>Heuristic walkthroughs against real agent workflows</li>
+            <li>Expert panel review with domain specialists</li>
+            <li>Gap analysis: does the pattern address the original insight?</li>
           </ul>
+          <div class="step-deliverable">
+            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+            <ul class="step-list">
+              <li>Evaluation report with findings and recommendations</li>
+              <li>Refined patterns with annotated revisions</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </details>
 
-      <div class="pipeline-step" id="pipeline-step-5">
-        <div class="step-number">05</div>
-        <div class="step-title">Prototype &amp; Iterate the validation</div>
-        <div class="step-subtitle">Implementation testing</div>
-        <p class="step-desc">Patterns are implemented in interactive prototypes and tested with real users, iterating until they meet our quality bar for clarity, effectiveness, and adoptability.</p>
-        <ul class="step-list">
-          <li>Build interactive prototypes embodying the pattern</li>
-          <li>Run usability sessions with target users</li>
-          <li>Iterate on both design and documentation</li>
-        </ul>
-        <div class="step-deliverable">
-          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+      <details class="pipeline-step" id="pipeline-step-5">
+        <summary class="step-header">
+          <span class="step-num-label">05</span>
+          <div class="step-header-text">
+            <div class="step-title">Prototype &amp; Iterate the validation</div>
+            <div class="step-subtitle">Implementation testing</div>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="step-body">
+          <p class="step-desc">Patterns are implemented in interactive prototypes and tested with real users, iterating until they meet our quality bar for clarity, effectiveness, and adoptability.</p>
           <ul class="step-list">
-            <li>Validated prototype with test findings</li>
-            <li>Final pattern specification ready for documentation</li>
+            <li>Build interactive prototypes embodying the pattern</li>
+            <li>Run usability sessions with target users</li>
+            <li>Iterate on both design and documentation</li>
           </ul>
+          <div class="step-deliverable">
+            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+            <ul class="step-list">
+              <li>Validated prototype with test findings</li>
+              <li>Final pattern specification ready for documentation</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </details>
 
-      <div class="pipeline-step" id="pipeline-step-6">
-        <div class="step-number">06</div>
-        <div class="step-title">Update Documentation &amp; Contribute</div>
-        <div class="step-subtitle">Publication</div>
-        <p class="step-desc">Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. The library evolves as new research emerges.</p>
-        <ul class="step-list">
-          <li>Write pattern documentation with rationale and examples</li>
-          <li>Publish to the Hax pattern library</li>
-          <li>Tag with relevant themes for discoverability</li>
-        </ul>
-        <div class="step-deliverable">
-          <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+      <details class="pipeline-step" id="pipeline-step-6">
+        <summary class="step-header">
+          <span class="step-num-label">06</span>
+          <div class="step-header-text">
+            <div class="step-title">Update Documentation &amp; Contribute</div>
+            <div class="step-subtitle">Publication</div>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="step-body">
+          <p class="step-desc">Validated patterns are published to the Hax pattern library with full documentation, code examples, and usage guidelines. The library evolves as new research emerges.</p>
           <ul class="step-list">
-            <li>Published pattern with code samples and usage guidelines</li>
-            <li>Changelog entry and contribution record</li>
+            <li>Write pattern documentation with rationale and examples</li>
+            <li>Publish to the Hax pattern library</li>
+            <li>Tag with relevant themes for discoverability</li>
           </ul>
+          <div class="step-deliverable">
+            <div class="step-deliverable-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Deliverable</div>
+            <ul class="step-list">
+              <li>Published pattern with code samples and usage guidelines</li>
+              <li>Changelog entry and contribution record</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </details>
 
     </div><!-- /.pipeline-steps -->
     </div><!-- /.pipeline-body -->
@@ -1399,28 +1478,31 @@ footer {
         var active = idToLink[id];
         if (active) {
             active.classList.add('is-active');
-            // Keep the active pill visible inside the horizontally scrolling stepper
             try { active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); } catch (e) {}
         }
     }
 
+    // Observe which accordion is visible in the viewport
     if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) setActive(entry.target.id);
             });
-        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+        }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
         targets.forEach(function (t) { observer.observe(t); });
     }
 
-    // Smooth scroll for older browsers; modern ones honor scroll-margin-top.
+    // Clicking a stepper link opens the accordion and scrolls to it
     links.forEach(function (link) {
         link.addEventListener('click', function (e) {
             var id = link.getAttribute('href').slice(1);
             var el = document.getElementById(id);
             if (!el) return;
             e.preventDefault();
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (el.tagName === 'DETAILS' && !el.open) { el.open = true; }
+            setTimeout(function () {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
             history.replaceState(null, '', '#' + id);
             setActive(id);
         });
