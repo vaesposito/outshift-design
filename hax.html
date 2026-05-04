@@ -641,7 +641,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     border-right-color: var(--color-bg);
     border-left: none;
 }
-.scope-callout.sc-open .sc-popover { display: block; }
+.scope-callout:hover .sc-popover { display: block; }
 .sc-popover-title {
     font-size: 0.88em;
     font-weight: 700;
@@ -1564,17 +1564,6 @@ footer {
 })();
 </script>
 <script>
-document.querySelectorAll('.scope-callout').forEach(function(callout) {
-    callout.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = callout.classList.contains('sc-open');
-        document.querySelectorAll('.scope-callout').forEach(function(c) { c.classList.remove('sc-open'); });
-        if (!isOpen) callout.classList.add('sc-open');
-    });
-});
-document.addEventListener('click', function() {
-    document.querySelectorAll('.scope-callout').forEach(function(c) { c.classList.remove('sc-open'); });
-});
 document.querySelectorAll('.scope-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
         var demo = tab.closest('.scope-demo');
