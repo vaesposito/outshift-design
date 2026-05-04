@@ -826,6 +826,17 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     color: #fff;
     border-color: var(--color-accent);
 }
+[data-theme="dark"] .scope-tab.active {
+    color: #0a1929;
+}
+/* Dark mode: white icon/text sits on light cyan (#3fc6ee) — swap to dark */
+[data-theme="dark"] .sc-check.sc-checked,
+[data-theme="dark"] .pgates-check.checked {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%230a1929' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+[data-theme="dark"] .pgates-toggle-input:checked + .pgates-toggle-track .pgates-toggle-thumb {
+    background: #0a1929;
+}
 .scope-reset {
     display: inline-flex;
     align-items: center;
