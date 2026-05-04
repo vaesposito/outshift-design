@@ -607,7 +607,11 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 .pattern-related-intro {
     text-align: center;
-    margin: 0 0 32px;
+    margin: 48px 0 16px;
+}
+.pattern-related-intro:first-of-type,
+.pattern-examples-label + .pattern-related-intro {
+    margin-top: 0;
 }
 .pattern-related-intro-name {
     font-size: 1.05em;
@@ -656,6 +660,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     position: relative;
     width: 100%;
     padding-left: 56px;
+    margin-bottom: 0;
 }
 .scope-callout {
     position: absolute;
@@ -1079,6 +1084,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     position: relative;
     width: 100%;
     padding-left: 56px;
+    margin-bottom: 0;
 }
 .pgates-demo {
     width: 100%;
@@ -1593,7 +1599,6 @@ footer {
         <p class="pattern-related-intro-name">Scope &amp; Boundaries</p>
         <p class="pattern-related-intro-desc">Users define operational limits for AI behavior. The agent operates within these boundaries, avoiding unintended actions.</p>
       </div>
-      <div class="pattern-visuals">
 
         <p class="pattern-component-label">Component example: Instruction / Scope</p>
 
@@ -1803,7 +1808,6 @@ footer {
           </div>
         </div>
       </div>
-    <div class="pattern-divider"></div>
 
     <div class="pattern-related-intro">
       <p class="pattern-related-intro-name">Permission &amp; Confirmation Gates</p>
