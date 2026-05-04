@@ -1562,7 +1562,7 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     border-top: none;
     padding-top: 24px;
 }
-/* Timeline variant ── vertical spine with dot markers */
+/* Timeline variant */
 .pipeline-steps--timeline {
     position: relative;
     align-items: stretch;
@@ -1570,36 +1570,15 @@ footer { position: relative; z-index: 1; background: var(--color-bg); padding: 6
     flex: 1;
     min-width: 0;
     margin: 0;
-    padding-left: 36px;
+    padding-left: 0;
 }
-.pipeline-steps--timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 32px;
-    bottom: 32px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--color-accent) 0%, var(--color-accent) 60%, rgba(70, 170, 206, 0.25) 100%);
-    border-radius: 2px;
-    z-index: 0;
-}
+.pipeline-steps--timeline::before { display: none; }
 .pipeline-steps--timeline .pipeline-step {
     width: 100%;
     align-self: stretch;
     padding: 32px 40px;
 }
-.pipeline-steps--timeline .pipeline-step::before {
-    content: '';
-    position: absolute;
-    top: 32px;
-    left: -40px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    border: 2px solid var(--color-bg);
-    z-index: 2;
-}
+.pipeline-steps--timeline .pipeline-step::before { display: none; }
 .step-number {
     font-size: 5.5em;
     font-weight: 800;

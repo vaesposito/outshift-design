@@ -388,7 +388,7 @@ a:link, a:visited, a:hover, a:active {
     scroll-margin-top: 96px;
 }
 
-/* Timeline modifier ── vertical spine + dot markers */
+/* Timeline modifier */
 .pipeline-steps--timeline {
     position: relative;
     align-items: stretch;
@@ -396,39 +396,15 @@ a:link, a:visited, a:hover, a:active {
     flex: 1;
     min-width: 0;
     margin: 0;
-    padding-left: 36px;
+    padding-left: 0;
 }
-.pipeline-steps--timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 32px;
-    bottom: 32px;
-    width: 2px;
-    background: linear-gradient(to bottom,
-        var(--color-accent) 0%,
-        var(--color-accent) 60%,
-        rgba(70, 170, 206, 0.25) 100%);
-    border-radius: 2px;
-    z-index: 0;
-}
+.pipeline-steps--timeline::before { display: none; }
 .pipeline-steps--timeline .pipeline-step {
     width: 100%;
     align-self: stretch;
 }
-/* Spine dot marker for each step */
-.pipeline-steps--timeline .pipeline-step::before {
-    content: '';
-    position: absolute;
-    top: 32px;
-    left: -40px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    border: 2px solid var(--color-bg);
-    z-index: 2;
-}
+/* Spine dot marker removed */
+.pipeline-steps--timeline .pipeline-step::before { display: none; }
 
 /* ── Pipeline Sticky Stepper – vertical timeline nav ── */
 .pipeline-stepper {
