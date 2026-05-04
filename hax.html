@@ -275,37 +275,18 @@ nav > ul > li { position: relative; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
-/* ── Demo cards always render as dark UI mockups ── */
-.scope-demo,
-.authority-demo {
-    --color-bg: #141929;
-    --color-text: #e0e4ec;
-    --color-text-muted: rgba(224,228,236,0.6);
-    --color-text-subtle: rgba(224,228,236,0.5);
-    --color-border: rgba(255,255,255,0.08);
-    --color-border-medium: rgba(255,255,255,0.12);
-    --color-hover: rgba(255,255,255,0.06);
-    --color-shadow: rgba(0,0,0,0.4);
-    --color-accent: #3fc6ee;
-    background: #141929;
-    color: #e0e4ec;
-    border-color: rgba(255,255,255,0.1);
-}
-/* Slider thumb needs to stay white since --color-bg is now dark */
-.authority-slider::-webkit-slider-thumb { background: #fff !important; }
-.authority-slider::-moz-range-thumb { background: #fff !important; }
-/* Popovers are always light for legibility against dark cards */
+/* ── Demo card popovers ── */
 .sc-popover {
-    background: #fff;
-    border-color: rgba(41, 50, 71, 0.15);
-    box-shadow: 0 8px 32px rgba(41, 50, 71, 0.12);
+    background: var(--color-bg);
+    border-color: var(--color-border-medium);
+    box-shadow: 0 8px 32px var(--color-shadow);
 }
-.sc-popover::before { border-right-color: rgba(41, 50, 71, 0.15); }
-.sc-popover::after { border-right-color: #fff; }
-.sc-popover--up::before { border-top-color: rgba(41, 50, 71, 0.15); border-right-color: transparent; }
-.sc-popover--up::after { border-top-color: #fff; border-right-color: transparent; }
-.sc-popover-title { color: #293247; }
-.sc-popover-desc { color: #67707F; }
+.sc-popover::before { border-right-color: var(--color-border-medium); }
+.sc-popover::after { border-right-color: var(--color-bg); }
+.sc-popover--up::before { border-top-color: var(--color-border-medium); border-right-color: transparent; }
+.sc-popover--up::after { border-top-color: var(--color-bg); border-right-color: transparent; }
+.sc-popover-title { color: var(--color-text); }
+.sc-popover-desc { color: var(--color-text-muted); }
 
 button, .cta-button {
     background: var(--color-text);
@@ -787,11 +768,11 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .scope-panel.active { display: block; }
 /* Settings tab */
 .sc-acc-item {
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 8px;
-    background: #1e2846;
+    background: var(--color-hover);
 }
 .sc-acc-header {
     display: flex;
@@ -1050,33 +1031,33 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 .pgates-demo {
     width: 100%;
-    background: #141929;
+    background: var(--color-bg);
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    border: 1px solid var(--color-border-medium);
+    box-shadow: 0 4px 24px var(--color-shadow);
     font-family: inherit;
-    color: #e0e4ec;
+    color: var(--color-text);
 }
 .pgates-header {
     padding: 20px 24px 0;
     font-size: 0.92em;
     font-weight: 600;
-    color: #e0e4ec;
+    color: var(--color-text);
     margin: 0;
 }
 .pgates-tabs {
     display: flex;
     gap: 0;
     padding: 10px 24px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid var(--color-border);
 }
 .pgates-tab {
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
     border-radius: 0;
-    color: rgba(224,228,236,0.45);
+    color: var(--color-text-muted);
     font-size: 0.85em;
     font-weight: 500;
     padding: 8px 14px 10px;
@@ -1086,8 +1067,8 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     margin-bottom: -1px;
     white-space: nowrap;
 }
-.pgates-tab:hover { color: rgba(224,228,236,0.8); }
-.pgates-tab.active { color: #e0e4ec; border-bottom-color: #22c55e; font-weight: 600; }
+.pgates-tab:hover { color: var(--color-text); }
+.pgates-tab.active { color: var(--color-text); border-bottom-color: #22c55e; font-weight: 600; }
 .pgates-body {
     padding: 16px 20px 20px;
     display: flex;
@@ -1095,9 +1076,9 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     gap: 10px;
 }
 .pgates-card {
-    background: #1e2846;
+    background: var(--color-hover);
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--color-border);
     padding: 14px 18px;
 }
 .pgates-toggle-row {
@@ -1105,7 +1086,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     align-items: center;
     gap: 12px;
     font-size: 0.88em;
-    color: #e0e4ec;
+    color: var(--color-text);
 }
 .pgates-toggle {
     display: inline-flex;
@@ -1123,13 +1104,13 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     display: block;
     width: 36px;
     height: 20px;
-    background: rgba(255,255,255,0.18);
+    background: var(--color-border-medium);
     border-radius: 10px;
     transition: background 0.2s;
     position: relative;
     flex-shrink: 0;
 }
-.pgates-toggle-input:checked + .pgates-toggle-track { background: #00BCEB; }
+.pgates-toggle-input:checked + .pgates-toggle-track { background: var(--color-accent); }
 .pgates-toggle-thumb {
     position: absolute;
     left: 3px;
@@ -1145,7 +1126,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .pgates-section-title {
     font-size: 0.88em;
     font-weight: 700;
-    color: #e0e4ec;
+    color: var(--color-text);
     margin: 0 0 12px;
 }
 .pgates-check-row {
@@ -1153,7 +1134,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     align-items: center;
     gap: 10px;
     font-size: 0.84em;
-    color: rgba(224,228,236,0.8);
+    color: var(--color-text-muted);
     margin-bottom: 8px;
     cursor: pointer;
     user-select: none;
@@ -1162,7 +1143,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     width: 16px;
     height: 16px;
     border-radius: 3px;
-    border: 1.5px solid rgba(255,255,255,0.25);
+    border: 1.5px solid var(--color-border-medium);
     flex-shrink: 0;
     background: transparent;
     transition: background 0.15s, border-color 0.15s;
@@ -1179,7 +1160,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .pgates-field-label {
     font-size: 0.8em;
     font-weight: 600;
-    color: #e0e4ec;
+    color: var(--color-text);
     margin: 0 0 6px;
     display: flex;
     align-items: center;
@@ -1188,17 +1169,17 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .pgates-required { color: #ef4444; }
 .pgates-input-mock {
     display: inline-block;
-    background: #141929;
-    border: 1px solid rgba(255,255,255,0.15);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
     border-radius: 6px;
     padding: 7px 12px;
     font-size: 0.85em;
-    color: rgba(224,228,236,0.5);
+    color: var(--color-text-muted);
     min-width: 100px;
 }
 .pgates-divider {
     border: none;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid var(--color-border);
     margin: 10px 0 0;
 }
 
