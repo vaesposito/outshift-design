@@ -2038,12 +2038,13 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 [data-theme="dark"] .ep-input-placeholder { color: rgba(180,200,220,0.5); }
 .ep-send {
     width: 32px; height: 32px;
+    min-width: 32px;
     background: #2563eb;
     border: none; border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; cursor: default; pointer-events: none;
+    flex: 0 0 32px; cursor: default; pointer-events: none;
 }
-.ep-send svg { width: 14px; height: 14px; fill: #fff; }
+.ep-send svg { width: 14px; height: 14px; fill: none; stroke: #fff; }
 .ep-alt-btn {
     display: inline-flex;
     padding: 6px 14px;
@@ -2645,10 +2646,10 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 [data-theme="dark"] .ah-badge--agent { background: #0c3a54; color: #67c4f4; }
 .ah-badge--user {
-    background: #78350f;
-    color: #fcd34d;
+    background: rgba(245,158,11,0.15);
+    color: #b45309;
 }
-[data-theme="dark"] .ah-badge--user { background: #6b2d0a; color: #fbbf24; }
+[data-theme="dark"] .ah-badge--user { background: rgba(245,158,11,0.18); color: #fbbf24; }
 .ah-badge-icon { font-size: 0.9em; }
 
 /* === Visual Diffing Demo === */
@@ -3782,7 +3783,7 @@ footer {
               <div class="cd-bar-wrap"><div class="cd-bar cd-bar--low"></div></div>
             </div>
             <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
-            <div class="cd-td"><button class="cd-action-btn">Resolution 4</button></div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 3</button></div>
           </div>
         </div>
       </div>

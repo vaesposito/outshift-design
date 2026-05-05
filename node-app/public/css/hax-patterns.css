@@ -2043,16 +2043,17 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 [data-theme="dark"] .ep-input-placeholder { color: rgba(180,200,220,0.5); }
 .ep-send {
-    width: 28px; height: 28px;
+    width: 32px; height: 32px;
+    min-width: 32px;
     background: #2563eb;
     border: none;
     border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    flex: 0 0 32px;
     cursor: default;
     pointer-events: none;
 }
-.ep-send svg { width: 13px; height: 13px; fill: #fff; }
+.ep-send svg { width: 14px; height: 14px; fill: none; stroke: #fff; }
 .ep-alt-btn {
     padding: 5px 14px;
     background: transparent;
@@ -2652,10 +2653,10 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 [data-theme="dark"] .ah-badge--agent { background: #0c3a54; color: #67c4f4; }
 .ah-badge--user {
-    background: #78350f;
-    color: #fcd34d;
+    background: rgba(245,158,11,0.15);
+    color: #b45309;
 }
-[data-theme="dark"] .ah-badge--user { background: #6b2d0a; color: #fbbf24; }
+[data-theme="dark"] .ah-badge--user { background: rgba(245,158,11,0.18); color: #fbbf24; }
 .ah-badge-icon { font-size: 0.9em; }
 
 /* === Visual Diffing Demo === */
