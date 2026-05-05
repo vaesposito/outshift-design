@@ -38,14 +38,14 @@
       <p><%= card.description %></p>
       <% if (card.docHref || card.textCtaLabel) { %>
       <div class="card-text-actions">
+        <% if (card.textCtaLabel) { %>
+        <a href="<%= card.textCtaHref || card.href %>" class="text-link-cta"><%= card.textCtaLabel %></a>
+        <% } %>
         <% if (card.docHref) { %>
         <a href="<%= card.docHref %>" <% if (card.docExternal) { %>target="_blank" rel="noopener noreferrer"<% } %> class="arrow-link arrow-link--labeled" aria-label="<%= card.docLabel || 'Documentation' %>">
           <span><%= card.docLabel %></span>
           <%- include('partials/arrow-icon') %>
         </a>
-        <% } %>
-        <% if (card.textCtaLabel) { %>
-        <a href="<%= card.textCtaHref || card.href %>" class="text-link-cta"><%= card.textCtaLabel %></a>
         <% } %>
       </div>
       <% } %>

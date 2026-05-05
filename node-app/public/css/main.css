@@ -461,17 +461,23 @@ button::before, .cta-button::before {
     text-decoration: none;
 }
 .text-link-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--color-border, rgba(120,130,160,0.3));
     font-size: 0.95em;
     font-weight: 500;
     color: var(--color-text);
     text-decoration: none;
-    padding: 0 4px;
-    opacity: 0.7;
-    transition: opacity 0.18s;
     white-space: nowrap;
+    transition: border-color 0.18s, background 0.18s, color 0.18s;
 }
 .text-link-cta:hover {
-    opacity: 1;
+    border-color: var(--color-text);
+    background: rgba(255,255,255,0.04);
     text-decoration: none;
 }
 .arrow-link.arrow-link--labeled {
