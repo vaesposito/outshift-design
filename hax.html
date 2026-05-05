@@ -1487,6 +1487,71 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     white-space: nowrap;
 }
 
+/* === Source Attribution Demo === */
+.sa-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 32px 16px 56px;
+    box-sizing: border-box;
+}
+.sa-demo {
+    background: #0d1b2e;
+    border-radius: 16px;
+    padding: 28px 32px;
+    color: #c8d8ea;
+    font-size: 0.88em;
+    box-shadow:
+        0 4px 24px rgba(0,0,0,0.4),
+        0 1px 6px rgba(0,0,0,0.25),
+        0 0 0 1px rgba(255,255,255,0.06);
+}
+.sa-demo-title {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #ddeeff;
+    margin-bottom: 16px;
+}
+.sa-finding {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+}
+.sa-finding:last-child { margin-bottom: 0; }
+.sa-finding-title {
+    font-weight: 700;
+    color: #ddeeff;
+    font-size: 0.92em;
+    margin-bottom: 6px;
+}
+.sa-finding-desc {
+    color: rgba(190,215,240,0.8);
+    font-size: 0.87em;
+    margin-bottom: 10px;
+}
+.sa-sources {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.sa-sources-label {
+    font-size: 0.83em;
+    color: rgba(160,195,225,0.7);
+    flex-shrink: 0;
+}
+.sa-source-tag {
+    padding: 4px 12px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    font-size: 0.8em;
+    color: #a8cce8;
+    background: transparent;
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2325,6 +2390,55 @@ footer {
             </div>
             <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
             <div class="cd-td"><button class="cd-action-btn">Resolution 4</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro">
+        <p class="pattern-related-intro-name">Source Attribution</p>
+        <p class="pattern-related-intro-desc">Revealing where information came from helps users verify and contextualize outputs, supporting accountability and enabling further inquiry.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Findings with Sources</p>
+
+      <!-- Interactive: Source Attribution -->
+      <div class="sa-demo-wrapper">
+        <!-- Callout 1: left — Source labels are visually distinct -->
+        <div class="scope-callout" style="--ct: 68px;" data-callout="sa1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Source labels are visually distinct and clickable</p>
+            <p class="sc-popover-desc">The source elements are styled for immediate recognition and likely interactive (e.g., tags, badges, or buttons), improving usability and clarity.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Claims supported by cited references -->
+        <div class="scope-callout" style="--ct: 178px;" data-callout="sa2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Claims supported by cited references</p>
+            <p class="sc-popover-desc">Each recommendation is backed by named sources, allowing users to verify the rationale and explore more details independently.</p>
+          </div>
+        </div>
+
+        <div class="sa-demo">
+          <p class="sa-demo-title">Findings about the System</p>
+          <div class="sa-finding">
+            <p class="sa-finding-title">Finding 1</p>
+            <p class="sa-finding-desc">Recommendation about the finding</p>
+            <div class="sa-sources">
+              <span class="sa-sources-label">Sources:</span>
+              <span class="sa-source-tag">Source label with link</span>
+              <span class="sa-source-tag">Source label with link</span>
+            </div>
+          </div>
+          <div class="sa-finding">
+            <p class="sa-finding-title">Finding 2</p>
+            <p class="sa-finding-desc">Recommendation about the finding</p>
+            <div class="sa-sources">
+              <span class="sa-sources-label">Sources:</span>
+              <span class="sa-source-tag">Source label with link</span>
+              <span class="sa-source-tag">Source label with link</span>
+            </div>
           </div>
         </div>
       </div>
