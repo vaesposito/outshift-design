@@ -471,6 +471,15 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     border-left: 2px solid var(--color-border-medium);
     padding-left: 10px;
 }
+.pattern-subnav-label {
+    font-size: 0.72em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    padding: 4px 10px 6px;
+    opacity: 0.7;
+}
 .pattern-subnav.is-open { display: flex; }
 .pattern-subitem {
     background: none;
@@ -2027,6 +2036,7 @@ footer {
         <div class="pattern-nav-group">
           <button class="pattern-filter is-active" data-pattern="control">Control</button>
           <div class="pattern-subnav is-open" data-subnav="control">
+            <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-scroll="control-scope">Scope &amp; Boundaries</button>
             <button class="pattern-subitem" data-scroll="control-authority">Customization of Autonomy</button>
             <button class="pattern-subitem" data-scroll="control-pgates">Permission &amp; Confirmation Gates</button>
@@ -2035,6 +2045,7 @@ footer {
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="clarity">Clarity</button>
           <div class="pattern-subnav" data-subnav="clarity">
+            <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-scroll="clarity-ir">Inline Rationale</button>
             <button class="pattern-subitem" data-scroll="clarity-cd">Confidence &amp; Uncertainty</button>
             <button class="pattern-subitem" data-scroll="clarity-sa">Source Attribution</button>
