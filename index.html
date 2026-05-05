@@ -557,6 +557,8 @@ button::before, .cta-button::before {
     color: var(--color-text);
     text-decoration: none;
     white-space: nowrap;
+    flex-shrink: 0;
+    min-width: max-content;
     transition: border-color 0.18s, background 0.18s, color 0.18s;
 }
 .text-link-cta:hover {
@@ -568,16 +570,18 @@ button::before, .cta-button::before {
 }
 .arrow-link.arrow-link--labeled {
     width: auto;
-    height: auto;
-    min-height: 40px;
+    min-width: max-content;
+    height: 40px;
     padding: 0 14px 0 16px;
     gap: 8px;
     font-size: 0.95em;
     font-weight: 500;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 .arrow-link.arrow-link--labeled span {
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 /* ── Innovation & Research ── */
@@ -1108,6 +1112,9 @@ footer {
     }
     .initiative-card .card-text {
         text-align: center;
+    }
+    .initiative-card .card-text-actions {
+        justify-content: center;
     }
     .initiative-card .card-text h3 {
         font-size: 2em;
