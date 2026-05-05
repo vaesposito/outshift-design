@@ -1,0 +1,66 @@
+      <div class="ir-demo-wrapper">
+        <div class="scope-callout" style="--ct: 20px;" data-callout="ir1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <div class="scope-callout sc-callout--right" style="--ct: 96px;" data-callout="ir2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <div class="scope-callout" style="--ct: 182px;" data-callout="ir3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+        <div class="ir-demo">
+          <div class="ir-demo-header">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2 1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Prioritizing incidents based on severity and impact
+          </div>
+          <div class="ir-incidents">
+            <div class="ir-incident">
+              <div class="ir-incident-top">
+                <span class="ir-incident-title">Incident 1</span>
+                <div class="ir-badges">
+                  <span class="ir-badge ir-badge-high">
+                    <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" fill="currentColor" opacity="0.25"/><path d="M4 4l4 4M8 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    High
+                  </span>
+                  <span class="ir-badge ir-badge-impact">Impact: 8 departments; 233 Devices</span>
+                </div>
+              </div>
+              <p class="ir-incident-desc">Description of the incident, what is causing it and more details on impact</p>
+            </div>
+            <div class="ir-incident">
+              <div class="ir-incident-top">
+                <span class="ir-incident-title">Incident 2</span>
+                <div class="ir-badges">
+                  <span class="ir-badge ir-badge-medium">
+                    <svg viewBox="0 0 12 12" fill="none"><path d="M6 1.5L11 10H1L6 1.5z" stroke="currentColor" stroke-width="1.2" fill="currentColor" opacity="0.2"/><path d="M6 5v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="9" r="0.6" fill="currentColor"/></svg>
+                    Medium
+                  </span>
+                  <span class="ir-badge ir-badge-impact">Impact: 3 departments; 75 Users</span>
+                </div>
+              </div>
+              <p class="ir-incident-desc">Description of the incident, what is causing it and more details on impact</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="clarity-cd">
+        <p class="pattern-related-intro-name">Confidence &amp; Uncertainty Displays</p>
+        <p class="pattern-related-intro-desc">Disclosing confidence levels helps users interpret outcomes effectively and calibrate trust appropriately for transparent decision support.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Diagnostic Report</p>
+
+      <!-- Interactive: Confidence & Uncertainty Display -->

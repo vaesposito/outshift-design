@@ -379,9 +379,15 @@ async function updateHaxPatterns(strapi: Core.Strapi) {
 
   if (!haxPage) return;
 
-  // Check if patterns already have the rich fields by testing the first pattern
+  // Check if patterns already have the correct rich fields.
+  // Verify the first control-pattern uses the correct subnavId ('control-scope' = 'Scope & Boundaries').
   const firstPattern = haxPage.patterns?.[0];
-  if (firstPattern?.subtitle && firstPattern?.relatedPatterns?.length > 0) {
+  const firstRelated = firstPattern?.relatedPatterns?.[0];
+  const alreadyCorrect =
+    firstPattern?.subtitle &&
+    firstRelated?.subnavId === 'control-scope' &&
+    firstRelated?.name === 'Scope & Boundaries';
+  if (alreadyCorrect) {
     strapi.log.info('Hax page patterns already up to date, skipping.');
     return;
   }

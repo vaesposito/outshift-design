@@ -1,0 +1,84 @@
+      <div class="eo-demo-wrapper">
+        <!-- Callout 1: left — Human-in-the-loop decision making -->
+        <div class="scope-callout" style="--ct: 60px;" data-callout="eo1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Language supports co-creation -->
+        <div class="scope-callout" style="--ct: 230px;" data-callout="eo2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: left — Selected output is not final -->
+        <div class="scope-callout" style="--ct: 272px;" data-callout="eo3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="eo-demo">
+          <!-- Three alternatives -->
+          <div class="eo-alternatives">
+            <div class="eo-alt-card">
+              <p class="eo-alt-label">Alternative 1</p>
+              <p class="eo-alt-title">Explanation</p>
+              <p class="eo-alt-impact">Measurable impact</p>
+            </div>
+            <div class="eo-alt-card">
+              <p class="eo-alt-label">Alternative 2</p>
+              <p class="eo-alt-title">Explanation</p>
+              <p class="eo-alt-impact">Measurable impact</p>
+            </div>
+            <div class="eo-alt-card">
+              <p class="eo-alt-label">Alternative 3</p>
+              <p class="eo-alt-title">Explanation</p>
+              <p class="eo-alt-impact">Measurable impact</p>
+            </div>
+          </div>
+          <!-- Chat exchange -->
+          <div class="eo-chat">
+            <div class="eo-msg eo-msg--user">
+              <div class="eo-avatar eo-avatar--user">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+              </div>
+              <p class="eo-msg-text">Let's go with alternative 1</p>
+            </div>
+            <div class="eo-msg eo-msg--agent">
+              <div class="eo-avatar eo-avatar--agent">A</div>
+              <p class="eo-msg-text">Sure, before I go ahead with implementing this, please confirm the following details</p>
+            </div>
+          </div>
+          <!-- Editable fields -->
+          <div class="eo-fields">
+            <div class="eo-field-row">
+              <span class="eo-field-text">Actionable 1</span>
+              <span class="eo-select">Metric <span class="eo-select-arrow">▾</span></span>
+              <span class="eo-field-text">in categories</span>
+              <span class="eo-select eo-select--wide">Category 1 <span class="eo-select-arrow">▾</span></span>
+              <span class="eo-field-text">for</span>
+              <span class="eo-select">user <span class="eo-select-arrow">▾</span></span>
+            </div>
+            <div class="eo-field-row">
+              <span class="eo-field-text">with exceptions for</span>
+              <span class="eo-select">None <span class="eo-select-arrow">▾</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="recovery-sd">
+        <p class="pattern-related-intro-name">Safe Defaults</p>
+        <p class="pattern-related-intro-desc">Defaulting to conservative actions prevents harm and sets user-friendly expectations, particularly in early use or high-risk environments.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Safe Defaults</p>
+
+      <!-- Interactive: Safe Defaults -->

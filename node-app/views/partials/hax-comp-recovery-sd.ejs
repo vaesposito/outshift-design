@@ -1,0 +1,53 @@
+      <div class="sd-demo-wrapper">
+        <!-- Callout 1: left — Builds trust through predictable, gradual control -->
+        <div class="scope-callout" style="--ct: 122px;" data-callout="sd1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Activation requires explicit user intent -->
+        <div class="scope-callout" style="--ct: 195px;" data-callout="sd2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="sd-demo">
+          <div class="sd-header">
+            <div class="sd-header-text">
+              <p class="sd-title">Rules</p>
+              <p class="sd-subtitle">Rules will ensure safe, conservative operation based on prior user interactions and best practices.</p>
+            </div>
+            <button class="sd-add-btn">Add New</button>
+          </div>
+          <div class="sd-rules">
+            <div class="sd-rule">
+              <div class="sd-rule-top">
+                <div class="sd-checkbox"></div>
+                <span class="sd-rule-name">Default 1</span>
+              </div>
+              <p class="sd-rule-desc">Description of the default</p>
+            </div>
+            <div class="sd-rule">
+              <div class="sd-rule-top">
+                <div class="sd-checkbox"></div>
+                <span class="sd-rule-name">Default 2</span>
+              </div>
+              <p class="sd-rule-desc">Description of the default</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="recovery-ep">
+        <p class="pattern-related-intro-name">Escalation Paths</p>
+        <p class="pattern-related-intro-desc">Agents should never trap users. Providing clear escape routes to human assistance or manual control is vital for safety and trust.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Escalation Paths</p>
+
+      <!-- Interactive: Escalation Paths -->

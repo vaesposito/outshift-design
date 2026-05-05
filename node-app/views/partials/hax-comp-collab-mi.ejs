@@ -1,0 +1,104 @@
+      <div class="mi-demo-wrapper">
+        <!-- Callout 1: left — Agent proactively initiates -->
+        <div class="scope-callout" style="--ct: 68px;" data-callout="mi1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: right — Build on each other's contributions -->
+        <div class="scope-callout sc-callout--right" style="--ct: 130px;" data-callout="mi2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="mi-demo">
+          <!-- Left: incident list -->
+          <div class="mi-left">
+            <p class="mi-left-title">Incidents Detected by Agent</p>
+            <div class="mi-incident">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🔴</span>
+                <span class="mi-incident-name">Incident 1</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+            <div class="mi-incident selected">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🔴</span>
+                <span class="mi-incident-name">Incident 2</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+            <div class="mi-incident">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🟠</span>
+                <span class="mi-incident-name">Incident 3</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+            <div class="mi-incident">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🟠</span>
+                <span class="mi-incident-name">Incident 4</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+          </div>
+          <!-- Right: chat -->
+          <div class="mi-right">
+            <p class="mi-right-title">Triage Incident</p>
+            <div class="mi-chat">
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--agent">A</div>
+                <div class="mi-msg-body">
+                  <p class="mi-msg-text">I have detected a major issue starting at 09:17 UTC. What would you like to do?</p>
+                  <div class="mi-actions">
+                    <button class="mi-action-btn">View Interface Errors</button>
+                    <button class="mi-action-btn">Compare with historical baseline</button>
+                    <button class="mi-action-btn">Simulate Rollback</button>
+                  </div>
+                </div>
+              </div>
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--user">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                </div>
+                <p class="mi-msg-text">Compare it to yesterday, and exclude issue x from the analysis.</p>
+              </div>
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--agent">A</div>
+                <p class="mi-msg-text">Done. Compare to yesterday's baseline, it shows a 30% decrease in traffic. I recommend rollback. Would you like to rollback.</p>
+              </div>
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--user">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                </div>
+                <p class="mi-msg-text">No rollback yet. Pull logs from first — I want to check status.</p>
+              </div>
+            </div>
+            <div class="mi-footer">
+              <div class="mi-input-row">
+                <span class="mi-input-placeholder">Ask the AI Assistant a question</span>
+                <button class="mi-send">
+                  <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+                </button>
+              </div>
+              <p class="mi-disclaimer">Assistant can make mistakes. Verify responses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="collab-ce">
+        <p class="pattern-related-intro-name">Co-editing Interfaces</p>
+        <p class="pattern-related-intro-desc">Shared content and workspace for both AI and humans foster transparency — building clarity and trust.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Co-editing Interfaces</p>
+
+      <!-- Interactive: Co-editing Interfaces -->

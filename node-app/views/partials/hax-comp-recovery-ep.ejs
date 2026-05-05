@@ -1,0 +1,118 @@
+      <div class="ep-demo-wrapper">
+        <!-- Callout 1: left — Manual input always available -->
+        <div class="scope-callout" style="--ct: 208px;" data-callout="ep1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Clear option to proceed independently -->
+        <div class="scope-callout" style="--ct: 253px;" data-callout="ep2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="ep-demo">
+          <!-- Tabs -->
+          <div class="ep-tabs">
+            <button class="ep-tab active">Chat</button>
+            <button class="ep-tab">Workflow</button>
+          </div>
+          <!-- Body -->
+          <div class="ep-body">
+            <!-- Message 1 -->
+            <div class="ep-msg">
+              <div class="ep-msg-top">
+                <span class="ep-spark">✦</span>
+                <p class="ep-msg-text">Important screen loaded by Agent</p>
+              </div>
+            </div>
+            <!-- Message 2 with input -->
+            <div class="ep-msg">
+              <div class="ep-msg-top">
+                <span class="ep-spark">✦</span>
+                <p class="ep-msg-text">Agent asks a question about the screen because they cannot make a decision and need clarification from user</p>
+              </div>
+              <div class="ep-input-row">
+                <span class="ep-input-placeholder">Describe step here</span>
+                <button class="ep-send">
+                  <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+                </button>
+              </div>
+              <div style="margin-top: 8px;">
+                <button class="ep-alt-btn">Alternate</button>
+              </div>
+            </div>
+          </div>
+          <!-- Footer input -->
+          <div class="ep-footer">
+            <div class="ep-footer-input">
+              <span class="ep-input-placeholder">Ask the AI Assistant a question</span>
+              <button class="ep-send">
+                <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+              </button>
+            </div>
+            <p class="ep-disclaimer">Assistant can make mistakes. Verify responses.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">How to implement</h4>
+      <ul class="how-to-list">
+        <li>Design agents to offer fallback options or manual alternatives instead of total failure</li>
+        <li>Use feedback from failure and recovery experiences to continuously improve system behavior</li>
+        <li>Make recovery options easy to find, context-sensitive, and layered from simple to advanced controls</li>
+      </ul>
+
+      <h4 class="pattern-examples-label">Common pitfalls</h4>
+      <div class="pitfalls-grid">
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Failing to learn from recovery events</p>
+          <p class="pitfall-card-desc">Failing to analyze recovery patterns can lead to repeated mistakes, missing the opportunity to learn from user corrections and improve AI performance over time</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Lack of granular control</p>
+          <p class="pitfall-card-desc">Using only high-level revision features frustrates users who want to undo specific AI actions without losing their own work, missing the need for precise, collaborative recovery</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Inconsistent recovery experiences</p>
+          <p class="pitfall-card-desc">Recovery mechanisms that work differently across different parts of the system confuse users and create cognitive overhead</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Unclear recovery guidance</p>
+          <p class="pitfall-card-desc">Users need clear explanations and recovery options when things go wrong. Vague errors and unclear paths lead to frustration and reduced trust</p>
+        </div>
+      </div>
+
+    </div><!-- /.pattern-panel recovery -->
+
+    <div class="pattern-panel" data-panel="collaboration">
+      <h3 class="pattern-title">Collaboration</h3>
+      <p class="pattern-desc">Design for shared effort and mutual input</p>
+
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
+          <p class="pattern-info-title">What it means</p>
+          <p>Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes. The agent contributes ideas, takes input, and improves the work in progress.</p>
+        </div>
+        <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
+          <p class="pattern-info-title">Why this matters</p>
+          <p>Collaboration builds stronger results than automation alone. When people and agents shape outcomes together, users stay engaged and push toward more creative, effective solutions.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
+      <div class="pattern-related-intro" id="collab-mi">
+        <p class="pattern-related-intro-name">Mixed Initiative</p>
+        <p class="pattern-related-intro-desc">This pattern fosters adaptive turn-taking between human and agent. It supports fluid collaboration by allowing both to lead based on context.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Mixed Initiative</p>
+
+      <!-- Interactive: Mixed Initiative -->

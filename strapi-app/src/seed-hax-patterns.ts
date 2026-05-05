@@ -23,53 +23,29 @@ const panels = [
     relatedPatterns: [
       {
         subnavId: "control-scope",
-        name: "Permission & Confirmation Gates",
+        name: "Scope & Boundaries",
         description:
-          "Explicit checkpoints require human approval before proceeding. Safeguards critical operations through shared decision-making.",
-        componentLabel: "Component example: Kill switch and preview modes",
+          "Users define operational limits for AI behavior. The agent operates within these boundaries, avoiding unintended actions.",
+        componentLabel: "Component example: Instruction / Scope",
         callouts: [
           {
             num: 1,
-            title: "Immediate agent shutdown",
-            desc: "A prominent "Disable Agent" toggle gives users a fast, irreversible way to halt all agent activity.",
+            title: "Instruction mode",
+            desc: "Users define interaction boundaries by selecting input modes, guiding the agent to operate safely within intended, user-controlled scopes.",
           },
           {
             num: 2,
-            title: "Visible control settings",
-            desc: "The system shows settings upfront allowing the user to assess whether to make decisions based on risks and live situations.",
-          },
-        ],
-      },
-      {
-        subnavId: "control-inline",
-        name: "Inline Rationale",
-        description:
-          "Surfacing the agent's reasoning at the point of action gives users the context to judge, modify, or override it confidently.",
-        componentLabel: "Component example: Inline Rationale",
-        callouts: [
-          {
-            num: 1,
-            title: "Confidence is stated clearly",
-            desc: "The system communicates how certain it is, helping users calibrate trust and decide whether to act or investigate further.",
-          },
-          {
-            num: 2,
-            title: "Reasoning is accessible, not buried",
-            desc: "Rationale appears directly within the interface at the point of action — not in logs or hidden panels.",
-          },
-          {
-            num: 3,
-            title: "User can act directly from the rationale view",
-            desc: "The interface allows users to approve, modify, or reject directly from where rationale is shown.",
+            title: "Task specific boundaries",
+            desc: "Specific checkboxes define what the AI is allowed to change and what it must avoid. These help define clear behavioral constraints.",
           },
         ],
       },
       {
         subnavId: "control-authority",
-        name: "Adjustable Autonomy",
+        name: "Customization of Autonomy",
         description:
-          "Letting users tune how much the agent acts independently keeps them in charge while still benefiting from automation.",
-        componentLabel: "Component example: Adjustable Autonomy",
+          "Users control the spectrum of autonomy, from passive suggestions to full automation based on their comfort and context.",
+        componentLabel: "Component example: Authority Sliders",
         callouts: [
           {
             num: 1,
@@ -80,6 +56,25 @@ const panels = [
             num: 2,
             title: "Users can set context-specific controls",
             desc: "Different autonomy settings can be applied to different task types, balancing efficiency with oversight where it matters most.",
+          },
+        ],
+      },
+      {
+        subnavId: "control-pgates",
+        name: "Permission & Confirmation Gates",
+        description:
+          "Explicit checkpoints require human approval before proceeding. Safeguards critical operations through shared decision-making.",
+        componentLabel: "Component example: Kill switch and preview modes",
+        callouts: [
+          {
+            num: 1,
+            title: "Immediate agent shutdown",
+            desc: "A prominent \"Disable Agent\" toggle gives users a fast, irreversible way to halt all agent activity.",
+          },
+          {
+            num: 2,
+            title: "Visible control settings",
+            desc: "The system shows settings upfront allowing the user to assess whether to make decisions based on risks and live situations.",
           },
         ],
       },
@@ -116,11 +111,35 @@ const panels = [
       "Without clarity, users either blindly trust outputs or constantly second-guess them. Both extremes are costly. Clear reasoning builds calibrated trust — users engage more effectively and catch errors faster.",
     relatedPatterns: [
       {
+        subnavId: "clarity-ir",
+        name: "Inline Rationale",
+        description:
+          "Agents articulate why they made recommendations. Rationale should be accessible, understandable, and relevant to help users make sense of the thinking.",
+        componentLabel: "Component example: Inline Rationale",
+        callouts: [
+          {
+            num: 1,
+            title: "Agent's reasoning surfaced",
+            desc: "The agent labels its own decision logic, making invisible prioritization visible so users can understand, question, or reorder.",
+          },
+          {
+            num: 2,
+            title: "Reasoning is accessible, not buried",
+            desc: "Rationale appears directly within the interface at the point of action — not in logs or hidden panels.",
+          },
+          {
+            num: 3,
+            title: "User can act directly from the rationale view",
+            desc: "The interface allows users to approve, modify, or reject directly from where rationale is shown.",
+          },
+        ],
+      },
+      {
         subnavId: "clarity-cd",
         name: "Confidence & Uncertainty Displays",
         description:
-          "Explicit checkpoints require human approval before proceeding. Safeguards critical operations through shared decision-making.",
-        componentLabel: "Component example: Diagnostic Report with Actionables",
+          "Disclosing confidence levels helps users interpret outcomes effectively and calibrate trust appropriately for transparent decision support.",
+        componentLabel: "Component example: Diagnostic Report",
         callouts: [
           {
             num: 1,
@@ -145,7 +164,7 @@ const panels = [
         ],
       },
       {
-        subnavId: "clarity-ir",
+        subnavId: "clarity-sa",
         name: "Source Attribution",
         description:
           "Revealing where information came from helps users verify and contextualize outputs, supporting accountability and enabling further inquiry.",

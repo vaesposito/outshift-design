@@ -1,0 +1,117 @@
+      <div class="at-demo-wrapper">
+        <!-- Callout 1: left — Consequences and benefits are explicit -->
+        <div class="scope-callout" style="--ct: 96px;" data-callout="at1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Multiple actions presented side-by-side -->
+        <div class="scope-callout" style="--ct: 174px;" data-callout="at2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Supports informed trade-off decisions -->
+        <div class="scope-callout sc-callout--right" style="--ct: 174px;" data-callout="at3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 4: right — Labels indicate duration and reversibility -->
+        <div class="scope-callout sc-callout--right" style="--ct: 96px;" data-callout="at4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[3]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[3]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="at-demo">
+          <p class="at-demo-title">Suggested actions to improve performance</p>
+          <div class="at-cards">
+            <div class="at-card">
+              <p class="at-card-title">First preferred action</p>
+              <div class="at-tags">
+                <span class="at-tag at-tag--olive">Temporary measure</span>
+                <span class="at-tag at-tag--olive">Immediate, reversible</span>
+              </div>
+              <p class="at-card-impact">Measurable impact</p>
+              <div class="at-actions">
+                <button class="at-btn at-btn--primary">Accept</button>
+                <button class="at-btn at-btn--outline">Modify</button>
+                <button class="at-btn at-btn--outline">Reject</button>
+              </div>
+            </div>
+            <div class="at-card">
+              <p class="at-card-title">Second preferred action</p>
+              <div class="at-tags">
+                <span class="at-tag at-tag--teal">Medium-term measure</span>
+                <span class="at-tag at-tag--teal">5 minutes</span>
+              </div>
+              <p class="at-card-impact">Measurable impact</p>
+              <div class="at-actions">
+                <button class="at-btn at-btn--primary">Accept</button>
+                <button class="at-btn at-btn--outline">Modify</button>
+                <button class="at-btn at-btn--outline">Reject</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">How to implement</h4>
+      <ul class="how-to-list">
+        <li>Include reasoning explanations alongside every recommendation or decision</li>
+        <li>Make explanations accessible through plain language and visual aids</li>
+        <li>Use progressive disclosure to offer both quick summaries and detailed explanations</li>
+        <li>Show alternative options considered and why they were not chosen</li>
+        <li>Provide clear source citations and links for verification</li>
+        <li>Display confidence levels and uncertainty ranges where relevant</li>
+      </ul>
+
+      <h4 class="pattern-examples-label">Common pitfalls</h4>
+      <div class="pitfalls-grid">
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Opaque decision logic</p>
+          <p class="pitfall-card-desc">Users can't tell why the agent made a choice</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Over explanation</p>
+          <p class="pitfall-card-desc">Flooding users with too much technical detail and overwhelming them with too much detail</p>
+        </div>
+      </div>
+
+    </div><!-- /.pattern-panel clarity -->
+
+    <div class="pattern-panel" data-panel="recovery">
+      <h3 class="pattern-title">Recovery</h3>
+      <p class="pattern-desc">Assume the agent will make mistakes, make them clearly fixable</p>
+
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
+          <p class="pattern-info-title">What it means</p>
+          <p>Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
+        </div>
+        <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
+          <p class="pattern-info-title">Why this matters</p>
+          <p>Without recovery, even small errors can erode trust and stall progress. Clear ways to fix mistakes turn agent failures into moments of learning for both the system and the person using it.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
+      <div class="pattern-related-intro" id="recovery-undo">
+        <p class="pattern-related-intro-name">Undo &amp; Redo Support</p>
+        <p class="pattern-related-intro-desc">This pattern is essential in agentic systems or tools with automation because it provides a safety net. It protects users from unintended consequences and reinforcing their control.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Undo &amp; Redo Support</p>
+
+      <!-- Interactive: Undo & Redo Support -->

@@ -1,0 +1,157 @@
+      <div class="rc-demo-wrapper">
+        <!-- Callout 1: left — Clear stage-based ownership -->
+        <div class="scope-callout" style="--ct: 148px;" data-callout="rc1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Attribute every action -->
+        <div class="scope-callout" style="--ct: 370px;" data-callout="rc2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Signal when it's the user's turn -->
+        <div class="scope-callout sc-callout--right" style="--ct: 100px;" data-callout="rc3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="rc-card">
+          <div class="rc-card-header">
+            <p class="rc-card-title"><span class="rc-card-title-icon">✦</span> Agent action review required</p>
+            <span class="rc-status-badge">Waiting for review</span>
+          </div>
+
+          <p class="rc-status-label">Status</p>
+          <div class="rc-stepper">
+            <!-- Step 1: done -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--done">✓</div>
+                <div class="rc-connector rc-connector--done"></div>
+              </div>
+              <span class="rc-step-name rc-step-name--done">AI Drafts Changes</span>
+            </div>
+            <!-- Step 2: active -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--active">2</div>
+                <div class="rc-connector"></div>
+              </div>
+              <span class="rc-step-name rc-step-name--active">Engineer Review</span>
+            </div>
+            <!-- Step 3 -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--pending">3</div>
+                <div class="rc-connector"></div>
+              </div>
+              <span class="rc-step-name">Peer Approval</span>
+            </div>
+            <!-- Step 4 -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--pending">4</div>
+                <div class="rc-connector"></div>
+              </div>
+              <span class="rc-step-name">Staging Deployment</span>
+            </div>
+            <!-- Step 5: last, no connector -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--pending">5</div>
+              </div>
+              <span class="rc-step-name">Commit</span>
+            </div>
+          </div>
+
+          <div class="rc-section">
+            <p class="rc-section-title">Description</p>
+            <p class="rc-section-body">Description of the agent action</p>
+          </div>
+
+          <div class="rc-section">
+            <p class="rc-section-title">Agent Rationale</p>
+            <ul class="rc-rationale-list">
+              <li>Reason 1</li>
+              <li>Reason 2</li>
+              <li>Reason 3</li>
+            </ul>
+          </div>
+
+          <div class="rc-section">
+            <p class="rc-section-title">Actions</p>
+            <p class="rc-actions-text">This change is pending your review. It will not move forward until approved. Upon confirmation, it will proceed to peer review for secondary validation.</p>
+            <div class="rc-action-btns">
+              <button class="rc-btn rc-btn--primary">Accept</button>
+              <button class="rc-btn rc-btn--outline">Modify</button>
+              <button class="rc-btn rc-btn--outline">Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">How to implement</h4>
+      <ul class="how-to-list">
+        <li>Define clear, intuitive ways for control to shift between human and AI</li>
+        <li>Let the AI learn from collaborative successes and adapt its behavior to match individual user styles and preferences</li>
+        <li>Maintain a unified workspace that tracks contributions, context, and progress from both human and AI participants</li>
+        <li>Gracefully handle simultaneous edits with merging, version comparison, or deferring to human review when needed</li>
+      </ul>
+
+      <h4 class="pattern-examples-label">Common pitfalls</h4>
+      <div class="pitfalls-grid">
+        <div class="pitfall-card">
+          <p class="pitfall-title">Lack of transparency</p>
+          <p class="pitfall-desc">Users don't understand how to influence the agent or override agent actions</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-title">Assumed alignment</p>
+          <p class="pitfall-desc">The agent acts without confirming intent or context</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-title">Rigid flows</p>
+          <p class="pitfall-desc">The system doesn't adapt when users try to collaborate or redirect</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-title">Binary choices</p>
+          <p class="pitfall-desc">Only offering accept/reject rather than co-create options</p>
+        </div>
+      </div>
+
+    </div><!-- /.pattern-panel collaboration -->
+
+    <div class="pattern-panel" data-panel="traceability">
+      <h3 class="pattern-title">Traceability</h3>
+      <p class="pattern-desc">Make agent behavior visible, searchable &amp; open to review</p>
+
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
+          <p class="pattern-info-title">What it means</p>
+          <p>Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.</p>
+        </div>
+        <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
+          <p class="pattern-info-title">Why this matters</p>
+          <p>As agents evolve, so do their decisions. Traceability allows teams to track changes, understand outcomes, and stay aligned in multi-user environments. It turns opaque processes into something you can audit, learn from, and improve.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
+      <div class="pattern-related-intro" id="trace-ah">
+        <p class="pattern-related-intro-name">Action History</p>
+        <p class="pattern-related-intro-desc">A chronological record of agent behavior supports traceability and builds long-term accountability in agentic systems.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Action History</p>
+
+      <!-- Interactive: Action History -->

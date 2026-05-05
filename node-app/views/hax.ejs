@@ -1,4 +1,5 @@
 <%- include('partials/head') %>
+<link rel="stylesheet" href="/css/hax-patterns.css">
 <%- include('partials/header') %>
 <%- include('partials/blobs') %>
 
@@ -32,16 +33,101 @@
   </div>
 </div>
 
-<!-- Guiding principles (overview + links to pattern pages) -->
+<!-- Guiding principles -->
 <div class="patterns-section">
   <div class="container">
     <div class="patterns-header">
       <h2>Guiding principles</h2>
-      <p>Five ideas for trustworthy agent experiences that prioritize human control and agency. See a concise overview on Human-Centered AI Patterns, then detailed examples on Guiding principles.</p>
-      <p style="margin-top:20px;"><a href="/guiding-principles" class="sdk-cta">Guiding principles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a></p>
+      <p>Five ideas for trustworthy agent experiences that prioritize human control and agency.</p>
+      <hr class="patterns-header-divider">
     </div>
-  </div>
-</div>
+    <div class="patterns-layout">
+
+      <!-- Sidebar nav -->
+      <nav class="patterns-nav">
+        <% pageData.patterns.forEach(function(panel, pi) { %>
+        <div class="pattern-nav-group">
+          <button class="pattern-filter<%= pi === 0 ? ' is-active' : '' %>" data-pattern="<%= panel.key %>"><%= panel.title %></button>
+          <% if (panel.relatedPatterns && panel.relatedPatterns.length) { %>
+          <div class="pattern-subnav<%= pi === 0 ? ' is-open' : '' %>" data-subnav="<%= panel.key %>">
+            <span class="pattern-subnav-label">Related Patterns</span>
+            <% panel.relatedPatterns.forEach(function(rp) { %>
+            <button class="pattern-subitem" data-panel="<%= panel.key %>" data-scroll="<%= rp.subnavId %>"><%= rp.name %></button>
+            <% }); %>
+          </div>
+          <% } %>
+        </div>
+        <% }); %>
+      </nav>
+
+      <!-- Content panels -->
+      <div class="patterns-content">
+        <% pageData.patterns.forEach(function(panel, pi) { %>
+        <div class="pattern-panel<%= pi === 0 ? ' is-active' : '' %>" data-panel="<%= panel.key %>">
+          <h3 class="pattern-title"><%= panel.title %></h3>
+          <% if (panel.subtitle) { %><p class="pattern-desc"><%= panel.subtitle %></p><% } %>
+
+          <% if (panel.whatItMeans || panel.whyItMatters) { %>
+          <div class="pattern-info-row">
+            <% if (panel.whatItMeans) { %>
+            <div class="pattern-info">
+              <span class="pattern-info-symbol">?</span>
+              <p class="pattern-info-title">What it means</p>
+              <p><%= panel.whatItMeans %></p>
+            </div>
+            <% } %>
+            <% if (panel.whyItMatters) { %>
+            <div class="pattern-why">
+              <span class="pattern-info-symbol">!</span>
+              <p class="pattern-info-title">Why this matters</p>
+              <p><%= panel.whyItMatters %></p>
+            </div>
+            <% } %>
+          </div>
+          <% } %>
+
+          <% if (panel.relatedPatterns && panel.relatedPatterns.length) { %>
+          <h4 class="pattern-examples-label">Related Patterns</h4>
+          <% panel.relatedPatterns.forEach(function(rp) { %>
+          <div class="pattern-related-intro" id="<%= rp.subnavId %>">
+            <p class="pattern-related-intro-name"><%= rp.name %></p>
+            <p class="pattern-related-intro-desc"><%= rp.description %></p>
+          </div>
+          <% if (rp.componentLabel) { %>
+          <p class="pattern-component-label"><%= rp.componentLabel %></p>
+          <% } %>
+          <%- include('partials/hax-comp-' + rp.subnavId, { rp: rp }) %>
+          <% }); %>
+          <% } %>
+
+          <% if (panel.howToImplement && panel.howToImplement.length) { %>
+          <h4 class="pattern-examples-label">How to implement</h4>
+          <ul class="how-to-list">
+            <% panel.howToImplement.forEach(function(item) { %>
+            <li><%= item %></li>
+            <% }); %>
+          </ul>
+          <% } %>
+
+          <% if (panel.commonPitfalls && panel.commonPitfalls.length) { %>
+          <h4 class="pattern-examples-label">Common pitfalls</h4>
+          <div class="pitfalls-grid">
+            <% panel.commonPitfalls.forEach(function(pitfall) { %>
+            <div class="pitfall-card">
+              <p class="pitfall-title"><%= pitfall.title %></p>
+              <p class="pitfall-desc"><%= pitfall.description %></p>
+            </div>
+            <% }); %>
+          </div>
+          <% } %>
+
+        </div><!-- /.pattern-panel -->
+        <% }); %>
+      </div><!-- /.patterns-content -->
+
+    </div><!-- /.patterns-layout -->
+  </div><!-- /.container -->
+</div><!-- /.patterns-section -->
 
 <!-- Build with SDK -->
 <div class="sdk-section">
@@ -50,7 +136,7 @@
       <div class="sdk-text">
         <h2><%= pageData.sdk.title %></h2>
         <p><%= pageData.sdk.description %></p>
-        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <a href="<%= pageData.sdk.buttonUrl %>" target="_blank" rel="noopener noreferrer" class="sdk-cta"><%= pageData.sdk.buttonLabel %> <%- include('partials/arrow-icon') %></a>
       </div>
       <div class="sdk-image">
         <% if (pageData.sdk.darkImage) { %>
@@ -63,5 +149,42 @@
     </div>
   </div>
 </div>
+
+<script>
+(function(){
+  const filters = document.querySelectorAll('.pattern-filter');
+  const panels  = document.querySelectorAll('.pattern-panel');
+  const subnav  = document.querySelectorAll('.pattern-subnav');
+
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.pattern;
+      filters.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      panels.forEach(p => p.classList.toggle('is-active', p.dataset.panel === key));
+      subnav.forEach(nav => {
+        const show = nav.dataset.subnav === key;
+        nav.classList.toggle('is-open', show);
+      });
+    });
+  });
+
+  document.querySelectorAll('.pattern-subitem').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.scroll;
+      const panelKey = btn.dataset.panel || btn.closest('.pattern-nav-group')?.querySelector('.pattern-filter')?.dataset.pattern;
+      if (panelKey) {
+        filters.forEach(b => b.classList.toggle('is-active', b.dataset.pattern === panelKey));
+        panels.forEach(p => p.classList.toggle('is-active', p.dataset.panel === panelKey));
+        subnav.forEach(nav => nav.classList.toggle('is-open', nav.dataset.subnav === panelKey));
+      }
+      const el = document.getElementById(targetId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.pattern-subitem').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+})();
+</script>
 
 <%- include('partials/footer') %>

@@ -1,0 +1,151 @@
+        <div class="scope-demo-wrapper">
+          <!-- Callout 1 → tab bar -->
+          <div class="scope-callout" style="--ct: 28px;" data-callout="1">
+            <span class="sc-num">1</span><span class="sc-line"></span>
+            <div class="sc-popover">
+              <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+              <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+            </div>
+          </div>
+          <!-- Callout 2 → content area -->
+          <div class="scope-callout" style="--ct: 160px;" data-callout="2">
+            <span class="sc-num">2</span><span class="sc-line"></span>
+            <div class="sc-popover">
+              <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+              <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+            </div>
+          </div>
+
+          <div class="scope-demo">
+            <!-- Tab bar -->
+            <div class="scope-demo-topbar">
+              <span class="scope-demo-via">Instructions via</span>
+              <div class="scope-demo-tabs">
+                <button class="scope-tab active" data-tab="settings">Settings</button>
+                <button class="scope-tab" data-tab="chat">Chat</button>
+                <button class="scope-tab" data-tab="file">File</button>
+                <button class="scope-tab" data-tab="qa">Q&amp;A</button>
+              </div>
+            </div>
+
+            <!-- Hint -->
+            <div class="scope-hint">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v7M5 7l3 3 3-3"/></svg>
+              Click the tabs above to explore
+            </div>
+
+            <!-- Panels -->
+            <div class="scope-panels">
+
+              <!-- Settings -->
+              <div class="scope-panel active" data-panel="settings">
+                <div class="sc-acc-item sc-expanded">
+                  <div class="sc-acc-header">
+                    <span class="sc-check sc-checked"></span>
+                    <span class="sc-num-label">1 of 3</span>
+                    <span class="sc-acc-name">Scope &amp; Boundaries</span>
+                    <svg class="sc-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                  </div>
+                  <div class="sc-acc-body">
+                    <div class="sc-sub-row"><span class="sc-check sc-checked"></span> Update the item label if it doesn't match the defined scope</div>
+                    <div class="sc-sub-row"><span class="sc-check sc-checked"></span> Extend the description to clarify boundaries without altering original intent</div>
+                  </div>
+                </div>
+                <div class="sc-acc-item">
+                  <div class="sc-acc-header">
+                    <span class="sc-check"></span>
+                    <span class="sc-num-label">2 of 3</span>
+                    <span class="sc-acc-name">Another Setting</span>
+                    <svg class="sc-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                  </div>
+                </div>
+                <div class="sc-acc-item">
+                  <div class="sc-acc-header">
+                    <span class="sc-check"></span>
+                    <span class="sc-num-label">3 of 3</span>
+                    <span class="sc-acc-name">Behavioral Limits</span>
+                    <svg class="sc-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat -->
+              <div class="scope-panel" data-panel="chat">
+                <div class="sc-chat">
+                  <div class="sc-msg sc-user">
+                    <div class="sc-avatar sc-user-av">U</div>
+                    <div class="sc-bubble">Turn off auto-updates for this app</div>
+                  </div>
+                  <div class="sc-msg sc-agent">
+                    <div class="sc-avatar sc-agent-av"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 0 1 .894.553l1.618 3.278 3.618.526a1 1 0 0 1 .554 1.706l-2.618 2.552.618 3.603a1 1 0 0 1-1.451 1.054L10 13.347l-3.233 1.925a1 1 0 0 1-1.451-1.054l.618-3.603L3.316 8.063a1 1 0 0 1 .554-1.706l3.618-.526L9.106 2.553A1 1 0 0 1 10 2z"/></svg></div>
+                    <div class="sc-bubble">Do you want to turn off auto-updates for all apps or just this one?</div>
+                  </div>
+                  <div class="sc-msg sc-user">
+                    <div class="sc-avatar sc-user-av">U</div>
+                    <div class="sc-bubble">Yeah, show me the options</div>
+                  </div>
+                  <div class="sc-msg sc-agent">
+                    <div class="sc-avatar sc-agent-av"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 0 1 .894.553l1.618 3.278 3.618.526a1 1 0 0 1 .554 1.706l-2.618 2.552.618 3.603a1 1 0 0 1-1.451 1.054L10 13.347l-3.233 1.925a1 1 0 0 1-1.451-1.054l.618-3.603L3.316 8.063a1 1 0 0 1 .554-1.706l3.618-.526L9.106 2.553A1 1 0 0 1 10 2z"/></svg></div>
+                    <div class="sc-bubble sc-with-opts">
+                      Which would you like?
+                      <div class="sc-opts">
+                        <span class="sc-opt">Option 1</span>
+                        <span class="sc-opt">Option 2</span>
+                        <span class="sc-opt">Option 3</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- File -->
+              <div class="scope-panel" data-panel="file">
+                <div class="sc-file">
+                  <p class="sc-file-h">Overview</p>
+                  <p class="sc-file-p">This configuration file defines preferences and settings for automated review and analysis of changes, with a focus on new settings. It supports automation, best practice recommendations, and change assessments.</p>
+                  <p class="sc-file-h">Title and Description Guidelines</p>
+                  <ul class="sc-file-ul">
+                    <li><strong>Title:</strong>
+                      <ul><li>Update titles as needed to reflect the content of the changes.</li></ul>
+                    </li>
+                    <li><strong>Description:</strong>
+                      <ul>
+                        <li>Add relevant context or detail to the PR description directly; do not leave suggestions as comments.</li>
+                        <li>Reference: <span class="sc-link">How to write a good request description</span></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p class="sc-file-h">Summary of Changes</p>
+                </div>
+              </div>
+
+              <!-- Q&A -->
+              <div class="scope-panel" data-panel="qa">
+                <div class="sc-qa">
+                  <div class="sc-qa-item">
+                    <p class="sc-qa-q">1. What is the Instruction / Scope pattern in this context?</p>
+                    <div class="sc-qa-a">It's when the user gives a one-time instruction — such as changing a system setting — and the scope of the change is defined either in the file content or in the action of uploading the file itself.</div>
+                  </div>
+                  <div class="sc-qa-item">
+                    <p class="sc-qa-q">2. What does a typical user action look like?</p>
+                    <div class="sc-qa-a">The user uploads a file (e.g., config.json, settings.yaml, or a .docx template) that contains configuration data or preferences</div>
+                  </div>
+                  <div class="sc-qa-item">
+                    <p class="sc-qa-q">3. What does the system (agent) do upon receiving the file?</p>
+                    <div class="sc-qa-select">Validates the file (format, schema, safety) <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 6 8 10 12 6"/></svg></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="pattern-related-intro" id="control-authority">
+          <p class="pattern-related-intro-name">Customization of Autonomy</p>
+          <p class="pattern-related-intro-desc">Users control the spectrum of autonomy, from passive suggestions to full automation based on their comfort and context.</p>
+        </div>
+
+        <p class="pattern-component-label">Component example: Authority Sliders</p>
+
+        <!-- Interactive: Customization of Autonomy -->

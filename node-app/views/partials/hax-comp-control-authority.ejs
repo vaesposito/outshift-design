@@ -1,0 +1,55 @@
+        <div class="authority-demo-wrapper">
+        <div class="authority-demo">
+          <p class="authority-top-label">Agent Control Panel</p>
+          <div class="authority-tabs">
+            <button class="auth-tab active" data-agent="0">Monitoring Agent</button>
+            <button class="auth-tab" data-agent="65">Traffic Control Agent</button>
+            <button class="auth-tab" data-agent="35">Alerts Agent</button>
+            <button class="auth-tab" data-agent="90">Simulation Agent</button>
+          </div>
+
+          <div class="scope-hint">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v7M5 7l3 3 3-3"/></svg>
+            Click tabs or drag the slider to explore
+          </div>
+
+          <div class="authority-body">
+            <p class="authority-scope-label">Scope of Authority</p>
+            <div class="authority-slider-wrap">
+              <input type="range" class="authority-slider" min="0" max="100" value="0" id="authoritySlider">
+              <div class="authority-track-labels">
+                <span>Monitoring</span>
+                <span>Guided</span>
+                <span>Full Control</span>
+              </div>
+              <!-- Callouts positioned below the track labels -->
+              <div class="authority-callouts">
+                <div class="auth-callout" data-n="1">
+                  <span class="auth-vline"></span>
+                  <span class="sc-num">1</span>
+                  <div class="sc-popover sc-popover--up">
+                    <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+                    <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+                  </div>
+                </div>
+                <div class="auth-callout" data-n="2">
+                  <span class="auth-vline"></span>
+                  <span class="sc-num">2</span>
+                  <div class="sc-popover sc-popover--up">
+                    <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+                    <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+                  </div>
+                </div>
+                <div class="auth-callout" data-n="3">
+                  <span class="auth-vline"></span>
+                  <span class="sc-num">3</span>
+                  <div class="sc-popover sc-popover--up">
+                    <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+                    <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div><!-- /.authority-demo-wrapper -->

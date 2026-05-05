@@ -1,0 +1,125 @@
+      <div class="ce-demo-wrapper">
+        <!-- Callout 1: right — Keep AI suggestions non-intrusive -->
+        <div class="scope-callout sc-callout--right" style="--ct: 105px;" data-callout="ce1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Work in shared view -->
+        <div class="scope-callout" style="--ct: 215px;" data-callout="ce2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: right — User always has final say -->
+        <div class="scope-callout sc-callout--right" style="--ct: 170px;" data-callout="ce3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 4: right — Make editing modalities clear -->
+        <div class="scope-callout sc-callout--right" style="--ct: 430px;" data-callout="ce4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[3]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[3]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="ce-shell">
+          <!-- Header -->
+          <div class="ce-header">
+            <p class="ce-header-title">Policy Editing</p>
+            <div class="ce-meta">
+              <span class="ce-meta-item"><strong>Version:</strong> 1.2</span>
+              <span class="ce-meta-item"><strong>Owner:</strong> team Name</span>
+              <span class="ce-meta-item"><strong>Last Edited By:</strong> Jane Rivera</span>
+            </div>
+          </div>
+          <!-- Body -->
+          <div class="ce-body">
+            <!-- Left: document -->
+            <div class="ce-editor">
+              <p class="ce-doc-title">Policy Details &nbsp; Editing</p>
+              <div>
+                <p class="ce-section-title">Objective</p>
+                <p class="ce-section-body">A long description of policy details document added here by the human user.</p>
+              </div>
+              <div>
+                <p class="ce-section-title">Scope</p>
+                <p class="ce-section-body">Applies to all employees, contractors, and third-party users accessing internal systems via the corporate VPN.</p>
+              </div>
+              <div>
+                <div class="ce-rules-header">
+                  <p class="ce-section-title" style="margin-bottom:0;">Policy Rules</p>
+                  <button class="ce-ai-btn">Improve with AI</button>
+                </div>
+                <div class="ce-rules-list">
+                  <div class="ce-rule active">
+                    <p class="ce-rule-name">1. Rule 1 for Policy</p>
+                    <p class="ce-rule-desc">Description of the rule written by the human. This is the rule selected and visually distinct from rest.</p>
+                  </div>
+                  <div class="ce-rule">
+                    <p class="ce-rule-name">2. Rule 2 for policy</p>
+                    <p class="ce-rule-desc">Description of rule</p>
+                  </div>
+                  <div class="ce-rule">
+                    <p class="ce-rule-name">3. Rule 3 for policy</p>
+                    <p class="ce-rule-desc">Description of rule</p>
+                  </div>
+                  <div class="ce-rule">
+                    <p class="ce-rule-name">4. Rule 4 for policy</p>
+                    <p class="ce-rule-desc">Description of rule</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right: assist panel -->
+            <div class="ce-assist">
+              <p class="ce-assist-title">Assist</p>
+              <div class="ce-suggestion">
+                <div class="ce-avatar">A</div>
+                <div class="ce-suggestion-body">
+                  <p class="ce-suggestion-label">Suggestion:</p>
+                  <p class="ce-suggestion-text">"This is the recommended text for policy rule number 1"</p>
+                </div>
+              </div>
+              <div class="ce-review-btns">
+                <button class="ce-btn">Accept</button>
+                <button class="ce-btn">Reject</button>
+                <button class="ce-btn">More Options ▾</button>
+              </div>
+              <div class="ce-assist-spacer"></div>
+              <div class="ce-assist-bottom">
+                <div class="ce-mode-btns">
+                  <button class="ce-mode-btn">Rewrite with AI</button>
+                  <button class="ce-mode-btn">Proof Read Document</button>
+                  <button class="ce-mode-btn">Suggest Changes</button>
+                </div>
+                <div class="ce-input-row">
+                  <span class="ce-input-placeholder">Ask the AI Assistant a question</span>
+                  <button class="ce-send">
+                    <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+                  </button>
+                </div>
+                <p class="ce-disclaimer">Assistant can make mistakes. Verify responses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="collab-rc">
+        <p class="pattern-related-intro-name">Role Clarity &amp; Turn Signals</p>
+        <p class="pattern-related-intro-desc">Clear handoffs and visible role signals reduce confusion in multi-step tasks. This principle makes collaboration feel more natural and efficient.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Role Clarity &amp; Turn Signals</p>
+
+      <!-- Interactive: Role Clarity & Turn Signals -->

@@ -1,0 +1,69 @@
+      <div class="ah-demo-wrapper">
+        <!-- Callout 1: left — Time-stamped and ordered -->
+        <div class="scope-callout" style="--ct: 110px;" data-callout="ah1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Cause and effect -->
+        <div class="scope-callout" style="--ct: 240px;" data-callout="ah2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: left — Automated and manual steps -->
+        <div class="scope-callout" style="--ct: 400px;" data-callout="ah3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 4: right — Plain language -->
+        <div class="scope-callout sc-callout--right" style="--ct: 480px;" data-callout="ah4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[3]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[3]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="ah-card">
+          <p class="ah-card-title">Failure Log</p>
+          <div class="ah-log">
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>1:45 PM:</strong> Issue detected at this time by the Agent</p>
+              <span class="ah-badge ah-badge--agent"><span class="ah-badge-icon">✦</span> Agent Action</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:00 PM:</strong> Agent flagged to the user for optimization</p>
+              <span class="ah-badge ah-badge--agent"><span class="ah-badge-icon">✦</span> Agent Action</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:15 PM:</strong> Resolution by the agent, and displayed on UI</p>
+              <span class="ah-badge ah-badge--agent"><span class="ah-badge-icon">✦</span> Agent Action</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:30 PM:</strong> User reviews the issue</p>
+              <span class="ah-badge ah-badge--user">Reviewed by John Doe</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:40 PM:</strong> User approves the proposed resolution</p>
+              <span class="ah-badge ah-badge--user">Approved by John Doe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="trace-vd">
+        <p class="pattern-related-intro-name">Visual Diffing</p>
+        <p class="pattern-related-intro-desc">Visual comparisons make agent-driven changes easier to audit and validate. This helps detect subtle alterations or unintended consequences.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Visual Diffing</p>
+
+      <!-- Interactive: Visual Diffing -->

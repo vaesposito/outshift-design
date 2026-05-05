@@ -1,0 +1,82 @@
+      <div class="cd-demo-wrapper">
+        <!-- Callout 1: left — Reasoning linked to confidence -->
+        <div class="scope-callout" style="--ct: 178px;" data-callout="cd1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: top — Confidence levels made visible -->
+        <div class="scope-callout sc-callout--top" style="--cl: 272px;" data-callout="cd2">
+          <span class="sc-num">2</span>
+          <span class="sc-line sc-line--v"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Actions calibrated to certainty -->
+        <div class="scope-callout sc-callout--right" style="--ct: 178px;" data-callout="cd3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 4: bottom — Low confidence is still shown -->
+        <div class="scope-callout sc-callout--bottom" style="--cl: 272px;" data-callout="cd4">
+          <span class="sc-line sc-line--v"></span>
+          <span class="sc-num">4</span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[3]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[3]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="cd-demo">
+          <p class="cd-demo-title">Diagnostic Report with Actionables</p>
+          <div class="cd-table-head">
+            <span class="cd-th">Suspected Cause</span>
+            <span class="cd-th">Confidence</span>
+            <span class="cd-th">Rationale</span>
+            <span class="cd-th">Recommended Action</span>
+          </div>
+          <div class="cd-row">
+            <div class="cd-td">High Resource Utilization in Component A</div>
+            <div class="cd-td">
+              <span class="cd-conf-label">High <span class="cd-conf-pct">(80%)</span></span>
+              <div class="cd-bar-wrap"><div class="cd-bar cd-bar--high"></div></div>
+            </div>
+            <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 1</button></div>
+          </div>
+          <div class="cd-row">
+            <div class="cd-td">Environmental Interference in Zone X</div>
+            <div class="cd-td">
+              <span class="cd-conf-label">Medium <span class="cd-conf-pct">(43%)</span></span>
+              <div class="cd-bar-wrap"><div class="cd-bar cd-bar--medium"></div></div>
+            </div>
+            <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 2</button></div>
+          </div>
+          <div class="cd-row">
+            <div class="cd-td">Processing Bottleneck</div>
+            <div class="cd-td">
+              <span class="cd-conf-label">Low <span class="cd-conf-pct">(25%)</span></span>
+              <div class="cd-bar-wrap"><div class="cd-bar cd-bar--low"></div></div>
+            </div>
+            <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 4</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="clarity-sa">
+        <p class="pattern-related-intro-name">Source Attribution</p>
+        <p class="pattern-related-intro-desc">Revealing where information came from helps users verify and contextualize outputs, supporting accountability and enabling further inquiry.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Findings with Sources</p>
+
+      <!-- Interactive: Source Attribution -->

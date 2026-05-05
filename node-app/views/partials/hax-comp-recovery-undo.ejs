@@ -1,0 +1,74 @@
+      <div class="ur-demo-wrapper">
+        <!-- Callout 1: right — Actions are reversible by default -->
+        <div class="scope-callout sc-callout--right" style="--ct: 52px;" data-callout="ur1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 2: right — Justification for actions builds trust -->
+        <div class="scope-callout sc-callout--right" style="--ct: 145px;" data-callout="ur2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+          </div>
+        </div>
+        <!-- Callout 3: left — Multiple levels of recovery available -->
+        <div class="scope-callout" style="--ct: 268px;" data-callout="ur3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title"><%= (rp.callouts[2]||{}).title||''%></p>
+            <p class="sc-popover-desc"><%= (rp.callouts[2]||{}).desc||''%></p>
+          </div>
+        </div>
+
+        <div class="ur-demo">
+          <p class="ur-demo-title">Agent Suggested Change</p>
+          <p class="ur-demo-subtitle">Based on recent activity the agent marked these tasks as complete and reassigned owners</p>
+          <hr class="ur-divider">
+          <div class="ur-table">
+            <div class="ur-thead">
+              <span class="ur-th">Task</span>
+              <span class="ur-th">Action</span>
+              <span class="ur-th"></span>
+              <span class="ur-th"></span>
+            </div>
+            <div class="ur-row">
+              <div class="ur-task">
+                <span class="ur-task-icon ur-task-icon--check">✓</span>
+                Draft Proposal
+              </div>
+              <div class="ur-action">Marked as complete</div>
+              <button class="ur-btn">Undo</button>
+              <button class="ur-btn">Adjust</button>
+            </div>
+            <div class="ur-row">
+              <div class="ur-task">
+                <span class="ur-task-icon ur-task-icon--arrow">→</span>
+                Assign Reviewer
+              </div>
+              <div class="ur-action">Reassigned to Alex</div>
+              <button class="ur-btn">Revert</button>
+              <button class="ur-btn">Edit</button>
+            </div>
+          </div>
+          <hr class="ur-divider" style="margin-top: 14px;">
+          <p class="ur-why-title">Why this happened</p>
+          <p class="ur-why-text">The agent detected inactivity for 5+ days and no blocking comments, so it marked the task as complete.</p>
+          <div class="ur-footer">
+            <button class="ur-btn-revert">Revert All</button>
+            <button class="ur-btn-approve">Approve All</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="recovery-eo">
+        <p class="pattern-related-intro-name">Editable Outputs</p>
+        <p class="pattern-related-intro-desc">Agents should hand off control. Editable outputs ensure that humans retain authorship and can correct or improve AI-generated content easily.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Editable Outputs</p>
+
+      <!-- Interactive: Editable Outputs -->

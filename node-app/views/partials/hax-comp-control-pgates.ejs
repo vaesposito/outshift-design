@@ -1,0 +1,113 @@
+    <div class="pgates-demo-wrapper">
+      <!-- Callout 1 → toggle -->
+      <div class="scope-callout" style="--ct: 88px;" data-callout="pg1">
+        <span class="sc-num">1</span><span class="sc-line"></span>
+        <div class="sc-popover">
+          <p class="sc-popover-title"><%= (rp.callouts[0]||{}).title||''%></p>
+          <p class="sc-popover-desc"><%= (rp.callouts[0]||{}).desc||''%></p>
+        </div>
+      </div>
+      <!-- Callout 2 → current activities -->
+      <div class="scope-callout" style="--ct: 190px;" data-callout="pg2">
+        <span class="sc-num">2</span><span class="sc-line"></span>
+        <div class="sc-popover">
+          <p class="sc-popover-title"><%= (rp.callouts[1]||{}).title||''%></p>
+          <p class="sc-popover-desc"><%= (rp.callouts[1]||{}).desc||''%></p>
+        </div>
+      </div>
+
+      <div class="pgates-demo">
+        <p class="pgates-header">Agent Control Panel</p>
+        <div class="pgates-tabs">
+          <button class="pgates-tab active">Traffic Control Agent</button>
+          <button class="pgates-tab">Alerts Agent</button>
+          <button class="pgates-tab">Simulation Agent</button>
+        </div>
+        <div class="pgates-body">
+          <!-- Toggle card -->
+          <div class="pgates-card">
+            <div class="pgates-toggle-row">
+              <label class="pgates-toggle">
+                <input type="checkbox" class="pgates-toggle-input">
+                <span class="pgates-toggle-track">
+                  <span class="pgates-toggle-thumb"></span>
+                </span>
+              </label>
+              <span>Disable Agent</span>
+            </div>
+          </div>
+          <!-- Current Activities card -->
+          <div class="pgates-card">
+            <p class="pgates-section-title">Current Activities</p>
+            <label class="pgates-check-row">
+              <span class="pgates-check checked"></span>
+              Require approval before proceeding
+            </label>
+            <div class="pgates-field">
+              <p class="pgates-field-label">Approval Load <span class="pgates-required">*</span></p>
+              <div class="pgates-input-mock">75%</div>
+            </div>
+            <label class="pgates-check-row">
+              <span class="pgates-check"></span>
+              Ask user to confirm finalizing
+            </label>
+            <label class="pgates-check-row" style="margin-bottom:0">
+              <span class="pgates-check"></span>
+              Log every action performed
+            </label>
+            <hr class="pgates-divider">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern-divider"></div>
+    <h4 class="pattern-examples-label">How to implement</h4>
+    <ul class="how-to-list">
+      <li>Make automation opt-in, never assume users want it</li>
+      <li>Let users override any system decision, anytime</li>
+      <li>Show what rules are active and how they're working</li>
+      <li>Make it easy to change and adjust settings</li>
+    </ul>
+
+    <div class="pattern-divider"></div>
+    <h4 class="pattern-examples-label">Common pitfalls</h4>
+    <div class="pitfalls-grid">
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Over-reliance on implicit controls</p>
+        <p class="pitfall-card-desc">Assuming users understand what the agent is doing without clear communication</p>
+      </div>
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Boundary creep</p>
+        <p class="pitfall-card-desc">Agents gradually take on more than intended without safeguards or oversight</p>
+      </div>
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Ambiguous authority</p>
+        <p class="pitfall-card-desc">It is unclear if the agent or the human is responsible for the task, especially in case of failure states</p>
+      </div>
+      <div class="pitfall-card">
+        <p class="pitfall-card-title">Hidden behavior</p>
+        <p class="pitfall-card-desc">The agent performs actions without surfacing intent or outcomes to the user</p>
+      </div>
+    </div>
+
+    </div><!-- /.pattern-panel control -->
+
+    <div class="pattern-panel" data-panel="clarity">
+      <h3 class="pattern-title">Clarity</h3>
+      <p class="pattern-desc">Show the agent's reasoning</p>
+
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
+          <p class="pattern-info-title">What it means</p>
+          <p>Agents should make their reasoning, context, and confidence visible. Instead of acting like black boxes, they show how decisions are made so users can understand, question, or adjust them.</p>
+        </div>
+        <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
+          <p class="pattern-info-title">Why this matters</p>
+          <p>People make better decisions when they understand how an agent reached its conclusion. Clarity helps users spot errors, judge reliability, and decide when to lean in or push back.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
