@@ -3424,6 +3424,33 @@ footer {
         </div>
       </div>
 
+      <h4 class="pattern-examples-label">How to implement</h4>
+      <ul class="how-to-list">
+        <li>Design agents to offer fallback options or manual alternatives instead of total failure</li>
+        <li>Use feedback from failure and recovery experiences to continuously improve system behavior</li>
+        <li>Make recovery options easy to find, context-sensitive, and layered from simple to advanced controls</li>
+      </ul>
+
+      <h4 class="pattern-examples-label">Common pitfalls</h4>
+      <div class="pitfalls-grid">
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Failing to learn from recovery events</p>
+          <p class="pitfall-card-desc">Failing to analyze recovery patterns can lead to repeated mistakes, missing the opportunity to learn from user corrections and improve AI performance over time</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Lack of granular control</p>
+          <p class="pitfall-card-desc">Using only high-level revision features frustrates users who want to undo specific AI actions without losing their own work, missing the need for precise, collaborative recovery</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Inconsistent recovery experiences</p>
+          <p class="pitfall-card-desc">Recovery mechanisms that work differently across different parts of the system confuse users and create cognitive overhead</p>
+        </div>
+        <div class="pitfall-card">
+          <p class="pitfall-card-title">Unclear recovery guidance</p>
+          <p class="pitfall-card-desc">Users need clear explanations and recovery options when things go wrong. Vague errors and unclear paths lead to frustration and reduced trust</p>
+        </div>
+      </div>
+
     </div><!-- /.pattern-panel recovery -->
 
     <div class="pattern-panel" data-panel="collaboration">
