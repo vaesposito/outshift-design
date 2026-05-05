@@ -1552,6 +1552,76 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     white-space: nowrap;
 }
 
+/* === Alternatives & Trade-offs Demo === */
+.at-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.at-demo {
+    background: #0d1b2e;
+    border-radius: 16px;
+    padding: 28px 32px;
+    color: #c8d8ea;
+    font-size: 0.88em;
+    box-shadow:
+        0 4px 24px rgba(0,0,0,0.4),
+        0 1px 6px rgba(0,0,0,0.25),
+        0 0 0 1px rgba(255,255,255,0.06);
+}
+.at-demo-title {
+    font-size: 0.88em;
+    color: rgba(190,215,240,0.7);
+    margin-bottom: 16px;
+}
+.at-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.at-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+.at-card-title {
+    font-weight: 700;
+    color: #ddeeff;
+    font-size: 0.92em;
+    margin-bottom: 12px;
+}
+.at-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+.at-tag {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+.at-tag--olive { background: rgba(180,150,30,0.4); color: #d6bc45; }
+.at-tag--teal  { background: rgba(20,140,160,0.35); color: #4dc8d6; }
+.at-card-impact {
+    font-size: 0.85em;
+    color: rgba(190,215,240,0.65);
+    margin-bottom: 14px;
+}
+.at-actions { display: flex; gap: 8px; }
+.at-btn {
+    padding: 6px 14px;
+    border-radius: 7px;
+    font-size: 0.82em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+}
+.at-btn--primary { background: #2563eb; color: #fff; border: none; }
+.at-btn--outline { background: transparent; color: #7eb3e0; border: 1px solid rgba(100,170,220,0.35); }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2438,6 +2508,81 @@ footer {
               <span class="sa-sources-label">Sources:</span>
               <span class="sa-source-tag">Source label with link</span>
               <span class="sa-source-tag">Source label with link</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro">
+        <p class="pattern-related-intro-name">Alternatives &amp; Trade-offs</p>
+        <p class="pattern-related-intro-desc">Showing what the agent didn't choose and why helps users understand trade-offs. It creates transparency and supports participatory decision-making.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Suggested Actions</p>
+
+      <!-- Interactive: Alternatives & Trade-offs -->
+      <div class="at-demo-wrapper">
+        <!-- Callout 1: left — Consequences and benefits are explicit -->
+        <div class="scope-callout" style="--ct: 96px;" data-callout="at1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Consequences and benefits are explicit</p>
+            <p class="sc-popover-desc">Includes options with a clear summary of what it changes and what the effect will be, allowing the user to compare outcomes at a glance.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Multiple actions presented side-by-side -->
+        <div class="scope-callout" style="--ct: 174px;" data-callout="at2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Multiple actions presented side-by-side</p>
+            <p class="sc-popover-desc">The interface surfaces more than one possible action instead of a single automated path. This supports user agency and accommodates different risk tolerances.</p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Supports informed trade-off decisions -->
+        <div class="scope-callout sc-callout--right" style="--ct: 174px;" data-callout="at3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Supports informed trade-off decisions</p>
+            <p class="sc-popover-desc">By presenting pros and cons transparently, the system helps users make context-aware decisions, especially when no option is perfect.</p>
+          </div>
+        </div>
+        <!-- Callout 4: right — Labels indicate duration and reversibility -->
+        <div class="scope-callout sc-callout--right" style="--ct: 96px;" data-callout="at4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Labels indicate duration and reversibility</p>
+            <p class="sc-popover-desc">Visual tags communicate whether an option is temporary, reversible, or long-term. This helps users understand not just the effect, but also the scope and risk.</p>
+          </div>
+        </div>
+
+        <div class="at-demo">
+          <p class="at-demo-title">Suggested actions to improve performance</p>
+          <div class="at-cards">
+            <div class="at-card">
+              <p class="at-card-title">First preferred action</p>
+              <div class="at-tags">
+                <span class="at-tag at-tag--olive">Temporary measure</span>
+                <span class="at-tag at-tag--olive">Immediate, reversible</span>
+              </div>
+              <p class="at-card-impact">Measurable impact</p>
+              <div class="at-actions">
+                <button class="at-btn at-btn--primary">Accept</button>
+                <button class="at-btn at-btn--outline">Modify</button>
+                <button class="at-btn at-btn--outline">Reject</button>
+              </div>
+            </div>
+            <div class="at-card">
+              <p class="at-card-title">Second preferred action</p>
+              <div class="at-tags">
+                <span class="at-tag at-tag--teal">Medium-term measure</span>
+                <span class="at-tag at-tag--teal">5 minutes</span>
+              </div>
+              <p class="at-card-impact">Measurable impact</p>
+              <div class="at-actions">
+                <button class="at-btn at-btn--primary">Accept</button>
+                <button class="at-btn at-btn--outline">Modify</button>
+                <button class="at-btn at-btn--outline">Reject</button>
+              </div>
             </div>
           </div>
         </div>
