@@ -1966,6 +1966,142 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 [data-theme="dark"] .sd-rule-desc { color: rgba(190,215,240,0.6); }
 
+/* === Escalation Paths Demo === */
+.ep-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 32px 16px 56px;
+    box-sizing: border-box;
+}
+.ep-demo {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    padding: 0;
+    font-size: 0.88em;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+    max-width: 520px;
+    margin: 0 auto;
+}
+[data-theme="dark"] .ep-demo {
+    background: #151e2d;
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.25);
+}
+.ep-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--color-border);
+}
+[data-theme="dark"] .ep-tabs { border-color: rgba(255,255,255,0.08); }
+.ep-tab {
+    padding: 14px 16px 12px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    border-bottom: 2px solid transparent;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    cursor: default;
+    pointer-events: none;
+    font-family: inherit;
+    margin-bottom: -1px;
+}
+.ep-tab.active {
+    color: #22c55e;
+    border-bottom-color: #22c55e;
+}
+[data-theme="dark"] .ep-tab { color: rgba(200,220,240,0.5); }
+[data-theme="dark"] .ep-tab.active { color: #22c55e; }
+.ep-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+.ep-msg {
+    border: 1px solid var(--color-border-medium);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+[data-theme="dark"] .ep-msg { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+.ep-msg-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.ep-msg-top:last-child { margin-bottom: 0; }
+.ep-spark {
+    color: #7c6af7;
+    font-size: 1em;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.ep-msg-text {
+    font-size: 0.88em;
+    color: var(--color-text);
+    line-height: 1.45;
+}
+[data-theme="dark"] .ep-msg-text { color: #c8dff0; }
+.ep-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-hover);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+[data-theme="dark"] .ep-input-row { background: rgba(0,0,0,0.25); border-color: rgba(255,255,255,0.12); }
+.ep-input-placeholder {
+    flex: 1;
+    font-size: 0.87em;
+    color: var(--color-text-muted);
+    opacity: 0.6;
+}
+[data-theme="dark"] .ep-input-placeholder { color: rgba(180,200,220,0.5); }
+.ep-send {
+    width: 28px; height: 28px;
+    background: #2563eb;
+    border: none;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    cursor: default;
+    pointer-events: none;
+}
+.ep-send svg { width: 13px; height: 13px; fill: #fff; }
+.ep-alt-btn {
+    padding: 5px 14px;
+    background: transparent;
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+    color: #2563eb;
+    font-size: 0.83em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    align-self: flex-start;
+}
+[data-theme="dark"] .ep-alt-btn { border-color: #3b82f6; color: #60a5fa; }
+.ep-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 12px 20px 8px;
+}
+[data-theme="dark"] .ep-footer { border-color: rgba(255,255,255,0.08); }
+.ep-footer-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-hover);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+}
+[data-theme="dark"] .ep-footer-input { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.1); }
+.ep-disclaimer {
+    font-size: 0.78em;
+    color: var(--color-text-muted);
+    text-align: center;
+    opacity: 0.7;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2326,6 +2462,7 @@ footer {
             <button class="pattern-subitem" data-scroll="recovery-undo">Undo &amp; Redo Support</button>
             <button class="pattern-subitem" data-scroll="recovery-eo">Editable Outputs</button>
             <button class="pattern-subitem" data-scroll="recovery-sd">Safe Defaults</button>
+            <button class="pattern-subitem" data-scroll="recovery-ep">Escalation Paths</button>
           </div>
         </div>
         <div class="pattern-nav-group">
@@ -3212,6 +3349,77 @@ footer {
               </div>
               <p class="sd-rule-desc">Description of the default</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="recovery-ep">
+        <p class="pattern-related-intro-name">Escalation Paths</p>
+        <p class="pattern-related-intro-desc">Agents should never trap users. Providing clear escape routes to human assistance or manual control is vital for safety and trust.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Escalation Paths</p>
+
+      <!-- Interactive: Escalation Paths -->
+      <div class="ep-demo-wrapper">
+        <!-- Callout 1: left — Manual input always available -->
+        <div class="scope-callout" style="--ct: 208px;" data-callout="ep1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Manual input and escalation always available</p>
+            <p class="sc-popover-desc">Users can directly provide input or ask their own questions at any time, ensuring they remain in control and can override or guide the agent when needed.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Clear option to proceed independently -->
+        <div class="scope-callout" style="--ct: 253px;" data-callout="ep2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Clear option to proceed independently</p>
+            <p class="sc-popover-desc">The "Alternate" option offers an immediate escape route — users can skip the assistant and take action themselves without friction or waiting for approval.</p>
+          </div>
+        </div>
+
+        <div class="ep-demo">
+          <!-- Tabs -->
+          <div class="ep-tabs">
+            <button class="ep-tab active">Chat</button>
+            <button class="ep-tab">Workflow</button>
+          </div>
+          <!-- Body -->
+          <div class="ep-body">
+            <!-- Message 1 -->
+            <div class="ep-msg">
+              <div class="ep-msg-top">
+                <span class="ep-spark">✦</span>
+                <p class="ep-msg-text">Important screen loaded by Agent</p>
+              </div>
+            </div>
+            <!-- Message 2 with input -->
+            <div class="ep-msg">
+              <div class="ep-msg-top">
+                <span class="ep-spark">✦</span>
+                <p class="ep-msg-text">Agent asks a question about the screen because they cannot make a decision and need clarification from user</p>
+              </div>
+              <div class="ep-input-row">
+                <span class="ep-input-placeholder">Describe step here</span>
+                <button class="ep-send">
+                  <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+                </button>
+              </div>
+              <div style="margin-top: 8px;">
+                <button class="ep-alt-btn">Alternate</button>
+              </div>
+            </div>
+          </div>
+          <!-- Footer input -->
+          <div class="ep-footer">
+            <div class="ep-footer-input">
+              <span class="ep-input-placeholder">Ask the AI Assistant a question</span>
+              <button class="ep-send">
+                <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+              </button>
+            </div>
+            <p class="ep-disclaimer">Assistant can make mistakes. Verify responses.</p>
           </div>
         </div>
       </div>
