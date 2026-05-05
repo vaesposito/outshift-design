@@ -2228,6 +2228,207 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .mi-send svg { width: 11px; height: 11px; fill: #fff; }
 .mi-disclaimer { font-size: 0.75em; color: var(--color-text-muted); text-align: center; opacity: 0.6; }
 
+/* === Co-editing Interfaces Demo === */
+.ce-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.ce-shell {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    overflow: hidden;
+    font-size: 0.87em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+}
+[data-theme="dark"] .ce-shell {
+    background: #111827;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
+}
+/* Header row */
+.ce-header {
+    padding: 14px 20px 10px;
+    border-bottom: 1px solid var(--color-border);
+}
+[data-theme="dark"] .ce-header { border-color: rgba(255,255,255,0.07); }
+.ce-header-title {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 5px;
+}
+[data-theme="dark"] .ce-header-title { color: #e0eeff; }
+.ce-meta { display: flex; gap: 18px; flex-wrap: wrap; }
+.ce-meta-item { font-size: 0.82em; color: var(--color-text-muted); }
+.ce-meta-item strong { color: var(--color-text); font-weight: 600; }
+[data-theme="dark"] .ce-meta-item { color: rgba(180,200,220,0.55); }
+[data-theme="dark"] .ce-meta-item strong { color: #b0ccee; }
+/* Two columns */
+.ce-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+}
+/* Left: document editor */
+.ce-editor {
+    border-right: 1px solid var(--color-border);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+[data-theme="dark"] .ce-editor { border-color: rgba(255,255,255,0.07); }
+.ce-doc-title {
+    font-size: 0.97em;
+    font-weight: 700;
+    color: var(--color-text);
+}
+[data-theme="dark"] .ce-doc-title { color: #ddeeff; }
+.ce-section-title {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 3px;
+}
+[data-theme="dark"] .ce-section-title { color: #c8dff0; }
+.ce-section-body {
+    font-size: 0.83em;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+[data-theme="dark"] .ce-section-body { color: rgba(180,200,220,0.6); }
+.ce-rules-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.ce-ai-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 13px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 0.8em;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: default;
+    pointer-events: none;
+}
+.ce-ai-btn::before { content: '✦'; font-size: 0.85em; }
+.ce-rules-list { display: flex; flex-direction: column; gap: 6px; }
+.ce-rule {
+    border-radius: 8px;
+    padding: 10px 13px;
+    border: 1px solid transparent;
+    background: transparent;
+}
+.ce-rule.active {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.25);
+}
+[data-theme="dark"] .ce-rule.active { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.35); }
+.ce-rule-name {
+    font-size: 0.86em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 3px;
+}
+[data-theme="dark"] .ce-rule-name { color: #ddeeff; }
+.ce-rule-desc {
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+}
+[data-theme="dark"] .ce-rule-desc { color: rgba(180,200,220,0.55); }
+/* Right: assist panel */
+.ce-assist {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 18px 0;
+    gap: 12px;
+}
+.ce-assist-title {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--color-text);
+}
+[data-theme="dark"] .ce-assist-title { color: #c8dff0; }
+.ce-suggestion {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.ce-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #7c6af7;
+    color: #fff;
+    font-size: 0.78em;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.ce-suggestion-body { flex: 1; }
+.ce-suggestion-label { font-size: 0.78em; font-weight: 600; color: var(--color-text-muted); margin-bottom: 3px; }
+[data-theme="dark"] .ce-suggestion-label { color: rgba(160,190,215,0.6); }
+.ce-suggestion-text { font-size: 0.84em; color: var(--color-text); line-height: 1.45; }
+[data-theme="dark"] .ce-suggestion-text { color: #c8dff0; }
+.ce-review-btns { display: flex; gap: 7px; flex-wrap: wrap; }
+.ce-btn {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.79em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    border: 1px solid var(--color-border-medium);
+    background: transparent;
+    color: var(--color-text);
+}
+[data-theme="dark"] .ce-btn {
+    border-color: rgba(120,160,200,0.3);
+    color: #9dbbd8;
+}
+.ce-assist-spacer { flex: 1; }
+.ce-assist-bottom { border-top: 1px solid var(--color-border); padding: 10px 0 0; margin-top: 4px; }
+[data-theme="dark"] .ce-assist-bottom { border-color: rgba(255,255,255,0.07); }
+.ce-mode-btns { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
+.ce-mode-btn {
+    padding: 5px 11px;
+    border-radius: 6px;
+    font-size: 0.78em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    border: 1px solid #3b82f6;
+    background: transparent;
+    color: #3b82f6;
+}
+[data-theme="dark"] .ce-mode-btn { border-color: #4f8ef7; color: #7eb3f8; }
+.ce-input-row {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--color-hover);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 8px;
+    padding: 7px 10px;
+    margin-bottom: 6px;
+}
+[data-theme="dark"] .ce-input-row { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.1); }
+.ce-input-placeholder { flex: 1; font-size: 0.83em; color: var(--color-text-muted); opacity: 0.55; }
+.ce-send {
+    width: 26px; height: 26px; background: #2563eb; border: none;
+    border-radius: 5px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; cursor: default; pointer-events: none;
+}
+.ce-send svg { width: 11px; height: 11px; fill: #fff; }
+.ce-disclaimer { font-size: 0.75em; color: var(--color-text-muted); text-align: center; opacity: 0.6; padding-bottom: 10px; }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2596,6 +2797,7 @@ footer {
           <div class="pattern-subnav">
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-mi">Mixed Initiative</button>
+            <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-ce">Co-editing Interfaces</button>
           </div>
         </div>
         <div class="pattern-nav-group">
@@ -3700,6 +3902,131 @@ footer {
                 </button>
               </div>
               <p class="mi-disclaimer">Assistant can make mistakes. Verify responses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="collab-ce">
+        <p class="pattern-related-intro-name">Co-editing Interfaces</p>
+        <p class="pattern-related-intro-desc">Shared content and workspace for both AI and humans foster transparency — building clarity and trust.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Co-editing Interfaces</p>
+
+      <!-- Interactive: Co-editing Interfaces -->
+      <div class="ce-demo-wrapper">
+        <!-- Callout 1: right — Keep AI suggestions non-intrusive -->
+        <div class="scope-callout sc-callout--right" style="--ct: 105px;" data-callout="ce1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Keep AI suggestions non-intrusive</p>
+            <p class="sc-popover-desc">Present changes as proposals, not automatic edits. Let users review, accept, modify, or reject.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Work in shared view -->
+        <div class="scope-callout" style="--ct: 215px;" data-callout="ce2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Work in shared view</p>
+            <p class="sc-popover-desc">Both AI and human should operate on the same content in the same workspace. Transparency builds clarity and trust.</p>
+          </div>
+        </div>
+        <!-- Callout 3: right — User always has final say -->
+        <div class="scope-callout sc-callout--right" style="--ct: 170px;" data-callout="ce3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">User always has final say</p>
+            <p class="sc-popover-desc">The human is the editor-in-chief. AI assists, but never publishes or commits changes on its own.</p>
+          </div>
+        </div>
+        <!-- Callout 4: right — Make editing modalities clear -->
+        <div class="scope-callout sc-callout--right" style="--ct: 430px;" data-callout="ce4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Make editing modalities clear</p>
+            <p class="sc-popover-desc">Let users choose how the AI helps — proofreading, rewriting, suggesting changes, etc. Provide flexible control modes, not just one-size-fits-all.</p>
+          </div>
+        </div>
+
+        <div class="ce-shell">
+          <!-- Header -->
+          <div class="ce-header">
+            <p class="ce-header-title">Policy Editing</p>
+            <div class="ce-meta">
+              <span class="ce-meta-item"><strong>Version:</strong> 1.2</span>
+              <span class="ce-meta-item"><strong>Owner:</strong> team Name</span>
+              <span class="ce-meta-item"><strong>Last Edited By:</strong> Jane Rivera</span>
+            </div>
+          </div>
+          <!-- Body -->
+          <div class="ce-body">
+            <!-- Left: document -->
+            <div class="ce-editor">
+              <p class="ce-doc-title">Policy Details &nbsp; Editing</p>
+              <div>
+                <p class="ce-section-title">Objective</p>
+                <p class="ce-section-body">A long description of policy details document added here by the human user.</p>
+              </div>
+              <div>
+                <p class="ce-section-title">Scope</p>
+                <p class="ce-section-body">Applies to all employees, contractors, and third-party users accessing internal systems via the corporate VPN.</p>
+              </div>
+              <div>
+                <div class="ce-rules-header">
+                  <p class="ce-section-title" style="margin-bottom:0;">Policy Rules</p>
+                  <button class="ce-ai-btn">Improve with AI</button>
+                </div>
+                <div class="ce-rules-list">
+                  <div class="ce-rule active">
+                    <p class="ce-rule-name">1. Rule 1 for Policy</p>
+                    <p class="ce-rule-desc">Description of the rule written by the human. This is the rule selected and visually distinct from rest.</p>
+                  </div>
+                  <div class="ce-rule">
+                    <p class="ce-rule-name">2. Rule 2 for policy</p>
+                    <p class="ce-rule-desc">Description of rule</p>
+                  </div>
+                  <div class="ce-rule">
+                    <p class="ce-rule-name">3. Rule 3 for policy</p>
+                    <p class="ce-rule-desc">Description of rule</p>
+                  </div>
+                  <div class="ce-rule">
+                    <p class="ce-rule-name">4. Rule 4 for policy</p>
+                    <p class="ce-rule-desc">Description of rule</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right: assist panel -->
+            <div class="ce-assist">
+              <p class="ce-assist-title">Assist</p>
+              <div class="ce-suggestion">
+                <div class="ce-avatar">A</div>
+                <div class="ce-suggestion-body">
+                  <p class="ce-suggestion-label">Suggestion:</p>
+                  <p class="ce-suggestion-text">"This is the recommended text for policy rule number 1"</p>
+                </div>
+              </div>
+              <div class="ce-review-btns">
+                <button class="ce-btn">Accept</button>
+                <button class="ce-btn">Reject</button>
+                <button class="ce-btn">More Options ▾</button>
+              </div>
+              <div class="ce-assist-spacer"></div>
+              <div class="ce-assist-bottom">
+                <div class="ce-mode-btns">
+                  <button class="ce-mode-btn">Rewrite with AI</button>
+                  <button class="ce-mode-btn">Proof Read Document</button>
+                  <button class="ce-mode-btn">Suggest Changes</button>
+                </div>
+                <div class="ce-input-row">
+                  <span class="ce-input-placeholder">Ask the AI Assistant a question</span>
+                  <button class="ce-send">
+                    <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+                  </button>
+                </div>
+                <p class="ce-disclaimer">Assistant can make mistakes. Verify responses.</p>
+              </div>
             </div>
           </div>
         </div>
