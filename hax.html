@@ -1875,6 +1875,97 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .eo-select--wide { min-width: 100px; }
 .eo-select-arrow { font-size: 0.75em; opacity: 0.6; }
 
+/* === Safe Defaults Demo === */
+.sd-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 32px 16px 56px;
+    box-sizing: border-box;
+}
+.sd-demo {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    padding: 24px 28px;
+    font-size: 0.88em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+}
+[data-theme="dark"] .sd-demo {
+    background: #0d1b2e;
+    border-color: transparent;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.sd-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.sd-header-text {}
+.sd-title {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+[data-theme="dark"] .sd-title { color: #ddeeff; }
+.sd-subtitle {
+    font-size: 0.87em;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    max-width: 520px;
+}
+[data-theme="dark"] .sd-subtitle { color: rgba(190,215,240,0.7); }
+.sd-add-btn {
+    padding: 8px 18px;
+    background: #2563eb;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.84em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.sd-rules { display: flex; flex-direction: column; gap: 10px; }
+.sd-rule {
+    border: 1px solid var(--color-border-medium);
+    border-radius: 10px;
+    padding: 14px 18px;
+    background: var(--color-hover);
+}
+[data-theme="dark"] .sd-rule { border-color: rgba(255,255,255,0.1); background: transparent; }
+.sd-rule-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+.sd-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--color-border-medium);
+    border-radius: 3px;
+    flex-shrink: 0;
+    background: transparent;
+}
+[data-theme="dark"] .sd-checkbox { border-color: rgba(255,255,255,0.3); }
+.sd-rule-name {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--color-text);
+}
+[data-theme="dark"] .sd-rule-name { color: #ddeeff; }
+.sd-rule-desc {
+    font-size: 0.84em;
+    color: var(--color-text-muted);
+    padding-left: 28px;
+}
+[data-theme="dark"] .sd-rule-desc { color: rgba(190,215,240,0.6); }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2234,6 +2325,7 @@ footer {
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-scroll="recovery-undo">Undo &amp; Redo Support</button>
             <button class="pattern-subitem" data-scroll="recovery-eo">Editable Outputs</button>
+            <button class="pattern-subitem" data-scroll="recovery-sd">Safe Defaults</button>
           </div>
         </div>
         <div class="pattern-nav-group">
@@ -3066,6 +3158,59 @@ footer {
             <div class="eo-field-row">
               <span class="eo-field-text">with exceptions for</span>
               <span class="eo-select">None <span class="eo-select-arrow">▾</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="recovery-sd">
+        <p class="pattern-related-intro-name">Safe Defaults</p>
+        <p class="pattern-related-intro-desc">Defaulting to conservative actions prevents harm and sets user-friendly expectations, particularly in early use or high-risk environments.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Safe Defaults</p>
+
+      <!-- Interactive: Safe Defaults -->
+      <div class="sd-demo-wrapper">
+        <!-- Callout 1: left — Builds trust through predictable, gradual control -->
+        <div class="scope-callout" style="--ct: 122px;" data-callout="sd1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Builds trust through predictable, gradual control</p>
+            <p class="sc-popover-desc">Safe, consistent defaults help users gain confidence and expand control at their own pace.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Activation requires explicit user intent -->
+        <div class="scope-callout" style="--ct: 195px;" data-callout="sd2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Activation requires explicit user intent</p>
+            <p class="sc-popover-desc">Features that could affect security or behavior are opt-in only. This ensures users can explore safely and expand functionality on their terms.</p>
+          </div>
+        </div>
+
+        <div class="sd-demo">
+          <div class="sd-header">
+            <div class="sd-header-text">
+              <p class="sd-title">Rules</p>
+              <p class="sd-subtitle">Rules will ensure safe, conservative operation based on prior user interactions and best practices.</p>
+            </div>
+            <button class="sd-add-btn">Add New</button>
+          </div>
+          <div class="sd-rules">
+            <div class="sd-rule">
+              <div class="sd-rule-top">
+                <div class="sd-checkbox"></div>
+                <span class="sd-rule-name">Default 1</span>
+              </div>
+              <p class="sd-rule-desc">Description of the default</p>
+            </div>
+            <div class="sd-rule">
+              <div class="sd-rule-top">
+                <div class="sd-checkbox"></div>
+                <span class="sd-rule-name">Default 2</span>
+              </div>
+              <p class="sd-rule-desc">Description of the default</p>
             </div>
           </div>
         </div>
