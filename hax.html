@@ -1386,6 +1386,107 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     border-right: none;
 }
 
+/* === Confidence & Uncertainty Display === */
+.sc-line--v {
+    display: block;
+    width: 2px;
+    height: 28px;
+    border-left: 2px dashed rgba(245,166,35,0.5);
+    flex-shrink: 0;
+}
+.sc-callout--top {
+    left: var(--cl, 50%);
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+}
+.sc-callout--bottom {
+    left: var(--cl, 50%);
+    bottom: 0;
+    top: auto;
+    flex-direction: column;
+    align-items: center;
+}
+.sc-callout--top:hover .sc-num,
+.sc-callout--bottom:hover .sc-num { transform: scale(1.1); box-shadow: 0 2px 10px rgba(245,166,35,0.4); }
+.sc-callout--top .sc-popover,
+.sc-callout--bottom .sc-popover { top: 0; left: 32px; transform: none; }
+.sc-callout--top:hover .sc-popover,
+.sc-callout--bottom:hover .sc-popover { display: block; }
+.cd-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 48px 64px 64px 56px;
+    box-sizing: border-box;
+}
+.cd-demo {
+    background: #0d1b2e;
+    border-radius: 16px;
+    padding: 28px 32px;
+    color: #c8d8ea;
+    font-size: 0.88em;
+    box-shadow:
+        0 4px 24px rgba(0,0,0,0.4),
+        0 1px 6px rgba(0,0,0,0.25),
+        0 0 0 1px rgba(255,255,255,0.06);
+}
+.cd-demo-title {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #ddeeff;
+    margin-bottom: 18px;
+}
+.cd-table-head, .cd-row {
+    display: grid;
+    grid-template-columns: 1.8fr 1.1fr 1.5fr auto;
+    gap: 0 12px;
+    align-items: center;
+}
+.cd-table-head {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+}
+.cd-th {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #6a9abf;
+    letter-spacing: 0.03em;
+}
+.cd-row {
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 14px 12px;
+    margin-top: 8px;
+}
+.cd-td { color: #b8d0e8; font-size: 0.88em; line-height: 1.5; }
+.cd-td--muted { color: rgba(180,200,220,0.65); font-size: 0.85em; }
+.cd-conf-label { display: block; font-weight: 600; color: #c8dff0; margin-bottom: 6px; font-size: 0.88em; }
+.cd-conf-pct { font-weight: 400; opacity: 0.7; }
+.cd-bar-wrap {
+    width: 90px;
+    height: 5px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.cd-bar { height: 100%; border-radius: 4px; }
+.cd-bar--high  { width: 80%; background: #22c55e; }
+.cd-bar--medium{ width: 43%; background: linear-gradient(90deg, #f97316, #f59e0b); }
+.cd-bar--low   { width: 25%; background: #eab308; }
+.cd-action-btn {
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid rgba(99,179,237,0.45);
+    border-radius: 8px;
+    color: #63b3ed;
+    font-size: 0.82em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2142,6 +2243,88 @@ footer {
               </div>
               <p class="ir-incident-desc">Description of the incident, what is causing it and more details on impact</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro">
+        <p class="pattern-related-intro-name">Confidence &amp; Uncertainty Displays</p>
+        <p class="pattern-related-intro-desc">Disclosing confidence levels helps users interpret outcomes effectively and calibrate trust appropriately for transparent decision support.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Diagnostic Report</p>
+
+      <!-- Interactive: Confidence & Uncertainty Display -->
+      <div class="cd-demo-wrapper">
+        <!-- Callout 1: left — Reasoning linked to confidence -->
+        <div class="scope-callout" style="--ct: 178px;" data-callout="cd1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Reasoning linked to confidence</p>
+            <p class="sc-popover-desc">Explanations are paired with certainty indicators, showing why the system believes something and how strongly it believes it. This helps users validate or challenge the logic.</p>
+          </div>
+        </div>
+        <!-- Callout 2: top — Confidence levels made visible -->
+        <div class="scope-callout sc-callout--top" style="--cl: 272px;" data-callout="cd2">
+          <span class="sc-num">2</span>
+          <span class="sc-line sc-line--v"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Confidence levels made visible</p>
+            <p class="sc-popover-desc">Each insight is accompanied by a clear degree of certainty, often a percentage or visual indicator. This helps users assess how much trust to place in each suggestion.</p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Actions calibrated to certainty -->
+        <div class="scope-callout sc-callout--right" style="--ct: 178px;" data-callout="cd3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Actions calibrated to certainty</p>
+            <p class="sc-popover-desc">The system tailors its suggested actions based on confidence — more assertive steps when certainty is high, and more cautious ones when confidence is low.</p>
+          </div>
+        </div>
+        <!-- Callout 4: bottom — Low confidence is still shown -->
+        <div class="scope-callout sc-callout--bottom" style="--cl: 272px;" data-callout="cd4">
+          <span class="sc-line sc-line--v"></span>
+          <span class="sc-num">4</span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Low confidence is still shown</p>
+            <p class="sc-popover-desc">Even uncertain insights are surfaced, not hidden — but clearly marked. This promotes transparency and allows human judgment to guide next steps.</p>
+          </div>
+        </div>
+
+        <div class="cd-demo">
+          <p class="cd-demo-title">Diagnostic Report with Actionables</p>
+          <div class="cd-table-head">
+            <span class="cd-th">Suspected Cause</span>
+            <span class="cd-th">Confidence</span>
+            <span class="cd-th">Rationale</span>
+            <span class="cd-th">Recommended Action</span>
+          </div>
+          <div class="cd-row">
+            <div class="cd-td">High Resource Utilization in Component A</div>
+            <div class="cd-td">
+              <span class="cd-conf-label">High <span class="cd-conf-pct">(80%)</span></span>
+              <div class="cd-bar-wrap"><div class="cd-bar cd-bar--high"></div></div>
+            </div>
+            <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 1</button></div>
+          </div>
+          <div class="cd-row">
+            <div class="cd-td">Environmental Interference in Zone X</div>
+            <div class="cd-td">
+              <span class="cd-conf-label">Medium <span class="cd-conf-pct">(43%)</span></span>
+              <div class="cd-bar-wrap"><div class="cd-bar cd-bar--medium"></div></div>
+            </div>
+            <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 2</button></div>
+          </div>
+          <div class="cd-row">
+            <div class="cd-td">Processing Bottleneck</div>
+            <div class="cd-td">
+              <span class="cd-conf-label">Low <span class="cd-conf-pct">(25%)</span></span>
+              <div class="cd-bar-wrap"><div class="cd-bar cd-bar--low"></div></div>
+            </div>
+            <div class="cd-td cd-td--muted">Reasoning on why this is happening</div>
+            <div class="cd-td"><button class="cd-action-btn">Resolution 4</button></div>
           </div>
         </div>
       </div>
