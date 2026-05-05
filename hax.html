@@ -1308,6 +1308,81 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     margin: 10px 0 0;
 }
 
+/* ── Inline Rationale Demo ── */
+.ir-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding-left: 56px;
+    padding-right: 56px;
+}
+.ir-demo {
+    width: 100%;
+    background: var(--color-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-medium);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1), 0 32px 72px rgba(41,50,71,0.12);
+    font-family: inherit;
+}
+[data-theme="dark"] .ir-demo {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 8px 32px rgba(0,0,0,0.4), 0 32px 72px rgba(0,0,0,0.45);
+}
+.ir-demo-header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.ir-demo-header svg { width: 15px; height: 15px; color: var(--color-accent); flex-shrink: 0; }
+.ir-incidents { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+.ir-incident {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: var(--color-hover);
+}
+.ir-incident-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+.ir-incident-title { font-size: 0.9em; font-weight: 700; color: var(--color-text); flex-shrink: 0; }
+.ir-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+.ir-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78em;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+.ir-badge svg { width: 12px; height: 12px; flex-shrink: 0; }
+.ir-badge-high { background: rgba(239,68,68,0.15); color: #ef4444; }
+.ir-badge-medium { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.ir-badge-impact { background: rgba(0,188,235,0.12); color: var(--color-accent); }
+.ir-incident-desc { font-size: 0.82em; color: var(--color-text-muted); margin: 0; line-height: 1.5; }
+/* Right-side callout modifier */
+.sc-callout--right { left: auto; right: 0; flex-direction: row-reverse; }
+.sc-callout--right .sc-popover { left: auto; right: 58px; }
+.sc-callout--right .sc-popover::before {
+    left: auto; right: -7px;
+    border-right-color: transparent;
+    border-left: 6px solid var(--color-border-medium);
+    border-right: none;
+}
+.sc-callout--right .sc-popover::after {
+    left: auto; right: -5px;
+    border-right-color: transparent;
+    border-left: 5px solid var(--color-bg);
+    border-right: none;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2007,10 +2082,75 @@ footer {
         <p class="pattern-related-intro-name">Inline Rationale</p>
         <p class="pattern-related-intro-desc">Agents articulate why they made recommendations. Rationale should be accessible, understandable, and relevant to help users make sense of the thinking.</p>
       </div>
-    </div>
-      <h3 class="pattern-title">Recovery</h3>
-      <p class="pattern-desc">Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
-    </div>
+
+      <p class="pattern-component-label">Component example: Inline Rationale</p>
+
+      <!-- Interactive: Inline Rationale -->
+      <div class="ir-demo-wrapper">
+        <!-- Callout 1 → header reasoning label -->
+        <div class="scope-callout" style="--ct: 20px;" data-callout="ir1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Agent's reasoning surfaced</p>
+            <p class="sc-popover-desc">The agent labels its own decision logic, making invisible prioritization visible so users can understand, question, or reorder.</p>
+          </div>
+        </div>
+        <!-- Callout 2 → impact badge (right side) -->
+        <div class="scope-callout sc-callout--right" style="--ct: 96px;" data-callout="ir2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Scope of impact</p>
+            <p class="sc-popover-desc">Quantified impact badges let users grasp real-world consequences at a glance — without needing to investigate further.</p>
+          </div>
+        </div>
+        <!-- Callout 3 → incident 2 description (left side) -->
+        <div class="scope-callout" style="--ct: 182px;" data-callout="ir3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Contextual rationale</p>
+            <p class="sc-popover-desc">A brief description explains the incident's cause, supporting informed decisions without overwhelming the interface.</p>
+          </div>
+        </div>
+
+        <div class="ir-demo">
+          <div class="ir-demo-header">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3.5l2 1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Prioritizing incidents based on severity and impact
+          </div>
+          <div class="ir-incidents">
+            <div class="ir-incident">
+              <div class="ir-incident-top">
+                <span class="ir-incident-title">Incident 1</span>
+                <div class="ir-badges">
+                  <span class="ir-badge ir-badge-high">
+                    <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" fill="currentColor" opacity="0.25"/><path d="M4 4l4 4M8 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    High
+                  </span>
+                  <span class="ir-badge ir-badge-impact">Impact: 8 departments; 233 Devices</span>
+                </div>
+              </div>
+              <p class="ir-incident-desc">Description of the incident, what is causing it and more details on impact</p>
+            </div>
+            <div class="ir-incident">
+              <div class="ir-incident-top">
+                <span class="ir-incident-title">Incident 2</span>
+                <div class="ir-badges">
+                  <span class="ir-badge ir-badge-medium">
+                    <svg viewBox="0 0 12 12" fill="none"><path d="M6 1.5L11 10H1L6 1.5z" stroke="currentColor" stroke-width="1.2" fill="currentColor" opacity="0.2"/><path d="M6 5v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="9" r="0.6" fill="currentColor"/></svg>
+                    Medium
+                  </span>
+                  <span class="ir-badge ir-badge-impact">Impact: 3 departments; 75 Users</span>
+                </div>
+              </div>
+              <p class="ir-incident-desc">Description of the incident, what is causing it and more details on impact</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.pattern-panel clarity -->
+
+    <div class="pattern-panel" data-panel="recovery">
 
     <div class="pattern-panel" data-panel="collaboration">
       <h3 class="pattern-title">Collaboration</h3>
