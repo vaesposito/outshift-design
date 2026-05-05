@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_pitfall_cards",
+  "info": {
+    "displayName": "PitfallCard",
+    "icon": "exclamation-mark",
+    "description": "A common pitfall with a title and short description"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

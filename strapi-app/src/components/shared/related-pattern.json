@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shared_related_patterns",
+  "info": {
+    "displayName": "RelatedPattern",
+    "icon": "layout",
+    "description": "A related pattern within a panel, with name, description, component label, subnav ID, and callouts"
+  },
+  "options": {},
+  "attributes": {
+    "subnavId": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "componentLabel": {
+      "type": "string"
+    },
+    "callouts": {
+      "type": "json"
+    }
+  }
+}

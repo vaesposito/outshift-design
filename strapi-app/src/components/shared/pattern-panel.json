@@ -3,7 +3,7 @@
   "info": {
     "displayName": "PatternPanel",
     "icon": "grid",
-    "description": "Pattern panel with key, title, description, and example images"
+    "description": "Pattern panel with key, title, subtitle, descriptions, related patterns, how-to, and pitfalls"
   },
   "options": {},
   "attributes": {
@@ -15,9 +15,31 @@
       "type": "string",
       "required": true
     },
+    "subtitle": {
+      "type": "string"
+    },
     "description": {
       "type": "text",
       "required": true
+    },
+    "whatItMeans": {
+      "type": "text"
+    },
+    "whyItMatters": {
+      "type": "text"
+    },
+    "relatedPatterns": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.related-pattern"
+    },
+    "howToImplement": {
+      "type": "json"
+    },
+    "commonPitfalls": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.pitfall-card"
     },
     "exampleImages": {
       "type": "media",

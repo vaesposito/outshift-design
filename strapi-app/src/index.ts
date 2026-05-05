@@ -1,4 +1,5 @@
 import type { Core } from '@strapi/strapi';
+import panelData from './seed-hax-patterns';
 
 export default {
   register() {},
@@ -8,6 +9,7 @@ export default {
     await seedContent(strapi);
     await seedPages(strapi);
     await fixPageContent(strapi);
+    await updateHaxPatterns(strapi);
   },
 };
 
@@ -219,13 +221,17 @@ async function seedPages(strapi: Core.Strapi) {
     heroVideo: '/videos/hax-hero.mp4',
     patternsTitle: 'Human-Centered AI Patterns',
     patternsDescription: 'These 5 guiding principles emerged from studying how people interact with agentic systems. Using these patterns is the foundation for building trustworthy AI experiences that prioritize human control and agency.',
-    patterns: [
-      { key: 'control', title: 'Control', description: 'Humans guide how agents operate by setting boundaries, preferences, and intent. Control aligns autonomy with human goals.' },
-      { key: 'clarity', title: 'Clarity', description: 'Agents should make their reasoning, context, and confidence visible. Instead of acting like black boxes, they show how decisions are made so users can understand, question, or adjust them.' },
-      { key: 'recovery', title: 'Recovery', description: 'Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior.' },
-      { key: 'collaboration', title: 'Collaboration', description: 'Autonomous agents should act as capable partners, not just tools waiting for commands. Collaboration means shared context, back-and-forth interaction, and joint ownership of outcomes.' },
-      { key: 'traceability', title: 'Traceability', description: 'Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows.' },
-    ],
+    patterns: panelData.map(({ key, title, subtitle, description, whatItMeans, whyItMatters, relatedPatterns, howToImplement, commonPitfalls }) => ({
+      key,
+      title,
+      subtitle,
+      description,
+      whatItMeans,
+      whyItMatters,
+      relatedPatterns,
+      howToImplement,
+      commonPitfalls,
+    })),
     researchTitle: 'The Outshift Design Research Laboratory',
     researchDescription: 'A research framework for building AI-powered systems with human-centered design principles and ethical considerations at the core.',
     researchLink: { label: 'Explore the Research', url: '/research', isExternal: false },
@@ -364,4 +370,41 @@ async function fixPageContent(strapi: Core.Strapi) {
     });
     strapi.log.info('Security & Privacy page content fixed.');
   }
+}
+
+async function updateHaxPatterns(strapi: Core.Strapi) {
+  const haxPage = await strapi.documents('api::hax-page.hax-page' as any).findFirst({
+    populate: { patterns: { populate: ['relatedPatterns', 'commonPitfalls'] } },
+  });
+
+  if (!haxPage) return;
+
+  // Check if patterns already have the rich fields by testing the first pattern
+  const firstPattern = haxPage.patterns?.[0];
+  if (firstPattern?.subtitle && firstPattern?.relatedPatterns?.length > 0) {
+    strapi.log.info('Hax page patterns already up to date, skipping.');
+    return;
+  }
+
+  strapi.log.info('Updating Hax page patterns with rich content...');
+
+  const updatedPatterns = panelData.map(({ key, title, subtitle, description, whatItMeans, whyItMatters, relatedPatterns, howToImplement, commonPitfalls }) => ({
+    key,
+    title,
+    subtitle,
+    description,
+    whatItMeans,
+    whyItMatters,
+    relatedPatterns,
+    howToImplement,
+    commonPitfalls,
+  }));
+
+  await strapi.documents('api::hax-page.hax-page' as any).update({
+    documentId: haxPage.documentId,
+    data: { patterns: updatedPatterns },
+    status: 'published',
+  });
+
+  strapi.log.info('Hax page patterns updated successfully.');
 }
