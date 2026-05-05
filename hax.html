@@ -5069,7 +5069,10 @@ footer {
             var target = btn.getAttribute('data-pattern');
             document.querySelectorAll('.pattern-panel').forEach(function (panel) { panel.classList.remove('is-active'); });
             var activePanel = document.querySelector('.pattern-panel[data-panel="' + target + '"]');
-            if (activePanel) activePanel.classList.add('is-active');
+            if (activePanel) {
+                activePanel.classList.add('is-active');
+                activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
             // Toggle subnavs
             document.querySelectorAll('.pattern-subnav').forEach(function (nav) { nav.classList.remove('is-open'); });
             var activeSubnav = document.querySelector('.pattern-subnav[data-subnav="' + target + '"]');

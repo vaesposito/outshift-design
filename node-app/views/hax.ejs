@@ -166,6 +166,8 @@
         const show = nav.dataset.subnav === key;
         nav.classList.toggle('is-open', show);
       });
+      const activePanel = document.querySelector(`.pattern-panel[data-panel="${key}"]`);
+      if (activePanel) activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
