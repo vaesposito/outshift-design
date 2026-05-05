@@ -2429,6 +2429,181 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .ce-send svg { width: 11px; height: 11px; fill: #fff; }
 .ce-disclaimer { font-size: 0.75em; color: var(--color-text-muted); text-align: center; opacity: 0.6; padding-bottom: 10px; }
 
+/* === Role Clarity & Turn Signals Demo === */
+.rc-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.rc-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    padding: 24px 28px;
+    font-size: 0.88em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+    position: relative;
+}
+[data-theme="dark"] .rc-card {
+    background: #151e2d;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
+}
+/* Card header */
+.rc-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.rc-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-text);
+}
+[data-theme="dark"] .rc-card-title { color: #ddeeff; }
+.rc-card-title-icon { color: #a78bfa; font-size: 1.1em; }
+.rc-status-badge {
+    padding: 5px 14px;
+    background: #b45309;
+    border-radius: 20px;
+    color: #fde68a;
+    font-size: 0.8em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+[data-theme="dark"] .rc-status-badge { background: #92400e; color: #fcd34d; }
+/* Stepper */
+.rc-status-label {
+    font-size: 0.82em;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+}
+[data-theme="dark"] .rc-status-label { color: rgba(160,190,215,0.5); }
+.rc-stepper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 22px;
+    overflow-x: auto;
+}
+.rc-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 70px;
+    position: relative;
+}
+.rc-step-track {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 6px;
+}
+.rc-step-circle {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.82em;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 1;
+}
+.rc-step-circle--done {
+    background: #16a34a;
+    color: #fff;
+    border: 2px solid #16a34a;
+}
+.rc-step-circle--active {
+    background: #2563eb;
+    color: #fff;
+    border: 2px solid #2563eb;
+}
+.rc-step-circle--pending {
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 2px solid var(--color-border-medium);
+}
+[data-theme="dark"] .rc-step-circle--pending { border-color: rgba(255,255,255,0.2); color: rgba(160,180,210,0.4); }
+.rc-connector {
+    flex: 1;
+    height: 2px;
+    background: var(--color-border-medium);
+}
+.rc-connector--done { background: #2563eb; }
+[data-theme="dark"] .rc-connector { background: rgba(255,255,255,0.12); }
+[data-theme="dark"] .rc-connector--done { background: #2563eb; }
+.rc-step-name {
+    font-size: 0.76em;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: 0 2px;
+    line-height: 1.3;
+}
+.rc-step-name--done,
+.rc-step-name--active { color: var(--color-text); }
+[data-theme="dark"] .rc-step-name { color: rgba(160,190,215,0.4); }
+[data-theme="dark"] .rc-step-name--done,
+[data-theme="dark"] .rc-step-name--active { color: #c8dff0; }
+/* Sections */
+.rc-section { margin-bottom: 16px; }
+.rc-section-title {
+    font-size: 0.92em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 5px;
+}
+[data-theme="dark"] .rc-section-title { color: #c8dff0; }
+.rc-section-body {
+    font-size: 0.84em;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+[data-theme="dark"] .rc-section-body { color: rgba(180,200,220,0.6); }
+.rc-rationale-list {
+    list-style: disc;
+    padding-left: 18px;
+    font-size: 0.84em;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin: 0;
+}
+[data-theme="dark"] .rc-rationale-list { color: rgba(180,200,220,0.6); }
+/* Actions */
+.rc-actions-text {
+    font-size: 0.83em;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+[data-theme="dark"] .rc-actions-text { color: rgba(180,200,220,0.6); }
+.rc-action-btns { display: flex; gap: 9px; flex-wrap: wrap; }
+.rc-btn {
+    padding: 7px 18px;
+    border-radius: 7px;
+    font-size: 0.84em;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: default;
+    pointer-events: none;
+}
+.rc-btn--primary { background: #2563eb; border: none; color: #fff; }
+.rc-btn--outline {
+    background: transparent;
+    border: 1px solid var(--color-border-medium);
+    color: var(--color-text);
+}
+[data-theme="dark"] .rc-btn--outline { border-color: rgba(120,160,200,0.3); color: #9dbbd8; }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2798,6 +2973,7 @@ footer {
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-mi">Mixed Initiative</button>
             <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-ce">Co-editing Interfaces</button>
+            <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-rc">Role Clarity &amp; Turn Signals</button>
           </div>
         </div>
         <div class="pattern-nav-group">
@@ -4027,6 +4203,115 @@ footer {
                 </div>
                 <p class="ce-disclaimer">Assistant can make mistakes. Verify responses.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="collab-rc">
+        <p class="pattern-related-intro-name">Role Clarity &amp; Turn Signals</p>
+        <p class="pattern-related-intro-desc">Clear handoffs and visible role signals reduce confusion in multi-step tasks. This principle makes collaboration feel more natural and efficient.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Role Clarity &amp; Turn Signals</p>
+
+      <!-- Interactive: Role Clarity & Turn Signals -->
+      <div class="rc-demo-wrapper">
+        <!-- Callout 1: left — Clear stage-based ownership -->
+        <div class="scope-callout" style="--ct: 148px;" data-callout="rc1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Clear stage-based ownership</p>
+            <p class="sc-popover-desc">Break workflows into visible stages and indicate who leads each one. This reduces ambiguity and improves accountability.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Attribute every action -->
+        <div class="scope-callout" style="--ct: 370px;" data-callout="rc2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Attribute every action</p>
+            <p class="sc-popover-desc">Label actions clearly as system-initiated or human-initiated. This helps users interpret intent and trust the flow.</p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Signal when it's the user's turn -->
+        <div class="scope-callout sc-callout--right" style="--ct: 100px;" data-callout="rc3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Signal when it's the user's turn</p>
+            <p class="sc-popover-desc">Use prompts, buttons, or callouts to indicate when the system is waiting for user input. Avoid passive steps that could confuse ownership.</p>
+          </div>
+        </div>
+
+        <div class="rc-card">
+          <div class="rc-card-header">
+            <p class="rc-card-title"><span class="rc-card-title-icon">✦</span> Agent action review required</p>
+            <span class="rc-status-badge">Waiting for review</span>
+          </div>
+
+          <p class="rc-status-label">Status</p>
+          <div class="rc-stepper">
+            <!-- Step 1: done -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--done">✓</div>
+                <div class="rc-connector rc-connector--done"></div>
+              </div>
+              <span class="rc-step-name rc-step-name--done">AI Drafts Changes</span>
+            </div>
+            <!-- Step 2: active -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--active">2</div>
+                <div class="rc-connector"></div>
+              </div>
+              <span class="rc-step-name rc-step-name--active">Engineer Review</span>
+            </div>
+            <!-- Step 3 -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--pending">3</div>
+                <div class="rc-connector"></div>
+              </div>
+              <span class="rc-step-name">Peer Approval</span>
+            </div>
+            <!-- Step 4 -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--pending">4</div>
+                <div class="rc-connector"></div>
+              </div>
+              <span class="rc-step-name">Staging Deployment</span>
+            </div>
+            <!-- Step 5: last, no connector -->
+            <div class="rc-step">
+              <div class="rc-step-track">
+                <div class="rc-step-circle rc-step-circle--pending">5</div>
+              </div>
+              <span class="rc-step-name">Commit</span>
+            </div>
+          </div>
+
+          <div class="rc-section">
+            <p class="rc-section-title">Description</p>
+            <p class="rc-section-body">Description of the agent action</p>
+          </div>
+
+          <div class="rc-section">
+            <p class="rc-section-title">Agent Rationale</p>
+            <ul class="rc-rationale-list">
+              <li>Reason 1</li>
+              <li>Reason 2</li>
+              <li>Reason 3</li>
+            </ul>
+          </div>
+
+          <div class="rc-section">
+            <p class="rc-section-title">Actions</p>
+            <p class="rc-actions-text">This change is pending your review. It will not move forward until approved. Upon confirmation, it will proceed to peer review for secondary validation.</p>
+            <div class="rc-action-btns">
+              <button class="rc-btn rc-btn--primary">Accept</button>
+              <button class="rc-btn rc-btn--outline">Modify</button>
+              <button class="rc-btn rc-btn--outline">Reject</button>
             </div>
           </div>
         </div>
