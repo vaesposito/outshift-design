@@ -542,9 +542,21 @@ button::before, .cta-button::before {
     display: inline;
 }
 .initiative-card--linked .card-text h3:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
+}
+.text-link-cta {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0 4px;
+    opacity: 0.7;
+    transition: opacity 0.18s;
+    white-space: nowrap;
+}
+.text-link-cta:hover {
+    opacity: 1;
+    text-decoration: none;
 }
 .arrow-link.arrow-link--labeled {
     width: auto;
@@ -1334,6 +1346,7 @@ footer {
             <path d="M4 12L12 4M12 4H5M12 4V11"/>
           </svg>
         </a>
+        <a href="hax.html" class="text-link-cta">Learn about HAX</a>
       </div>
     </div>
     <div class="card-image">
@@ -1349,8 +1362,16 @@ footer {
   <div class="initiative-card reversed initiative-card--linked">
     <a href="https://outshift.cisco.com/internet-of-cognition/explore" class="initiative-card-link" aria-label="View initiative: Internet of Cognition" target="_blank" rel="noopener noreferrer"></a>
     <div class="card-text">
-      <h3>Internet of Cognition <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></h3>
+      <h3>Internet of Cognition</h3>
       <p>Enabling agents and humans to scale intelligence collectively.</p>
+      <div class="card-text-actions">
+        <a href="https://outshift.cisco.com/internet-of-cognition/explore" target="_blank" rel="noopener noreferrer" class="arrow-link arrow-link--labeled" aria-label="Learn about Internet of Cognition">
+          <span>Learn about IoC</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12L12 4M12 4H5M12 4V11"/>
+          </svg>
+        </a>
+      </div>
     </div>
     <div class="card-image">
       <video class="video-light" autoplay muted loop playsinline>
