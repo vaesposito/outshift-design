@@ -344,6 +344,10 @@ a.blog-card-item {
     margin: 0 0 12px;
     line-height: 1.4;
     color: var(--color-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 .blog-card-body .blog-card-desc {
     font-size: 0.85em;
@@ -351,6 +355,10 @@ a.blog-card-item {
     line-height: 1.6;
     margin: 0 0 20px;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 .blog-card-meta {
     display: flex;
