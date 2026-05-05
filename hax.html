@@ -2102,6 +2102,132 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     opacity: 0.7;
 }
 
+/* === Mixed Initiative Demo === */
+.mi-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.mi-demo {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    overflow: hidden;
+    font-size: 0.88em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+    min-height: 340px;
+}
+[data-theme="dark"] .mi-demo {
+    background: #151e2d;
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+}
+/* Left panel */
+.mi-left {
+    border-right: 1px solid var(--color-border);
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+[data-theme="dark"] .mi-left { border-color: rgba(255,255,255,0.08); }
+.mi-left-title {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 4px;
+    padding: 0 4px;
+}
+[data-theme="dark"] .mi-left-title { color: #c8dff0; }
+.mi-incident {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: default;
+}
+[data-theme="dark"] .mi-incident { border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+.mi-incident.selected {
+    border-color: #3b82f6;
+    background: rgba(59,130,246,0.06);
+}
+[data-theme="dark"] .mi-incident.selected { background: rgba(59,130,246,0.1); }
+.mi-incident-top { display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
+.mi-icon { font-size: 0.95em; flex-shrink: 0; }
+.mi-incident-name { font-weight: 700; font-size: 0.87em; color: var(--color-text); }
+[data-theme="dark"] .mi-incident-name { color: #ddeeff; }
+.mi-incident-desc { font-size: 0.8em; color: var(--color-text-muted); padding-left: 22px; }
+[data-theme="dark"] .mi-incident-desc { color: rgba(180,200,220,0.55); }
+/* Right panel */
+.mi-right {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px 0;
+}
+.mi-right-title {
+    font-size: 0.88em;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 12px;
+}
+[data-theme="dark"] .mi-right-title { color: #c8dff0; }
+.mi-chat { flex: 1; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.mi-msg { display: flex; align-items: flex-start; gap: 10px; }
+.mi-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78em; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.mi-avatar--agent { background: #7c6af7; color: #fff; }
+.mi-avatar--user {
+    background: var(--color-border-medium);
+    color: var(--color-text-muted);
+    overflow: hidden;
+}
+[data-theme="dark"] .mi-avatar--user { background: rgba(255,255,255,0.15); color: #8ab0cc; }
+.mi-msg-body { flex: 1; }
+.mi-msg-text { font-size: 0.86em; color: var(--color-text); line-height: 1.45; margin-bottom: 6px; }
+[data-theme="dark"] .mi-msg-text { color: #c8dff0; }
+.mi-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 2px; }
+.mi-action-btn {
+    padding: 5px 11px;
+    background: transparent;
+    border: 1px solid #3b82f6;
+    border-radius: 6px;
+    color: #3b82f6;
+    font-size: 0.78em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+}
+[data-theme="dark"] .mi-action-btn { border-color: #4f8ef7; color: #7eb3f8; }
+.mi-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 10px 0 8px;
+    margin-top: 10px;
+}
+[data-theme="dark"] .mi-footer { border-color: rgba(255,255,255,0.07); }
+.mi-input-row {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--color-hover);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 8px;
+    padding: 7px 10px;
+    margin-bottom: 6px;
+}
+[data-theme="dark"] .mi-input-row { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.1); }
+.mi-input-placeholder { flex: 1; font-size: 0.83em; color: var(--color-text-muted); opacity: 0.55; }
+.mi-send {
+    width: 26px; height: 26px; background: #2563eb; border: none;
+    border-radius: 5px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; cursor: default; pointer-events: none;
+}
+.mi-send svg { width: 11px; height: 11px; fill: #fff; }
+.mi-disclaimer { font-size: 0.75em; color: var(--color-text-muted); text-align: center; opacity: 0.6; }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2467,6 +2593,10 @@ footer {
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
+          <div class="pattern-subnav">
+            <span class="pattern-subnav-label">Related Patterns</span>
+            <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-mi">Mixed Initiative</button>
+          </div>
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="traceability">Traceability</button>
@@ -3467,6 +3597,111 @@ footer {
           <span class="pattern-info-symbol">!</span>
           <p class="pattern-info-title">Why this matters</p>
           <p>Collaboration builds stronger results than automation alone. When people and agents shape outcomes together, users stay engaged and push toward more creative, effective solutions.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
+      <div class="pattern-related-intro" id="collab-mi">
+        <p class="pattern-related-intro-name">Mixed Initiative</p>
+        <p class="pattern-related-intro-desc">This pattern fosters adaptive turn-taking between human and agent. It supports fluid collaboration by allowing both to lead based on context.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Mixed Initiative</p>
+
+      <!-- Interactive: Mixed Initiative -->
+      <div class="mi-demo-wrapper">
+        <!-- Callout 1: left — Agent proactively initiates -->
+        <div class="scope-callout" style="--ct: 68px;" data-callout="mi1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Agent proactively initiates based on context</p>
+            <p class="sc-popover-desc">Allow the agent to proactively detect issues or make suggestions, especially when it has useful context the user may not.</p>
+          </div>
+        </div>
+        <!-- Callout 2: right — Build on each other's contributions -->
+        <div class="scope-callout sc-callout--right" style="--ct: 130px;" data-callout="mi2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Build on each other's contributions</p>
+            <p class="sc-popover-desc">Design interactions so the agent can refine its outputs in response to human edits or questions. Keep the flow continuous and collaborative.</p>
+          </div>
+        </div>
+
+        <div class="mi-demo">
+          <!-- Left: incident list -->
+          <div class="mi-left">
+            <p class="mi-left-title">Incidents Detected by Agent</p>
+            <div class="mi-incident">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🔴</span>
+                <span class="mi-incident-name">Incident 1</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+            <div class="mi-incident selected">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🔴</span>
+                <span class="mi-incident-name">Incident 2</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+            <div class="mi-incident">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🟠</span>
+                <span class="mi-incident-name">Incident 3</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+            <div class="mi-incident">
+              <div class="mi-incident-top">
+                <span class="mi-icon">🟠</span>
+                <span class="mi-incident-name">Incident 4</span>
+              </div>
+              <p class="mi-incident-desc">Description</p>
+            </div>
+          </div>
+          <!-- Right: chat -->
+          <div class="mi-right">
+            <p class="mi-right-title">Triage Incident</p>
+            <div class="mi-chat">
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--agent">A</div>
+                <div class="mi-msg-body">
+                  <p class="mi-msg-text">I have detected a major issue starting at 09:17 UTC. What would you like to do?</p>
+                  <div class="mi-actions">
+                    <button class="mi-action-btn">View Interface Errors</button>
+                    <button class="mi-action-btn">Compare with historical baseline</button>
+                    <button class="mi-action-btn">Simulate Rollback</button>
+                  </div>
+                </div>
+              </div>
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--user">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                </div>
+                <p class="mi-msg-text">Compare it to yesterday, and exclude issue x from the analysis.</p>
+              </div>
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--agent">A</div>
+                <p class="mi-msg-text">Done. Compare to yesterday's baseline, it shows a 30% decrease in traffic. I recommend rollback. Would you like to rollback.</p>
+              </div>
+              <div class="mi-msg">
+                <div class="mi-avatar mi-avatar--user">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                </div>
+                <p class="mi-msg-text">No rollback yet. Pull logs from first — I want to check status.</p>
+              </div>
+            </div>
+            <div class="mi-footer">
+              <div class="mi-input-row">
+                <span class="mi-input-placeholder">Ask the AI Assistant a question</span>
+                <button class="mi-send">
+                  <svg viewBox="0 0 16 16"><path d="M2 8l12-6-5 6 5 6z"/></svg>
+                </button>
+              </div>
+              <p class="mi-disclaimer">Assistant can make mistakes. Verify responses.</p>
+            </div>
+          </div>
         </div>
       </div>
 
