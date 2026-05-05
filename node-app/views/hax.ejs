@@ -48,14 +48,17 @@
         <% pageData.patterns.forEach(function(panel, pi) { %>
         <div class="pattern-nav-group">
           <button class="pattern-filter<%= pi === 0 ? ' is-active' : '' %>" data-pattern="<%= panel.key %>"><%= panel.title %></button>
-          <% if (panel.relatedPatterns && panel.relatedPatterns.length) { %>
           <div class="pattern-subnav<%= pi === 0 ? ' is-open' : '' %>" data-subnav="<%= panel.key %>">
+            <button class="pattern-subitem pattern-subitem--section" data-panel="<%= panel.key %>" data-scroll="<%= panel.key %>-desc">Description</button>
+            <% if (panel.relatedPatterns && panel.relatedPatterns.length) { %>
             <span class="pattern-subnav-label">Related Patterns</span>
             <% panel.relatedPatterns.forEach(function(rp) { %>
             <button class="pattern-subitem" data-panel="<%= panel.key %>" data-scroll="<%= rp.subnavId %>"><%= rp.name %></button>
             <% }); %>
+            <% } %>
+            <button class="pattern-subitem pattern-subitem--section" data-panel="<%= panel.key %>" data-scroll="<%= panel.key %>-how-to">How to implement</button>
+            <button class="pattern-subitem pattern-subitem--section" data-panel="<%= panel.key %>" data-scroll="<%= panel.key %>-pitfalls">Common pitfalls</button>
           </div>
-          <% } %>
         </div>
         <% }); %>
       </nav>

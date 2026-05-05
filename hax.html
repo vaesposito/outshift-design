@@ -480,6 +480,12 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     padding: 4px 10px 6px;
     opacity: 0.7;
 }
+.pattern-subitem--section {
+    font-weight: 600;
+    color: var(--color-text);
+    opacity: 0.85;
+    margin-top: 4px;
+}
 .pattern-subnav.is-open { display: flex; }
 .pattern-subitem {
     background: none;
@@ -3274,48 +3280,63 @@ footer {
         <div class="pattern-nav-group">
           <button class="pattern-filter is-active" data-pattern="control">Control</button>
           <div class="pattern-subnav is-open" data-subnav="control">
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="control-desc">Description</button>
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-scroll="control-scope">Scope &amp; Boundaries</button>
             <button class="pattern-subitem" data-scroll="control-authority">Customization of Autonomy</button>
             <button class="pattern-subitem" data-scroll="control-pgates">Permission &amp; Confirmation Gates</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="control-how-to">How to implement</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="control-pitfalls">Common pitfalls</button>
           </div>
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="clarity">Clarity</button>
           <div class="pattern-subnav" data-subnav="clarity">
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="clarity-desc">Description</button>
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-scroll="clarity-ir">Inline Rationale</button>
             <button class="pattern-subitem" data-scroll="clarity-cd">Confidence &amp; Uncertainty</button>
             <button class="pattern-subitem" data-scroll="clarity-sa">Source Attribution</button>
             <button class="pattern-subitem" data-scroll="clarity-at">Alternatives &amp; Trade-offs</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="clarity-how-to">How to implement</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="clarity-pitfalls">Common pitfalls</button>
           </div>
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="recovery">Recovery</button>
           <div class="pattern-subnav" data-subnav="recovery">
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="recovery-desc">Description</button>
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-scroll="recovery-undo">Undo &amp; Redo Support</button>
             <button class="pattern-subitem" data-scroll="recovery-eo">Editable Outputs</button>
             <button class="pattern-subitem" data-scroll="recovery-sd">Safe Defaults</button>
             <button class="pattern-subitem" data-scroll="recovery-ep">Escalation Paths</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="recovery-how-to">How to implement</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="recovery-pitfalls">Common pitfalls</button>
           </div>
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
           <div class="pattern-subnav" data-subnav="collaboration">
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="collaboration-desc">Description</button>
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-mi">Mixed Initiative</button>
             <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-ce">Co-editing Interfaces</button>
             <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-rc">Role Clarity &amp; Turn Signals</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="collaboration-how-to">How to implement</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="collaboration-pitfalls">Common pitfalls</button>
           </div>
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="traceability">Traceability</button>
           <div class="pattern-subnav" data-subnav="traceability">
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="traceability-desc">Description</button>
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-ah">Action History</button>
             <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-vd">Visual Diffing</button>
             <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-bt">Behavior Tuning Over Time</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="traceability-how-to">How to implement</button>
+            <button class="pattern-subitem pattern-subitem--section" data-scroll="traceability-pitfalls">Common pitfalls</button>
           </div>
         </div>
       </nav>
@@ -3325,7 +3346,7 @@ footer {
       <h3 class="pattern-title">Control</h3>
       <p class="pattern-desc">Let the Human Set the Rules</p>
 
-      <div class="pattern-info-row">
+      <div class="pattern-info-row" id="control-desc">
         <div class="pattern-info">
           <span class="pattern-info-symbol">?</span>
           <p class="pattern-info-title">What it means</p>
@@ -3627,7 +3648,7 @@ footer {
 
     <div class="pattern-divider"></div>
     <h4 class="pattern-examples-label">How to implement</h4>
-    <ul class="how-to-list">
+    <ul class="how-to-list" id="control-how-to">
       <li>Make automation opt-in, never assume users want it</li>
       <li>Let users override any system decision, anytime</li>
       <li>Show what rules are active and how they're working</li>
@@ -3636,7 +3657,7 @@ footer {
 
     <div class="pattern-divider"></div>
     <h4 class="pattern-examples-label">Common pitfalls</h4>
-    <div class="pitfalls-grid">
+    <div class="pitfalls-grid" id="control-pitfalls">
       <div class="pitfall-card">
         <p class="pitfall-card-title">Over-reliance on implicit controls</p>
         <p class="pitfall-card-desc">Assuming users understand what the agent is doing without clear communication</p>
@@ -3661,7 +3682,7 @@ footer {
       <h3 class="pattern-title">Clarity</h3>
       <p class="pattern-desc">Show the agent's reasoning</p>
 
-      <div class="pattern-info-row">
+      <div class="pattern-info-row" id="clarity-desc">
         <div class="pattern-info">
           <span class="pattern-info-symbol">?</span>
           <p class="pattern-info-title">What it means</p>
@@ -3948,7 +3969,7 @@ footer {
       </div>
 
       <h4 class="pattern-examples-label">How to implement</h4>
-      <ul class="how-to-list">
+      <ul class="how-to-list" id="clarity-how-to">
         <li>Include reasoning explanations alongside every recommendation or decision</li>
         <li>Make explanations accessible through plain language and visual aids</li>
         <li>Use progressive disclosure to offer both quick summaries and detailed explanations</li>
@@ -3958,7 +3979,7 @@ footer {
       </ul>
 
       <h4 class="pattern-examples-label">Common pitfalls</h4>
-      <div class="pitfalls-grid">
+      <div class="pitfalls-grid" id="clarity-pitfalls">
         <div class="pitfall-card">
           <p class="pitfall-card-title">Opaque decision logic</p>
           <p class="pitfall-card-desc">Users can't tell why the agent made a choice</p>
@@ -3975,7 +3996,7 @@ footer {
       <h3 class="pattern-title">Recovery</h3>
       <p class="pattern-desc">Assume the agent will make mistakes, make them clearly fixable</p>
 
-      <div class="pattern-info-row">
+      <div class="pattern-info-row" id="recovery-desc">
         <div class="pattern-info">
           <span class="pattern-info-symbol">?</span>
           <p class="pattern-info-title">What it means</p>
@@ -4270,14 +4291,14 @@ footer {
       </div>
 
       <h4 class="pattern-examples-label">How to implement</h4>
-      <ul class="how-to-list">
+      <ul class="how-to-list" id="recovery-how-to">
         <li>Design agents to offer fallback options or manual alternatives instead of total failure</li>
         <li>Use feedback from failure and recovery experiences to continuously improve system behavior</li>
         <li>Make recovery options easy to find, context-sensitive, and layered from simple to advanced controls</li>
       </ul>
 
       <h4 class="pattern-examples-label">Common pitfalls</h4>
-      <div class="pitfalls-grid">
+      <div class="pitfalls-grid" id="recovery-pitfalls">
         <div class="pitfall-card">
           <p class="pitfall-card-title">Failing to learn from recovery events</p>
           <p class="pitfall-card-desc">Failing to analyze recovery patterns can lead to repeated mistakes, missing the opportunity to learn from user corrections and improve AI performance over time</p>
@@ -4302,7 +4323,7 @@ footer {
       <h3 class="pattern-title">Collaboration</h3>
       <p class="pattern-desc">Design for shared effort and mutual input</p>
 
-      <div class="pattern-info-row">
+      <div class="pattern-info-row" id="collaboration-desc">
         <div class="pattern-info">
           <span class="pattern-info-symbol">?</span>
           <p class="pattern-info-title">What it means</p>
@@ -4655,7 +4676,7 @@ footer {
       </div>
 
       <h4 class="pattern-examples-label">How to implement</h4>
-      <ul class="how-to-list">
+      <ul class="how-to-list" id="collaboration-how-to">
         <li>Define clear, intuitive ways for control to shift between human and AI</li>
         <li>Let the AI learn from collaborative successes and adapt its behavior to match individual user styles and preferences</li>
         <li>Maintain a unified workspace that tracks contributions, context, and progress from both human and AI participants</li>
@@ -4663,7 +4684,7 @@ footer {
       </ul>
 
       <h4 class="pattern-examples-label">Common pitfalls</h4>
-      <div class="pitfalls-grid">
+      <div class="pitfalls-grid" id="collaboration-pitfalls">
         <div class="pitfall-card">
           <p class="pitfall-title">Lack of transparency</p>
           <p class="pitfall-desc">Users don't understand how to influence the agent or override agent actions</p>
@@ -4688,7 +4709,7 @@ footer {
       <h3 class="pattern-title">Traceability</h3>
       <p class="pattern-desc">Make agent behavior visible, searchable &amp; open to review</p>
 
-      <div class="pattern-info-row">
+      <div class="pattern-info-row" id="traceability-desc">
         <div class="pattern-info">
           <span class="pattern-info-symbol">?</span>
           <p class="pattern-info-title">What it means</p>
@@ -4934,7 +4955,7 @@ footer {
       </div>
 
       <h4 class="pattern-examples-label">How to implement</h4>
-      <ul class="how-to-list">
+      <ul class="how-to-list" id="traceability-how-to">
         <li>Make it easy to trace outputs back to the inputs, prompts, or interactions that influenced them</li>
         <li>Provide interfaces that let users review, filter, and explore past actions and decisions in a structured, searchable way</li>
         <li>Record all system and AI actions with timestamps, inputs, outputs, and relevant context to support clear trace trails</li>
@@ -4942,7 +4963,7 @@ footer {
       </ul>
 
       <h4 class="pattern-examples-label">Common pitfalls</h4>
-      <div class="pitfalls-grid">
+      <div class="pitfalls-grid" id="traceability-pitfalls">
         <div class="pitfall-card">
           <p class="pitfall-title">False consistency</p>
           <p class="pitfall-desc">The system behaves differently in similar situations</p>
