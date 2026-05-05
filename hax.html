@@ -2787,6 +2787,140 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 [data-theme="dark"] .vd-btn--outline { border-color: #4f8ef7; color: #7eb3f8; }
 .vd-btn--primary { background: #2563eb; border: none; color: #fff; }
 
+/* === Behavior Tuning Demo === */
+.bt-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.bt-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    padding: 22px 28px;
+    font-size: 0.88em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+}
+[data-theme="dark"] .bt-card {
+    background: #151e2d;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
+}
+.bt-card-title {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+[data-theme="dark"] .bt-card-title { color: #ddeeff; border-color: rgba(255,255,255,0.07); }
+/* Why box */
+.bt-why-box {
+    border: 1px solid var(--color-border-medium);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    background: var(--color-hover);
+}
+[data-theme="dark"] .bt-why-box { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+.bt-why-title {
+    font-size: 0.92em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 4px;
+}
+[data-theme="dark"] .bt-why-title { color: #ddeeff; }
+.bt-why-body {
+    font-size: 0.83em;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+}
+[data-theme="dark"] .bt-why-body { color: rgba(180,200,220,0.6); }
+/* Details section */
+.bt-details-label {
+    font-size: 0.84em;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+}
+[data-theme="dark"] .bt-details-label { color: rgba(160,190,215,0.55); }
+.bt-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px 24px;
+    margin-bottom: 14px;
+}
+.bt-detail-key {
+    font-size: 0.83em;
+    color: var(--color-text-muted);
+}
+[data-theme="dark"] .bt-detail-key { color: rgba(160,190,215,0.5); }
+.bt-detail-val {
+    font-size: 0.83em;
+    color: var(--color-text-muted);
+}
+[data-theme="dark"] .bt-detail-val { color: rgba(160,190,215,0.5); }
+.bt-detail-val small {
+    font-size: 0.88em;
+    color: var(--color-text-muted);
+    opacity: 0.65;
+}
+/* Expandable rows */
+.bt-expanders { display: flex; flex-direction: column; gap: 2px; margin-bottom: 16px; }
+.bt-expander {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.84em;
+    font-weight: 700;
+    color: #3b82f6;
+    cursor: default;
+    padding: 3px 0;
+}
+[data-theme="dark"] .bt-expander { color: #60a5fa; }
+.bt-expander-arrow { font-size: 0.8em; }
+/* Footer */
+.bt-footer-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 0 0 12px;
+}
+[data-theme="dark"] .bt-footer-divider { border-color: rgba(255,255,255,0.07); }
+.bt-footer-note {
+    font-size: 0.81em;
+    color: var(--color-text-muted);
+    margin-bottom: 14px;
+    opacity: 0.75;
+}
+[data-theme="dark"] .bt-footer-note { color: rgba(160,190,215,0.45); }
+.bt-actions { display: flex; align-items: center; gap: 16px; }
+.bt-btn-rollback {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    font-size: 0.88em;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+    padding: 0;
+}
+[data-theme="dark"] .bt-btn-rollback { color: #60a5fa; }
+.bt-btn-primary {
+    padding: 8px 20px;
+    background: #2563eb;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 0.84em;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -3165,6 +3299,7 @@ footer {
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-ah">Action History</button>
             <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-vd">Visual Diffing</button>
+            <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-bt">Behavior Tuning Over Time</button>
           </div>
         </div>
       </nav>
@@ -4704,6 +4839,82 @@ footer {
           <div class="vd-actions">
             <button class="vd-btn vd-btn--outline">View Details</button>
             <button class="vd-btn vd-btn--primary">Validate</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="trace-bt">
+        <p class="pattern-related-intro-name">Behavior Tuning Over Time</p>
+        <p class="pattern-related-intro-desc">Adaptive agents learn from usage and tune their actions to better suit user preferences. This supports trust, efficiency, and personalization.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Behavior Tuning Over Time</p>
+
+      <!-- Interactive: Behavior Tuning Over Time -->
+      <div class="bt-demo-wrapper">
+        <!-- Callout 1: left — What triggered the change -->
+        <div class="scope-callout" style="--ct: 140px;" data-callout="bt1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Call out what triggered the change</p>
+            <p class="sc-popover-desc">Clearly state the condition or threshold that caused the system to respond differently than before.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Compare past vs. present -->
+        <div class="scope-callout" style="--ct: 285px;" data-callout="bt2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Compare past vs. present behavior</p>
+            <p class="sc-popover-desc">Provide users a way to see what's new vs. what used to happen. This helps them understand system learning and decide if further intervention is needed.</p>
+          </div>
+        </div>
+        <!-- Callout 3: left — Decision logic -->
+        <div class="scope-callout" style="--ct: 370px;" data-callout="bt3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Explain the system's current decision logic</p>
+            <p class="sc-popover-desc">Let users understand why the system acted in this instance and how it may influence future behavior. Indicate whether this reflects a one-time response or an evolving pattern.</p>
+          </div>
+        </div>
+        <!-- Callout 4: left — Allow control or rollback -->
+        <div class="scope-callout" style="--ct: 480px;" data-callout="bt4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Allow control or rollback</p>
+            <p class="sc-popover-desc">Include an option to undo, override, or adjust the system's adaptive behavior.</p>
+          </div>
+        </div>
+
+        <div class="bt-card">
+          <p class="bt-card-title">Routing Changes</p>
+
+          <div class="bt-why-box">
+            <p class="bt-why-title">Why this happened</p>
+            <p class="bt-why-body">Agent based on observation modified behavior of the system</p>
+          </div>
+
+          <p class="bt-details-label">Details</p>
+          <div class="bt-details-grid">
+            <span class="bt-detail-key">Where change happened</span>
+            <span class="bt-detail-val">Description</span>
+            <span class="bt-detail-key">What change happened</span>
+            <span class="bt-detail-val">Description</span>
+            <span class="bt-detail-key">New Solution</span>
+            <span class="bt-detail-val">Details of Solution <small>(active since 2:30 PM)</small></span>
+            <span class="bt-detail-key">Previous Solution</span>
+            <span class="bt-detail-val">Details of Solution</span>
+          </div>
+
+          <div class="bt-expanders">
+            <div class="bt-expander"><span class="bt-expander-arrow">›</span> Reasoning for choosing this path</div>
+            <div class="bt-expander"><span class="bt-expander-arrow">›</span> How it worked previously</div>
+          </div>
+
+          <hr class="bt-footer-divider">
+          <p class="bt-footer-note">This will inform future reasoning for similar changes</p>
+          <div class="bt-actions">
+            <button class="bt-btn-rollback">Rollback</button>
+            <button class="bt-btn-primary">Approve as default</button>
           </div>
         </div>
       </div>
