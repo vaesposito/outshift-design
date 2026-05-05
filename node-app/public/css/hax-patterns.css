@@ -532,7 +532,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     font-weight: 600;
     color: var(--color-text);
     margin: 0 0 0.5em;
-    text-align: center;
+    text-align: left;
 }
 .pattern-divider {
     width: 50%;
@@ -545,20 +545,20 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     font-weight: 300;
     color: var(--color-text);
     margin: 48px 0 24px;
-    text-align: center;
+    text-align: left;
 }
 .pattern-desc {
     font-size: 1.05em;
     color: var(--color-text-muted);
     margin: 0;
     line-height: 1.6;
-    text-align: center;
-    margin: 0 auto 48px;
+    text-align: left;
+    margin: 0 0 48px;
 }
 .how-to-list {
     list-style: none;
     padding: 0;
-    margin: 0 auto 48px;
+    margin: 0 0 48px;
     max-width: 600px;
     display: flex;
     flex-direction: column;
@@ -583,7 +583,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     grid-template-columns: 1fr 1fr;
     gap: 16px;
     max-width: 760px;
-    margin: 0 auto 48px;
+    margin: 0 0 48px;
 }
 .pitfall-card {
     background: var(--color-hover);
@@ -655,10 +655,10 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     font-weight: 300;
     color: var(--color-text);
     margin: 0 0 24px;
-    text-align: center;
+    text-align: left;
 }
 .pattern-related-intro {
-    text-align: center;
+    text-align: left;
     margin: 48px 0 16px;
 }
 .pattern-related-intro:first-of-type,
@@ -705,7 +705,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     letter-spacing: 1px;
     color: var(--color-text-muted);
     margin: 0 0 12px;
-    text-align: center;
+    text-align: left;
 }
 /* ── Scope & Boundaries interactive demo ── */
 .scope-demo-wrapper {
