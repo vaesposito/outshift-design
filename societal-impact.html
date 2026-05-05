@@ -760,7 +760,6 @@ footer {
     height: 28px;
     display: block;
 }
-    50%       { transform: translateX(-50%) translateY(7px); }
 }
 
 </style>
@@ -848,7 +847,7 @@ footer {
     </div>
   </div>
   <a class="hero-scroll-arrow" href="#" aria-label="Scroll to content"
-     onclick="var h=this.closest('[class*=hero]');var n=h&&h.nextElementSibling;if(n){n.scrollIntoView({behavior:'smooth'});}return false;">
+     onclick="var n=this.parentElement&&this.parentElement.nextElementSibling;if(n){n.scrollIntoView({behavior:'smooth'});}return false;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
