@@ -2671,6 +2671,122 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 [data-theme="dark"] .ah-badge--user { background: #6b2d0a; color: #fbbf24; }
 .ah-badge-icon { font-size: 0.9em; }
 
+/* === Visual Diffing Demo === */
+.vd-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.vd-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    padding: 24px 28px;
+    font-size: 0.88em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+}
+[data-theme="dark"] .vd-card {
+    background: #151e2d;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
+}
+.vd-card-title {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+[data-theme="dark"] .vd-card-title { color: #ddeeff; }
+.vd-subtitle {
+    font-size: 0.84em;
+    color: var(--color-text-muted);
+    margin-bottom: 18px;
+    line-height: 1.45;
+}
+[data-theme="dark"] .vd-subtitle { color: rgba(180,200,220,0.6); }
+.vd-subtitle strong { color: var(--color-text); font-weight: 700; }
+[data-theme="dark"] .vd-subtitle strong { color: #c8dff0; }
+/* Side-by-side panels */
+.vd-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+.vd-panel {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+[data-theme="dark"] .vd-panel { border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.015); }
+.vd-panel-title {
+    font-size: 0.95em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 2px;
+}
+[data-theme="dark"] .vd-panel-title { color: #ddeeff; }
+.vd-field { display: flex; flex-direction: column; gap: 4px; }
+.vd-label {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--color-text);
+}
+[data-theme="dark"] .vd-label { color: #b0ccee; }
+.vd-label span { color: #ef4444; }
+.vd-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-medium);
+    background: var(--color-hover);
+    color: var(--color-text-muted);
+    font-size: 0.84em;
+    font-family: inherit;
+    outline: none;
+    pointer-events: none;
+}
+[data-theme="dark"] .vd-input {
+    background: rgba(0,0,0,0.15);
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(160,190,215,0.45);
+}
+/* Changed field highlight */
+.vd-input--changed {
+    border-color: #c2410c;
+    background: rgba(194,65,12,0.15);
+    color: var(--color-text);
+    font-weight: 600;
+}
+[data-theme="dark"] .vd-input--changed {
+    border-color: #ea580c;
+    background: rgba(194,65,12,0.22);
+    color: #fcd9b0;
+}
+/* Action buttons */
+.vd-actions { display: flex; gap: 10px; }
+.vd-btn {
+    padding: 8px 20px;
+    border-radius: 7px;
+    font-size: 0.84em;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: default;
+    pointer-events: none;
+}
+.vd-btn--outline {
+    background: transparent;
+    border: 1.5px solid #3b82f6;
+    color: #3b82f6;
+}
+[data-theme="dark"] .vd-btn--outline { border-color: #4f8ef7; color: #7eb3f8; }
+.vd-btn--primary { background: #2563eb; border: none; color: #fff; }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -3048,6 +3164,7 @@ footer {
           <div class="pattern-subnav">
             <span class="pattern-subnav-label">Related Patterns</span>
             <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-ah">Action History</button>
+            <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-vd">Visual Diffing</button>
           </div>
         </div>
       </nav>
@@ -4501,6 +4618,92 @@ footer {
               <p class="ah-entry-text"><strong>2:40 PM:</strong> User approves the proposed resolution</p>
               <span class="ah-badge ah-badge--user">Approved by John Doe</span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-related-intro" id="trace-vd">
+        <p class="pattern-related-intro-name">Visual Diffing</p>
+        <p class="pattern-related-intro-desc">Visual comparisons make agent-driven changes easier to audit and validate. This helps detect subtle alterations or unintended consequences.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Visual Diffing</p>
+
+      <!-- Interactive: Visual Diffing -->
+      <div class="vd-demo-wrapper">
+        <!-- Callout 1: left — Side-by-side comparisons -->
+        <div class="scope-callout" style="--ct: 200px;" data-callout="vd1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Use side-by-side comparisons</p>
+            <p class="sc-popover-desc">Display the original and updated states in parallel columns. This helps users spot differences immediately without extra mental effort.</p>
+          </div>
+        </div>
+        <!-- Callout 2: right — Include the why -->
+        <div class="scope-callout sc-callout--right" style="--ct: 105px;" data-callout="vd2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Include the why, not just the what</p>
+            <p class="sc-popover-desc">Pair the visual change with a short explanation of the reason or logic behind it. This gives context and supports better decision-making.</p>
+          </div>
+        </div>
+        <!-- Callout 3: right — Highlight what changed -->
+        <div class="scope-callout sc-callout--right" style="--ct: 370px;" data-callout="vd3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Highlight what changed</p>
+            <p class="sc-popover-desc">Use color or styling to draw attention to fields or values that were modified. Don't make users guess what's different.</p>
+          </div>
+        </div>
+        <!-- Callout 4: left — Let the user validate or intervene -->
+        <div class="scope-callout" style="--ct: 490px;" data-callout="vd4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Let the user validate or intervene</p>
+            <p class="sc-popover-desc">Offer a clear way to accept, reject, or adjust the change. Visual diffs should inform action, not just display information.</p>
+          </div>
+        </div>
+
+        <div class="vd-card">
+          <p class="vd-card-title">Review Changes</p>
+          <p class="vd-subtitle">Due to issues agent changed default value from <strong>old value</strong> to <strong>new value</strong></p>
+          <div class="vd-panels">
+            <!-- Before -->
+            <div class="vd-panel">
+              <p class="vd-panel-title">Before</p>
+              <div class="vd-field">
+                <label class="vd-label">Field 1 <span>*</span></label>
+                <input class="vd-input" type="text" placeholder="Value" readonly>
+              </div>
+              <div class="vd-field">
+                <label class="vd-label">Field 2 <span>*</span></label>
+                <input class="vd-input" type="text" placeholder="Value" readonly>
+              </div>
+              <div class="vd-field">
+                <label class="vd-label">Field 3 <span>*</span></label>
+                <input class="vd-input" type="text" placeholder="Old Value" readonly>
+              </div>
+            </div>
+            <!-- After -->
+            <div class="vd-panel">
+              <p class="vd-panel-title">After</p>
+              <div class="vd-field">
+                <label class="vd-label">Field 1 <span>*</span></label>
+                <input class="vd-input" type="text" placeholder="Value" readonly>
+              </div>
+              <div class="vd-field">
+                <label class="vd-label">Field 2 <span>*</span></label>
+                <input class="vd-input" type="text" placeholder="Value" readonly>
+              </div>
+              <div class="vd-field">
+                <label class="vd-label">Field 3 <span>*</span></label>
+                <input class="vd-input vd-input--changed" type="text" value="New Value" readonly>
+              </div>
+            </div>
+          </div>
+          <div class="vd-actions">
+            <button class="vd-btn vd-btn--outline">View Details</button>
+            <button class="vd-btn vd-btn--primary">Validate</button>
           </div>
         </div>
       </div>
