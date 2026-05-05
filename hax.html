@@ -2604,6 +2604,73 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 [data-theme="dark"] .rc-btn--outline { border-color: rgba(120,160,200,0.3); color: #9dbbd8; }
 
+/* === Action History Demo === */
+.ah-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.ah-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-medium);
+    border-radius: 16px;
+    padding: 22px 24px;
+    font-size: 0.88em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1);
+}
+[data-theme="dark"] .ah-card {
+    background: #151e2d;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
+}
+.ah-card-title {
+    font-size: 0.97em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 14px;
+}
+[data-theme="dark"] .ah-card-title { color: #ddeeff; }
+.ah-log { display: flex; flex-direction: column; gap: 8px; }
+.ah-entry {
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    background: var(--color-hover);
+}
+[data-theme="dark"] .ah-entry {
+    border-color: rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.025);
+}
+.ah-entry-text {
+    font-size: 0.86em;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+[data-theme="dark"] .ah-entry-text { color: #c8dff0; }
+.ah-entry-text strong { font-weight: 700; }
+.ah-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 13px;
+    border-radius: 20px;
+    font-size: 0.78em;
+    font-weight: 600;
+}
+.ah-badge--agent {
+    background: #0e4d6e;
+    color: #7dd3fc;
+}
+[data-theme="dark"] .ah-badge--agent { background: #0c3a54; color: #67c4f4; }
+.ah-badge--user {
+    background: #78350f;
+    color: #fcd34d;
+}
+[data-theme="dark"] .ah-badge--user { background: #6b2d0a; color: #fbbf24; }
+.ah-badge-icon { font-size: 0.9em; }
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2978,6 +3045,10 @@ footer {
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="traceability">Traceability</button>
+          <div class="pattern-subnav">
+            <span class="pattern-subnav-label">Related Patterns</span>
+            <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-ah">Action History</button>
+          </div>
         </div>
       </nav>
       <div class="patterns-content">
@@ -4349,7 +4420,91 @@ footer {
 
     <div class="pattern-panel" data-panel="traceability">
       <h3 class="pattern-title">Traceability</h3>
-      <p class="pattern-desc">Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.</p>
+      <p class="pattern-desc">Make agent behavior visible, searchable &amp; open to review</p>
+
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
+          <p class="pattern-info-title">What it means</p>
+          <p>Traceability ensures agent decisions can be reviewed, understood, and improved over time. It makes behavior accountable across sessions, users, and workflows supporting debugging, learning, and workflow improvements.</p>
+        </div>
+        <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
+          <p class="pattern-info-title">Why this matters</p>
+          <p>As agents evolve, so do their decisions. Traceability allows teams to track changes, understand outcomes, and stay aligned in multi-user environments. It turns opaque processes into something you can audit, learn from, and improve.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
+      <div class="pattern-related-intro" id="trace-ah">
+        <p class="pattern-related-intro-name">Action History</p>
+        <p class="pattern-related-intro-desc">A chronological record of agent behavior supports traceability and builds long-term accountability in agentic systems.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Action History</p>
+
+      <!-- Interactive: Action History -->
+      <div class="ah-demo-wrapper">
+        <!-- Callout 1: left — Time-stamped and ordered -->
+        <div class="scope-callout" style="--ct: 110px;" data-callout="ah1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Make events time-stamped and ordered</p>
+            <p class="sc-popover-desc">List all system and human actions in a clear sequence. Timestamps build trust and help reconstruct events during audits or investigations.</p>
+          </div>
+        </div>
+        <!-- Callout 2: left — Cause and effect -->
+        <div class="scope-callout" style="--ct: 240px;" data-callout="ah2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Include cause and effect where possible</p>
+            <p class="sc-popover-desc">Show how one step led to the next. This helps users understand the rationale and logic behind changes.</p>
+          </div>
+        </div>
+        <!-- Callout 3: left — Automated and manual steps -->
+        <div class="scope-callout" style="--ct: 400px;" data-callout="ah3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Capture both automated and manual steps</p>
+            <p class="sc-popover-desc">Record not just user input, but also system decisions. A full picture improves transparency and enables accountability across the workflow.</p>
+          </div>
+        </div>
+        <!-- Callout 4: right — Plain language -->
+        <div class="scope-callout sc-callout--right" style="--ct: 480px;" data-callout="ah4">
+          <span class="sc-num">4</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Use clear, plain language</p>
+            <p class="sc-popover-desc">Write log entries in simple, readable terms — no code dumps or vague system jargon. Everyone should be able to follow what happened.</p>
+          </div>
+        </div>
+
+        <div class="ah-card">
+          <p class="ah-card-title">Failure Log</p>
+          <div class="ah-log">
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>1:45 PM:</strong> Issue detected at this time by the Agent</p>
+              <span class="ah-badge ah-badge--agent"><span class="ah-badge-icon">✦</span> Agent Action</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:00 PM:</strong> Agent flagged to the user for optimization</p>
+              <span class="ah-badge ah-badge--agent"><span class="ah-badge-icon">✦</span> Agent Action</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:15 PM:</strong> Resolution by the agent, and displayed on UI</p>
+              <span class="ah-badge ah-badge--agent"><span class="ah-badge-icon">✦</span> Agent Action</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:30 PM:</strong> User reviews the issue</p>
+              <span class="ah-badge ah-badge--user">Reviewed by John Doe</span>
+            </div>
+            <div class="ah-entry">
+              <p class="ah-entry-text"><strong>2:40 PM:</strong> User approves the proposed resolution</p>
+              <span class="ah-badge ah-badge--user">Approved by John Doe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /.pattern-panel traceability -->
       </div><!-- /.patterns-content -->
     </div><!-- /.patterns-layout -->
