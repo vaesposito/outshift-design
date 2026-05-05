@@ -458,6 +458,42 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     position: sticky;
     top: 32px;
 }
+.pattern-nav-group {
+    display: flex;
+    flex-direction: column;
+}
+.pattern-subnav {
+    display: none;
+    flex-direction: column;
+    gap: 1px;
+    padding: 4px 0 6px 0;
+    margin-left: 16px;
+    border-left: 2px solid var(--color-border-medium);
+    padding-left: 10px;
+}
+.pattern-subnav.is-open { display: flex; }
+.pattern-subitem {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.35;
+    transition: color 0.15s, background 0.15s;
+    white-space: normal;
+}
+.pattern-subitem:hover {
+    color: var(--color-text);
+    background: var(--color-hover);
+}
+.pattern-subitem.is-active {
+    color: var(--color-text);
+    font-weight: 500;
+}
 .pattern-filter {
     display: block;
     width: 100%;
@@ -1865,6 +1901,8 @@ footer {
     .patterns-header h2 { font-size: 1.8em; }
     .patterns-layout { grid-template-columns: 1fr; }
     .patterns-nav { flex-direction: row; flex-wrap: wrap; gap: 8px; position: static; }
+    .pattern-nav-group { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+    .pattern-subnav { display: none !important; }
     .pattern-filter { width: auto; padding: 8px 16px; font-size: 0.85em; border-radius: 40px; border-color: var(--color-border-medium); }
 
 
@@ -1986,11 +2024,32 @@ footer {
     </div>
     <div class="patterns-layout">
       <nav class="patterns-nav">
-        <button class="pattern-filter is-active" data-pattern="control">Control</button>
-        <button class="pattern-filter" data-pattern="clarity">Clarity</button>
-        <button class="pattern-filter" data-pattern="recovery">Recovery</button>
-        <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
-        <button class="pattern-filter" data-pattern="traceability">Traceability</button>
+        <div class="pattern-nav-group">
+          <button class="pattern-filter is-active" data-pattern="control">Control</button>
+          <div class="pattern-subnav is-open" data-subnav="control">
+            <button class="pattern-subitem" data-scroll="control-scope">Scope &amp; Boundaries</button>
+            <button class="pattern-subitem" data-scroll="control-authority">Customization of Autonomy</button>
+            <button class="pattern-subitem" data-scroll="control-pgates">Permission &amp; Confirmation Gates</button>
+          </div>
+        </div>
+        <div class="pattern-nav-group">
+          <button class="pattern-filter" data-pattern="clarity">Clarity</button>
+          <div class="pattern-subnav" data-subnav="clarity">
+            <button class="pattern-subitem" data-scroll="clarity-ir">Inline Rationale</button>
+            <button class="pattern-subitem" data-scroll="clarity-cd">Confidence &amp; Uncertainty</button>
+            <button class="pattern-subitem" data-scroll="clarity-sa">Source Attribution</button>
+            <button class="pattern-subitem" data-scroll="clarity-at">Alternatives &amp; Trade-offs</button>
+          </div>
+        </div>
+        <div class="pattern-nav-group">
+          <button class="pattern-filter" data-pattern="recovery">Recovery</button>
+        </div>
+        <div class="pattern-nav-group">
+          <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
+        </div>
+        <div class="pattern-nav-group">
+          <button class="pattern-filter" data-pattern="traceability">Traceability</button>
+        </div>
       </nav>
       <div class="patterns-content">
 
@@ -2012,7 +2071,7 @@ footer {
       </div>
 
       <h4 class="pattern-examples-label">Related Patterns</h4>
-      <div class="pattern-related-intro">
+      <div class="pattern-related-intro" id="control-scope">
         <p class="pattern-related-intro-name">Scope &amp; Boundaries</p>
         <p class="pattern-related-intro-desc">Users define operational limits for AI behavior. The agent operates within these boundaries, avoiding unintended actions.</p>
       </div>
@@ -2163,7 +2222,7 @@ footer {
           </div>
         </div>
 
-        <div class="pattern-related-intro">
+        <div class="pattern-related-intro" id="control-authority">
           <p class="pattern-related-intro-name">Customization of Autonomy</p>
           <p class="pattern-related-intro-desc">Users control the spectrum of autonomy, from passive suggestions to full automation based on their comfort and context.</p>
         </div>
@@ -2227,8 +2286,8 @@ footer {
         </div>
         </div><!-- /.authority-demo-wrapper -->
 
-    <div class="pattern-related-intro">
-      <p class="pattern-related-intro-name">Permission &amp; Confirmation Gates</p>
+      <div class="pattern-related-intro" id="control-pgates">
+        <p class="pattern-related-intro-name">Permission &amp; Confirmation Gates</p>
       <p class="pattern-related-intro-desc">Explicit checkpoints require human approval before proceeding. Safeguards critical operations through shared decision-making.</p>
     </div>
 
@@ -2348,7 +2407,7 @@ footer {
       </div>
 
       <h4 class="pattern-examples-label">Related Patterns</h4>
-      <div class="pattern-related-intro">
+      <div class="pattern-related-intro" id="clarity-ir">
         <p class="pattern-related-intro-name">Inline Rationale</p>
         <p class="pattern-related-intro-desc">Agents articulate why they made recommendations. Rationale should be accessible, understandable, and relevant to help users make sense of the thinking.</p>
       </div>
@@ -2414,7 +2473,7 @@ footer {
         </div>
       </div>
 
-      <div class="pattern-related-intro">
+      <div class="pattern-related-intro" id="clarity-cd">
         <p class="pattern-related-intro-name">Confidence &amp; Uncertainty Displays</p>
         <p class="pattern-related-intro-desc">Disclosing confidence levels helps users interpret outcomes effectively and calibrate trust appropriately for transparent decision support.</p>
       </div>
@@ -2496,7 +2555,7 @@ footer {
         </div>
       </div>
 
-      <div class="pattern-related-intro">
+      <div class="pattern-related-intro" id="clarity-sa">
         <p class="pattern-related-intro-name">Source Attribution</p>
         <p class="pattern-related-intro-desc">Revealing where information came from helps users verify and contextualize outputs, supporting accountability and enabling further inquiry.</p>
       </div>
@@ -2545,7 +2604,7 @@ footer {
         </div>
       </div>
 
-      <div class="pattern-related-intro">
+      <div class="pattern-related-intro" id="clarity-at">
         <p class="pattern-related-intro-name">Alternatives &amp; Trade-offs</p>
         <p class="pattern-related-intro-desc">Showing what the agent didn't choose and why helps users understand trade-offs. It creates transparency and supports participatory decision-making.</p>
       </div>
@@ -2788,6 +2847,21 @@ footer {
             document.querySelectorAll('.pattern-panel').forEach(function (panel) { panel.classList.remove('is-active'); });
             var activePanel = document.querySelector('.pattern-panel[data-panel="' + target + '"]');
             if (activePanel) activePanel.classList.add('is-active');
+            // Toggle subnavs
+            document.querySelectorAll('.pattern-subnav').forEach(function (nav) { nav.classList.remove('is-open'); });
+            var activeSubnav = document.querySelector('.pattern-subnav[data-subnav="' + target + '"]');
+            if (activeSubnav) activeSubnav.classList.add('is-open');
+        });
+    });
+    document.querySelectorAll('.pattern-subitem[data-scroll]').forEach(function (item) {
+        item.addEventListener('click', function () {
+            var id = item.getAttribute('data-scroll');
+            var target = document.getElementById(id);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Mark active subitem
+            var subnav = item.closest('.pattern-subnav');
+            if (subnav) subnav.querySelectorAll('.pattern-subitem').forEach(function (el) { el.classList.remove('is-active'); });
+            item.classList.add('is-active');
         });
     });
 })();
