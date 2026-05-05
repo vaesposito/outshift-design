@@ -458,9 +458,21 @@ button::before, .cta-button::before {
     display: inline;
 }
 .initiative-card--linked .card-text h3:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
+}
+.text-link-cta {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0 4px;
+    opacity: 0.7;
+    transition: opacity 0.18s;
+    white-space: nowrap;
+}
+.text-link-cta:hover {
+    opacity: 1;
+    text-decoration: none;
 }
 .arrow-link.arrow-link--labeled {
     width: auto;
