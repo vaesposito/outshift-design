@@ -1699,6 +1699,105 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .at-btn--outline { background: transparent; color: var(--color-accent); border: 1px solid var(--color-accent); }
 [data-theme="dark"] .at-btn--outline { color: #7eb3e0; border-color: rgba(100,170,220,0.35); }
 
+/* === Undo & Redo Support Demo === */
+.ur-demo-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 16px 64px 16px 56px;
+    box-sizing: border-box;
+}
+.ur-demo {
+    background: var(--color-bg);
+    border-radius: 16px;
+    padding: 28px 32px;
+    color: var(--color-text);
+    font-size: 0.88em;
+    border: 1px solid var(--color-border-medium);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(41,50,71,0.1), 0 32px 72px rgba(41,50,71,0.08);
+}
+[data-theme="dark"] .ur-demo {
+    background: #0d1b2e;
+    border-color: transparent;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.ur-demo-title {
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+[data-theme="dark"] .ur-demo-title { color: #ddeeff; }
+.ur-demo-subtitle {
+    font-size: 0.87em;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+[data-theme="dark"] .ur-demo-subtitle { color: rgba(190,215,240,0.7); }
+.ur-divider {
+    border: none;
+    border-top: 1px solid var(--color-border-medium);
+    margin: 0 0 14px;
+}
+[data-theme="dark"] .ur-divider { border-color: rgba(255,255,255,0.1); }
+.ur-table { width: 100%; margin-bottom: 0; }
+.ur-thead { display: grid; grid-template-columns: 1.6fr 1.4fr 1fr 1fr; gap: 0 12px; padding: 0 0 8px; }
+.ur-th { font-size: 0.82em; font-weight: 700; color: var(--color-text); }
+[data-theme="dark"] .ur-th { color: #ddeeff; }
+.ur-row { display: grid; grid-template-columns: 1.6fr 1.4fr 1fr 1fr; gap: 0 12px; padding: 10px 0; border-top: 1px solid var(--color-border); align-items: center; }
+[data-theme="dark"] .ur-row { border-color: rgba(255,255,255,0.07); }
+.ur-task { display: flex; align-items: center; gap: 8px; font-size: 0.88em; color: var(--color-text); }
+[data-theme="dark"] .ur-task { color: #c8dff0; }
+.ur-task-icon {
+    width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75em;
+}
+.ur-task-icon--check { background: #2563eb; color: #fff; }
+.ur-task-icon--arrow { background: transparent; color: var(--color-text-muted); font-size: 1em; }
+[data-theme="dark"] .ur-task-icon--arrow { color: #8ab4d0; }
+.ur-action { font-size: 0.87em; color: var(--color-text-muted); }
+[data-theme="dark"] .ur-action { color: rgba(190,215,240,0.75); }
+.ur-btn {
+    padding: 4px 12px;
+    background: transparent;
+    border: 1px solid var(--color-border-medium);
+    border-radius: 6px;
+    font-size: 0.82em;
+    font-family: inherit;
+    color: var(--color-text-muted);
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+    justify-self: start;
+}
+[data-theme="dark"] .ur-btn { border-color: rgba(255,255,255,0.2); color: #9bbdd8; }
+.ur-why-title { font-size: 0.95em; font-weight: 700; color: var(--color-text); margin: 16px 0 6px; }
+[data-theme="dark"] .ur-why-title { color: #ddeeff; }
+.ur-why-text { font-size: 0.87em; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 18px; }
+[data-theme="dark"] .ur-why-text { color: rgba(190,215,240,0.7); }
+.ur-footer { display: flex; gap: 10px; }
+.ur-btn-revert {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    color: var(--color-accent);
+    font-size: 0.87em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+}
+.ur-btn-approve {
+    padding: 8px 20px;
+    background: #2563eb;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.87em;
+    font-family: inherit;
+    cursor: default;
+    pointer-events: none;
+}
+
 /* ── Hax Research Section ── */
 .hax-research-section {
     position: relative;
@@ -2054,6 +2153,10 @@ footer {
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="recovery">Recovery</button>
+          <div class="pattern-subnav" data-subnav="recovery">
+            <span class="pattern-subnav-label">Related Patterns</span>
+            <button class="pattern-subitem" data-scroll="recovery-undo">Undo &amp; Redo Support</button>
+          </div>
         </div>
         <div class="pattern-nav-group">
           <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
@@ -2716,7 +2819,96 @@ footer {
 
     <div class="pattern-panel" data-panel="recovery">
       <h3 class="pattern-title">Recovery</h3>
-      <p class="pattern-desc">Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
+      <p class="pattern-desc">Assume the agent will make mistakes, make them clearly fixable</p>
+
+      <div class="pattern-info-row">
+        <div class="pattern-info">
+          <span class="pattern-info-symbol">?</span>
+          <p class="pattern-info-title">What it means</p>
+          <p>Agents will make mistakes, what matters is how fixable they are. Recovery means giving users clear, safe ways to undo actions, correct errors, and guide future behavior. It makes systems feel less brittle and more collaborative.</p>
+        </div>
+        <div class="pattern-why">
+          <span class="pattern-info-symbol">!</span>
+          <p class="pattern-info-title">Why this matters</p>
+          <p>Without recovery, even small errors can erode trust and stall progress. Clear ways to fix mistakes turn agent failures into moments of learning for both the system and the person using it.</p>
+        </div>
+      </div>
+
+      <h4 class="pattern-examples-label">Related Patterns</h4>
+      <div class="pattern-related-intro" id="recovery-undo">
+        <p class="pattern-related-intro-name">Undo &amp; Redo Support</p>
+        <p class="pattern-related-intro-desc">This pattern is essential in agentic systems or tools with automation because it provides a safety net. It protects users from unintended consequences and reinforcing their control.</p>
+      </div>
+
+      <p class="pattern-component-label">Component example: Undo &amp; Redo Support</p>
+
+      <!-- Interactive: Undo & Redo Support -->
+      <div class="ur-demo-wrapper">
+        <!-- Callout 1: right — Actions are reversible by default -->
+        <div class="scope-callout sc-callout--right" style="--ct: 52px;" data-callout="ur1">
+          <span class="sc-num">1</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Actions are reversible by default</p>
+            <p class="sc-popover-desc">The interface includes options like Undo or Revert for each automated change, giving users an immediate path to reverse agent decisions.</p>
+          </div>
+        </div>
+        <!-- Callout 2: right — Justification for actions builds trust -->
+        <div class="scope-callout sc-callout--right" style="--ct: 145px;" data-callout="ur2">
+          <span class="sc-num">2</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Justification for actions builds trust</p>
+            <p class="sc-popover-desc">A short, plain-language explanation helps users understand the rationale behind changes, reducing confusion and making recovery decisions easier.</p>
+          </div>
+        </div>
+        <!-- Callout 3: left — Multiple levels of recovery available -->
+        <div class="scope-callout" style="--ct: 268px;" data-callout="ur3">
+          <span class="sc-num">3</span><span class="sc-line"></span>
+          <div class="sc-popover">
+            <p class="sc-popover-title">Multiple levels of recovery available</p>
+            <p class="sc-popover-desc">Users can revert or approve individual changes or apply recovery to all actions at once. This offers both fine-grained control and bulk handling.</p>
+          </div>
+        </div>
+
+        <div class="ur-demo">
+          <p class="ur-demo-title">Agent Suggested Change</p>
+          <p class="ur-demo-subtitle">Based on recent activity the agent marked these tasks as complete and reassigned owners</p>
+          <hr class="ur-divider">
+          <div class="ur-table">
+            <div class="ur-thead">
+              <span class="ur-th">Task</span>
+              <span class="ur-th">Action</span>
+              <span class="ur-th"></span>
+              <span class="ur-th"></span>
+            </div>
+            <div class="ur-row">
+              <div class="ur-task">
+                <span class="ur-task-icon ur-task-icon--check">✓</span>
+                Draft Proposal
+              </div>
+              <div class="ur-action">Marked as complete</div>
+              <button class="ur-btn">Undo</button>
+              <button class="ur-btn">Adjust</button>
+            </div>
+            <div class="ur-row">
+              <div class="ur-task">
+                <span class="ur-task-icon ur-task-icon--arrow">→</span>
+                Assign Reviewer
+              </div>
+              <div class="ur-action">Reassigned to Alex</div>
+              <button class="ur-btn">Revert</button>
+              <button class="ur-btn">Edit</button>
+            </div>
+          </div>
+          <hr class="ur-divider" style="margin-top: 14px;">
+          <p class="ur-why-title">Why this happened</p>
+          <p class="ur-why-text">The agent detected inactivity for 5+ days and no blocking comments, so it marked the task as complete.</p>
+          <div class="ur-footer">
+            <button class="ur-btn-revert">Revert All</button>
+            <button class="ur-btn-approve">Approve All</button>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /.pattern-panel recovery -->
 
     <div class="pattern-panel" data-panel="collaboration">
