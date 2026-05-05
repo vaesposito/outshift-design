@@ -733,6 +733,42 @@ footer {
     footer { padding: 40px 0 0; }
     .footer-logo img { height: 48px; }
 }
+
+/* === Hero Scroll Arrow === */
+.hero-scroll-arrow {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 2px solid rgba(255,255,255,0.55);
+    border-radius: 50%;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    animation: hero-arrow-bounce 2s ease-in-out infinite;
+    z-index: 10;
+}
+.hero-scroll-arrow:hover {
+    border-color: rgba(255,255,255,0.95);
+    color: #fff;
+    animation-play-state: paused;
+}
+.hero-scroll-arrow svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+@keyframes hero-arrow-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(7px); }
+}
+
 </style>
 </head>
 
@@ -817,6 +853,12 @@ footer {
       </div>
     </div>
   </div>
+  <a class="hero-scroll-arrow" href="#" aria-label="Scroll to content"
+     onclick="var h=this.closest('[class*=hero]');var n=h&&h.nextElementSibling;if(n){n.scrollIntoView({behavior:'smooth'});}return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
 </div>
 
 <!-- A Framework for Responsible Agent Design -->
