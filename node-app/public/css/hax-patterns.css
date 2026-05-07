@@ -553,7 +553,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     text-align: left;
 }
 .pattern-divider {
-    width: 50%;
+    width: 100%;
     height: 1px;
     background: rgba(77, 99, 128, 0.15);
     margin: 48px 0 0;
