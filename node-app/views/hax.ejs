@@ -51,8 +51,8 @@
           <div class="pattern-subnav<%= pi === 0 ? ' is-open' : '' %>" data-subnav="<%= panel.key %>">
             <button class="pattern-subitem pattern-subitem--section" data-panel="<%= panel.key %>" data-scroll="<%= panel.key %>-desc">Description</button>
             <% if (panel.relatedPatterns && panel.relatedPatterns.length) { %>
-            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle is-open" data-toggle="<%= panel.key %>-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
-            <div class="pattern-subnav-patterns is-open" id="<%= panel.key %>-patterns">
+            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle" data-toggle="<%= panel.key %>-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
+            <div class="pattern-subnav-patterns" id="<%= panel.key %>-patterns">
               <% panel.relatedPatterns.forEach(function(rp) { %>
               <button class="pattern-subitem" data-panel="<%= panel.key %>" data-scroll="<%= rp.subnavId %>"><%= rp.name %></button>
               <% }); %>
