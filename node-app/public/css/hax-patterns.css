@@ -455,31 +455,43 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     gap: 1px;
     padding: 4px 0 6px 0;
 }
-.pattern-subnav-label {
-    font-size: 0.7em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-muted);
-    padding: 10px 10px 4px;
-    opacity: 0.6;
+.pattern-subnav-patterns {
+    display: none;
+    flex-direction: column;
+    gap: 1px;
+    margin: 2px 0 2px 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--color-border-medium);
 }
+.pattern-subnav-patterns.is-open { display: flex; }
 .pattern-subitem--section {
-    font-size: 0.88em;
-    font-weight: 600;
-    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--color-text-muted);
     opacity: 1;
-    margin-top: 6px;
-    padding: 7px 10px;
+    margin-top: 0;
+    padding: 5px 10px;
+}
+.subitem-toggle-arrow {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+.pattern-subitem--toggle.is-open .subitem-toggle-arrow {
+    transform: rotate(180deg);
 }
 .pattern-subnav.is-open { display: flex; }
 .pattern-subitem {
     background: none;
     border: none;
     text-align: left;
-    padding: 4px 10px 4px 20px;
+    padding: 5px 10px;
     border-radius: 6px;
-    font-size: 0.78em;
+    font-size: 0.82em;
     font-weight: 400;
     color: var(--color-text-muted);
     cursor: pointer;

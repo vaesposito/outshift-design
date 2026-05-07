@@ -468,31 +468,43 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     gap: 1px;
     padding: 4px 0 6px 0;
 }
-.pattern-subnav-label {
-    font-size: 0.7em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-muted);
-    padding: 10px 10px 4px;
-    opacity: 0.6;
+.pattern-subnav-patterns {
+    display: none;
+    flex-direction: column;
+    gap: 1px;
+    margin: 2px 0 2px 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--color-border-medium);
 }
+.pattern-subnav-patterns.is-open { display: flex; }
 .pattern-subitem--section {
-    font-size: 0.88em;
-    font-weight: 600;
-    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--color-text-muted);
     opacity: 1;
-    margin-top: 6px;
-    padding: 7px 10px;
+    margin-top: 0;
+    padding: 5px 10px;
+}
+.subitem-toggle-arrow {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+.pattern-subitem--toggle.is-open .subitem-toggle-arrow {
+    transform: rotate(180deg);
 }
 .pattern-subnav.is-open { display: flex; }
 .pattern-subitem {
     background: none;
     border: none;
     text-align: left;
-    padding: 4px 10px 4px 20px;
+    padding: 5px 10px;
     border-radius: 6px;
-    font-size: 0.78em;
+    font-size: 0.82em;
     font-weight: 400;
     color: var(--color-text-muted);
     cursor: pointer;
@@ -3284,10 +3296,12 @@ footer {
           <button class="pattern-filter is-active" data-pattern="control">Control</button>
           <div class="pattern-subnav is-open" data-subnav="control">
             <button class="pattern-subitem pattern-subitem--section" data-scroll="control-desc">Description</button>
-            <span class="pattern-subnav-label">Related Patterns</span>
-            <button class="pattern-subitem" data-scroll="control-scope">Scope &amp; Boundaries</button>
-            <button class="pattern-subitem" data-scroll="control-authority">Customization of Autonomy</button>
-            <button class="pattern-subitem" data-scroll="control-pgates">Permission &amp; Confirmation Gates</button>
+            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle is-open" data-toggle="control-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
+            <div class="pattern-subnav-patterns is-open" id="control-patterns">
+              <button class="pattern-subitem" data-scroll="control-scope">Scope &amp; Boundaries</button>
+              <button class="pattern-subitem" data-scroll="control-authority">Customization of Autonomy</button>
+              <button class="pattern-subitem" data-scroll="control-pgates">Permission &amp; Confirmation Gates</button>
+            </div>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="control-how-to">How to implement</button>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="control-pitfalls">Common pitfalls</button>
           </div>
@@ -3296,11 +3310,13 @@ footer {
           <button class="pattern-filter" data-pattern="clarity">Clarity</button>
           <div class="pattern-subnav" data-subnav="clarity">
             <button class="pattern-subitem pattern-subitem--section" data-scroll="clarity-desc">Description</button>
-            <span class="pattern-subnav-label">Related Patterns</span>
-            <button class="pattern-subitem" data-scroll="clarity-ir">Inline Rationale</button>
-            <button class="pattern-subitem" data-scroll="clarity-cd">Confidence &amp; Uncertainty</button>
-            <button class="pattern-subitem" data-scroll="clarity-sa">Source Attribution</button>
-            <button class="pattern-subitem" data-scroll="clarity-at">Alternatives &amp; Trade-offs</button>
+            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle is-open" data-toggle="clarity-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
+            <div class="pattern-subnav-patterns is-open" id="clarity-patterns">
+              <button class="pattern-subitem" data-scroll="clarity-ir">Inline Rationale</button>
+              <button class="pattern-subitem" data-scroll="clarity-cd">Confidence &amp; Uncertainty</button>
+              <button class="pattern-subitem" data-scroll="clarity-sa">Source Attribution</button>
+              <button class="pattern-subitem" data-scroll="clarity-at">Alternatives &amp; Trade-offs</button>
+            </div>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="clarity-how-to">How to implement</button>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="clarity-pitfalls">Common pitfalls</button>
           </div>
@@ -3309,11 +3325,13 @@ footer {
           <button class="pattern-filter" data-pattern="recovery">Recovery</button>
           <div class="pattern-subnav" data-subnav="recovery">
             <button class="pattern-subitem pattern-subitem--section" data-scroll="recovery-desc">Description</button>
-            <span class="pattern-subnav-label">Related Patterns</span>
-            <button class="pattern-subitem" data-scroll="recovery-undo">Undo &amp; Redo Support</button>
-            <button class="pattern-subitem" data-scroll="recovery-eo">Editable Outputs</button>
-            <button class="pattern-subitem" data-scroll="recovery-sd">Safe Defaults</button>
-            <button class="pattern-subitem" data-scroll="recovery-ep">Escalation Paths</button>
+            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle is-open" data-toggle="recovery-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
+            <div class="pattern-subnav-patterns is-open" id="recovery-patterns">
+              <button class="pattern-subitem" data-scroll="recovery-undo">Undo &amp; Redo Support</button>
+              <button class="pattern-subitem" data-scroll="recovery-eo">Editable Outputs</button>
+              <button class="pattern-subitem" data-scroll="recovery-sd">Safe Defaults</button>
+              <button class="pattern-subitem" data-scroll="recovery-ep">Escalation Paths</button>
+            </div>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="recovery-how-to">How to implement</button>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="recovery-pitfalls">Common pitfalls</button>
           </div>
@@ -3322,10 +3340,12 @@ footer {
           <button class="pattern-filter" data-pattern="collaboration">Collaboration</button>
           <div class="pattern-subnav" data-subnav="collaboration">
             <button class="pattern-subitem pattern-subitem--section" data-scroll="collaboration-desc">Description</button>
-            <span class="pattern-subnav-label">Related Patterns</span>
-            <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-mi">Mixed Initiative</button>
-            <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-ce">Co-editing Interfaces</button>
-            <button class="pattern-subitem" data-panel="collaboration" data-scroll="collab-rc">Role Clarity &amp; Turn Signals</button>
+            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle is-open" data-toggle="collaboration-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
+            <div class="pattern-subnav-patterns is-open" id="collaboration-patterns">
+              <button class="pattern-subitem" data-scroll="collab-mi">Mixed Initiative</button>
+              <button class="pattern-subitem" data-scroll="collab-ce">Co-editing Interfaces</button>
+              <button class="pattern-subitem" data-scroll="collab-rc">Role Clarity &amp; Turn Signals</button>
+            </div>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="collaboration-how-to">How to implement</button>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="collaboration-pitfalls">Common pitfalls</button>
           </div>
@@ -3334,10 +3354,12 @@ footer {
           <button class="pattern-filter" data-pattern="traceability">Traceability</button>
           <div class="pattern-subnav" data-subnav="traceability">
             <button class="pattern-subitem pattern-subitem--section" data-scroll="traceability-desc">Description</button>
-            <span class="pattern-subnav-label">Related Patterns</span>
-            <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-ah">Action History</button>
-            <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-vd">Visual Diffing</button>
-            <button class="pattern-subitem" data-panel="traceability" data-scroll="trace-bt">Behavior Tuning Over Time</button>
+            <button class="pattern-subitem pattern-subitem--section pattern-subitem--toggle is-open" data-toggle="traceability-patterns">Related Patterns<svg class="subitem-toggle-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 6 8 10 12 6"/></svg></button>
+            <div class="pattern-subnav-patterns is-open" id="traceability-patterns">
+              <button class="pattern-subitem" data-scroll="trace-ah">Action History</button>
+              <button class="pattern-subitem" data-scroll="trace-vd">Visual Diffing</button>
+              <button class="pattern-subitem" data-scroll="trace-bt">Behavior Tuning Over Time</button>
+            </div>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="traceability-how-to">How to implement</button>
             <button class="pattern-subitem pattern-subitem--section" data-scroll="traceability-pitfalls">Common pitfalls</button>
           </div>
@@ -5126,6 +5148,18 @@ footer {
             var subnav = item.closest('.pattern-subnav');
             if (subnav) subnav.querySelectorAll('.pattern-subitem').forEach(function (el) { el.classList.remove('is-active'); });
             item.classList.add('is-active');
+        });
+    });
+    // Toggle Related Patterns sub-list
+    document.querySelectorAll('[data-toggle]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var targetId = btn.getAttribute('data-toggle');
+            var target = document.getElementById(targetId);
+            if (target) {
+                var isOpen = target.classList.toggle('is-open');
+                btn.classList.toggle('is-open', isOpen);
+            }
         });
     });
 })();
