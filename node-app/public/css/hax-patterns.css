@@ -2038,6 +2038,9 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     pointer-events: none;
     font-family: inherit;
     margin-bottom: -1px;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
 }
 .ep-tab.active {
     color: #22c55e;
@@ -2093,6 +2096,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     flex: 0 0 32px;
     cursor: default;
     pointer-events: none;
+    padding: 0;
 }
 .ep-send svg { width: 14px; height: 14px; fill: none; stroke: #fff; }
 .ep-alt-btn {
