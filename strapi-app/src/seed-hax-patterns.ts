@@ -325,7 +325,7 @@ const panels = [
           {
             num: 2,
             title: "Clear option to proceed independently",
-            desc: "The "Go to terminal" button offers an immediate escape route.",
+            desc: "The \"Go to terminal\" button offers an immediate escape route.",
           },
         ],
       },

@@ -408,7 +408,7 @@ async function updateHaxPatterns(strapi: Core.Strapi) {
 
   await strapi.documents('api::hax-page.hax-page' as any).update({
     documentId: haxPage.documentId,
-    data: { patterns: updatedPatterns },
+    data: { patterns: updatedPatterns } as any,
     status: 'published',
   });
 
