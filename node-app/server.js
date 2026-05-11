@@ -301,9 +301,8 @@ const fallbackHaxPatterns = [
 const fallbackHax = {
   hero: {
     title: 'The Human-Agent Experience',
-    description: "We're moving beyond assistants and copilots. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in more nuanced ways. Designing for this shift requires new patterns of interaction and trust.",
+    description: "We are moving beyond simple assistants. Today's agents act with greater autonomy, coordinate across systems, and collaborate with humans in nuanced ways. To support this shift, our product design team has developed research-backed principles and patterns for creating systems that are transparent, trustworthy, and truly collaborative.",
   },
-  heroDescription2: 'This work is grounded in years of design research and product development by the Outshift Product Design team, defining principles, frameworks, and patterns for agentic systems that are trustworthy, transparent, and truly collaborative.',
   heroVideo: '/videos/hax-hero.mp4',
   heroDarkVideo: '/videos/hax-hero-dark.mp4',
   patternsTitle: 'Human-Centered AI Patterns',
