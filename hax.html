@@ -767,7 +767,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .scope-callout {
     position: absolute;
     left: 24px;
-    width: calc(var(--pad-l, 72px) - 20px);
+    width: calc(var(--pad-l, 72px) - 26px);
     top: var(--ct);
     display: flex;
     align-items: center;
@@ -1455,7 +1455,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .ir-badge-impact { background: rgba(0,188,235,0.12); color: var(--color-accent); }
 .ir-incident-desc { font-size: 0.82em; color: var(--color-text-muted); margin: 0; line-height: 1.5; }
 /* Right-side callout modifier */
-.sc-callout--right { left: auto; right: 24px; width: calc(var(--pad-r, 40px) - 20px); flex-direction: row-reverse; }
+.sc-callout--right { left: auto; right: 24px; width: calc(var(--pad-r, 40px) - 26px); flex-direction: row-reverse; }
 .sc-callout--right .sc-popover { left: auto; right: 58px; }
 .sc-callout--right .sc-popover::before {
     left: auto; right: -7px;
@@ -3427,7 +3427,7 @@ footer {
         <!-- Interactive: Scope & Boundaries -->
         <div class="scope-demo-wrapper">
           <!-- Callout 1 → tab bar -->
-          <div class="scope-callout" style="--ct: 28px;" data-callout="1">
+          <div class="scope-callout" style="--ct: 68px;" data-callout="1">
             <span class="sc-num">1</span><span class="sc-line"></span>
             <div class="sc-popover">
               <p class="sc-popover-title">Instruction mode</p>
@@ -3435,7 +3435,7 @@ footer {
             </div>
           </div>
           <!-- Callout 2 → content area -->
-          <div class="scope-callout" style="--ct: 160px;" data-callout="2">
+          <div class="scope-callout" style="--ct: 200px;" data-callout="2">
             <span class="sc-num">2</span><span class="sc-line"></span>
             <div class="sc-popover">
               <p class="sc-popover-title">Task specific boundaries</p>
@@ -3642,7 +3642,7 @@ footer {
     <!-- Interactive: Permission & Confirmation Gates -->
     <div class="pgates-demo-wrapper">
       <!-- Callout 1 → toggle -->
-      <div class="scope-callout" style="--ct: 88px;" data-callout="pg1">
+      <div class="scope-callout" style="--ct: 128px;" data-callout="pg1">
         <span class="sc-num">1</span><span class="sc-line"></span>
         <div class="sc-popover">
           <p class="sc-popover-title">Immediate agent shutdown</p>
@@ -3650,7 +3650,7 @@ footer {
         </div>
       </div>
       <!-- Callout 2 → current activities -->
-      <div class="scope-callout" style="--ct: 190px;" data-callout="pg2">
+      <div class="scope-callout" style="--ct: 230px;" data-callout="pg2">
         <span class="sc-num">2</span><span class="sc-line"></span>
         <div class="sc-popover">
           <p class="sc-popover-title">Visible control settings</p>
@@ -3762,21 +3762,21 @@ footer {
 
       <!-- Interactive: Inline Rationale -->
       <div class="ir-demo-wrapper">
-        <div class="scope-callout" style="--ct: 20px;" data-callout="ir1">
+        <div class="scope-callout" style="--ct: 60px;" data-callout="ir1">
           <span class="sc-num">1</span><span class="sc-line"></span>
           <div class="sc-popover">
             <p class="sc-popover-title">Agent's reasoning surfaced</p>
             <p class="sc-popover-desc">The agent labels its own decision logic, making invisible prioritization visible so users can understand, question, or reorder.</p>
           </div>
         </div>
-        <div class="scope-callout sc-callout--right" style="--ct: 96px;" data-callout="ir2">
+        <div class="scope-callout sc-callout--right" style="--ct: 136px;" data-callout="ir2">
           <span class="sc-num">2</span><span class="sc-line"></span>
           <div class="sc-popover">
             <p class="sc-popover-title">Scope of impact</p>
             <p class="sc-popover-desc">Quantified impact badges let users grasp real-world consequences at a glance — without needing to investigate further.</p>
           </div>
         </div>
-        <div class="scope-callout" style="--ct: 182px;" data-callout="ir3">
+        <div class="scope-callout" style="--ct: 222px;" data-callout="ir3">
           <span class="sc-num">3</span><span class="sc-line"></span>
           <div class="sc-popover">
             <p class="sc-popover-title">Contextual rationale</p>
