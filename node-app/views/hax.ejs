@@ -69,7 +69,7 @@
       <div class="patterns-content">
         <% pageData.patterns.forEach(function(panel, pi) { %>
         <div class="pattern-panel<%= pi === 0 ? ' is-active' : '' %>" data-panel="<%= panel.key %>">
-          <h3 class="pattern-title"><%= panel.title %></h3>
+          <h3 class="pattern-title" id="<%= panel.key %>-desc"><%= panel.title %></h3>
           <% if (panel.subtitle) { %><p class="pattern-desc"><%= panel.subtitle %></p><% } %>
 
           <% if (panel.whatItMeans || panel.whyItMatters) { %>
