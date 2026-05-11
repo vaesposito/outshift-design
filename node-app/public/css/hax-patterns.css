@@ -2263,7 +2263,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .mi-send {
     width: 26px; height: 26px; background: #2563eb; border: none;
     border-radius: 5px; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; cursor: default; pointer-events: none;
+    flex-shrink: 0; cursor: default; pointer-events: none; padding: 0;
 }
 .mi-send svg { width: 11px; height: 11px; fill: #fff; }
 .mi-disclaimer { font-size: 0.75em; color: var(--color-text-muted); text-align: center; opacity: 0.6; }
