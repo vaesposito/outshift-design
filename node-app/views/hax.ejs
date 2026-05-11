@@ -106,7 +106,7 @@
           <% } %>
 
           <% if (panel.howToImplement && panel.howToImplement.length) { %>
-          <h4 class="pattern-examples-label">How to implement</h4>
+          <h4 class="pattern-examples-label" id="<%= panel.key %>-how-to">How to implement</h4>
           <ul class="how-to-list">
             <% panel.howToImplement.forEach(function(item) { %>
             <li><%= item %></li>
@@ -115,7 +115,7 @@
           <% } %>
 
           <% if (panel.commonPitfalls && panel.commonPitfalls.length) { %>
-          <h4 class="pattern-examples-label">Common pitfalls</h4>
+          <h4 class="pattern-examples-label" id="<%= panel.key %>-pitfalls">Common pitfalls</h4>
           <div class="pitfalls-grid">
             <% panel.commonPitfalls.forEach(function(pitfall) { %>
             <div class="pitfall-card">
