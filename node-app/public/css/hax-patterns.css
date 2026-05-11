@@ -453,7 +453,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     display: none;
     flex-direction: column;
     gap: 1px;
-    padding: 4px 0 6px 0;
+    padding: 4px 0 6px 10px;
 }
 .pattern-subnav-patterns {
     display: none;
@@ -468,7 +468,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.82em;
+    font-size: 0.76em;
     font-weight: 400;
     color: var(--color-text-muted);
     opacity: 1;
@@ -491,7 +491,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
     text-align: left;
     padding: 5px 10px;
     border-radius: 6px;
-    font-size: 0.82em;
+    font-size: 0.73em;
     font-weight: 400;
     color: var(--color-text-muted);
     cursor: pointer;
