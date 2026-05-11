@@ -753,8 +753,8 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 }
 .scope-callout {
     position: absolute;
-    left: 16px;
-    width: calc(var(--pad-l, 72px) - 16px);
+    left: 24px;
+    width: calc(var(--pad-l, 72px) - 20px);
     top: var(--ct);
     display: flex;
     align-items: center;
@@ -1442,7 +1442,7 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .ir-badge-impact { background: rgba(0,188,235,0.12); color: var(--color-accent); }
 .ir-incident-desc { font-size: 0.82em; color: var(--color-text-muted); margin: 0; line-height: 1.5; }
 /* Right-side callout modifier */
-.sc-callout--right { left: auto; right: 16px; width: calc(var(--pad-r, 40px) - 16px); flex-direction: row-reverse; }
+.sc-callout--right { left: auto; right: 24px; width: calc(var(--pad-r, 40px) - 20px); flex-direction: row-reverse; }
 .sc-callout--right .sc-popover { left: auto; right: 58px; }
 .sc-callout--right .sc-popover::before {
     left: auto; right: -7px;
