@@ -5280,17 +5280,21 @@ document.querySelectorAll('.pgates-check-row').forEach(function(row) {
     justify-content: center;
     transition: transform 0.2s, box-shadow 0.2s;
     color: #fff;
+    padding: 0;
+    line-height: 1;
 }
 #hax-assistant-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(124,106,247,0.6); }
-#hax-assistant-btn svg { width: 24px; height: 24px; }
+#hax-assistant-btn svg { width: 26px; height: 26px; display: block; flex-shrink: 0; }
 
 #hax-assistant-panel {
     position: fixed;
     bottom: 96px;
     right: 28px;
     z-index: 9998;
-    width: 360px;
+    width: 380px;
     max-width: calc(100vw - 40px);
+    height: 520px;
+    max-height: calc(100vh - 120px);
     background: var(--color-bg, #fff);
     border: 1px solid var(--color-border, rgba(0,0,0,0.1));
     border-radius: 20px;
@@ -5310,103 +5314,167 @@ document.querySelectorAll('.pgates-check-row').forEach(function(row) {
     from { opacity: 0; transform: translateY(12px) scale(0.97); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+/* Header */
 .hax-panel-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 16px 18px 12px;
+    padding: 14px 16px 12px;
     border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.08));
+    flex-shrink: 0;
 }
 [data-theme="dark"] .hax-panel-header { border-color: rgba(255,255,255,0.08); }
 .hax-panel-avatar {
     width: 32px; height: 32px; border-radius: 50%;
     background: linear-gradient(135deg, #7c6af7, #3b82f6);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; color: #fff; font-size: 0.78em; font-weight: 700;
+    flex-shrink: 0;
 }
-.hax-panel-title { font-size: 0.9em; font-weight: 600; color: var(--color-text); }
-.hax-panel-sub { font-size: 0.75em; color: var(--color-text-muted); }
+.hax-panel-avatar svg { width: 16px; height: 16px; color: #fff; }
+.hax-panel-title { font-size: 0.88em; font-weight: 600; color: var(--color-text); }
+.hax-panel-sub { font-size: 0.73em; color: var(--color-text-muted); }
 .hax-panel-close {
-    margin-left: auto; background: none; border: none; cursor: pointer;
+    margin-left: auto; background: none; border: none; cursor: pointer; padding: 0;
     color: var(--color-text-muted); padding: 4px; border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
     transition: color 0.15s, background 0.15s;
 }
 .hax-panel-close:hover { color: var(--color-text); background: var(--color-hover); }
 .hax-panel-close svg { width: 16px; height: 16px; }
-.hax-panel-body { padding: 16px 18px; }
-.hax-panel-prompt {
-    font-size: 0.82em; color: var(--color-text-muted); margin-bottom: 10px; line-height: 1.5;
+
+/* Messages */
+.hax-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
 }
-.hax-panel-input {
-    width: 100%; box-sizing: border-box;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border-medium, rgba(0,0,0,0.15));
-    background: var(--color-surface, #f8f9fb);
+.hax-msg {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    max-width: 90%;
+}
+.hax-msg--ai { align-self: flex-start; }
+.hax-msg--user { align-self: flex-end; flex-direction: row-reverse; }
+.hax-msg-bubble {
+    padding: 9px 13px;
+    border-radius: 14px;
+    font-size: 0.84em;
+    line-height: 1.55;
     color: var(--color-text);
-    font-size: 0.87em;
+    background: var(--color-surface, #f2f3f7);
+}
+[data-theme="dark"] .hax-msg-bubble { background: rgba(255,255,255,0.07); }
+.hax-msg--user .hax-msg-bubble {
+    background: linear-gradient(135deg, #7c6af7, #3b82f6);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+.hax-msg--ai .hax-msg-bubble { border-bottom-left-radius: 4px; }
+.hax-msg-avatar {
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, #7c6af7, #3b82f6);
+    display: flex; align-items: center; justify-content: center;
+}
+.hax-msg-avatar svg { width: 13px; height: 13px; color: #fff; }
+.hax-msg-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 6px; font-size: 0.8em; color: #7c6af7;
+    text-decoration: none; font-weight: 500;
+}
+.hax-msg-link:hover { text-decoration: underline; }
+.hax-msg-link svg { width: 11px; height: 11px; }
+
+/* Typing indicator */
+.hax-typing { display: flex; gap: 4px; align-items: center; padding: 10px 13px; }
+.hax-typing span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--color-text-muted, #888);
+    animation: haxTyping 1.2s infinite ease-in-out;
+}
+.hax-typing span:nth-child(2) { animation-delay: 0.2s; }
+.hax-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes haxTyping {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Input bar */
+.hax-chat-inputbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 10px 12px 12px;
+    border-top: 1px solid var(--color-border, rgba(0,0,0,0.08));
+    flex-shrink: 0;
+}
+[data-theme="dark"] .hax-chat-inputbar { border-color: rgba(255,255,255,0.08); }
+.hax-chat-textarea {
+    flex: 1;
+    padding: 9px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border-medium, rgba(0,0,0,0.15));
+    background: var(--color-surface, #f2f3f7);
+    color: var(--color-text);
+    font-size: 0.85em;
     font-family: inherit;
     resize: none;
     line-height: 1.5;
-    min-height: 72px;
+    min-height: 38px;
+    max-height: 100px;
     outline: none;
     transition: border-color 0.15s;
+    overflow-y: auto;
 }
-[data-theme="dark"] .hax-panel-input {
-    background: rgba(255,255,255,0.05);
+[data-theme="dark"] .hax-chat-textarea {
+    background: rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.12);
     color: #e0eeff;
 }
-.hax-panel-input:focus { border-color: #7c6af7; }
-.hax-panel-actions { display: flex; gap: 8px; margin-top: 10px; }
-.hax-panel-btn-open {
-    flex: 1; padding: 9px 14px;
-    border-radius: 9px; border: none; cursor: pointer;
+.hax-chat-textarea:focus { border-color: #7c6af7; }
+.hax-chat-send {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 50%; border: none; cursor: pointer; padding: 0;
     background: linear-gradient(135deg, #7c6af7, #3b82f6);
-    color: #fff; font-size: 0.85em; font-weight: 600;
-    font-family: inherit;
-    display: flex; align-items: center; justify-content: center; gap: 6px;
-    transition: opacity 0.15s;
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.15s, transform 0.15s;
 }
-.hax-panel-btn-open:hover { opacity: 0.88; }
-.hax-panel-btn-open svg { width: 14px; height: 14px; }
-.hax-panel-hint {
-    font-size: 0.73em; color: var(--color-text-muted);
-    text-align: center; margin-top: 10px; line-height: 1.45;
-    opacity: 0.7;
-}
-.hax-panel-hint a { color: var(--color-accent); text-decoration: none; }
-.hax-panel-hint a:hover { text-decoration: underline; }
+.hax-chat-send:hover { opacity: 0.88; transform: scale(1.06); }
+.hax-chat-send svg { width: 16px; height: 16px; }
 </style>
 
-<button id="hax-assistant-btn" aria-label="Ask HAX AI Assistant" title="Ask HAX AI Assistant">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+<button id="hax-assistant-btn" aria-label="Ask the Human-Agent Experience assistant" title="Human-Agent Experience assistant">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
     </svg>
 </button>
 
-<div id="hax-assistant-panel" role="dialog" aria-label="HAX AI Assistant">
+<div id="hax-assistant-panel" role="dialog" aria-label="Human-Agent Experience assistant">
     <div class="hax-panel-header">
-        <div class="hax-panel-avatar">AI</div>
+        <div class="hax-panel-avatar">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        </div>
         <div>
-            <div class="hax-panel-title">HAX Pattern Research</div>
-            <div class="hax-panel-sub">Powered by ChatGPT</div>
+            <div class="hax-panel-title">Human-Agent Experience assistant</div>
+            <div class="hax-panel-sub">Ask about HAX patterns &amp; principles</div>
         </div>
         <button class="hax-panel-close" id="hax-panel-close-btn" aria-label="Close">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
     </div>
-    <div class="hax-panel-body">
-        <p class="hax-panel-prompt">Ask about HAX patterns, principles, or human-agent design. Your question will open in the AI assistant.</p>
-        <textarea class="hax-panel-input" id="hax-panel-textarea" placeholder="e.g. How should I design for user control in agentic systems?" rows="3"></textarea>
-        <div class="hax-panel-actions">
-            <button class="hax-panel-btn-open" id="hax-panel-submit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                Ask the assistant
-            </button>
-        </div>
-        <p class="hax-panel-hint">Opens <a href="https://chatgpt.com/g/g-685c13d481b88191b229715939381141-human-agent-pattern-research" target="_blank" rel="noopener noreferrer">HAX Pattern Research GPT</a> in a new tab with your question copied.</p>
+    <div class="hax-chat-messages" id="hax-chat-messages"></div>
+    <div class="hax-chat-inputbar">
+        <textarea class="hax-chat-textarea" id="hax-chat-input" placeholder="Ask about HAX patterns…" rows="1"></textarea>
+        <button class="hax-chat-send" id="hax-chat-send" aria-label="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+        </button>
     </div>
 </div>
 
@@ -5416,33 +5484,114 @@ document.querySelectorAll('.pgates-check-row').forEach(function(row) {
     var btn = document.getElementById('hax-assistant-btn');
     var panel = document.getElementById('hax-assistant-panel');
     var closeBtn = document.getElementById('hax-panel-close-btn');
-    var submitBtn = document.getElementById('hax-panel-submit');
-    var textarea = document.getElementById('hax-panel-textarea');
+    var sendBtn = document.getElementById('hax-chat-send');
+    var input = document.getElementById('hax-chat-input');
+    var messages = document.getElementById('hax-chat-messages');
+
+    var CHAT_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>';
+
+    // Pattern knowledge base
+    var KB = [
+        { keys: ['control','user control','human control','override','override agent'], answer: 'The <strong>Control</strong> principle covers three patterns:<br>• <em>Scope &amp; Boundaries</em> — users define where the agent can act<br>• <em>Permission &amp; Confirmation Gates</em> — explicit approvals for high-stakes actions<br>• <em>Editable Outputs</em> — humans can revise any agent-generated content before it takes effect.' },
+        { keys: ['scope','boundaries','operational limits'], answer: '<strong>Scope &amp; Boundaries</strong> lets users set the operational domain of an agent — which tools it can use, which data it can access, and which actions are off-limits. Design tip: surface these limits visibly so users always know what the agent is allowed to do.' },
+        { keys: ['permission','confirmation','gates','approve','approval'], answer: '<strong>Permission &amp; Confirmation Gates</strong> require explicit user approval before consequential actions. Show what will happen, why, and give a clear Accept / Reject choice. Avoid overusing gates — reserve them for irreversible or high-impact steps.' },
+        { keys: ['editable','edit output','revise','modify result'], answer: '<strong>Editable Outputs</strong> means the agent always presents results as drafts first. Users can tweak, accept, or reject before any action is committed. This pattern is key for building trust incrementally.' },
+        { keys: ['clarity','transparent','explain','explain decision','why did'], answer: 'The <strong>Clarity</strong> principle helps users understand agent reasoning:<br>• <em>Confidence &amp; Uncertainty Display</em> — show confidence levels on suggestions<br>• <em>Decision Rationale</em> — surface the "why" behind agent choices.' },
+        { keys: ['confidence','uncertainty','probability','likelihood'], answer: '<strong>Confidence &amp; Uncertainty Display</strong>: show users how sure the agent is about a recommendation. Use visual cues (bars, labels, color) rather than raw numbers. When confidence is low, prompt the user for input rather than proceeding autonomously.' },
+        { keys: ['recovery','undo','redo','mistake','revert','rollback'], answer: 'The <strong>Recovery</strong> principle covers:<br>• <em>Undo / Redo</em> — time-travel through agent actions<br>• <em>Escalation Paths</em> — clear routes to reach a human or stop the agent<br><br>Design recovery flows before launch — they\'re much harder to add later.' },
+        { keys: ['undo','redo','revert','rollback'], answer: '<strong>Undo / Redo</strong>: every agentic action should be reversible where possible. Show a clear action history so users can understand what happened and roll back specific steps.' },
+        { keys: ['escalation','escalate','human handoff','stop agent'], answer: '<strong>Escalation Paths</strong>: when the agent is stuck or the user is concerned, there must always be a clear way to pause, redirect, or hand off to a human. Escalation options should be visible at all times, not hidden in menus.' },
+        { keys: ['collaboration','collaborate','mixed initiative','co-editing','turn signal','role clarity'], answer: 'The <strong>Collaboration</strong> principle includes:<br>• <em>Mixed Initiative</em> — fluid turn-taking between human and agent<br>• <em>Co-editing Interfaces</em> — shared workspace where both can contribute<br>• <em>Role Clarity &amp; Turn Signals</em> — clear cues about who leads each step' },
+        { keys: ['mixed initiative','turn taking','who leads'], answer: '<strong>Mixed Initiative</strong>: design interactions so either party can lead based on context. The agent may proactively suggest; the user may redirect. Key: neither party should be locked into a fixed role.' },
+        { keys: ['co-editing','coediting','shared workspace','collaborative editing'], answer: '<strong>Co-editing Interfaces</strong>: place both human and AI edits in a single visible workspace. Show AI suggestions as proposals, not automatic changes. The human is always the final editor.' },
+        { keys: ['traceability','trace','audit','audit trail','accountability'], answer: 'The <strong>Traceability</strong> principle makes agent behavior reviewable over time:<br>• <em>Action History</em> — chronological log of all steps<br>• <em>Visual Diffing</em> — side-by-side before/after comparisons<br>• <em>Behavior Tuning Over Time</em> — visibility into how the agent is adapting' },
+        { keys: ['action history','log','audit log','event log'], answer: '<strong>Action History</strong>: maintain a time-stamped, plain-language log of all agent and user actions. This builds accountability and helps users reconstruct what happened and why.' },
+        { keys: ['visual diff','diffing','before after','compare changes'], answer: '<strong>Visual Diffing</strong>: show changes side-by-side with color highlights. Always pair the visual with a plain-language explanation of <em>why</em> the change was made. Let users accept, reject, or modify.' },
+        { keys: ['behavior tuning','adaptive','learning','personalization','adapt'], answer: '<strong>Behavior Tuning Over Time</strong>: when the agent adapts its behavior, tell the user clearly — what changed, why, and how to override it. Never let silent learning erode user trust.' },
+        { keys: ['pattern','patterns','all patterns','list'], answer: 'HAX covers <strong>5 principles</strong> with 13 patterns:<br><br><strong>Control:</strong> Scope &amp; Boundaries · Permission Gates · Editable Outputs<br><strong>Clarity:</strong> Confidence Display · Decision Rationale<br><strong>Recovery:</strong> Undo/Redo · Escalation Paths<br><strong>Collaboration:</strong> Mixed Initiative · Co-editing · Role Clarity<br><strong>Traceability:</strong> Action History · Visual Diffing · Behavior Tuning' },
+        { keys: ['hello','hi','hey','start','help'], answer: 'Hi! I\'m the <strong>Human-Agent Experience assistant</strong>. I can answer questions about HAX patterns and principles — Control, Clarity, Recovery, Collaboration, and Traceability.<br><br>Try asking things like:<br>• "How should I design for user control?"<br>• "What is mixed initiative?"<br>• "How does traceability work?"' }
+    ];
+
+    function findAnswer(q) {
+        var lower = q.toLowerCase();
+        for (var i = 0; i < KB.length; i++) {
+            for (var j = 0; j < KB[i].keys.length; j++) {
+                if (lower.indexOf(KB[i].keys[j]) !== -1) return KB[i].answer;
+            }
+        }
+        return null;
+    }
+
+    function addMessage(role, html) {
+        var wrap = document.createElement('div');
+        wrap.className = 'hax-msg hax-msg--' + role;
+        if (role === 'ai') {
+            wrap.innerHTML = '<div class="hax-msg-avatar">' + CHAT_ICON + '</div>' +
+                '<div class="hax-msg-bubble">' + html + '</div>';
+        } else {
+            wrap.innerHTML = '<div class="hax-msg-bubble">' + html + '</div>';
+        }
+        messages.appendChild(wrap);
+        messages.scrollTop = messages.scrollHeight;
+        return wrap;
+    }
+
+    function addTyping() {
+        var wrap = document.createElement('div');
+        wrap.className = 'hax-msg hax-msg--ai';
+        wrap.id = 'hax-typing-indicator';
+        wrap.innerHTML = '<div class="hax-msg-avatar">' + CHAT_ICON + '</div>' +
+            '<div class="hax-msg-bubble hax-typing"><span></span><span></span><span></span></div>';
+        messages.appendChild(wrap);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function removeTyping() {
+        var t = document.getElementById('hax-typing-indicator');
+        if (t) t.remove();
+    }
+
+    function addWelcome() {
+        if (messages.children.length === 0) {
+            addMessage('ai', 'Hi! I\'m the <strong>Human-Agent Experience assistant</strong>.<br>Ask me about HAX patterns, design principles, or human-agent interaction.');
+        }
+    }
+
+    function sendMessage() {
+        var q = input.value.trim();
+        if (!q) return;
+        input.value = '';
+        input.style.height = '';
+        addMessage('user', q.replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+
+        addTyping();
+        setTimeout(function() {
+            removeTyping();
+            var answer = findAnswer(q);
+            if (answer) {
+                addMessage('ai', answer + '<br><a class="hax-msg-link" href="' + GPT_URL + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Deep-dive in the GPT assistant</a>');
+            } else {
+                addMessage('ai', 'I don\'t have a specific answer for that, but the <strong>HAX Pattern Research GPT</strong> can help with any question about human-agent design.<br><a class="hax-msg-link" href="' + GPT_URL + '" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Open the GPT assistant</a>');
+            }
+        }, 700 + Math.random() * 400);
+    }
 
     btn.addEventListener('click', function() {
         panel.classList.toggle('is-open');
         if (panel.classList.contains('is-open')) {
-            setTimeout(function() { textarea.focus(); }, 120);
+            addWelcome();
+            setTimeout(function() { input.focus(); }, 120);
         }
     });
-    closeBtn.addEventListener('click', function() {
-        panel.classList.remove('is-open');
+    closeBtn.addEventListener('click', function() { panel.classList.remove('is-open'); });
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     });
-    submitBtn.addEventListener('click', function() {
-        var q = textarea.value.trim();
-        if (q) {
-            navigator.clipboard.writeText(q).catch(function(){});
-        }
-        window.open(GPT_URL, '_blank', 'noopener,noreferrer');
-        submitBtn.textContent = q ? '✓ Copied! Paste in the chat' : 'Opening…';
-        setTimeout(function() {
-            submitBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg> Ask the assistant';
-        }, 3000);
-    });
-    textarea.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-            submitBtn.click();
-        }
+    // Auto-resize textarea
+    input.addEventListener('input', function() {
+        this.style.height = '';
+        this.style.height = Math.min(this.scrollHeight, 100) + 'px';
     });
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') panel.classList.remove('is-open');
