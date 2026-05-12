@@ -13,12 +13,7 @@
 <style type="text/css">
 :root {
     font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
-    --cursor-size: 20px;
-    --cursor-x: -100px;
-    --cursor-y: -100px;
-    --cursor-scale: 1;
-    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+    font-feature-settings: 'liga' 1, 'calt' 1;    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 
     --color-bg: #fff;
     --color-text: #293247;
@@ -122,25 +117,7 @@ a:link, a:visited, a:hover, a:active {
 [data-theme="dark"] .icon-moon { display: none; }
 [data-theme="dark"] .icon-sun { display: block; }
 
-@media (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor * { cursor: none !important; }
-  .custom-cursor {
-    position: fixed;
-    top: calc(var(--cursor-y) - var(--cursor-size) / 2);
-    left: calc(var(--cursor-x) - var(--cursor-size) / 2);
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border-radius: 50%;
-    background: var(--color-text);
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transform: scale(var(--cursor-scale));
-    transition: transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
-    will-change: top, left, transform;
-  }
-}
+
 
 /* ── SDK Layout ── */
 .sdk-layout {
@@ -491,22 +468,6 @@ a:link, a:visited, a:hover, a:active {
         });
     });
 
-    if (window.matchMedia('(pointer: fine)').matches) {
-        document.documentElement.classList.add('has-custom-cursor');
-        var customCursor = document.createElement('div');
-        customCursor.className = 'custom-cursor';
-        document.body.appendChild(customCursor);
-        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled]), [role="button"]';
-        document.addEventListener('mousemove', function (e) {
-            var isInteractive = !!e.target.closest(interactiveSelector);
-            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', isInteractive ? 2 : 1);
-        });
-        document.addEventListener('mouseout', function () {
-            document.documentElement.style.setProperty('--cursor-scale', 0);
-        });
-    }
 })();
 </script>
 </body>

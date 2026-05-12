@@ -96,15 +96,22 @@ export interface SharedNavItem extends Struct.ComponentSchema {
 export interface SharedPatternPanel extends Struct.ComponentSchema {
   collectionName: 'components_shared_pattern_panels';
   info: {
-    description: 'Pattern panel with key, title, description, and example images';
+    description: 'Pattern panel with key, title, subtitle, descriptions, related patterns, how-to, and pitfalls';
     displayName: 'PatternPanel';
     icon: 'grid';
   };
   attributes: {
+    commonPitfalls: Schema.Attribute.Component<'shared.pitfall-card', true>;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
+    exampleDarkImages: Schema.Attribute.Media<'images', true>;
     exampleImages: Schema.Attribute.Media<'images', true>;
+    howToImplement: Schema.Attribute.JSON;
     key: Schema.Attribute.String & Schema.Attribute.Required;
+    relatedPatterns: Schema.Attribute.Component<'shared.related-pattern', true>;
+    subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    whatItMeans: Schema.Attribute.Text;
+    whyItMatters: Schema.Attribute.Text;
   };
 }
 
@@ -123,6 +130,35 @@ export interface SharedPipelineStep extends Struct.ComponentSchema {
     stepNumber: Schema.Attribute.String & Schema.Attribute.Required;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedPitfallCard extends Struct.ComponentSchema {
+  collectionName: 'components_shared_pitfall_cards';
+  info: {
+    description: 'A common pitfall with a title and short description';
+    displayName: 'PitfallCard';
+    icon: 'exclamation-mark';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedRelatedPattern extends Struct.ComponentSchema {
+  collectionName: 'components_shared_related_patterns';
+  info: {
+    description: 'A related pattern within a panel, with name, description, component label, subnav ID, and callouts';
+    displayName: 'RelatedPattern';
+    icon: 'layout';
+  };
+  attributes: {
+    callouts: Schema.Attribute.JSON;
+    componentLabel: Schema.Attribute.String;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    subnavId: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -267,6 +303,8 @@ declare module '@strapi/strapi' {
       'shared.nav-item': SharedNavItem;
       'shared.pattern-panel': SharedPatternPanel;
       'shared.pipeline-step': SharedPipelineStep;
+      'shared.pitfall-card': SharedPitfallCard;
+      'shared.related-pattern': SharedRelatedPattern;
       'shared.research-approach-item': SharedResearchApproachItem;
       'shared.responsible-step': SharedResponsibleStep;
       'shared.section-header': SharedSectionHeader;

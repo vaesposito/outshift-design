@@ -13,12 +13,7 @@
 <style type="text/css">
 :root {
     font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
-    --cursor-size: 20px;
-    --cursor-x: -100px;
-    --cursor-y: -100px;
-    --cursor-scale: 1;
-    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+    font-feature-settings: 'liga' 1, 'calt' 1;    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 
     --color-bg: #fff;
     --color-text: #293247;
@@ -35,9 +30,7 @@
     --color-tag-border: rgba(0, 188, 235, 0.2);
     --color-tag-text: #187ADC;
     --color-accent: #00BCEB;
-    --color-accent-hover: #187ADC;
-    --color-cursor: #9345E1;
-    --color-hamburger: #293247;
+    --color-accent-hover: #187ADC;    --color-hamburger: #293247;
     --color-shadow: rgba(41, 50, 71, 0.08);
     --color-step-number: rgba(0, 188, 235, 0.08);
 }
@@ -64,9 +57,7 @@
     --color-tag-border: rgba(0, 188, 235, 0.25);
     --color-tag-text: #3fc6ee;
     --color-accent: #3fc6ee;
-    --color-accent-hover: #00BCEB;
-    --color-cursor: #b380f0;
-    --color-hamburger: #e0e4ec;
+    --color-accent-hover: #00BCEB;    --color-hamburger: #e0e4ec;
     --color-shadow: rgba(0, 0, 0, 0.3);
     --color-step-number: rgba(63, 198, 238, 0.06);
 }
@@ -283,26 +274,6 @@ button::before {
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-}
-
-/* ── Custom Cursor ── */
-.custom-cursor {
-    position: fixed;
-    top: var(--cursor-y);
-    left: var(--cursor-x);
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    border-radius: 9999px;
-    background: #fff;
-    mix-blend-mode: difference;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%) scale(var(--cursor-scale));
-    transition: transform var(--fancy-transition), border-width 0.15s ease-in;
-    border: 0 solid #b4b4b4;
-}
-.custom-cursor[data-hover="true"] {
-    border-width: 5px;
 }
 
 /* ── Menu Toggle ── */
@@ -1323,25 +1294,6 @@ footer {
         }
     });
 
-    if (window.matchMedia('(pointer: fine)').matches) {
-        var customCursor = document.createElement('div');
-        customCursor.className = 'custom-cursor';
-        document.body.appendChild(customCursor);
-
-        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
-
-        document.addEventListener('mousemove', function (e) {
-            var isInteractive = !!e.target.closest(interactiveSelector) || getComputedStyle(e.target).cursor === 'pointer';
-            var cursorScale = isInteractive ? 2 : 1;
-            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', cursorScale);
-        });
-
-        document.addEventListener('mouseout', function () {
-            document.documentElement.style.setProperty('--cursor-scale', 0);
-        });
-    }
 })();
 </script>
 </body>

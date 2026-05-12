@@ -13,12 +13,7 @@
 <style type="text/css">
 :root {
     font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
-    --cursor-size: 20px;
-    --cursor-x: -100px;
-    --cursor-y: -100px;
-    --cursor-scale: 1;
-    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+    font-feature-settings: 'liga' 1, 'calt' 1;    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 
     --color-bg: #fff;
     --color-text: #293247;
@@ -159,10 +154,6 @@ nav > ul > li { position: relative; }
     z-index: 0;
     pointer-events: none;
 }
-
-/* ── Custom Cursor ── */
-.custom-cursor { position: fixed; top: var(--cursor-y); left: var(--cursor-x); width: var(--cursor-size); height: var(--cursor-size); border-radius: 9999px; background: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%) scale(var(--cursor-scale)); transition: transform var(--fancy-transition), border-width 0.15s ease-in; border: 0 solid #b4b4b4; }
-.custom-cursor[data-hover="true"] { border-width: 5px; }
 
 /* ── Blog Hero ── */
 .blog-hero {
@@ -842,21 +833,6 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
         });
     }
 
-    if (window.matchMedia('(pointer: fine)').matches) {
-        var customCursor = document.createElement('div');
-        customCursor.className = 'custom-cursor';
-        document.body.appendChild(customCursor);
-        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled])';
-        document.addEventListener('mousemove', function (e) {
-            var isInteractive = !!e.target.closest(interactiveSelector) || getComputedStyle(e.target).cursor === 'pointer';
-            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', isInteractive ? 2 : 1);
-        });
-        document.addEventListener('mouseout', function () {
-            document.documentElement.style.setProperty('--cursor-scale', 0);
-        });
-    }
 })();
 </script>
 </body>

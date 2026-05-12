@@ -13,12 +13,7 @@
 <style type="text/css">
 :root {
     font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
-    --cursor-size: 20px;
-    --cursor-x: -100px;
-    --cursor-y: -100px;
-    --cursor-scale: 1;
-    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+    font-feature-settings: 'liga' 1, 'calt' 1;    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
 
     --color-bg: #fff;
     --color-text: #293247;
@@ -206,28 +201,6 @@ nav > ul > li { position: relative; }
     color: var(--color-text) !important;
 }
 
-/* ── Custom Cursor ── */
-@media (pointer: fine) {
-    html.has-custom-cursor,
-    html.has-custom-cursor * { cursor: none !important; }
-    .custom-cursor {
-        position: fixed;
-        z-index: 9999;
-        width: var(--cursor-size);
-        height: var(--cursor-size);
-        left: var(--cursor-x);
-        top: var(--cursor-y);
-        background: #fff;
-        border-radius: 9999px;
-        mix-blend-mode: difference;
-        transform: translate(-50%, -50%) scale(var(--cursor-scale));
-        pointer-events: none;
-        transition: transform var(--fancy-transition), border-width 0.15s ease-in;
-        border-width: calc(var(--cursor-size) * (var(--cursor-scale) - 1) / 2);
-        border-style: solid;
-        border-color: #b4b4b4;
-    }
-}
 
 /* ── Mobile Menu Toggle ── */
 .menu-toggle {
@@ -1089,22 +1062,6 @@ footer {
         });
     });
 
-    if (window.matchMedia('(pointer: fine)').matches) {
-        document.documentElement.classList.add('has-custom-cursor');
-        var customCursor = document.createElement('div');
-        customCursor.className = 'custom-cursor';
-        document.body.appendChild(customCursor);
-        var interactiveSelector = 'a[href]:not([disabled]), button:not([disabled]), [role="button"]';
-        document.addEventListener('mousemove', function (e) {
-            var isInteractive = !!e.target.closest(interactiveSelector);
-            document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
-            document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-            document.documentElement.style.setProperty('--cursor-scale', isInteractive ? 2 : 1);
-        });
-        document.addEventListener('mouseout', function () {
-            document.documentElement.style.setProperty('--cursor-scale', 0);
-        });
-    }
 })();
 </script>
 </body>
