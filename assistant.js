@@ -75,25 +75,41 @@
 
     var ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>';
     var EXT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+    var NAV_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
 
     /* ── Helpers ── */
-    function link(href, label, isPage) {
-        if (isPage) {
-            return '<br><a class="oa-link" href="' + href + '">' + EXT_ICON + label + '</a>';
-        }
+    // Internal site link — same tab, no external icon
+    function siteLink(href, label) {
+        return '<br><a class="oa-link" href="' + href + '">' + NAV_ICON + label + '</a>';
+    }
+    // External link — new tab, external icon
+    function extLink(href, label) {
         return '<br><a class="oa-link" href="' + href + '" target="_blank" rel="noopener noreferrer">' + EXT_ICON + label + '</a>';
     }
+    // Keep backward compat for any KB entries using link()
+    function link(href, label) {
+        if (href.indexOf(BASE) === 0 || href.indexOf('/') === 0) return siteLink(href, label);
+        return extLink(href, label);
+    }
 
-    // Navigate within the HAX page (only works on hax page)
+    // Navigate within the HAX page, or link to hax.html#anchor from other pages
     function haxNav(panel, anchor, label) {
         var isHax = PAGE === 'hax';
         if (isHax) {
-            return '<br><a class="oa-link" href="javascript:void(0)" data-hax-panel="' + panel + '" data-hax-anchor="' + (anchor || '') + '">→ Jump to ' + label + '</a>';
+            // On the HAX page: scroll in place via data attributes (wired up in addMsg)
+            return '<br><a class="oa-link" href="javascript:void(0)" data-hax-panel="' + panel + '" data-hax-anchor="' + (anchor || '') + '">' + NAV_ICON + 'Jump to ' + label + '</a>';
         }
-        return link(BASE + 'hax.html', 'View on HAX page', false);
+        // On another page: navigate to hax.html with anchor hash (same tab)
+        var hash = anchor ? '#' + anchor : '';
+        return siteLink('hax.html' + hash, 'Go to ' + label + ' on HAX page');
     }
 
-    var gptLink = '<br><a class="oa-link" href="' + GPT_URL + '" target="_blank" rel="noopener noreferrer">' + EXT_ICON + 'Deep-dive in the GPT assistant</a>';
+    // Scroll to any element by ID on the current page
+    function anchorNav(anchorId, label) {
+        return '<br><a class="oa-link" href="javascript:void(0)" data-anchor="' + anchorId + '">' + NAV_ICON + 'Jump to ' + label + '</a>';
+    }
+
+    var gptLink = extLink(GPT_URL, 'Deep-dive in the GPT assistant');
 
     /* ── Knowledge Base ── */
     var KB = [
@@ -102,25 +118,25 @@
           answer: 'Hi! I\'m the <strong>Outshift Design assistant</strong>. I can help you navigate the site, explain HAX patterns, or point you to research and resources.<br><br>Try asking:<br>• "What is HAX?"<br>• "Show me the Escalation Paths pattern"<br>• "What research topics are covered?"<br>• "Where is the blog?"' },
 
         { keys: ['what is this site','what is outshift design','about this site','about outshift','who made this'],
-          answer: 'This is the <strong>Outshift Design</strong> site — the design research hub for Outshift by Cisco. It covers research-backed design frameworks, patterns for human-agent interaction, and tools for teams building AI products.' + link(BASE, 'Visit the homepage') },
+          answer: 'This is the <strong>Outshift Design</strong> site — the design research hub for Outshift by Cisco. It covers research-backed design frameworks, patterns for human-agent interaction, and tools for teams building AI products.' + siteLink('index.html', 'Go to Homepage') },
 
         { keys: ['what pages','all pages','site map','sitemap','navigate','navigation','site structure','where is'],
           answer: 'The site is organized as follows:<br><br>🏠 <strong>Home</strong> — initiatives overview (HAX, Internet of Cognition)<br>🤖 <strong>HAX</strong> — Human-Agent Experience patterns &amp; principles<br>🔧 <strong>SDK</strong> — developer SDK documentation<br>📚 <strong>Research</strong> — hub for all research topics<br>&nbsp;&nbsp;&nbsp;↳ Foundational Principles<br>&nbsp;&nbsp;&nbsp;↳ Cognitive Frameworks<br>&nbsp;&nbsp;&nbsp;↳ Societal Impact (+ Agent Impact Map, Cognitive Load Audit, Foresight Canvas)<br>&nbsp;&nbsp;&nbsp;↳ Security &amp; Privacy<br>📝 <strong>Blog</strong> — articles and whitepapers<br><br>'
-            + link(BASE, 'Go to Homepage') + link(BASE + 'hax.html', 'Go to HAX') + link(BASE + 'research.html', 'Go to Research') + link(BASE + 'blog.html', 'Go to Blog') },
+            + siteLink('index.html', 'Homepage') + siteLink('hax.html', 'HAX') + siteLink('research.html', 'Research') + siteLink('blog.html', 'Blog') },
 
         // ── HOME ──
         { keys: ['homepage','home page','initiatives','internet of cognition','ioc'],
-          answer: 'The <strong>homepage</strong> showcases two flagship initiatives:<br>• <strong>HAX</strong> (Human-Agent Experience) — design patterns for human-agent collaboration<br>• <strong>Internet of Cognition</strong> — Cisco\'s vision for interconnected AI intelligence<br><br>The homepage also links to the latest blog posts and research highlights.' + link(BASE, 'Go to Homepage') },
+          answer: 'The <strong>homepage</strong> showcases two flagship initiatives:<br>• <strong>HAX</strong> (Human-Agent Experience) — design patterns for human-agent collaboration<br>• <strong>Internet of Cognition</strong> — Cisco\'s vision for interconnected AI intelligence<br><br>The homepage also links to the latest blog posts and research highlights.' + siteLink('index.html', 'Go to Homepage') },
 
         // ── HAX OVERVIEW ──
         { keys: ['what is hax','hax framework','human-agent experience','hax patterns','hax principles'],
-          answer: '<strong>HAX (Human-Agent Experience)</strong> is a research-backed framework for designing AI agent systems that are transparent, trustworthy, and collaborative. It organizes <strong>16 design patterns</strong> across <strong>5 principles</strong>: Control, Clarity, Recovery, Collaboration, and Traceability. Developed by the Outshift product design team at Cisco.' + link(BASE + 'hax.html', 'Open HAX page') },
+          answer: '<strong>HAX (Human-Agent Experience)</strong> is a research-backed framework for designing AI agent systems that are transparent, trustworthy, and collaborative. It organizes <strong>16 design patterns</strong> across <strong>5 principles</strong>: Control, Clarity, Recovery, Collaboration, and Traceability. Developed by the Outshift product design team at Cisco.' + siteLink('hax.html', 'Open HAX page') },
 
         { keys: ['hax page','hax sections','go to hax','hax navigation','hax sidebar'],
-          answer: 'The <strong>HAX page</strong> has 5 sections in the left sidebar:<br>1. <strong>Control</strong> — Scope, Autonomy, Permission Gates<br>2. <strong>Clarity</strong> — Rationale, Confidence, Sources, Alternatives<br>3. <strong>Recovery</strong> — Undo/Redo, Editable Outputs, Safe Defaults, Escalation<br>4. <strong>Collaboration</strong> — Mixed Initiative, Co-editing, Role Clarity<br>5. <strong>Traceability</strong> — Action History, Visual Diffing, Behavior Tuning<br><br>Each section has Description, Related Patterns, How to implement, and Common pitfalls.' + link(BASE + 'hax.html', 'Open HAX page') },
+          answer: 'The <strong>HAX page</strong> has 5 sections in the left sidebar:<br>1. <strong>Control</strong> — Scope, Autonomy, Permission Gates<br>2. <strong>Clarity</strong> — Rationale, Confidence, Sources, Alternatives<br>3. <strong>Recovery</strong> — Undo/Redo, Editable Outputs, Safe Defaults, Escalation<br>4. <strong>Collaboration</strong> — Mixed Initiative, Co-editing, Role Clarity<br>5. <strong>Traceability</strong> — Action History, Visual Diffing, Behavior Tuning<br><br>Each section has Description, Related Patterns, How to implement, and Common pitfalls.' + siteLink('hax.html', 'Open HAX page') },
 
         { keys: ['all patterns','list patterns','16 patterns','how many patterns'],
-          answer: 'HAX has <strong>16 patterns</strong> across 5 principles:<br><br>🔵 <strong>Control:</strong> Scope &amp; Boundaries · Customization of Autonomy · Permission &amp; Confirmation Gates<br>🔵 <strong>Clarity:</strong> Inline Rationale · Confidence &amp; Uncertainty · Source Attribution · Alternatives &amp; Trade-offs<br>🔵 <strong>Recovery:</strong> Undo &amp; Redo · Editable Outputs · Safe Defaults · Escalation Paths<br>🔵 <strong>Collaboration:</strong> Mixed Initiative · Co-editing Interfaces · Role Clarity &amp; Turn Signals<br>🔵 <strong>Traceability:</strong> Action History · Visual Diffing · Behavior Tuning Over Time' + link(BASE + 'hax.html', 'Explore all patterns') },
+          answer: 'HAX has <strong>16 patterns</strong> across 5 principles:<br><br>🔵 <strong>Control:</strong> Scope &amp; Boundaries · Customization of Autonomy · Permission &amp; Confirmation Gates<br>🔵 <strong>Clarity:</strong> Inline Rationale · Confidence &amp; Uncertainty · Source Attribution · Alternatives &amp; Trade-offs<br>🔵 <strong>Recovery:</strong> Undo &amp; Redo · Editable Outputs · Safe Defaults · Escalation Paths<br>🔵 <strong>Collaboration:</strong> Mixed Initiative · Co-editing Interfaces · Role Clarity &amp; Turn Signals<br>🔵 <strong>Traceability:</strong> Action History · Visual Diffing · Behavior Tuning Over Time' + siteLink('hax.html', 'Explore all patterns') },
 
         // ── HAX: CONTROL ──
         { keys: ['control section','go to control','control principle','open control'],
@@ -210,44 +226,44 @@
 
         // ── HAX: HOW TO / PITFALLS ──
         { keys: ['how to implement','implementation guide','implement control','implement clarity','implement recovery','implement collaboration','implement traceability'],
-          answer: 'Every principle section on the HAX page has a <strong>How to implement</strong> subsection with actionable steps. Use the left sidebar: click a principle tab, then click "How to implement" in its submenu.<br><br>Which principle are you implementing?' + link(BASE + 'hax.html', 'Open HAX page') },
+          answer: 'Every principle section on the HAX page has a <strong>How to implement</strong> subsection with actionable steps. Use the left sidebar: click a principle tab, then click "How to implement" in its submenu.<br><br>Which principle are you implementing?' + siteLink('hax.html', 'Open HAX page') },
 
         { keys: ['pitfall','pitfalls','common mistakes','what to avoid','anti-pattern','common errors'],
-          answer: 'Every principle section on the HAX page includes a <strong>Common pitfalls</strong> card grid. Access them via the sidebar submenu under each principle → "Common pitfalls".' + link(BASE + 'hax.html', 'Open HAX page') },
+          answer: 'Every principle section on the HAX page includes a <strong>Common pitfalls</strong> card grid. Access them via the sidebar submenu under each principle → "Common pitfalls".' + siteLink('hax.html', 'Open HAX page') },
 
         // ── SDK ──
         { keys: ['sdk','hax sdk','what is the sdk','developer','developers','api','build with'],
-          answer: '<strong>HAX SDK</strong> provides developers with tools to implement Human-Agent Experience patterns in their products. It translates design patterns into code-level guidance and components for building trustworthy AI agent interfaces.' + link(BASE + 'sdk.html', 'Open SDK page') },
+          answer: '<strong>HAX SDK</strong> provides developers with tools to implement Human-Agent Experience patterns in their products. It translates design patterns into code-level guidance and components for building trustworthy AI agent interfaces.' + siteLink('sdk.html', 'Open SDK page') },
 
         // ── RESEARCH HUB ──
         { keys: ['research','research hub','research topics','research at outshift'],
-          answer: 'The <strong>Research</strong> section covers Outshift\'s design research across four areas:<br>• <strong>Foundational Principles</strong> — translating insights into practical patterns<br>• <strong>Cognitive Frameworks</strong> — theoretical foundations for human-AI interaction<br>• <strong>Societal Impact</strong> — responsible agent design (Impact Map, Load Audit, Foresight Canvas)<br>• <strong>Security &amp; Privacy</strong> — building safe and trustworthy AI systems' + link(BASE + 'research.html', 'Open Research hub') },
+          answer: 'The <strong>Research</strong> section covers Outshift\'s design research across four areas:<br>• <strong>Foundational Principles</strong> — translating insights into practical patterns<br>• <strong>Cognitive Frameworks</strong> — theoretical foundations for human-AI interaction<br>• <strong>Societal Impact</strong> — responsible agent design (Impact Map, Load Audit, Foresight Canvas)<br>• <strong>Security &amp; Privacy</strong> — building safe and trustworthy AI systems' + siteLink('research.html', 'Open Research hub') },
 
         { keys: ['foundational principles','research pipeline','design pipeline','research to design'],
-          answer: '<strong>Foundational Principles</strong> documents the research-to-design pipeline used by Outshift: Framing → Mapping → Synthesis → Heuristics → Prototyping → Documentation. It translates high-level insights into practical patterns for user control, clarity, and human-AI collaboration.' + link(BASE + 'foundational-principles.html', 'Open Foundational Principles') },
+          answer: '<strong>Foundational Principles</strong> documents the research-to-design pipeline used by Outshift: Framing → Mapping → Synthesis → Heuristics → Prototyping → Documentation. It translates high-level insights into practical patterns for user control, clarity, and human-AI collaboration.' + siteLink('foundational-principles.html', 'Open Foundational Principles') },
 
         { keys: ['cognitive frameworks','theoretical foundation','cognitive science','mental model','dual process'],
-          answer: '<strong>Cognitive Frameworks</strong> explores the theoretical foundations of human-AI interaction — including mental models, cognitive load, dual-process theory, and how these inform design decisions for agentic systems.' + link(BASE + 'cognitive-frameworks.html', 'Open Cognitive Frameworks') },
+          answer: '<strong>Cognitive Frameworks</strong> explores the theoretical foundations of human-AI interaction — including mental models, cognitive load, dual-process theory, and how these inform design decisions for agentic systems.' + siteLink('cognitive-frameworks.html', 'Open Cognitive Frameworks') },
 
         { keys: ['societal impact','responsible design','agent impact map','cognitive load audit','foresight canvas','impact map'],
-          answer: '<strong>Societal Impact</strong> provides a framework for responsible agent design. It includes three practical tools:<br>• <strong>Agent Impact Map</strong> — evaluate societal effects of AI agents<br>• <strong>Cognitive Load Audit</strong> — assess cognitive demands on users<br>• <strong>Foresight Canvas</strong> — anticipate future scenarios and risks' + link(BASE + 'societal-impact.html', 'Open Societal Impact') + link(BASE + 'agent-impact-map.html', 'Agent Impact Map') + link(BASE + 'cognitive-load-audit.html', 'Cognitive Load Audit') + link(BASE + 'foresight-canvas.html', 'Foresight Canvas') },
+          answer: '<strong>Societal Impact</strong> provides a framework for responsible agent design. It includes three practical tools:<br>• <strong>Agent Impact Map</strong> — evaluate societal effects of AI agents<br>• <strong>Cognitive Load Audit</strong> — assess cognitive demands on users<br>• <strong>Foresight Canvas</strong> — anticipate future scenarios and risks' + siteLink('societal-impact.html', 'Open Societal Impact') + siteLink('agent-impact-map.html', 'Agent Impact Map') + siteLink('cognitive-load-audit.html', 'Cognitive Load Audit') + siteLink('foresight-canvas.html', 'Foresight Canvas') },
 
         { keys: ['security','privacy','secure ai','ai security','privacy-preserving','adaptive security'],
-          answer: '<strong>Security &amp; Privacy</strong> covers how to build safe and trustworthy AI agent systems. Research areas include:<br>• Adaptive security for autonomous agents<br>• Privacy-preserving context for intelligent agents<br>• Scaling systems responsibly<br>• Strengthening trust and global interoperability' + link(BASE + 'security-privacy.html', 'Open Security &amp; Privacy') },
+          answer: '<strong>Security &amp; Privacy</strong> covers how to build safe and trustworthy AI agent systems. Research areas include:<br>• Adaptive security for autonomous agents<br>• Privacy-preserving context for intelligent agents<br>• Scaling systems responsibly<br>• Strengthening trust and global interoperability' + siteLink('security-privacy.html', 'Open Security &amp; Privacy') },
 
         // ── BLOG ──
         { keys: ['blog','articles','whitepapers','publications','papers','read'],
-          answer: 'The <strong>Blog</strong> features research articles and whitepapers from the Outshift design team:<br><br>📄 <em>Navigating the Multi-Agent Future</em> — key findings on the future of human-agent interaction (April 2026)<br>📄 <em>The Strategic Role of Design in Shaping Ethical AI Systems</em> — how interface design becomes the primary control layer for responsible AI (May 2026)<br>📄 <em>Designing for AI Trust</em> — making uncertainty visible, controllable, and recoverable (coming soon)' + link(BASE + 'blog.html', 'Open Blog') },
+          answer: 'The <strong>Blog</strong> features research articles and whitepapers from the Outshift design team:<br><br>📄 <em>Navigating the Multi-Agent Future</em> — key findings on the future of human-agent interaction (April 2026)<br>📄 <em>The Strategic Role of Design in Shaping Ethical AI Systems</em> — how interface design becomes the primary control layer for responsible AI (May 2026)<br>📄 <em>Designing for AI Trust</em> — making uncertainty visible, controllable, and recoverable (coming soon)' + siteLink('blog.html', 'Open Blog') },
 
         { keys: ['navigating multi-agent','multi agent future','whitepaper','report 2026'],
-          answer: '<strong>Navigating the Multi-Agent Future</strong> is a whitepaper on the shifting landscape of human-agent interaction. It presents key findings and actionable insights from industry and academic experts on the future of agentic AI.' + link('https://outshift-headless-cms-s3.s3.us-east-2.amazonaws.com/Navigating_The_Multi-Agent_Future.pdf', 'Read the whitepaper', false) },
+          answer: '<strong>Navigating the Multi-Agent Future</strong> is a whitepaper on the shifting landscape of human-agent interaction. It presents key findings and actionable insights from industry and academic experts on the future of agentic AI.' + extLink('https://outshift-headless-cms-s3.s3.us-east-2.amazonaws.com/Navigating_The_Multi-Agent_Future.pdf', 'Read the whitepaper') },
 
         { keys: ['ethics','ai ethics','ethical ai','design ethics','strategic role of design'],
-          answer: '<strong>The Strategic Role of Design in Shaping Ethical AI Systems</strong>: as AI moves toward agentic architectures, ethics can no longer be governed purely through policy. This report explores how interface design becomes the primary control layer for responsible human–AI interaction.' + link(BASE + 'files/ai-ethics-and-design.pdf', 'Read the report', false) },
+          answer: '<strong>The Strategic Role of Design in Shaping Ethical AI Systems</strong>: as AI moves toward agentic architectures, ethics can no longer be governed purely through policy. This report explores how interface design becomes the primary control layer for responsible human–AI interaction.' + extLink('files/ai-ethics-and-design.pdf', 'Read the report') },
 
         // ── COMPANY ──
         { keys: ['outshift','what is outshift','cisco','outshift by cisco'],
-          answer: '<strong>Outshift by Cisco</strong> is Cisco\'s emerging technology and incubation team focused on building the future of networking, security, and AI. The design team here develops research-backed frameworks and patterns for human-agent interaction.' + link('https://outshift.cisco.com/', 'Visit Outshift', false) },
+          answer: '<strong>Outshift by Cisco</strong> is Cisco\'s emerging technology and incubation team focused on building the future of networking, security, and AI. The design team here develops research-backed frameworks and patterns for human-agent interaction.' + extLink('https://outshift.cisco.com/', 'Visit Outshift') },
     ];
 
     /* ── Find answer ── */
@@ -338,6 +354,14 @@
                             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }, 140);
                     }
+                });
+            });
+            // Wire up generic anchor nav links
+            wrap.querySelectorAll('[data-anchor]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var el = document.getElementById(a.getAttribute('data-anchor'));
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
             messages.appendChild(wrap);
