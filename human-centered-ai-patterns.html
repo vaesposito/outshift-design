@@ -11,7 +11,7 @@
 (function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
 </script>
 <style type="text/css">
-html { scroll-behavior: smooth; font-size: max(14px, 1.11vw); }
+html { scroll-behavior: smooth; font-size: clamp(13px, 0.5vw + 9px, 40px); }
 
 :root {
     font-family: Inter, sans-serif;
