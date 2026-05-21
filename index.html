@@ -420,7 +420,7 @@ button::before, .cta-button::before {
     background-position: left 40px;
     background-size: 5431px 3059px;
 }
-.initiative-card > * { max-width: 720px; }
+.initiative-card > * { max-width: none; }
 .initiative-card.reversed {
     flex-direction: row-reverse;
     background-image: url('images/section-inverted.svg');
@@ -440,8 +440,9 @@ button::before, .cta-button::before {
 .initiative-card .card-image video {
     width: 100%;
     aspect-ratio: 3 / 2;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 16px;
+    background: transparent;
 }
 /* Only the visible (light) track is display:block — avoids fighting theme rules on .video-dark */
 .initiative-card .card-image video.video-light {
