@@ -1208,25 +1208,32 @@ footer {
 }
 
 /* === Hero Scroll Arrow === */
-.hero-scroll-arrow {
+/* Arrow lives inside .hero-scroll-wrap which stretches full width */
+.hero-scroll-wrap {
     position: absolute;
     bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+}
+.hero-scroll-arrow {
+    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 38px;
     height: 38px;
-    color: rgba(255,255,255,0.65);
+    color: var(--color-text-muted);
     text-decoration: none;
     cursor: pointer;
     transition: color 0.2s, transform 0.2s;
-    z-index: 10;
 }
 .hero-scroll-arrow:hover {
-    color: #fff;
-    transform: translateX(-50%) translateY(4px);
+    color: var(--color-text);
+    transform: translateY(4px);
 }
 .hero-scroll-arrow svg {
     width: 28px;
@@ -1303,12 +1310,14 @@ footer {
       <a href="#initiatives" class="cta-button">See Our Work</a>
     </div>
   </div>
-  <a class="hero-scroll-arrow" href="#" aria-label="Scroll to content"
-     onclick="var n=this.parentElement&&this.parentElement.nextElementSibling;if(n){n.scrollIntoView({behavior:'smooth'});}return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"/>
-    </svg>
-  </a>
+    <div class="hero-scroll-wrap">
+    <a class="hero-scroll-arrow" href="#" aria-label="Scroll to content"
+       onclick="var n=this.closest('.hero-section')&&this.closest('.hero-section').nextElementSibling;if(n){n.scrollIntoView({behavior:'smooth'});}return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
+  </div>
 </div>
 
 <!-- Featured Initiatives -->
