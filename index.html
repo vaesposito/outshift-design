@@ -99,7 +99,7 @@ html {
 }
 .container {
     width: 100%;
-    padding: 0 max(10%, calc((100% - 1400px) / 2));
+    padding: 0 min(20%, max(5%, calc((100% - 1400px) / 2)));
     box-sizing: border-box;
 }
 body {
@@ -329,17 +329,17 @@ a:link, a:visited, a:hover, a:active {
     padding: 10% 0;
 }
 h1 {
-    font-size: 3.8em;
+    font-size: clamp(2.8em, 5vw, 8em);
     font-weight: 200;
     margin: 5px 0;
 }
 h2 {
-    font-size: 3.8em;
+    font-size: clamp(2.8em, 5vw, 8em);
     font-weight: 600;
     margin: 5px 0;
 }
 h3 {
-    font-size: 2.4em;
+    font-size: clamp(2em, 3vw, 5em);
     font-weight: 200;
     margin: 3% 0;
 }
@@ -412,7 +412,7 @@ button::before, .cta-button::before {
     display: flex;
     align-items: center;
     gap: 60px;
-    padding: 110px max(7%, calc((100% - 1400px) / 2));
+    padding: 110px min(20%, max(7%, calc((100% - 1400px) / 2)));
     position: relative;
     overflow: hidden;
     background-image: url('images/section.svg');
@@ -960,7 +960,7 @@ footer {
 
     .initiative-card {
         gap: 40px;
-        padding: 80px max(7%, calc((100% - 1400px) / 2));
+        padding: 80px min(20%, max(7%, calc((100% - 1400px) / 2)));
         background-size: 4000px auto;
     }
     .initiative-card .card-text h3 {
@@ -1075,7 +1075,7 @@ footer {
     .initiative-card {
         flex-direction: column;
         gap: 32px;
-        padding: 60px max(7%, calc((100% - 1400px) / 2));
+        padding: 60px min(20%, max(7%, calc((100% - 1400px) / 2)));
         background-size: 3000px auto;
         background-position: center top;
     }
