@@ -65,11 +65,9 @@
 [data-theme="dark"] .footer-logo .logo-dark { display: block; }
 .logo-dark,
 .footer-logo .logo-dark { display: none; }
-[data-theme="dark"] .initiative-card {
-    background-image: url('images/section-darkmode.svg');
-}
+[data-theme="dark"] .initiative-card,
 [data-theme="dark"] .initiative-card.reversed {
-    background-image: url('images/section-inverted-darkmode.svg');
+    background-image: none;
 }
 video.video-dark, img.img-dark { display: none !important; }
 [data-theme="dark"] video.video-light, [data-theme="dark"] img.img-light { display: none !important; }
@@ -416,16 +414,49 @@ button::before, .cta-button::before {
     padding: 110px min(20%, max(9%, calc((100% - 1400px) / 2)));
     position: relative;
     overflow: hidden;
-    background-image: url('images/section.svg');
-    background-repeat: no-repeat;
-    background-position: min(20%, max(9%, calc((100% - 1400px) / 2))) 40px;
-    background-size: calc(100% - 2 * min(20%, max(9%, calc((100% - 1400px) / 2)))) auto;
+    background-image: none;
+}
+/* Rainbow line pseudo-element — always follows content area */
+.initiative-card::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: min(20%, max(9%, calc((100% - 1400px) / 2)));
+    right: min(20%, max(9%, calc((100% - 1400px) / 2)));
+    height: 1px;
+    background: linear-gradient(to right, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
+    z-index: 2;
+}
+/* Diamond marker */
+.initiative-card:not(.reversed)::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: min(20%, max(9%, calc((100% - 1400px) / 2)));
+    width: 12px;
+    height: 12px;
+    background: #293247;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    z-index: 3;
+}
+.initiative-card.reversed::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: min(20%, max(9%, calc((100% - 1400px) / 2)));
+    width: 12px;
+    height: 12px;
+    background: #293247;
+    transform: translateX(50%) translateY(-50%) rotate(45deg);
+    z-index: 3;
+}
+[data-theme="dark"] .initiative-card::after {
+    background: #fff;
 }
 .initiative-card > * { max-width: none; }
 .initiative-card.reversed {
     flex-direction: row-reverse;
-    background-image: url('images/section-inverted.svg');
-    background-position: right min(20%, max(9%, calc((100% - 1400px) / 2))) top 40px;
+    background-image: none;
     margin-top: -99px;
 }
 .initiative-card .card-text {
@@ -963,7 +994,6 @@ footer {
     .initiative-card {
         gap: 40px;
         padding: 80px min(20%, max(9%, calc((100% - 1400px) / 2)));
-        background-size: calc(100% - 2 * min(20%, max(9%, calc((100% - 1400px) / 2)))) auto;
     }
     .initiative-card .card-text h3 {
         font-size: 1.8em;
@@ -1078,13 +1108,10 @@ footer {
         flex-direction: column;
         gap: 32px;
         padding: 60px min(20%, max(9%, calc((100% - 1400px) / 2)));
-        background-size: calc(100% - 2 * min(20%, max(9%, calc((100% - 1400px) / 2)))) auto;
-        background-position: min(20%, max(9%, calc((100% - 1400px) / 2))) 40px;
     }
     .initiative-card.reversed {
         flex-direction: column;
         margin-top: -40px;
-        background-position: right min(20%, max(9%, calc((100% - 1400px) / 2))) top 40px;
     }
     .initiative-card .card-text {
         text-align: center;
