@@ -96,14 +96,13 @@ video.video-dark, img.img-dark { display: none !important; }
 }
 html {
     scroll-behavior: smooth;
-    /* Scale everything proportionally on large screens.
-       Below ~1330px stays at 16px; grows to 26px at ~2600px+ */
-    font-size: clamp(16px, 1vw, 26px);
+    /* Scale root font proportionally: 16px on laptops, up to 32px on 4K */
+    font-size: clamp(16px, 1.2vw, 32px);
 }
 /* Container */
 .container {
     width: 100%;
-    padding: 0 10%;
+    padding: 0 6%;
     box-sizing: border-box;
 }
 /* Hero container stays full-bleed */
@@ -111,6 +110,7 @@ html {
     max-width: none;
     margin-left: 0;
     margin-right: 0;
+    padding: 0 8%;
 }
 body {
     overflow-x: hidden;
@@ -340,12 +340,12 @@ a:link, a:visited, a:hover, a:active {
     padding: 10% 0;
 }
 h1 {
-    font-size: 4em;
+    font-size: 3em;
     font-weight: 200;
     margin: 5px 0;
 }
 h2 {
-    font-size: 4em;
+    font-size: 3em;
     font-weight: 600;
     margin: 5px 0;
 }
@@ -959,12 +959,6 @@ footer {
 /* ── Responsive: Tablet (≤1024px) ── */
 /* ── Responsive: Large screens (≥1600px) ── */
 @media (min-width: 1600px) {
-    .container {
-        padding: 0 6%;
-    }
-    .hero-section > .container {
-        padding: 0 10%;
-    }
     .hero-section .content {
         width: 55%;
     }
@@ -978,9 +972,9 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    h1 { font-size: 3em; }
-    h2 { font-size: 3em; }
-    h3 { font-size: 2.4em; }
+    h1 { font-size: 2.4em; }
+    h2 { font-size: 2.4em; }
+    h3 { font-size: 2em; }
     h5 { font-size: 1.3em; }
 
     .hero-section .content {
