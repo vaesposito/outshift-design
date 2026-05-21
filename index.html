@@ -948,14 +948,16 @@ footer {
 /* ── Responsive: Tablet (≤1024px) ── */
 /* ── Large screens (≥2560px) ── */
 @media (min-width: 2560px) {
+    html { font-size: 20px; }
     .hero-section .content { width: 80%; }
-    h4 { font-size: 1.5em; }
-    h5 { font-size: clamp(1.4em, 1.5vw, 2.8em); }
     .cta-button { font-size: 1.1em; padding: 14px 32px; }
     .timeline {
         width: 65%;
         margin: 0 auto;
     }
+}
+@media (min-width: 3200px) {
+    html { font-size: 24px; }
 }
 
 @media (max-width: 1024px) {
