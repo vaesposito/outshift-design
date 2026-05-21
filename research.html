@@ -750,10 +750,11 @@ footer {
 
 /* ── Large screens (≥2560px) ── */
 @media (min-width: 2560px) {
-    html { font-size: 20px; }
-}
-@media (min-width: 3200px) {
-    html { font-size: 24px; }
+    html { font-size: 26px; }
+    h1, h2 { font-size: clamp(3em, 5vw, 14em); }
+    h3 { font-size: clamp(2.5em, 3.5vw, 8em); }
+    h5 { font-size: clamp(1.6em, 2vw, 4em); }
+    p, li { font-size: clamp(1em, 1.1vw, 1.4em); }
 }
         </style>
 </head>
