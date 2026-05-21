@@ -65,9 +65,11 @@
 [data-theme="dark"] .footer-logo .logo-dark { display: block; }
 .logo-dark,
 .footer-logo .logo-dark { display: none; }
-[data-theme="dark"] .initiative-card,
+[data-theme="dark"] .initiative-card {
+    background-image: url('images/section-darkmode.svg');
+}
 [data-theme="dark"] .initiative-card.reversed {
-    background-image: none;
+    background-image: url('images/section-inverted-darkmode.svg');
 }
 video.video-dark, img.img-dark { display: none !important; }
 [data-theme="dark"] video.video-light, [data-theme="dark"] img.img-light { display: none !important; }
@@ -414,49 +416,16 @@ button::before, .cta-button::before {
     padding: 110px min(20%, max(9%, calc((100% - 1400px) / 2)));
     position: relative;
     overflow: hidden;
-    background-image: none;
-}
-/* Rainbow line pseudo-element — always follows content area */
-.initiative-card::before {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: min(20%, max(9%, calc((100% - 1400px) / 2)));
-    right: min(20%, max(9%, calc((100% - 1400px) / 2)));
-    height: 1px;
-    background: linear-gradient(to right, #9345E1, #187ADC, #00BCEB, #74BF4B, #F5B35C, #F09256, #EB7251);
-    z-index: 2;
-}
-/* Diamond marker */
-.initiative-card:not(.reversed)::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: min(20%, max(9%, calc((100% - 1400px) / 2)));
-    width: 12px;
-    height: 12px;
-    background: #293247;
-    transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    z-index: 3;
-}
-.initiative-card.reversed::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    right: min(20%, max(9%, calc((100% - 1400px) / 2)));
-    width: 12px;
-    height: 12px;
-    background: #293247;
-    transform: translateX(50%) translateY(-50%) rotate(45deg);
-    z-index: 3;
-}
-[data-theme="dark"] .initiative-card::after {
-    background: #fff;
+    background-image: url('images/section.svg');
+    background-repeat: no-repeat;
+    background-position: left 40px;
+    background-size: 5431px 3059px;
 }
 .initiative-card > * { max-width: none; }
 .initiative-card.reversed {
     flex-direction: row-reverse;
-    background-image: none;
+    background-image: url('images/section-inverted.svg');
+    background-position: right 40px;
     margin-top: -99px;
 }
 .initiative-card .card-text {
