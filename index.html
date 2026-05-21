@@ -96,6 +96,9 @@ video.video-dark, img.img-dark { display: none !important; }
 }
 html {
     scroll-behavior: smooth;
+    /* Scale everything proportionally on large screens.
+       Below ~1330px stays at 16px; grows to 26px at ~2600px+ */
+    font-size: clamp(16px, 1vw, 26px);
 }
 /* Container */
 .container {
@@ -337,17 +340,17 @@ a:link, a:visited, a:hover, a:active {
     padding: 10% 0;
 }
 h1 {
-    font-size: clamp(4em, 5vw, 14em);
+    font-size: 4em;
     font-weight: 200;
     margin: 5px 0;
 }
 h2 {
-    font-size: clamp(4em, 5vw, 14em);
+    font-size: 4em;
     font-weight: 600;
     margin: 5px 0;
 }
 h3 {
-    font-size: clamp(3em, 3.75vw, 10em);
+    font-size: 3em;
     font-weight: 200;
     margin: 3% 0;
 }
@@ -470,7 +473,7 @@ button::before, .cta-button::before {
     z-index: 2;
 }
 .initiative-card .card-text h3 {
-    font-size: clamp(3em, 3.75vw, 10em);
+    font-size: 3em;
     font-weight: 200;
     margin: 0 0 12px;
     color: var(--color-text);
@@ -597,7 +600,7 @@ button::before, .cta-button::before {
 }
 .innovation-text h2 {
     color: var(--color-text);
-    font-size: clamp(2.4em, 3vw, 10em);
+    font-size: 2.4em;
     font-weight: 600;
     margin: 0 0 16px;
 }
@@ -658,7 +661,7 @@ button::before, .cta-button::before {
 }
 .initiatives-section .section-header h3 {
     color: var(--color-text);
-    font-size: clamp(3em, 3.75vw, 10em);
+    font-size: 3em;
     font-weight: 200;
     margin: 8px 0 12px;
 }
@@ -716,7 +719,7 @@ button::before, .cta-button::before {
     margin-bottom: 48px;
 }
 .blog-section .section-header h3 {
-    font-size: clamp(3em, 3.75vw, 10em);
+    font-size: 3em;
     font-weight: 200;
     margin: 8px 0 12px;
 }
@@ -956,6 +959,12 @@ footer {
 /* ── Responsive: Tablet (≤1024px) ── */
 /* ── Responsive: Large screens (≥1600px) ── */
 @media (min-width: 1600px) {
+    .container {
+        padding: 0 6%;
+    }
+    .hero-section > .container {
+        padding: 0 10%;
+    }
     .hero-section .content {
         width: 55%;
     }
