@@ -324,9 +324,10 @@ a:link, a:visited, a:hover, a:active {
 .hero-section .content {
     position: relative;
     z-index: 2;
-    width: 60%;
-    margin: 0 5px;
-    padding: 10% 0;
+    width: 75%;
+    max-width: 1100px;
+    margin: 0;
+    padding: 60px 0;
 }
 h1 {
     font-size: clamp(2.8em, 5vw, 8em);
@@ -351,7 +352,7 @@ h4 {
     color: var(--color-text-muted);
 }
 h5 {
-    font-size: 1.5em;
+    font-size: clamp(1.2em, 1.5vw, 1.8em);
     font-weight: 200;
     margin: 4% 0;
     line-height: 1.6em;
@@ -955,7 +956,8 @@ footer {
     h5 { font-size: 1.3em; }
 
     .hero-section .content {
-        width: 75%;
+        width: 90%;
+        max-width: none;
     }
 
     .initiative-card {
