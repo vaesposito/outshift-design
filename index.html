@@ -418,14 +418,14 @@ button::before, .cta-button::before {
     overflow: hidden;
     background-image: url('images/section.svg');
     background-repeat: no-repeat;
-    background-position: left 40px;
-    background-size: 5431px 3059px;
+    background-position: min(20%, max(9%, calc((100% - 1400px) / 2))) 40px;
+    background-size: calc(100% - 2 * min(20%, max(9%, calc((100% - 1400px) / 2)))) auto;
 }
 .initiative-card > * { max-width: none; }
 .initiative-card.reversed {
     flex-direction: row-reverse;
     background-image: url('images/section-inverted.svg');
-    background-position: right 40px;
+    background-position: right min(20%, max(9%, calc((100% - 1400px) / 2))) top 40px;
     margin-top: -99px;
 }
 .initiative-card .card-text {
@@ -963,7 +963,7 @@ footer {
     .initiative-card {
         gap: 40px;
         padding: 80px min(20%, max(9%, calc((100% - 1400px) / 2)));
-        background-size: 4000px auto;
+        background-size: calc(100% - 2 * min(20%, max(9%, calc((100% - 1400px) / 2)))) auto;
     }
     .initiative-card .card-text h3 {
         font-size: 1.8em;
@@ -1078,13 +1078,13 @@ footer {
         flex-direction: column;
         gap: 32px;
         padding: 60px min(20%, max(9%, calc((100% - 1400px) / 2)));
-        background-size: 3000px auto;
-        background-position: center top;
+        background-size: calc(100% - 2 * min(20%, max(9%, calc((100% - 1400px) / 2)))) auto;
+        background-position: min(20%, max(9%, calc((100% - 1400px) / 2))) 40px;
     }
     .initiative-card.reversed {
         flex-direction: column;
         margin-top: -40px;
-        background-position: center top;
+        background-position: right min(20%, max(9%, calc((100% - 1400px) / 2))) top 40px;
     }
     .initiative-card .card-text {
         text-align: center;
