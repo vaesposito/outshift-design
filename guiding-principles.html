@@ -271,11 +271,12 @@ button:hover, .cta-button:hover { opacity: 0.85; }
 .blobs-container {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: min(20%, max(5%, calc((100vw - 1400px) / 2)));
+    right: min(20%, max(5%, calc((100vw - 1400px) / 2)));
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    overflow: hidden;
     overflow: hidden;
 }
 .blob {

@@ -144,11 +144,12 @@ transform: translate(50%, -30%);
 .blobs-container {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: min(20%, max(5%, calc((100vw - 1400px) / 2)));
+    right: min(20%, max(5%, calc((100vw - 1400px) / 2)));
     height: 100vh;
     z-index: 0;
     pointer-events: none;
+    overflow: hidden;
 }
 .content {
     position: relative;
