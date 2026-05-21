@@ -93,7 +93,7 @@ video.video-dark, img.img-dark { display: none !important; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: clamp(13px, 0.5vw + 9px, 40px); }
+html { scroll-behavior: smooth; }
 .container {
     width: 100%;
     padding: 0 10%;

@@ -11,7 +11,7 @@
 (function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
 </script>
 <style type="text/css">
-html { scroll-behavior: smooth; font-size: clamp(13px, 0.5vw + 9px, 40px); }
+html { scroll-behavior: smooth; }
 
 :root {
     font-family: Inter, sans-serif;
@@ -750,7 +750,6 @@ footer {
     width: 28px;
     height: 28px;
     display: block;
-}
 }
 
 </style>
