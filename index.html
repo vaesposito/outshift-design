@@ -97,6 +97,7 @@ video.video-dark, img.img-dark { display: none !important; }
 html {
     scroll-behavior: smooth;
 }
+/* Container: max-width only applies to inner sections, not full-bleed hero */
 .container {
     width: 100%;
     max-width: 1600px;
@@ -104,6 +105,12 @@ html {
     margin-right: auto;
     padding: 0 10%;
     box-sizing: border-box;
+}
+/* Hero container stays full-bleed so content anchors to the left edge */
+.hero-section > .container {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
 }
 body {
     overflow-x: hidden;
@@ -332,17 +339,17 @@ a:link, a:visited, a:hover, a:active {
     padding: 10% 0;
 }
 h1 {
-    font-size: clamp(2.8em, 4vw, 5.5em);
+    font-size: clamp(4em, 5vw, 7em);
     font-weight: 200;
     margin: 5px 0;
 }
 h2 {
-    font-size: clamp(2.8em, 4vw, 5.5em);
+    font-size: clamp(4em, 5vw, 7em);
     font-weight: 600;
     margin: 5px 0;
 }
 h3 {
-    font-size: clamp(2.2em, 3vw, 4em);
+    font-size: clamp(3em, 3.75vw, 5em);
     font-weight: 200;
     margin: 3% 0;
 }
@@ -465,7 +472,7 @@ button::before, .cta-button::before {
     z-index: 2;
 }
 .initiative-card .card-text h3 {
-    font-size: clamp(2.2em, 2.5vw, 3.5em);
+    font-size: clamp(3em, 3.75vw, 5em);
     font-weight: 200;
     margin: 0 0 12px;
     color: var(--color-text);
@@ -592,7 +599,7 @@ button::before, .cta-button::before {
 }
 .innovation-text h2 {
     color: var(--color-text);
-    font-size: clamp(1.8em, 2vw, 3em);
+    font-size: clamp(2.4em, 3vw, 4em);
     font-weight: 600;
     margin: 0 0 16px;
 }
@@ -653,7 +660,7 @@ button::before, .cta-button::before {
 }
 .initiatives-section .section-header h3 {
     color: var(--color-text);
-    font-size: clamp(2.2em, 2.5vw, 3.5em);
+    font-size: clamp(3em, 3.75vw, 5em);
     font-weight: 200;
     margin: 8px 0 12px;
 }
@@ -711,7 +718,7 @@ button::before, .cta-button::before {
     margin-bottom: 48px;
 }
 .blog-section .section-header h3 {
-    font-size: clamp(2.2em, 2.5vw, 3.5em);
+    font-size: clamp(3em, 3.75vw, 5em);
     font-weight: 200;
     margin: 8px 0 12px;
 }
@@ -964,9 +971,9 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    h1 { font-size: clamp(2.2em, 5vw, 3em); }
-    h2 { font-size: clamp(2.2em, 5vw, 3em); }
-    h3 { font-size: clamp(1.8em, 4vw, 2.4em); }
+    h1 { font-size: 3em; }
+    h2 { font-size: 3em; }
+    h3 { font-size: 2.4em; }
     h5 { font-size: 1.3em; }
 
     .hero-section .content {
@@ -979,7 +986,7 @@ footer {
         background-size: 4000px auto;
     }
     .initiative-card .card-text h3 {
-        font-size: clamp(1.8em, 4vw, 2.4em);
+        font-size: 2.4em;
     }
 
     .initiatives-section .section-header h3 {
