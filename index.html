@@ -325,17 +325,16 @@ a:link, a:visited, a:hover, a:active {
     position: relative;
     z-index: 2;
     width: 75%;
-    max-width: 1100px;
     margin: 0;
     padding: 60px 0;
 }
 h1 {
-    font-size: clamp(2.2em, 3.5vw, 6em);
+    font-size: clamp(2.2em, 3.5vw, 10em);
     font-weight: 200;
     margin: 5px 0;
 }
 h2 {
-    font-size: clamp(2.2em, 3.5vw, 6em);
+    font-size: clamp(2.2em, 3.5vw, 10em);
     font-weight: 600;
     margin: 5px 0;
 }
@@ -352,7 +351,7 @@ h4 {
     color: var(--color-text-muted);
 }
 h5 {
-    font-size: clamp(1.2em, 1.5vw, 1.8em);
+    font-size: clamp(1.2em, 1.5vw, 2.8em);
     font-weight: 200;
     margin: 4% 0;
     line-height: 1.6em;
@@ -949,6 +948,14 @@ footer {
 }
 
 /* ── Responsive: Tablet (≤1024px) ── */
+/* ── Large screens (≥2560px) ── */
+@media (min-width: 2560px) {
+    .hero-section .content { width: 80%; }
+    h4 { font-size: 1.5em; }
+    h5 { font-size: clamp(1.4em, 1.5vw, 2.8em); }
+    .cta-button { font-size: 1.1em; padding: 14px 32px; }
+}
+
 @media (max-width: 1024px) {
     h1 { font-size: 2.2em; }
     h2 { font-size: 2.2em; }
