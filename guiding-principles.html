@@ -11,6 +11,8 @@
 (function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
 </script>
 <style type="text/css">
+html { scroll-behavior: smooth; font-size: clamp(14px, 1.11vw, 24px); }
+
 :root {
     font-family: Inter, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1;    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
@@ -68,7 +70,7 @@ img.img-dark { display: none !important; }
 [data-theme="dark"] img.img-dark { display: block !important; }
 
 * { box-sizing: border-box; }
-.container { width: 100%; padding: 0 10%; max-width: 1440px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+.container { width: 100%; padding: 0 10%; box-sizing: border-box; }
 body {
     overflow-x: hidden;
     margin: 0;

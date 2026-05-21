@@ -96,13 +96,11 @@ video.video-dark, img.img-dark { display: none !important; }
 }
 html {
     scroll-behavior: smooth;
+    font-size: clamp(14px, 1.11vw, 24px);
 }
 .container {
     width: 100%;
     padding: 0 10%;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
     box-sizing: border-box;
 }
 body {
@@ -1209,34 +1207,6 @@ footer {
     }
 }
 
-/* === Large screens (1600px+) — scale up content so it doesn't get lost === */
-@media (min-width: 1600px) {
-    .container {
-        padding: 0 6%;
-    }
-    .hero-section .content {
-        width: 55%;
-    }
-    h1 { font-size: 5em; }
-    h2 { font-size: 5em; }
-    h3 { font-size: 3.6em; }
-    .hero-section h5,
-    .hero-section p {
-        font-size: 1.2em;
-    }
-    .initiative-card {
-        padding: 130px max(7%, calc(50% - 680px));
-    }
-    .initiative-card .card-text h3 {
-        font-size: 3.6em;
-    }
-    .blog-section .section-header h3 {
-        font-size: 3.6em;
-    }
-}
-@media (min-width: 2200px) {
-    h1 { font-size: 6em; }
-    h2 { font-size: 6em; }
     h3 { font-size: 4.2em; }
     .hero-section h5,
     .hero-section p {
