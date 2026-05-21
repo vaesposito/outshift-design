@@ -255,7 +255,7 @@ a:link, a:visited, a:hover, a:active {
     margin-bottom: 32px;
 }
 .page-hero-title h1 {
-    font-size: 2em;
+    font-size: clamp(2em, 3.5vw, 10em);
     font-weight: 600;
     margin: 0;
     line-height: 1.15;
@@ -314,7 +314,7 @@ a:link, a:visited, a:hover, a:active {
     text-align: center;
 }
 .framework-section-header h2 {
-    font-size: 2em;
+    font-size: clamp(2em, 3.5vw, 10em);
     font-weight: 200;
     margin: 0 0 16px;
 }
@@ -613,10 +613,10 @@ footer {
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
-    .page-hero-title h1 { font-size: 2em; }
+    .page-hero-title h1 { font-size: clamp(2em, 3.5vw, 10em); }
     .page-hero-image img { height: 340px; }
-    .framework-section-header h2 { font-size: 2.2em; }
-    .sdk-text h2 { font-size: 2em; }
+    .framework-section-header h2 { font-size: clamp(2em, 3.5vw, 10em); }
+    .sdk-text h2 { font-size: clamp(2em, 3.5vw, 10em); }
     .sdk-inner { gap: 40px; }
     .responsible-step-image { width: 140px; }
     .framework-recap { grid-template-columns: repeat(2, 1fr); }
@@ -689,7 +689,7 @@ footer {
 
     .page-hero-inner { flex-direction: column; gap: 32px; }
     .page-hero-text { padding-right: 0; }
-    .page-hero-title h1 { font-size: 2em; }
+    .page-hero-title h1 { font-size: clamp(2em, 3.5vw, 10em); }
     .page-hero-image img { height: 280px; max-width: 100%; }
     .framework-section-header h2 { font-size: 1.8em; }
     .responsible-step { flex-direction: column; gap: 24px; }

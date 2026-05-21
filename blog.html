@@ -162,7 +162,7 @@ nav > ul > li { position: relative; }
     padding: 24px 0 64px;
 }
 .blog-hero h1 {
-    font-size: 2em;
+    font-size: clamp(2em, 3.5vw, 10em);
     font-weight: 600;
     margin: 0 0 16px;
 }
@@ -504,7 +504,7 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     .nav-dropdown-sub li a { padding: 4px 0 4px 12px; font-size: 0.85em; }
     .nav-dropdown-sub li a:hover { background: none; }
 
-    .blog-hero h1 { font-size: 2em; }
+    .blog-hero h1 { font-size: clamp(2em, 3.5vw, 10em); }
     .blog-hero p { font-size: 0.95em; }
     .blog-grid { grid-template-columns: 1fr; }
     .footer-top { flex-direction: column; gap: 32px; align-items: flex-start; }
