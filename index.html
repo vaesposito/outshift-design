@@ -96,21 +96,14 @@ video.video-dark, img.img-dark { display: none !important; }
 }
 html {
     scroll-behavior: smooth;
-    /* Scale root font proportionally: 16px on laptops, up to 32px on 4K */
-    font-size: clamp(16px, 1.2vw, 32px);
 }
-/* Container */
 .container {
     width: 100%;
-    padding: 0 6%;
+    padding: 0 10%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
-}
-/* Hero container stays full-bleed */
-.hero-section > .container {
-    max-width: none;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0 8%;
 }
 body {
     overflow-x: hidden;
@@ -335,17 +328,16 @@ a:link, a:visited, a:hover, a:active {
     position: relative;
     z-index: 2;
     width: 60%;
-    max-width: 1400px;
     margin: 0 5px;
     padding: 10% 0;
 }
 h1 {
-    font-size: 3em;
+    font-size: 4em;
     font-weight: 200;
     margin: 5px 0;
 }
 h2 {
-    font-size: 3em;
+    font-size: 4em;
     font-weight: 600;
     margin: 5px 0;
 }
@@ -431,6 +423,7 @@ button::before, .cta-button::before {
     background-position: left 40px;
     background-size: 5431px 3059px;
 }
+.initiative-card > * { max-width: 720px; }
 .initiative-card.reversed {
     flex-direction: row-reverse;
     background-image: url('images/section-inverted.svg');
@@ -957,24 +950,10 @@ footer {
 }
 
 /* ── Responsive: Tablet (≤1024px) ── */
-/* ── Responsive: Large screens (≥1600px) ── */
-@media (min-width: 1600px) {
-    .hero-section .content {
-        width: 55%;
-    }
-    h4 { font-size: 1.4em; }
-    h5 { font-size: 1.8em; }
-    .initiative-card .card-text p,
-    .innovation-text p,
-    .initiatives-section .section-header p,
-    .blog-section .section-header p { font-size: 1.2em; }
-    .blog-card h4 { font-size: 1.3em; }
-}
-
 @media (max-width: 1024px) {
-    h1 { font-size: 2.4em; }
-    h2 { font-size: 2.4em; }
-    h3 { font-size: 2em; }
+    h1 { font-size: 3em; }
+    h2 { font-size: 3em; }
+    h3 { font-size: 2.4em; }
     h5 { font-size: 1.3em; }
 
     .hero-section .content {
@@ -991,14 +970,14 @@ footer {
     }
 
     .initiatives-section .section-header h3 {
-        font-size: clamp(1.8em, 4vw, 2.4em);
+        font-size: 2.4em;
     }
-    .innovation-text h2 { font-size: clamp(1.6em, 3vw, 2em); }
+    .innovation-text h2 { font-size: 2em; }
     .innovation-inner { gap: 40px; }
     .innovation-image img { height: 320px; }
 
     .blog-section .section-header h3 {
-        font-size: clamp(1.8em, 4vw, 2.4em);
+        font-size: 2.4em;
     }
     .blog-card {
         padding: 28px;
@@ -1227,6 +1206,44 @@ footer {
     }
     .footer-logo img {
         height: 48px;
+    }
+}
+
+/* === Large screens (1600px+) — scale up content so it doesn't get lost === */
+@media (min-width: 1600px) {
+    .container {
+        padding: 0 6%;
+    }
+    .hero-section .content {
+        width: 55%;
+    }
+    h1 { font-size: 5em; }
+    h2 { font-size: 5em; }
+    h3 { font-size: 3.6em; }
+    .hero-section h5,
+    .hero-section p {
+        font-size: 1.2em;
+    }
+    .initiative-card {
+        padding: 130px max(7%, calc(50% - 680px));
+    }
+    .initiative-card .card-text h3 {
+        font-size: 3.6em;
+    }
+    .blog-section .section-header h3 {
+        font-size: 3.6em;
+    }
+}
+@media (min-width: 2200px) {
+    h1 { font-size: 6em; }
+    h2 { font-size: 6em; }
+    h3 { font-size: 4.2em; }
+    .hero-section h5,
+    .hero-section p {
+        font-size: 1.35em;
+    }
+    .initiative-card .card-text h3 {
+        font-size: 4.2em;
     }
 }
 

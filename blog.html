@@ -57,7 +57,7 @@
 .footer-logo .logo-dark { display: none; }
 
 * { box-sizing: border-box; }
-.container { width: 100%; padding: 0 10%; }
+.container { width: 100%; padding: 0 10%; max-width: 1440px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
 body { overflow-x: hidden; margin: 0; padding: 0; width: 100%; background: var(--color-bg); color: var(--color-text); }
 a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color-text); }
 
@@ -557,6 +557,20 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
 }
 }
 
+
+/* === Large screens (1600px+) — prevent content from getting lost === */
+@media (min-width: 1600px) {
+    .container { padding: 0 6%; }
+    h1 { font-size: 5em; }
+    h2 { font-size: 4.5em; }
+    h3 { font-size: 3.6em; }
+    p, li { font-size: 1.08em; }
+}
+@media (min-width: 2200px) {
+    h1 { font-size: 6em; }
+    h2 { font-size: 5.2em; }
+    h3 { font-size: 4.2em; }
+}
 </style>
 </head>
 
