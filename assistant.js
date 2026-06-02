@@ -241,6 +241,8 @@
 
         { keys: ['foundational principles','research pipeline','design pipeline','research to design'],
           answer: '<strong>Foundational Principles</strong> documents the research-to-design pipeline used by Outshift: Framing → Mapping → Synthesis → Heuristics → Prototyping → Documentation. It translates high-level insights into practical patterns for user control, clarity, and human-AI collaboration.' + siteLink('foundational-principles.html', 'Open Foundational Principles') },
+        { keys: ['guiding principles','design principles','core principles'],
+          answer: '<strong>Guiding Principles</strong> are the core design values behind Outshift\'s approach to human-agent interaction: transparency, control, collaboration, recovery, and traceability. They inform every pattern and decision in the HAX framework.' + siteLink('guiding-principles.html', 'Open Guiding Principles') },
 
         { keys: ['cognitive frameworks','theoretical foundation','cognitive science','mental model','dual process'],
           answer: '<strong>Cognitive Frameworks</strong> explores the theoretical foundations of human-AI interaction — including mental models, cognitive load, dual-process theory, and how these inform design decisions for agentic systems.' + siteLink('cognitive-frameworks.html', 'Open Cognitive Frameworks') },
