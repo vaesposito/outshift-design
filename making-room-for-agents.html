@@ -716,15 +716,7 @@ footer {
   <span>Originally published on <a href="https://marcscibelli.com/writing/making-room-for-agents-in-expert-tools/" target="_blank" rel="noopener noreferrer" style="color:var(--color-accent);text-decoration:none;">marcscibelli.com</a></span>
 </footer>
 
-<script>
-document.querySelector('.theme-toggle').addEventListener('click', function() {
-    var html = document.documentElement;
-    var current = html.getAttribute('data-theme');
-    var next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-});
-</script>
+<script src="assistant.js"></script>
 
 <!-- Lightbox modal -->
 <div id="img-modal" role="dialog" aria-modal="true" aria-label="Image preview">
