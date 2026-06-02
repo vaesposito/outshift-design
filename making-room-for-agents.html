@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<title>Making Room for Agents in Expert Tools — Outshift Design</title>
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script>
+(function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style type="text/css">
+html { scroll-behavior: smooth; }
+
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+    --color-bg: #fff;
+    --color-text: #293247;
+    --color-text-muted: #67707F;
+    --color-text-subtle: #59616B;
+    --color-border: rgba(41, 50, 71, 0.08);
+    --color-border-medium: rgba(41, 50, 71, 0.15);
+    --color-surface: rgba(255, 255, 255, 0.97);
+    --color-hover: rgba(41, 50, 71, 0.04);
+    --color-accent: #00BCEB;
+    --color-accent-hover: #187ADC;
+    --color-hamburger: #293247;
+    --color-shadow: rgba(41, 50, 71, 0.08);
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; color: var(--color-text); }
+}
+[data-theme="dark"] {
+    --color-bg: #0f1117;
+    --color-text: #e0e4ec;
+    --color-text-muted: #9ca3b0;
+    --color-text-subtle: #8a919c;
+    --color-border: rgba(255,255,255,0.08);
+    --color-border-medium: rgba(255,255,255,0.15);
+    --color-surface: rgba(15,17,23,0.97);
+    --color-hover: rgba(255,255,255,0.06);
+    --color-accent: #3fc6ee;
+    --color-accent-hover: #00BCEB;
+    --color-hamburger: #e0e4ec;
+    --color-shadow: rgba(0,0,0,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
+
+/* ── Nav ── */
+header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+}
+header .container { display: flex; align-items: center; justify-content: space-between; padding: 16px min(10%, max(10%, calc((100% - 1400px) / 2))); }
+.logo { display: flex; align-items: center; text-decoration: none; color: var(--color-text); }
+.logo img { height: 28px; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 24px; align-items: center; }
+nav ul li a { text-decoration: none; color: var(--color-text-muted); font-size: 0.9em; transition: color 0.2s; }
+nav ul li a:hover { color: var(--color-text); }
+.theme-toggle {
+    background: none; border: none; cursor: pointer; padding: 6px;
+    color: var(--color-text-muted); border-radius: 8px; display: flex; align-items: center;
+    transition: color 0.2s, background 0.2s;
+}
+.theme-toggle:hover { color: var(--color-text); background: var(--color-hover); }
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+
+/* ── Container ── */
+.container {
+    width: 100%;
+    padding: 0 min(10%, max(10%, calc((100% - 1400px) / 2)));
+    box-sizing: border-box;
+}
+
+/* ── Article layout ── */
+.article-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px min(10%, max(5%, calc((100% - 760px) / 2)));
+}
+
+.breadcrumb {
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+    margin-bottom: 40px;
+}
+.breadcrumb a { color: var(--color-accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; color: var(--color-border-medium); }
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.article-tag {
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-accent);
+    background: rgba(0, 188, 235, 0.08);
+    border: 1px solid rgba(0, 188, 235, 0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+.article-date {
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+}
+.article-read-time {
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+}
+.article-date::before, .article-read-time::before { content: '·'; margin-right: 12px; color: var(--color-border-medium); }
+
+h1.article-title {
+    font-size: clamp(2em, 3.5vw, 3.2em);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 24px;
+    color: var(--color-text);
+}
+
+.article-hero {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 32px 0 48px;
+    aspect-ratio: 16 / 7;
+    background: linear-gradient(135deg, #e8f0fe 0%, #c5d8f6 50%, #dde8f7 100%);
+}
+.article-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.author-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 48px;
+}
+.author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-hover);
+}
+.author-name { font-weight: 600; font-size: 0.95em; }
+.author-title { font-size: 0.82em; color: var(--color-text-muted); }
+.author-link { margin-left: auto; font-size: 0.82em; color: var(--color-accent); text-decoration: none; }
+.author-link:hover { text-decoration: underline; }
+
+/* ── Article body ── */
+.article-body { font-size: 1.05em; line-height: 1.8; color: var(--color-text); }
+.article-body p { margin: 0 0 24px; }
+.article-body h2 {
+    font-size: clamp(1.4em, 2.2vw, 1.8em);
+    font-weight: 600;
+    margin: 52px 0 16px;
+    color: var(--color-text);
+    line-height: 1.25;
+}
+.article-body h3 {
+    font-size: clamp(1.1em, 1.6vw, 1.3em);
+    font-weight: 600;
+    margin: 36px 0 12px;
+    color: var(--color-text);
+}
+.article-body hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 48px 0;
+}
+.article-body ul, .article-body ol {
+    padding-left: 24px;
+    margin: 0 0 24px;
+}
+.article-body li { margin-bottom: 8px; }
+.article-body strong { font-weight: 600; }
+
+/* ── Summary card ── */
+.case-summary {
+    background: var(--color-hover);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.case-summary-item { font-size: 0.9em; }
+.case-summary-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--color-text-subtle);
+    margin-bottom: 4px;
+}
+.case-summary-value { color: var(--color-text); line-height: 1.5; }
+
+/* ── Callout / pull quote ── */
+.callout {
+    border-left: 3px solid var(--color-accent);
+    padding: 16px 20px;
+    margin: 32px 0;
+    background: rgba(0, 188, 235, 0.04);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+}
+
+/* ── Caption items ── */
+.caption-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.caption-list li {
+    padding: 12px 16px;
+    background: var(--color-hover);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    font-size: 0.9em;
+    margin: 0;
+}
+.caption-list li strong { color: var(--color-text); }
+
+/* ── Principles list ── */
+.principles-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.principles-list li {
+    padding: 16px 20px;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-hover);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95em;
+    margin: 0;
+}
+
+/* ── Back link ── */
+.back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-top: 64px;
+    padding: 10px 18px;
+    border: 1px solid var(--color-border-medium);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+.back-to-blog:hover { background: var(--color-hover); }
+
+/* ── Footer ── */
+footer {
+    border-top: 1px solid var(--color-border);
+    padding: 32px min(10%, max(10%, calc((100% - 1400px) / 2)));
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+    .case-summary { grid-template-columns: 1fr; }
+    h1.article-title { font-size: 1.8em; }
+}
+
+@media (min-width: 2560px) {
+    html { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" class="logo">
+      <img src="images/outshift-logo.svg" alt="Outshift Design">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html#initiatives">Initiatives</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><button class="theme-toggle" aria-label="Toggle theme">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg>
+        </button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="article-wrap">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="blog.html">Blog</a>
+      <span>/</span>
+      Making Room for Agents in Expert Tools
+    </div>
+
+    <div class="article-meta">
+      <span class="article-tag">Design</span>
+      <span class="article-tag">AI</span>
+      <span class="article-tag">Product Design</span>
+      <span class="article-date">May 3, 2026</span>
+      <span class="article-read-time">11 min read</span>
+    </div>
+
+    <h1 class="article-title">Making Room for Agents in Expert Tools</h1>
+
+    <div class="article-hero">
+      <img src="images/blog/making-room-agents/hero.png" alt="Making Room for Agents in Expert Tools">
+    </div>
+
+    <div class="author-row">
+      <img src="images/blog/making-room-agents/marc-headshot.jpg" alt="Marc Scibelli" class="author-avatar">
+      <div>
+        <div class="author-name">Marc Scibelli</div>
+        <div class="author-title">Intelligent Product Design</div>
+      </div>
+      <a href="https://marcscibelli.com" target="_blank" rel="noopener noreferrer" class="author-link">marcscibelli.com ↗</a>
+    </div>
+
+    <div class="article-body">
+
+      <p>One thing I keep noticing in expert tools is how quickly the conversation around AI collapses into interface patterns.</p>
+
+      <p>Add a side panel. Add a chat assistant. Add a prompt box.</p>
+
+      <p>But that is not really the design problem I see.</p>
+
+      <p>In expert products like security consoles, network operations platforms, and financial terminals, what users rely on is not just the visible interface. Over time they develop a feel for the product's deeper logic: where signal tends to show up, where proof lives, how interpretation starts to form, and which paths hold up when the pressure is on.</p>
+
+      <p>The tool becomes more than a set of screens — it becomes a learned structure for how the work gets done.</p>
+
+      <p>That is what makes agent integration hard for these expert tools.</p>
+
+      <p>Adding an agent that is supposed to interpret, prepare, suggest, remember, and sometimes act is not like adding one more feature. It means introducing a new participant into a working environment that already has an established logic, built over years through trust, repetition, and expert fluency.</p>
+
+      <p>I have seen a version of this dynamic before. When I led design at Infor, working across large enterprise platforms being moved from on-prem products to a broader cloud suite, I dealt with deeply ingrained expert users all the time. Their expertise was often one of the best sources of insight, but it could also become a major bottleneck to change. I used to call it "the tyranny of the super-user."</p>
+
+      <p>That tension matters again now with AI integrations. The people who know these systems best are often the first to push back on change, not because they are resistant by nature, but because they understand what even small disruptions can cost once a product has become part of how their work gets done.</p>
+
+      <p>In many products, the first answer to AI integration has been to slap a chat assistant to the side of the interface. That's probably safe, but not enough for an expert system.</p>
+
+      <p>We need to start tackling the hard work of how an agent should actually participate in the work. What should it be allowed to see? When should it step forward? How should it connect its output to evidence? How does it hand work back? And how do you make its role clear enough that the product still feels dependable to the people who know it best?</p>
+
+      <div class="callout">
+        Expert tools always have a grammar. Not a visual style, but a deeper structure of orientation, evidence, action, and trust. If agents are going to enter these environments well, they have to map onto that grammar.
+      </div>
+
+      <hr>
+
+      <h2>The grammar of expert tools</h2>
+
+      <p>Every expert product has a logic that only really becomes visible once someone has spent enough time inside it. There are stable anchors that help people stay oriented, places where they know evidence lives, and places where interpretation starts to form.</p>
+
+      <p>Expert users know the shortest paths for moving between the two. They understand the grammar for moments where speed matters, where verification matters, and where judgment cannot be abstracted away.</p>
+
+      <p>That's the grammar I'm talking about. It's the structure that lets expertise take hold inside the product.</p>
+
+      <p>Once you look at expert tools that way, the design problem shifts from adding an assistant that answers questions to creating an interface for a working relationship, with context and user judgment at the center.</p>
+
+      <p>So I explored that through four small design experiments across security, network operations, policy administration, and financial position management.</p>
+
+      <p>These aren't meant to be full-on product designs — they're just vibe-designed ways I am trying out to test a specific question:</p>
+
+      <div class="callout">
+        How can an agent participate in work with an expert without displacing the structure that already makes that expert's work possible?
+      </div>
+
+      <hr>
+
+      <h2>1. Security investigation: the agent as case-building partner</h2>
+
+      <div class="case-summary">
+        <div class="case-summary-item">
+          <div class="case-summary-label">Topic</div>
+          <div class="case-summary-value">Security investigation console</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">Agent role</div>
+          <div class="case-summary-value">A case-building partner that helps frame the incident, surface plausible hypotheses, connect them to evidence, and suggest next pivots.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What changes</div>
+          <div class="case-summary-value">The analyst gets faster support in building and revising a working theory.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What does not</div>
+          <div class="case-summary-value">Raw evidence stays visible, uncertainty stays open, and the analyst still owns the case.</div>
+        </div>
+      </div>
+
+      <p>The first concept sits inside a security investigation console, where the division between evidence and interpretation is central to the work. An analyst moves across alerts, timelines, entity relationships, raw logs, and case notes, slowly building a case from incomplete and often messy signals. The problem is rarely that the data is missing from the tool. The problem is stitching it into something coherent without losing track of why one clue matters more than another.</p>
+
+      <p>The agent enters as a case-building partner. It flags the alerts that appear most relevant, surfaces a few plausible hypotheses and links them back to specific evidence, highlights correlated clusters on the timeline, traces a likely attack path through the entity graph, and drafts a case narrative directly inside the analyst's notes as the picture sharpens.</p>
+
+      <p>What matters is that it does not replace the investigation process. It does not hide the logs behind a clean summary or turn a working theory into a finished answer. The analyst still needs to inspect the underlying material, challenge the framing, reject the wrong hypothesis, approve or discard the drafted note, and keep the case open long enough for uncertainty to stay visible.</p>
+
+      <ul class="caption-list">
+        <li><strong>Expanded alert context.</strong> The flagged alert opens inline to show the incident narrative, ranked hypotheses, and suggested next pivots. The analyst gets a working theory without leaving the alerts queue.</li>
+        <li><strong>Correlated cluster on timeline.</strong> The agent groups related events and highlights the cluster visually. This surfaces the burst pattern the analyst would otherwise need to spot manually.</li>
+        <li><strong>Attack path overlay.</strong> A suggested traversal path drawn over the entity graph in the analyst's own evidence view. Gives the analyst a starting thread to verify or reject.</li>
+        <li><strong>Hypothesis tags on log lines.</strong> Small markers linking individual log entries back to the hypotheses they support — keeping the connection between raw evidence and interpretation visible.</li>
+        <li><strong>Unresolved questions.</strong> Open gaps the agent cannot fill are surfaced explicitly, keeping uncertainty visible rather than burying it behind confident-sounding summaries.</li>
+        <li><strong>Draft case note.</strong> The agent prepares a draft summary directly inside the case notes panel. Approve, edit, or discard are all one action away.</li>
+      </ul>
+
+      <hr>
+
+      <h2>2. Network operations: the agent as triage guide</h2>
+
+      <div class="case-summary">
+        <div class="case-summary-item">
+          <div class="case-summary-label">Topic</div>
+          <div class="case-summary-value">Network operations console</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">Agent role</div>
+          <div class="case-summary-value">A triage partner that groups correlated signals into incident clusters, labels affected devices, and surfaces what to check next.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What changes</div>
+          <div class="case-summary-value">The operator gets a starting interpretation of which alerts are the same problem and how far the damage extends.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What does not</div>
+          <div class="case-summary-value">Individual alerts stay visible, the operator still consoles into devices, verifies groupings, and determines root cause.</div>
+        </div>
+      </div>
+
+      <p>The second concept sits inside a network operations console, where the core challenge is making sense of cascading failures fast enough to act on them. An operator watches a health table, an alert stream, a topology view, and device detail panels, trying to figure out which of the dozens of signals firing at once are actually the same problem.</p>
+
+      <p>A single upstream failure can produce forty downstream alerts, and separating the root from the noise takes pattern recognition under time pressure. The agent enters as a triage partner — grouping correlated signals into incident clusters, labeling the devices that belong to each group, overlaying those groupings on the topology, and flagging what to check next.</p>
+
+      <p>What matters is that it does not take over the triage process. It does not auto-resolve incidents or hide individual alerts behind a rolled-up summary. The operator still needs to console into the device, verify the grouping makes sense, and determine the actual root cause.</p>
+
+      <ul class="caption-list">
+        <li><strong>Expanded triage context.</strong> The flagged device opens inline to show why the agent grouped these signals, what the blast radius looks like, and what to check next.</li>
+        <li><strong>Correlation markers on alert stream.</strong> Each alert is tagged with its incident group — letting the operator see at a glance which alerts are part of the same cascading failure.</li>
+        <li><strong>Cluster overlay on topology.</strong> The agent draws the incident boundary directly onto the topology view, without requiring a switch to a separate map or summary.</li>
+        <li><strong>Unresolved questions and confidence.</strong> Open uncertainties and confidence levels sit inside the device detail panel, keeping the operator grounded in what still needs verification.</li>
+      </ul>
+
+      <hr>
+
+      <h2>3. Policy administration: the agent as consequence layer</h2>
+
+      <div class="case-summary">
+        <div class="case-summary-item">
+          <div class="case-summary-label">Topic</div>
+          <div class="case-summary-value">Policy administration tool</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">Agent role</div>
+          <div class="case-summary-value">A consequence analyst that explains rules in plain language, flags conflicts, traces exception spillover, and surfaces the governance burden of the current configuration.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What changes</div>
+          <div class="case-summary-value">The admin can see what a change will do downstream before committing to it.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What does not</div>
+          <div class="case-summary-value">The admin still owns every decision: resolving conflicts, scoping exceptions, and sending changes through formal approval.</div>
+        </div>
+      </div>
+
+      <p>The policy administration concept deals with defining rules, managing exceptions, and navigating the dependency chains that connect one policy to the rest of the system. The danger is not making a bad rule. The danger is making a reasonable rule that quietly breaks something three policies away.</p>
+
+      <p>The agent enters as a consequence analyst. It explains what a rule does in plain language, flags conflicts with other policies, traces exception spillover through the dependency chain, and surfaces the governance burden of the current configuration. When a conflict exists, the agent shows exactly which rules contradict and what would happen under different resolution paths.</p>
+
+      <p>What matters is that it does not make policy decisions. It does not auto-resolve conflicts or silently adjust scopes to avoid problems. The admin still needs to approve or reject changes, decide whether a conflict is acceptable, and send the change through the formal approval workflow.</p>
+
+      <ul class="caption-list">
+        <li><strong>Conflict marker on policy list.</strong> A small flag on the list item itself, visible before the admin even opens the rule — putting the signal where scanning happens.</li>
+        <li><strong>Inline rule annotations.</strong> Plain language explanation, dependency warning, and conflict alert appear directly below the rule definition while editing.</li>
+        <li><strong>Spillover and impact in exceptions.</strong> The agent traces how an exception cascades through dependent policies and shows what would change if it were removed.</li>
+        <li><strong>Governance burden in change controls.</strong> A summary of approval complexity, exception count, and downstream exposure sits inside the change controls panel.</li>
+        <li><strong>Dependency chain visualization.</strong> The agent draws the policy dependency graph inside the dependencies panel, with the conflict highlighted.</li>
+        <li><strong>Recommended actions.</strong> Concrete next steps span the workspace. These are suggestions, not decisions — the admin still owns every action.</li>
+      </ul>
+
+      <hr>
+
+      <h2>4. Financial position management: the agent as signal interpreter</h2>
+
+      <div class="case-summary">
+        <div class="case-summary-item">
+          <div class="case-summary-label">Topic</div>
+          <div class="case-summary-value">Financial position management</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">Agent role</div>
+          <div class="case-summary-value">A signal interpreter that flags positions where conditions have changed, surfaces correlations between names, tags news with the positions it affects, and annotates risk when exposure shifts.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What changes</div>
+          <div class="case-summary-value">The trader gets earlier visibility into connections between positions, news, and risk that would otherwise require manual cross-referencing.</div>
+        </div>
+        <div class="case-summary-item">
+          <div class="case-summary-label">What does not</div>
+          <div class="case-summary-value">The trader still evaluates every signal, decides whether the thesis has changed, and maintains full control over orders, stops, and position sizing.</div>
+        </div>
+      </div>
+
+      <p>A financial terminal has one of the most deeply learned structures of any expert tool. Traders do not just rely on data density. They rely on a working feel for how positions, orders, risk, charts, news, and alerts fit together in the moment.</p>
+
+      <p>The challenge isn't simply seeing information — it's knowing what matters to this book, this exposure, and this decision while markets are moving. If an agent is going to help here, it can't just replace that model with a generic summary of what the market is doing. It has to add interpretation that is specific to the trader's context.</p>
+
+      <p>The agent enters as a signal interpreter. It flags positions where conditions have changed enough to warrant a second look, surfaces correlations between positions that might not be obvious from the book alone, tags incoming news with the positions it affects, and annotates risk metrics when portfolio-level exposure shifts.</p>
+
+      <p>What matters is that it does not make trading decisions. It does not move stops, resize positions, or execute orders. The trader still needs to evaluate the signal, decide whether the thesis has changed, and maintain final control over every order.</p>
+
+      <ul class="caption-list">
+        <li><strong>Expanded position context.</strong> The flagged position opens inline to show why it matters now, which other positions are connected, and what actions might be worth considering.</li>
+        <li><strong>Risk metric annotations.</strong> The agent annotates shifts in portfolio-level risk directly inside the risk panel — beta drift, VaR changes, and concentration warnings appear where the trader already checks exposure.</li>
+        <li><strong>Position relevance tags on news.</strong> Incoming headlines are tagged with the tickers they affect and the direction of impact, letting the trader scan the feed and immediately see what matters to their book.</li>
+        <li><strong>Suggested stop adjustment.</strong> The agent flags a stop that may need tightening based on momentum and volatility — the suggestion is visible; the decision stays with the trader.</li>
+        <li><strong>Chart event annotation.</strong> A vertical marker ties a price inflection to the news catalyst that drove it, connecting the chart to the news feed without requiring manual cross-referencing.</li>
+      </ul>
+
+      <hr>
+
+      <h2>What these experiments suggest</h2>
+
+      <p>This is just a rough exploration, but it starts to show a more useful way of thinking about agents in expert tools.</p>
+
+      <p><strong>First, agents need a role, not just a place in the interface.</strong> The design problem becomes what function the agent serves inside the workflow, and whether that function is legible to the user.</p>
+
+      <p><strong>Second, the strongest roles are usually bounded.</strong> The agent works best when it helps build understanding, preserve orientation, reveal consequence, or surface what matters in context. It works less well when it tries to replace the core logic of the tool itself.</p>
+
+      <p><strong>Third, the agent has to stay close to the product's learned structure.</strong> In every example, the value of the agent depends on its ability to work within an existing logic of evidence, interpretation, and action. It can't float above the tool as a detached intelligence layer.</p>
+
+      <p><strong>Fourth, evidence and judgment have to remain explicit.</strong> If an agent is going to interpret, suggest, or prepare work, its output needs to stay connected to visible evidence, system state, rules, or positions.</p>
+
+      <div class="callout">
+        Expert products do not just need AI features. They need a workable relationship between human expertise and agent participation.
+      </div>
+
+      <hr>
+
+      <h2>A few principles that fall out of this</h2>
+
+      <ul class="principles-list">
+        <li><strong>Preserve the anchors.</strong> If parts of the product carry orientation for expert users, those structures should not move casually.</li>
+        <li><strong>Add synthesis, not substitution.</strong> Agents are strongest when they help connect fragmented work, not when they try to replace the product's existing logic.</li>
+        <li><strong>Keep claims inspectable.</strong> Suggestions, summaries, and proposed next steps need to stay tied to evidence, rules, positions, or visible system state.</li>
+        <li><strong>Make the agent's role legible.</strong> If an agent is acting with some autonomy, the user should understand what kind of role it is playing and why it is stepping in.</li>
+        <li><strong>Protect user judgment.</strong> The more capable the agent becomes, the more important it is to keep judgment, accountability, and handoff clear.</li>
+        <li><strong>Work within the product's learned structure.</strong> Expert tools already contain a trusted way of working. Agents need to map onto that structure rather than ask users to reorganize themselves around the agent.</li>
+      </ul>
+
+      <hr>
+
+      <h2>What I'm left thinking about</h2>
+
+      <p>For a long time, one of the hardest design problems in enterprise software was figuring out how to improve entrenched tools without breaking the trust and fluency expert users had built inside them. That problem is back now, but in a more demanding form.</p>
+
+      <p>The challenge is how to make room inside these products for this new AI participant in the work. That takes more than attaching a chat assistant to the edge of the tool. It takes a clearer understanding of the learned structure expert users already rely on, and a more careful definition of the role an agent is actually meant to play.</p>
+
+      <p>The best AI integrations won't come from treating the agent as a layer dropped on top. They'll come from treating agentic participants as something that has to earn its place inside an established way of working.</p>
+
+      <p>To me, that feels like the real design task ahead of us: not just adding intelligence to expert systems, but figuring out what those systems need to become when expert humans are no longer working alone inside them.</p>
+
+      <a href="blog.html" class="back-to-blog">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8H4M4 8l4-4M4 8l4 4"/></svg>
+        Back to Blog
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Outshift by Cisco</span>
+  <span>Originally published on <a href="https://marcscibelli.com/writing/making-room-for-agents-in-expert-tools/" target="_blank" rel="noopener noreferrer" style="color:var(--color-accent);text-decoration:none;">marcscibelli.com</a></span>
+</footer>
+
+<script>
+document.querySelector('.theme-toggle').addEventListener('click', function() {
+    var html = document.documentElement;
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+});
+</script>
+</body>
+</html>
