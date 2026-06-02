@@ -86,9 +86,9 @@ nav ul li a:hover { color: var(--color-text); }
 
 /* ── Article layout ── */
 .article-wrap {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 60px min(10%, max(5%, calc((100% - 900px) / 2)));
+    padding: 60px min(10%, max(5%, calc((100% - 1100px) / 2)));
 }
 
 .breadcrumb {
@@ -270,7 +270,35 @@ h1.article-title {
     margin: 0;
 }
 
-/* ── Back link ── */
+/* ── Article images ── */
+.article-img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    margin: 28px 0 8px;
+    display: block;
+}
+.article-img-caption {
+    font-size: 0.82em;
+    color: var(--color-text-subtle);
+    text-align: center;
+    margin: 0 0 32px;
+}
+.article-img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0 32px;
+}
+.article-img-pair img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    display: block;
+}
+@media (max-width: 640px) {
+    .article-img-pair { grid-template-columns: 1fr; }
+}
 .back-to-blog {
     display: inline-flex;
     align-items: center;
@@ -442,6 +470,10 @@ footer {
 
       <p>What matters is that it does not replace the investigation process. It does not hide the logs behind a clean summary or turn a working theory into a finished answer. The analyst still needs to inspect the underlying material, challenge the framing, reject the wrong hypothesis, approve or discard the drafted note, and keep the case open long enough for uncertainty to stay visible.</p>
 
+      <div class="article-img-pair">
+        <img src="images/blog/making-room-agents/concept_01_security_investigation.svg" alt="Security investigation concept">
+        <img src="images/blog/making-room-agents/annotated_01_security_investigation.svg" alt="Security investigation annotated">
+      </div>
       <ul class="caption-list">
         <li><strong>Expanded alert context.</strong> The flagged alert opens inline to show the incident narrative, ranked hypotheses, and suggested next pivots. The analyst gets a working theory without leaving the alerts queue.</li>
         <li><strong>Correlated cluster on timeline.</strong> The agent groups related events and highlights the cluster visually. This surfaces the burst pattern the analyst would otherwise need to spot manually.</li>
@@ -480,6 +512,10 @@ footer {
 
       <p>What matters is that it does not take over the triage process. It does not auto-resolve incidents or hide individual alerts behind a rolled-up summary. The operator still needs to console into the device, verify the grouping makes sense, and determine the actual root cause.</p>
 
+      <div class="article-img-pair">
+        <img src="images/blog/making-room-agents/concept_02_network_operations.svg" alt="Network operations concept">
+        <img src="images/blog/making-room-agents/annotated_02_network_operations.svg" alt="Network operations annotated">
+      </div>
       <ul class="caption-list">
         <li><strong>Expanded triage context.</strong> The flagged device opens inline to show why the agent grouped these signals, what the blast radius looks like, and what to check next.</li>
         <li><strong>Correlation markers on alert stream.</strong> Each alert is tagged with its incident group — letting the operator see at a glance which alerts are part of the same cascading failure.</li>
@@ -515,6 +551,11 @@ footer {
       <p>The agent enters as a consequence analyst. It explains what a rule does in plain language, flags conflicts with other policies, traces exception spillover through the dependency chain, and surfaces the governance burden of the current configuration. When a conflict exists, the agent shows exactly which rules contradict and what would happen under different resolution paths.</p>
 
       <p>What matters is that it does not make policy decisions. It does not auto-resolve conflicts or silently adjust scopes to avoid problems. The admin still needs to approve or reject changes, decide whether a conflict is acceptable, and send the change through the formal approval workflow.</p>
+
+      <div class="article-img-pair">
+        <img src="images/blog/making-room-agents/concept_03_policy_admin.svg" alt="Policy administration concept">
+        <img src="images/blog/making-room-agents/annotated_03_policy_admin.svg" alt="Policy administration annotated">
+      </div>
 
       <ul class="caption-list">
         <li><strong>Conflict marker on policy list.</strong> A small flag on the list item itself, visible before the admin even opens the rule — putting the signal where scanning happens.</li>
@@ -555,6 +596,11 @@ footer {
       <p>The agent enters as a signal interpreter. It flags positions where conditions have changed enough to warrant a second look, surfaces correlations between positions that might not be obvious from the book alone, tags incoming news with the positions it affects, and annotates risk metrics when portfolio-level exposure shifts.</p>
 
       <p>What matters is that it does not make trading decisions. It does not move stops, resize positions, or execute orders. The trader still needs to evaluate the signal, decide whether the thesis has changed, and maintain final control over every order.</p>
+
+      <div class="article-img-pair">
+        <img src="images/blog/making-room-agents/concept_04_financial_terminal.svg" alt="Financial terminal concept">
+        <img src="images/blog/making-room-agents/annotated_04_financial_terminal.svg" alt="Financial terminal annotated">
+      </div>
 
       <ul class="caption-list">
         <li><strong>Expanded position context.</strong> The flagged position opens inline to show why it matters now, which other positions are connected, and what actions might be worth considering.</li>
