@@ -260,7 +260,10 @@ h1.article-title {
     border: 1px solid var(--color-border);
     margin: 28px 0 8px;
     display: block;
+    cursor: zoom-in;
+    transition: opacity 0.2s;
 }
+.article-img:hover { opacity: 0.88; }
 .article-img-caption {
     font-size: 0.82em;
     color: var(--color-text-subtle);
@@ -268,8 +271,8 @@ h1.article-title {
     margin: 0 0 32px;
 }
 .article-img-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
     margin: 28px 0 32px;
 }
@@ -278,10 +281,47 @@ h1.article-title {
     border-radius: 12px;
     border: 1px solid var(--color-border);
     display: block;
+    cursor: zoom-in;
+    transition: opacity 0.2s;
 }
-@media (max-width: 640px) {
-    .article-img-pair { grid-template-columns: 1fr; }
+.article-img-pair img:hover { opacity: 0.88; }
+
+/* ── Lightbox modal ── */
+#img-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 }
+#img-modal.open { display: flex; }
+#img-modal img {
+    max-width: min(92vw, 1400px);
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    object-fit: contain;
+    cursor: zoom-out;
+}
+#img-modal-close {
+    position: fixed;
+    top: 20px; right: 24px;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+}
+#img-modal-close:hover { background: rgba(255,255,255,0.22); }
 .back-to-blog {
     display: inline-flex;
     align-items: center;
@@ -684,6 +724,42 @@ document.querySelector('.theme-toggle').addEventListener('click', function() {
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
 });
+</script>
+
+<!-- Lightbox modal -->
+<div id="img-modal" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button id="img-modal-close" aria-label="Close">&#x2715;</button>
+  <img id="img-modal-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var modal   = document.getElementById('img-modal');
+  var modalImg = document.getElementById('img-modal-img');
+  var closeBtn = document.getElementById('img-modal-close');
+
+  function openModal(src, alt) {
+    modalImg.src = src;
+    modalImg.alt = alt || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    modalImg.src = '';
+  }
+
+  // Attach to all article images (pair and standalone)
+  document.querySelectorAll('.article-img-pair img, .article-img').forEach(function (img) {
+    img.addEventListener('click', function () { openModal(img.src, img.alt); });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target === modal || e.target === modalImg) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+})();
 </script>
 </body>
 </html>
