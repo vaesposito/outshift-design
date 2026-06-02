@@ -140,13 +140,13 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
 
 /* ── Reading progress bar ── */
 .reading-progress {
-    position: fixed;
-    top: 0;
+    position: absolute;
+    bottom: -3px;
     left: 0;
-    height: 4px;
+    height: 3px;
     width: 0%;
     background: linear-gradient(90deg, #FF0000, #FF8800, #FFDD00, #00CC44, #00BCEB, #187ADC, #8B5CF6);
-    z-index: 9999;
+    z-index: 101;
     transition: width 0.1s linear;
 }
 
@@ -444,7 +444,7 @@ footer {
 </style>
 </head>
 <body>
-<div class="reading-progress" id="readingProgress"></div>
+
 
 <header>
   <div class="container">
@@ -490,6 +490,7 @@ footer {
       </ul>
     </nav>
   </div>
+  <div class="reading-progress" id="readingProgress"></div>
 </header>
 
 <main>
