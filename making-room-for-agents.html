@@ -138,6 +138,18 @@ footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; positi
     html { font-size: 20px; }
 }
 
+/* ── Reading progress bar ── */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, #FF0000, #FF8800, #FFDD00, #00CC44, #00BCEB, #187ADC, #8B5CF6);
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+
 /* ── Article layout ── */
 .article-wrap {
     max-width: 1100px;
@@ -432,6 +444,7 @@ footer {
 </style>
 </head>
 <body>
+<div class="reading-progress" id="readingProgress"></div>
 
 <header>
   <div class="container">
@@ -827,6 +840,14 @@ footer {
             document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
         }
     });
+
+    var progressBar = document.getElementById('readingProgress');
+    if (progressBar) {
+        window.addEventListener('scroll', function () {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        });
+    }
 })();
 </script>
 <script src="assistant.js"></script>
