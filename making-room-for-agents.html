@@ -376,9 +376,10 @@ h1.article-title {
     border: 1px solid var(--color-border);
     display: block;
     cursor: zoom-in;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px var(--color-shadow);
 }
-.article-img-pair img:hover { opacity: 0.88; }
+.article-img-pair img:hover { opacity: 0.88; box-shadow: 0 8px 40px var(--color-shadow); }
 
 /* ── Lightbox modal ── */
 #img-modal {
