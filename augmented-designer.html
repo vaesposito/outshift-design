@@ -242,6 +242,8 @@ h1.article-title {
 
 /* ── Article body ── */
 .article-body { line-height: 1.8; color: var(--color-text); }
+.article-body a { color: var(--color-accent); text-decoration: underline; text-decoration-color: rgba(0,188,235,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+.article-body a:hover { color: var(--color-accent-hover); text-decoration-color: var(--color-accent-hover); }
 .article-body h2 {
     font-size: clamp(1.3em, 2vw, 1.7em);
     font-weight: 700;
@@ -548,13 +550,13 @@ h1.article-title {
 
       <h2>The "Engineer Pal"</h2>
 
-      <p>One shift we have found extremely useful in our roles is the <strong>reduction of technical barriers</strong>, which speeds up our process of using and reviewing the technical solutions we produce. At Cisco Outshift, we have been exploring the Internet of Agents and the Internet of Cognition. Rather than traditional SaaS interfaces, these solutions live primarily in GitHub repositories, sometimes using UIs to facilitate usage and demo their features.</p>
+      <p>One shift we have found extremely useful in our roles is the <strong>reduction of technical barriers</strong>, which speeds up our process of using and reviewing the technical solutions we produce. At Cisco Outshift, we have been exploring the <a href="https://outshift.cisco.com/the-internet-of-agents" target="_blank" rel="noopener noreferrer">Internet of Agents</a> and the <a href="https://outshift.cisco.com/internet-of-cognition" target="_blank" rel="noopener noreferrer">Internet of Cognition</a>. Rather than traditional SaaS interfaces, these solutions live primarily in GitHub repositories, sometimes using UIs to facilitate usage and demo their features.</p>
 
       <p>Previously, an AI-unaugmented design team would have had to ask an engineer for a demo, wait for assistance with installation, or spend a significant amount of time figuring out how to run the software locally. Today, coding assistants allow us to bridge that gap.</p>
 
-      <p>For projects like the <strong>AGNTCY directory GUI</strong>, we were able to collaborate with the team to impact the look and feel, aligning it with our branding and refining the content for a smoother experience. We bypassed static mockups entirely, relying on assisted frontend development.</p>
+      <p>For projects like the <strong><a href="https://docs.agntcy.org/dir/directory-gui/#directory-connection" target="_blank" rel="noopener noreferrer">AGNTCY directory GUI</a></strong>, we were able to collaborate with the team to impact the look and feel, aligning it with our branding and refining the content for a smoother experience. We bypassed static mockups entirely, relying on assisted frontend development.</p>
 
-      <p>Similarly, on the <strong>Internet of Cognition CASA project</strong>, we were able to review the first draft of the UI, propose information architecture and flow improvements, and share an updated look and feel directly in code. No mockups — just sketching and sharing a working version with the frontend team, complete with interaction details, avoiding the tedious work of documenting every state.</p>
+      <p>Similarly, on the <strong><a href="https://outshift.cisco.com/internet-of-cognition" target="_blank" rel="noopener noreferrer">Internet of Cognition</a> <a href="https://github.com/outshift-open/CASA" target="_blank" rel="noopener noreferrer">CASA</a> project</strong>, we were able to review the first draft of the UI, propose information architecture and flow improvements, and share an updated look and feel directly in code. No mockups — just sketching and sharing a working version with the frontend team, complete with interaction details, avoiding the tedious work of documenting every state.</p>
 
       <div class="callout">
         Is this a new way of collaborating? Most probably. However, just as with design tools, code assistants should support competent engineers and not replace their judgment. They bring potential security, scalability, and quality issues to the table that must be guided by responsible humans.
@@ -564,9 +566,9 @@ h1.article-title {
 
       <h2>Case Study: The CASA Project</h2>
 
-      <p>At Outshift, we are actively exploring and shaping the <strong>Internet of Cognition</strong> — a paradigm where agents collaborate by sharing context, intent, and memory. Building on our previous work with AGNTCY regarding agent identities, our team has begun exploring Zero Trust principles in multi-agentic environments. This led to the development of <strong>CASA (Continuous Agent Semantic Authorization)</strong>, an intent-scoped authorization system for Kubernetes multi-agent systems, enforced at the network layer.</p>
+      <p>At Outshift, we are actively exploring and shaping the <strong><a href="https://outshift.cisco.com/internet-of-cognition" target="_blank" rel="noopener noreferrer">Internet of Cognition</a></strong> — a paradigm where agents collaborate by sharing context, intent, and memory. Building on our previous work with AGNTCY regarding <a href="https://agent-identity.outshift.com/welcome" target="_blank" rel="noopener noreferrer">agent identities</a>, our team has begun exploring Zero Trust principles in multi-agentic environments. This led to the development of <strong><a href="https://github.com/outshift-open/CASA" target="_blank" rel="noopener noreferrer">CASA (Continuous Agent Semantic Authorization)</a></strong>, an intent-scoped authorization system for Kubernetes multi-agent systems, enforced at the network layer.</p>
 
-      <p>Our projects are ambitious, fast-paced, and currently live primarily in GitHub repositories. In the context of CASA, we needed to design a UI that allows users to monitor and manage authorizations at a granular level. As remote designers working with sometimes local engineering teams, we needed to catch up quickly and contribute meaningfully, despite tight deadlines.</p>
+      <p>Our projects are ambitious, fast-paced, and currently live primarily in GitHub repositories. In the context of <a href="https://github.com/outshift-open/CASA" target="_blank" rel="noopener noreferrer">CASA</a>, we needed to design a UI that allows users to monitor and manage authorizations at a granular level. As remote designers working with sometimes local engineering teams, we needed to catch up quickly and contribute meaningfully, despite tight deadlines.</p>
 
       <h3>The Workflow Shift</h3>
 
