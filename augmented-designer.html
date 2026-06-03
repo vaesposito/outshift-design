@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<title>The Augmented Designer: How Agents are Reshaping the Design Workflow — Outshift Design</title>
+<meta name="description" content="Reflections on AI-augmented design: plausible noise, the engineer pal effect, and a case study of the CASA project at Outshift.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Augmented Designer: How Agents are Reshaping the Design Workflow — Outshift Design">
+<meta property="og:description" content="Reflections on AI-augmented design: plausible noise, the engineer pal effect, and a case study of the CASA project at Outshift.">
+<meta property="og:url" content="https://vaesposito.github.io/outshift-design/augmented-designer.html">
+<meta property="og:image" content="https://vaesposito.github.io/outshift-design/images/blog/augmented-designer/hero.svg">
+<meta property="og:site_name" content="Outshift Design">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Augmented Designer: How Agents are Reshaping the Design Workflow — Outshift Design">
+<meta name="twitter:description" content="Reflections on AI-augmented design: plausible noise, the engineer pal effect, and a case study of the CASA project at Outshift.">
+<meta name="twitter:image" content="https://vaesposito.github.io/outshift-design/images/blog/augmented-designer/hero.svg">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script>
+(function(){var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark')}})();
+</script>
+<style type="text/css">
+html { scroll-behavior: smooth; }
+
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    --fancy-transition: 0.25s cubic-bezier(0.78, 0, 0.22, 1);
+    --color-bg: #fff;
+    --color-text: #293247;
+    --color-text-muted: #67707F;
+    --color-text-subtle: #59616B;
+    --color-border: rgba(41, 50, 71, 0.08);
+    --color-border-medium: rgba(41, 50, 71, 0.15);
+    --color-surface: rgba(255, 255, 255, 0.97);
+    --color-hover: rgba(41, 50, 71, 0.04);
+    --color-accent: #00BCEB;
+    --color-accent-hover: #187ADC;
+    --color-hamburger: #293247;
+    --color-shadow: rgba(41, 50, 71, 0.08);
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; color: var(--color-text); }
+}
+[data-theme="dark"] {
+    --color-bg: #0f1117;
+    --color-text: #e0e4ec;
+    --color-text-muted: #9ca3b0;
+    --color-text-subtle: #8a919c;
+    --color-border: rgba(255,255,255,0.08);
+    --color-border-medium: rgba(255,255,255,0.15);
+    --color-surface: rgba(15,17,23,0.97);
+    --color-hover: rgba(255,255,255,0.06);
+    --color-accent: #3fc6ee;
+    --color-accent-hover: #00BCEB;
+    --color-hamburger: #e0e4ec;
+    --color-shadow: rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .logo-light,
+[data-theme="dark"] .footer-logo .logo-light { display: none; }
+[data-theme="dark"] .logo-dark,
+[data-theme="dark"] .footer-logo .logo-dark { display: block; }
+.logo-dark,
+.footer-logo .logo-dark { display: none; }
+
+* { box-sizing: border-box; }
+.container { width: 100%; padding: 0 min(10%, max(10%, calc((100% - 1400px) / 2))); box-sizing: border-box; }
+body { overflow-x: hidden; margin: 0; padding: 0; width: 100%; background: var(--color-bg); color: var(--color-text); }
+a:link, a:visited, a:hover, a:active { text-decoration: none; color: var(--color-text); }
+
+/* ── Header / Nav ── */
+header { padding: 1% 0; width: 100%; border-bottom: 1px solid var(--color-border); display: flex; position: sticky; top: 0; z-index: 100; background: var(--color-surface); backdrop-filter: blur(12px); }
+.design { font-size: 1.8em; font-weight: 200; margin-left: 8px; }
+.logo { display: flex; align-items: center; }
+.logo, nav ul, header .container { display: flex; justify-content: space-between; align-items: center; }
+nav ul { list-style: none; gap: 30px; }
+nav > ul > li { position: relative; }
+.has-dropdown { position: relative; }
+.nav-dropdown { position: absolute; top: calc(100% + 0.5rem); left: 0; z-index: 20; min-width: 200px; overflow: hidden; opacity: 0; visibility: hidden; transform: scaleY(0); transform-origin: top; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; box-shadow: 0 6px 24px var(--color-shadow); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.has-dropdown.is-active > .nav-dropdown { opacity: 1; visibility: visible; transform: scaleY(1); }
+.nav-dropdown.nav-dropdown--research { left: auto; right: 0; transform-origin: top right; }
+.nav-dropdown > li { display: block; width: 100%; }
+.nav-dropdown > li > a { display: block; width: 100%; text-align: left; padding: 10px 20px; color: var(--color-text-muted); font-size: 0.9em; white-space: nowrap; transition: background 0.2s; }
+.nav-dropdown > li > a:hover { background: var(--color-hover); color: var(--color-text) !important; }
+.nav-dropdown-group { padding: 0; }
+.nav-dropdown-label { display: flex; align-items: center; gap: 6px; padding: 10px 20px; font-size: 0.95em; font-weight: 400; color: var(--color-text); text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+.nav-dropdown-label:hover { background: var(--color-hover); }
+.nav-dropdown-sub { list-style: none; padding: 0; margin: 0 12px 8px 20px; display: flex; flex-direction: column; gap: 0; border-left: 2px solid var(--color-border); }
+.nav-dropdown-sub li { display: block; width: 100%; }
+.nav-dropdown-sub li a { display: block; width: 100%; text-align: left; padding: 6px 16px; color: var(--color-text-muted); font-size: 0.85em; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.nav-dropdown-sub li a:hover { background: var(--color-hover); color: var(--color-text) !important; }
+.external-link-icon { display: inline-block; width: 12px; height: 12px; margin-left: 4px; vertical-align: middle; opacity: 0.5; }
+.text, .icon { display: inline-block; vertical-align: middle; }
+.icon { margin-top: 2px; }
+.theme-toggle { display: inline-flex; padding: 6px; border-radius: 8px; background: none; border: none; color: var(--color-text); cursor: pointer; transition: background 0.2s; flex-direction: row; z-index: 0; }
+.theme-toggle::before { content: none; }
+.theme-toggle:hover { background: var(--color-hover); }
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+.menu-toggle { display: none; background: none; border: none; padding: 8px; cursor: pointer; z-index: 10; position: relative; }
+.menu-toggle::before { content: none; }
+.menu-toggle span { display: block; width: 22px; height: 2px; background: var(--color-hamburger); margin: 5px 0; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Footer ── */
+footer { border-top: 1px solid var(--color-border); padding: 60px 0 40px; position: relative; z-index: 1; }
+.footer-top { display: flex; gap: 80px; }
+.footer-logo img { height: 56px; }
+.footer-links h6, .footer-social h6 { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; margin: 0 0 16px; color: var(--color-text-subtle); }
+.footer-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-links a { display: inline-flex; align-items: center; gap: 6px; font-size: 0.95em; color: var(--color-text); }
+.footer-links svg { width: 14px; height: 14px; }
+.footer-social-icons { display: flex; gap: 16px; }
+.footer-social-icons a { color: var(--color-text); }
+.footer-social-icons svg { width: 20px; height: 20px; }
+.footer-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 0.85em; color: var(--color-text-subtle); }
+
+/* ── Responsive nav ── */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    header nav { position: fixed; top: 0; right: -100%; width: 70%; max-width: 300px; height: 100vh; background: var(--color-surface); backdrop-filter: blur(20px); z-index: 9; transition: right 0.35s ease; padding: 72px 20px 32px; box-shadow: -4px 0 24px rgba(0,0,0,0.08); overflow-y: auto; }
+    header nav.open { right: 0; }
+    header nav ul { flex-direction: column; align-items: flex-start; gap: 0; padding: 0; margin: 0; width: 100%; }
+    header nav ul li { width: 100%; padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+    header nav ul li a { font-size: 0.95em; text-align: left; display: block; width: 100%; }
+    .has-dropdown > a .icon { transition: transform 0.25s; }
+    .has-dropdown.is-active > a .icon { transform: rotate(180deg); }
+    .nav-dropdown { position: static; transform: scaleY(1); opacity: 1; visibility: visible; display: none; min-width: 0; background: none; border: none; border-radius: 0; box-shadow: none; padding: 4px 0 0 12px; overflow: visible; }
+    .has-dropdown.is-active > .nav-dropdown { display: block; }
+    .nav-dropdown li a { padding: 6px 0; font-size: 0.88em; }
+    .nav-dropdown li a:hover { background: none; }
+    .nav-dropdown-label { padding: 6px 0 4px; font-size: 0.92em; }
+    .nav-dropdown-sub { margin: 0 0 0 8px; border-left: 2px solid var(--color-border); }
+    .nav-dropdown-sub li a { padding: 4px 0 4px 12px; font-size: 0.85em; }
+    .footer-top { flex-direction: column; gap: 32px; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+    .container { padding: 0 5%; }
+    .design { font-size: 1.4em; }
+    footer { padding: 40px 0 0; }
+    .footer-logo img { height: 48px; }
+}
+@media (min-width: 2560px) {
+    html { font-size: 20px; }
+}
+
+/* ── Reading progress bar ── */
+.reading-progress {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #FF0000, #FF8800, #FFDD00, #00CC44, #00BCEB, #187ADC, #8B5CF6);
+    z-index: 101;
+    transition: width 0.1s linear;
+}
+
+/* ── Article layout ── */
+.article-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px min(10%, max(5%, calc((100% - 1100px) / 2)));
+}
+
+.breadcrumb {
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+    margin-bottom: 40px;
+}
+.breadcrumb a { color: var(--color-accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; color: var(--color-border-medium); }
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.article-tag {
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-accent);
+    background: rgba(0, 188, 235, 0.08);
+    border: 1px solid rgba(0, 188, 235, 0.2);
+    border-radius: 6px;
+    padding: 3px 10px;
+}
+.article-date, .article-read-time {
+    font-size: 0.85em;
+    color: var(--color-text-subtle);
+}
+.article-date::before { content: '·'; margin-right: 12px; color: var(--color-border-medium); }
+
+h1.article-title {
+    font-size: clamp(1.8em, 3vw, 3em);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 32px;
+    color: var(--color-text);
+}
+
+.article-hero {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    border: 1px solid var(--color-border);
+}
+.article-hero img {
+    width: 100%;
+    display: block;
+}
+
+.author-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--color-border);
+}
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border);
+    flex-shrink: 0;
+}
+.author-name { font-weight: 600; font-size: 0.95em; }
+.author-title { font-size: 0.82em; color: var(--color-text-muted); margin-top: 2px; }
+
+/* ── Article body ── */
+.article-body { line-height: 1.8; color: var(--color-text); }
+.article-body h2 {
+    font-size: clamp(1.3em, 2vw, 1.7em);
+    font-weight: 700;
+    margin: 56px 0 16px;
+    color: var(--color-text);
+}
+.article-body h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 32px 0 10px;
+    color: var(--color-text);
+}
+.article-body p { margin: 0 0 20px; font-size: 1em; }
+.article-body hr { border: none; border-top: 1px solid var(--color-border); margin: 48px 0; }
+.article-body ul, .article-body ol { margin: 0 0 20px; padding-left: 1.5em; }
+.article-body li { margin-bottom: 8px; }
+.article-body strong { font-weight: 600; color: var(--color-text); }
+.article-body em { font-style: italic; }
+
+/* ── Callout ── */
+.callout {
+    background: linear-gradient(135deg, rgba(0,188,235,0.07), rgba(24,122,220,0.07));
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 1.05em;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* ── Usage box ── */
+.usage-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0 36px;
+}
+.usage-item {
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+}
+.usage-item.do { border-color: rgba(0, 204, 68, 0.25); background: rgba(0, 204, 68, 0.04); }
+.usage-item.dont { border-color: rgba(235, 114, 81, 0.25); background: rgba(235, 114, 81, 0.04); }
+.usage-label {
+    font-size: 0.72em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+.usage-item.do .usage-label { color: #00cc44; }
+.usage-item.dont .usage-label { color: #eb7251; }
+.usage-item p { margin: 0; font-size: 0.9em; color: var(--color-text-muted); }
+
+/* ── Timeline ── */
+.timeline-steps {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.timeline-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95em;
+}
+.timeline-steps li:last-child { border-bottom: none; }
+.timeline-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.78em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+/* ── Principles list ── */
+.principles-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.principles-list li {
+    padding: 16px 20px;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-hover);
+    border-radius: 0 10px 10px 0;
+    font-size: 0.95em;
+}
+
+/* ── Back to blog ── */
+.back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-accent);
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-top: 48px;
+    transition: gap 0.2s;
+}
+.back-to-blog:hover { gap: 12px; color: var(--color-accent-hover); }
+
+@media (max-width: 768px) {
+    h1.article-title { font-size: 1.8em; }
+    .usage-box { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 2560px) {
+    html { font-size: 20px; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Augmented Designer: How Agents are Reshaping the Design Workflow",
+  "description": "Reflections on AI-augmented design: plausible noise, the engineer pal effect, and a case study of the CASA project at Outshift.",
+  "author": { "@type": "Person", "name": "Krystelle Gonzalez Papaux" },
+  "publisher": { "@type": "Organization", "name": "Outshift Design" },
+  "datePublished": "2026-06-01",
+  "url": "https://vaesposito.github.io/outshift-design/augmented-designer.html",
+  "image": "https://vaesposito.github.io/outshift-design/images/blog/augmented-designer/hero.svg",
+  "keywords": ["AI design", "augmented design", "design workflow", "coding assistants", "CASA", "Outshift", "human-in-the-loop"]
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">
+      <a href="index.html" style="display:flex;align-items:center;">
+        <img src="images/outshift_logo.svg" alt="Outshift" class="logo-light">
+        <img src="images/outshift_logo-white.svg" alt="Outshift" class="logo-dark">
+        <span class="design">design</span>
+      </a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav>
+      <ul>
+        <li class="has-dropdown"><a href="index.html#initiatives"><span class="text">Initiatives</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
+          <ul class="nav-dropdown">
+            <li class="nav-dropdown-group">
+              <a href="hax.html" class="nav-dropdown-label">The Human-Agent Experience</a>
+            </li>
+            <li><a href="https://outshift.cisco.com/internet-of-cognition/explore" target="_blank" rel="noopener noreferrer">Internet of Cognition <svg class="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown has-dropdown--hub"><a href="research.html"><span class="text">Research</span> <span class="icon"><img src="images/keyboard-arrow-down-icon.svg" alt=""></span></a>
+          <ul class="nav-dropdown nav-dropdown--research">
+            <li><a href="foundational-principles.html">Foundational Principles</a></li>
+            <li><a href="cognitive-frameworks.html">Cognitive Frameworks</a></li>
+            <li class="nav-dropdown-group">
+              <a href="societal-impact.html" class="nav-dropdown-label">Societal Impact</a>
+              <ul class="nav-dropdown-sub">
+                <li><a href="agent-impact-map.html">Agent Impact Map</a></li>
+                <li><a href="cognitive-load-audit.html">Cognitive Load Audit</a></li>
+                <li><a href="foresight-canvas.html">Foresight Canvas</a></li>
+              </ul>
+            </li>
+            <li><a href="security-privacy.html">Security &amp; Privacy</a></li>
+          </ul>
+        </li>
+        <li><a href="blog.html"><span class="text">Blog</span></a></li>
+        <li><button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5C9.005 3.495 8.447 4.843 8.447 6.25c0 1.407.559 2.755 1.553 3.75.995.995 2.344 1.553 3.75 1.553 1.407 0 2.755-.558 3.75-1.553 0 1.483-.44 2.933-1.264 4.167-.824 1.233-1.995 2.195-3.366 2.762-1.37.568-2.878.716-4.333.427-1.455-.29-2.791-1.004-3.84-2.053-1.049-1.049-1.763-2.386-2.053-3.84a7.502 7.502 0 0 1 .427-4.334A7.502 7.502 0 0 1 5.833 3.764 7.502 7.502 0 0 1 10 2.5Z" stroke="currentColor" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.333" stroke="currentColor" stroke-width="1.667"/><path d="M10 1.667V3.333M10 16.667V18.333M3.517 3.517l1.178 1.178M15.305 15.305l1.178 1.178M1.667 10H3.333M16.667 10H18.333M3.517 16.483l1.178-1.178M15.305 4.695l1.178-1.178" stroke="currentColor" stroke-width="1.667" stroke-linecap="round"/></svg></button></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="reading-progress" id="readingProgress"></div>
+</header>
+
+<main>
+  <div class="article-wrap">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="blog.html">Blog</a>
+      <span>/</span>
+      The Augmented Designer
+    </div>
+
+    <div class="article-meta">
+      <span class="article-tag">Design</span>
+      <span class="article-tag">AI</span>
+      <span class="article-tag">Workflow</span>
+      <span class="article-date">June 1, 2026</span>
+      <span class="article-read-time">8 min read</span>
+    </div>
+
+    <h1 class="article-title">The Augmented Designer: How Agents are Reshaping the Design Workflow</h1>
+
+    <div class="article-hero">
+      <img src="images/blog/augmented-designer/hero.svg" alt="The Augmented Designer">
+    </div>
+
+    <div class="author-row">
+      <img src="images/blog/augmented-designer/krystelle-headshot.jpg" alt="Krystelle Gonzalez Papaux" class="author-avatar" onerror="this.style.display='none'">
+      <div>
+        <div class="author-name">Krystelle Gonzalez Papaux</div>
+        <div class="author-title">Product Designer, Outshift by Cisco</div>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>As part of an emerging tech group, our mission is to explore the "what's next" for Cisco and the broader industry. This requires more than just curiosity; it demands that we actively step outside the comfort zones of known processes. We are living in an incredibly stimulating historical moment where previous knowledge barriers are being lowered, thanks to agent assistants that translate natural language intents into something tangible — from writing and design to complex development.</p>
+
+      <p>However, all that glitters is not gold, at least not yet. So, how do we take the best and leave the rest? Here are some reflections on the current state of AI-augmented design.</p>
+
+      <hr>
+
+      <h2>The Problem of "Plausible Noise"</h2>
+
+      <p>The multiplication of interface generation tools has made it possible to create nice-looking UIs that serve as excellent conversation starters. The problem arises when we go deeper into the content. Very often, these tools take the liberty of adding unrequested content to fill the space.</p>
+
+      <p>Replacing the classic "lorem ipsum" with plausible-looking, consistent content can be dangerous; it distracts from the core design goal and confuses our audiences. When content hierarchy is sacrificed for visual "noise," the interface becomes a generic, unbranded shell.</p>
+
+      <p>It is a dangerous mix: pleasant to the eye, but fundamentally hollow. AI tools are precious, but <strong>Human-in-the-Loop (HITL) guidance is as critical as mentoring a junior designer</strong>. Sometimes, the effort required to instruct an AI to achieve a specific vision is greater than simply sketching the idea ourselves.</p>
+
+      <div class="usage-box">
+        <div class="usage-item do">
+          <div class="usage-label">✓ Appropriate usage</div>
+          <p>Starting a conversation, guiding team discussions, and exploring initial ideas and styles.</p>
+        </div>
+        <div class="usage-item dont">
+          <div class="usage-label">✗ Not appropriate at this stage</div>
+          <p>High-fidelity production-ready assets or final prototypes without rigorous review.</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>The "Engineer Pal"</h2>
+
+      <p>One shift we have found extremely useful in our roles is the <strong>reduction of technical barriers</strong>, which speeds up our process of using and reviewing the technical solutions we produce. At Cisco Outshift, we have been exploring the Internet of Agents and the Internet of Cognition. Rather than traditional SaaS interfaces, these solutions live primarily in GitHub repositories, sometimes using UIs to facilitate usage and demo their features.</p>
+
+      <p>Previously, an AI-unaugmented design team would have had to ask an engineer for a demo, wait for assistance with installation, or spend a significant amount of time figuring out how to run the software locally. Today, coding assistants allow us to bridge that gap.</p>
+
+      <p>For projects like the <strong>AGNTCY directory GUI</strong>, we were able to collaborate with the team to impact the look and feel, aligning it with our branding and refining the content for a smoother experience. We bypassed static mockups entirely, relying on assisted frontend development.</p>
+
+      <p>Similarly, on the <strong>Internet of Cognition CASA project</strong>, we were able to review the first draft of the UI, propose information architecture and flow improvements, and share an updated look and feel directly in code. No mockups — just sketching and sharing a working version with the frontend team, complete with interaction details, avoiding the tedious work of documenting every state.</p>
+
+      <div class="callout">
+        Is this a new way of collaborating? Most probably. However, just as with design tools, code assistants should support competent engineers and not replace their judgment. They bring potential security, scalability, and quality issues to the table that must be guided by responsible humans.
+      </div>
+
+      <hr>
+
+      <h2>Case Study: The CASA Project</h2>
+
+      <p>At Outshift, we are actively exploring and shaping the <strong>Internet of Cognition</strong> — a paradigm where agents collaborate by sharing context, intent, and memory. Building on our previous work with AGNTCY regarding agent identities, our team has begun exploring Zero Trust principles in multi-agentic environments. This led to the development of <strong>CASA (Continuous Agent Semantic Authorization)</strong>, an intent-scoped authorization system for Kubernetes multi-agent systems, enforced at the network layer.</p>
+
+      <p>Our projects are ambitious, fast-paced, and currently live primarily in GitHub repositories. In the context of CASA, we needed to design a UI that allows users to monitor and manage authorizations at a granular level. As remote designers working with sometimes local engineering teams, we needed to catch up quickly and contribute meaningfully, despite tight deadlines.</p>
+
+      <h3>The Workflow Shift</h3>
+
+      <ul class="principles-list">
+        <li><strong>Local Environment Independence.</strong> We asked the AI coding assistant to run the application locally using demo data. This allowed us to navigate and review the first draft of the interface independently, removing the logistics bottleneck entirely.</li>
+        <li><strong>Content Inventory &amp; Architecture.</strong> We conducted a thorough content inventory to understand the underlying intentions of the interface. We proposed a new information architecture and navigation flow, ensuring that the most relevant content was accessible in a single click.</li>
+        <li><strong>Branding &amp; Visual Refinement.</strong> When the look and feel felt too generic, we asked the agent to develop a color theme for our framework, providing visual and code references to ensure consistency.</li>
+        <li><strong>Iterative Development.</strong> With the architecture and branding defined, we asked the agent to update the UI. After a few hundred iterations, we reached a version that aligned perfectly with our design principles.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Results: Record-Breaking Fidelity</h2>
+
+      <p>We documented the recommendations, recorded a short demo video to illustrate the new navigation and interactions, and pushed the updates to our GitHub repository.</p>
+
+      <p>We are currently at a "0–1" prototype stage. We don't expect this to function as a final product yet, but we are working with educated hypotheses that we plan to test through user interviews. The team reviewed the proposal, and the frontend engineer was able to implement the updates immediately. The result was a high-fidelity experience where interactions could be tested in real-time. There were no "blurred lines" — everything was clearly defined in the code.</p>
+
+      <h3>The Timeline</h3>
+
+      <ol class="timeline-steps">
+        <li><span class="timeline-num">1</span><span>Local review of the existing interface</span></li>
+        <li><span class="timeline-num">2</span><span>Suggested architecture and branding updates</span></li>
+        <li><span class="timeline-num">3</span><span>Implementation for collaboration</span></li>
+        <li><span class="timeline-num">4</span><span>Team review</span></li>
+        <li><span class="timeline-num">5</span><span>Final implementation</span></li>
+        <li><span class="timeline-num">6</span><span>One final round of review</span></li>
+      </ol>
+
+      <p>All of this occurred <strong>within a single week</strong>. In my experience, this is record time. The level of fine-tuning achieved is unprecedented, which is extremely satisfying from a designer's perspective.</p>
+
+      <hr>
+
+      <h2>The Augmented Designer</h2>
+
+      <p>AI tools are appearing in all areas and contexts. From content generation — which still requires competent HITL judgment — to image generation and the expansion of design systems, the applications in our field are vast. A solid design system can be used as a base for any new UI project if fed into a code assistant. New themes can be generated, and beautiful, consistent designs can be produced for future projects.</p>
+
+      <p>We are using fewer traditional design tools, and we look forward to the day the "design-to-code" issue is completely solved. The technology is so fresh and evolving that finding a durable process that isn't linked to version control isn't a possibility yet. In the meantime, watching, testing, playing, and participating in hackathons helps us test these possibilities in safe spaces.</p>
+
+      <hr>
+
+      <h2>Reflections on the Future of Design</h2>
+
+      <p>As product designers, we cover the full spectrum of product creation — from ideation to iteration. However, final details like micro-interactions are often pushed back because they are seen as time-consuming. This is contrary to good design principles, as every detail helps convey the message of an interface and makes complex technical products more understandable.</p>
+
+      <div class="callout">
+        Will I go back to designing mockups in Figma? Probably. But I look forward to the day when the control and fidelity of these tools match what can be achieved with a human-guided code assistant.
+      </div>
+
+      <a href="blog.html" class="back-to-blog">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8H4M4 8l4-4M4 8l4 4"/></svg>
+        Back to Blog
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Outshift by Cisco</span>
+</footer>
+
+<script>
+(function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var nav = document.querySelector('header nav');
+    toggle.addEventListener('click', function () {
+        toggle.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (link.closest('.has-dropdown') && link.parentElement.classList.contains('has-dropdown')) return;
+            toggle.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+
+    document.querySelector('.theme-toggle').addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
+    document.querySelectorAll('.has-dropdown > a').forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+            if (trigger.closest('.has-dropdown--hub') && !e.target.closest('.icon')) return;
+            e.preventDefault();
+            var parent = trigger.parentElement;
+            var wasActive = parent.classList.contains('is-active');
+            document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+            if (!wasActive) parent.classList.add('is-active');
+        });
+    });
+    window.addEventListener('click', function (e) {
+        if (!e.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.has-dropdown.is-active').forEach(function (el) { el.classList.remove('is-active'); });
+        }
+    });
+
+    var progressBar = document.getElementById('readingProgress');
+    if (progressBar) {
+        window.addEventListener('scroll', function () {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        });
+    }
+})();
+</script>
+<script src="assistant.js"></script>
+</body>
+</html>
