@@ -349,6 +349,53 @@ h1.article-title {
     font-size: 0.95em;
 }
 
+/* ── Article figures ── */
+.article-figure {
+    margin: 32px 0;
+}
+.article-figure img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 24px var(--color-shadow);
+    cursor: zoom-in;
+    transition: opacity 0.2s, box-shadow 0.2s;
+}
+.article-figure img:hover {
+    opacity: 0.92;
+    box-shadow: 0 8px 40px var(--color-shadow);
+}
+.article-figure figcaption {
+    margin-top: 10px;
+    font-size: 0.82em;
+    color: var(--color-text-subtle);
+    text-align: center;
+    font-style: italic;
+}
+
+/* ── Image lightbox ── */
+#img-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+#img-modal.open { display: flex; }
+#img-modal img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    cursor: default;
+}
+
 /* ── Back to blog ── */
 .back-to-blog {
     display: inline-flex;
@@ -523,6 +570,19 @@ h1.article-title {
       <ul class="principles-list">
         <li><strong>Local Environment Independence.</strong> We asked the AI coding assistant to run the application locally using demo data. This allowed us to navigate and review the first draft of the interface independently, removing the logistics bottleneck entirely.</li>
         <li><strong>Content Inventory &amp; Architecture.</strong> We conducted a thorough content inventory to understand the underlying intentions of the interface. We proposed a new information architecture and navigation flow, ensuring that the most relevant content was accessible in a single click.</li>
+      </ul>
+
+      <figure class="article-figure">
+        <img src="images/blog/augmented-designer/content-inventory.png" alt="Content inventory diagram for the CASA project">
+        <figcaption>Content inventory mapping the underlying intentions and structure of the CASA interface.</figcaption>
+      </figure>
+
+      <figure class="article-figure">
+        <img src="images/blog/augmented-designer/casa-navigation.png" alt="CASA navigation architecture proposal">
+        <figcaption>Proposed navigation architecture — key content accessible in a single click.</figcaption>
+      </figure>
+
+      <ul class="principles-list">
         <li><strong>Branding &amp; Visual Refinement.</strong> When the look and feel felt too generic, we asked the agent to develop a color theme for our framework, providing visual and code references to ensure consistency.</li>
         <li><strong>Iterative Development.</strong> With the architecture and branding defined, we asked the agent to update the UI. After a few hundred iterations, we reached a version that aligned perfectly with our design principles.</li>
       </ul>
@@ -579,6 +639,10 @@ h1.article-title {
   <span>© 2026 Outshift by Cisco</span>
 </footer>
 
+<div id="img-modal" role="dialog" aria-modal="true">
+  <img id="img-modal-img" src="" alt="">
+</div>
+
 <script>
 (function () {
     var toggle = document.querySelector('.menu-toggle');
@@ -627,6 +691,22 @@ h1.article-title {
             progressBar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
         });
     }
+
+    var modal = document.getElementById('img-modal');
+    var modalImg = document.getElementById('img-modal-img');
+    document.querySelectorAll('.article-figure img').forEach(function (img) {
+        img.addEventListener('click', function () {
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modal.classList.add('open');
+        });
+    });
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) modal.classList.remove('open');
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') modal.classList.remove('open');
+    });
 })();
 </script>
 <script src="assistant.js"></script>
